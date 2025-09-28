@@ -59,6 +59,64 @@
             padding: 0 2rem;
         }
 
+        /* Índice */
+        .index-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border: 2px solid var(--secondary-color);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .index-section h2 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 1.5rem;
+            border: none;
+            font-size: 1.8rem;
+        }
+
+        .index-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .index-item {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .index-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-color: var(--secondary-color);
+        }
+
+        .index-item h3 {
+            color: var(--secondary-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.2rem;
+        }
+
+        .index-item p {
+            color: var(--text-color);
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .index-item a {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
         /* Seções */
         section {
             background: var(--white);
@@ -260,6 +318,77 @@
             display: none;
         }
 
+        /* Botões flutuantes */
+        .floating-buttons {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 1000;
+        }
+
+        .floating-btn {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .floating-btn:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .back-to-index {
+            background: var(--warning-color);
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .back-to-index:hover {
+            background: #e67e22;
+        }
+
+        /* Tooltip para os botões */
+        .floating-btn::before {
+            content: attr(data-tooltip);
+            position: absolute;
+            right: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+
+        .floating-btn:hover::before {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         /* Rodapé */
         footer {
             background: var(--primary-color);
@@ -288,6 +417,11 @@
                 padding: 1rem;
                 font-size: 0.9rem;
             }
+
+            .floating-buttons {
+                bottom: 1rem;
+                right: 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -310,8 +444,60 @@
     </header>
 
     <main class="container">
+        <!-- Índice do Curso -->
+        <section class="index-section">
+            <h2>📚 Índice do Curso</h2>
+            <p style="text-align: center; margin-bottom: 1.5rem; color: var(--text-color);">
+                Clique em qualquer aula para ir diretamente ao conteúdo desejado
+            </p>
+            
+            <div class="index-grid">
+                <div class="index-item">
+                    <a href="#aula1">
+                        <h3>🎯 Aula 1: Introdução aos Algoritmos</h3>
+                        <p>Conceitos básicos, pseudocódigo e estrutura de algoritmos</p>
+                    </a>
+                </div>
+                
+                <div class="index-item">
+                    <a href="#aula2">
+                        <h3>📊 Aula 2: Variáveis e Tipos de Dados</h3>
+                        <p>Declaração de variáveis, tipos de dados e operadores</p>
+                    </a>
+                </div>
+                
+                <div class="index-item">
+                    <a href="#aula3">
+                        <h3>🔀 Aula 3: Estruturas de Controle</h3>
+                        <p>Estruturas sequencial, condicional simples e composta</p>
+                    </a>
+                </div>
+                
+                <div class="index-item">
+                    <a href="#aula4">
+                        <h3>💻 Aula 4: Exercícios Práticos</h3>
+                        <p>Exercícios resolvidos aplicando os conceitos básicos</p>
+                    </a>
+                </div>
+                
+                <div class="index-item">
+                    <a href="#aula5">
+                        <h3>📝 Aula 5: Avaliação - Quiz Interativo</h3>
+                        <p>Teste seus conhecimentos com quiz interativo</p>
+                    </a>
+                </div>
+                
+                <div class="index-item">
+                    <a href="#aula6">
+                        <h3>🔄 Aula 6: Estruturas de Repetição</h3>
+                        <p>Laços de repetição: enquanto, repita e para</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
         <!-- Aula 1: Introdução aos Algoritmos -->
-        <section>
+        <section id="aula1">
             <h2>Aula 1: Introdução aos Algoritmos</h2>
             
             <h3>O que são Algoritmos?</h3>
@@ -355,7 +541,7 @@ fim
         </section>
 
         <!-- Aula 2: Variáveis e Tipos de Dados -->
-        <section>
+        <section id="aula2">
             <h2>Aula 2: Variáveis e Tipos de Dados</h2>
             
             <h3>O que são Variáveis?</h3>
@@ -405,7 +591,7 @@ altura = 1.75
         </section>
 
         <!-- Aula 3: Estruturas de Controle -->
-        <section>
+        <section id="aula3">
             <h2>Aula 3: Estruturas de Controle</h2>
             <p>As estruturas de controle determinam o fluxo de execução de um algoritmo, permitindo decidir a ordem dos comandos.</p>
 
@@ -452,7 +638,7 @@ fimse
         </section>
 
         <!-- Aula 4: Exercícios Práticos -->
-        <section>
+        <section id="aula4">
             <h2>Aula 4: Exercícios Práticos</h2>
             <p>Agora é hora de praticar! Resolva os exercícios abaixo aplicando os conceitos aprendidos nas aulas anteriores.</p>
 
@@ -592,7 +778,7 @@ fim
         </section>
 
         <!-- Aula 5: Avaliação - Quiz Interativo -->
-        <section>
+        <section id="aula5">
             <h2>Aula 5: Avaliação - Quiz Interativo</h2>
             <p>Vamos testar seus conhecimentos! Complete o quiz abaixo para verificar seu domínio dos conceitos fundamentais de programação.</p>
             
@@ -708,7 +894,257 @@ fim
                 </div>
             </div>
         </section>
+
+        <!-- Aula 6: Estruturas de Repetição -->
+        <section id="aula6">
+            <h2>Aula 6: Estruturas de Repetição</h2>
+            
+            <h3>O que são Estruturas de Repetição?</h3>
+            <p>Imagine que você precise escrever os nomes de 50 alunos. Sem repetição, teria que digitar 50 vezes o comando leia e escreva. Com repetição, você escreve apenas uma vez e o computador repete o processo!</p>
+            
+            <div class="highlight">
+                <p><strong>🔑 Definição:</strong> Estrutura de repetição é quando o algoritmo executa o mesmo conjunto de comandos várias vezes, até que uma condição seja atendida.</p>
+            </div>
+
+            <h3>6.1 Tipos de Estruturas de Repetição</h3>
+            
+            <h3>📌 a) Enquanto / faça</h3>
+            <p>Primeiro verifica a condição. Se for verdadeira, executa os comandos. Se for falsa, encerra.</p>
+            <div class="code-block">
+algoritmo "exemplo_enquanto"
+var
+    numero: inteiro
+inicio
+    numero ← 1
+    enquanto numero <= 5 faça
+        escreva(numero)
+        numero ← numero + 1
+    fim-enquanto
+fim
+            </div>
+            <p><strong>👉 Resultado:</strong> Escreve os números 1, 2, 3, 4, 5.</p>
+
+            <h3>📌 b) Repita / até que</h3>
+            <p>Primeiro executa os comandos, depois verifica a condição. Ou seja: sempre roda pelo menos uma vez.</p>
+            <div class="code-block">
+algoritmo "exemplo_repita"
+var
+    numero: inteiro
+inicio
+    numero ← 1
+    repita
+        escreva(numero)
+        numero ← numero + 1
+    até que numero > 5
+fim
+            </div>
+            <p><strong>👉 Resultado:</strong> Também escreve 1, 2, 3, 4, 5.</p>
+
+            <h3>📌 c) Para / faça</h3>
+            <p>Usado quando já sabemos quantas vezes vamos repetir. Bem mais simples!</p>
+            <div class="code-block">
+algoritmo "exemplo_para"
+var
+    numero: inteiro
+inicio
+    para numero de 1 até 5 faça
+        escreva(numero)
+    fim-para
+fim
+            </div>
+            <p><strong>👉 Resultado:</strong> Escreve 1, 2, 3, 4, 5.</p>
+
+            <h3>6.2 Variáveis Importantes</h3>
+            
+            <div class="highlight">
+                <p><strong>🔹 Variável Contadora:</strong> Serve para controlar quantas vezes o laço foi repetido.</p>
+                <p><strong>Exemplo:</strong> numero ← numero + 1</p>
+                
+                <p><strong>🔹 Variável Acumuladora:</strong> Serve para somar valores a cada repetição.</p>
+                <p><strong>Exemplo:</strong> Somar notas, calcular total de faltas.</p>
+            </div>
+
+            <h3>Exemplo Prático com Acumuladora:</h3>
+            <div class="code-block">
+algoritmo "calcula_media"
+var
+    soma, nota, media: real
+    cont: inteiro
+inicio
+    soma ← 0
+    para cont de 1 até 3 faça
+        escreva("Digite a nota ", cont, ": ")
+        leia(nota)
+        soma ← soma + nota
+    fim-para
+    media ← soma / 3
+    escreva("Média: ", media)
+fim
+            </div>
+
+            <h3>6.3 Flag (Marcador)</h3>
+            <p>Às vezes, não sabemos quantas vezes o laço vai repetir. Nesse caso, usamos uma palavra de parada (flag).</p>
+            <div class="code-block">
+algoritmo "exemplo_flag"
+var
+    pessoa: caractere
+inicio
+    escreva("Digite um nome (ou 'FIM' para sair): ")
+    leia(pessoa)
+    enquanto pessoa <> "FIM" faça
+        escreva("Olá, ", pessoa)
+        escreva("Digite outro nome (ou 'FIM' para sair): ")
+        leia(pessoa)
+    fim-enquanto
+    escreva("Programa encerrado!")
+fim
+            </div>
+            <p><strong>👉 Aqui, o usuário digita nomes até escrever "FIM".</strong></p>
+
+            <div class="highlight">
+                <p><strong>📚 Resumindo os tipos de repetição:</strong></p>
+                <ul>
+                    <li><strong>Enquanto:</strong> verifica antes de executar</li>
+                    <li><strong>Repita:</strong> executa pelo menos uma vez</li>
+                    <li><strong>Para:</strong> quando já sabemos quantas vezes repetir</li>
+                    <li><strong>Contadora:</strong> controla a quantidade de repetições</li>
+                    <li><strong>Acumuladora:</strong> soma valores ao longo do laço</li>
+                    <li><strong>Flag:</strong> palavra que indica quando parar</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Exercícios de Estruturas de Repetição -->
+        <section>
+            <h2>Exercícios: Estruturas de Repetição</h2>
+            <p>Pratique os conceitos de repetição com os exercícios a seguir:</p>
+
+            <div class="exercise">
+                <h4>Exercício 6.1: Números Pares de 1 a 20</h4>
+                <p>Escreva um algoritmo que imprima todos os números pares de 1 a 20 usando estrutura de repetição.</p>
+                <p><strong>Conceitos aplicados:</strong> Estrutura "para", operador módulo, condicionais</p>
+                
+                <button class="show-solution-btn" onclick="toggleSolution('sol5')">Mostrar Solução</button>
+                <div class="solution-container" id="sol5">
+                    <h5>💡 Solução do Exercício 6.1:</h5>
+                    <div class="code-block">
+algoritmo "numeros_pares"
+var
+    numero: inteiro
+inicio
+    escreva("Números pares de 1 a 20:")
+    para numero de 1 até 20 faça
+        se numero % 2 = 0 então
+            escreva(numero)
+        fimse
+    fim-para
+fim
+                    </div>
+                    <p><strong>Explicação:</strong> Usamos o laço "para" para percorrer os números de 1 a 20, e o operador módulo para verificar se cada número é par.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 6.2: Soma de 10 Números</h4>
+                <p>Crie um algoritmo que leia 10 números inteiros e calcule a soma total deles.</p>
+                <p><strong>Conceitos aplicados:</strong> Variável acumuladora, laço de repetição</p>
+                
+                <button class="show-solution-btn" onclick="toggleSolution('sol6')">Mostrar Solução</button>
+                <div class="solution-container" id="sol6">
+                    <h5>💡 Solução do Exercício 6.2:</h5>
+                    <div class="code-block">
+algoritmo "soma_numeros"
+var
+    numero, soma, contador: inteiro
+inicio
+    soma ← 0
+    para contador de 1 até 10 faça
+        escreva("Digite o ", contador, "º número: ")
+        leia(numero)
+        soma ← soma + numero
+    fim-para
+    escreva("A soma total é: ", soma)
+fim
+                    </div>
+                    <p><strong>Explicação:</strong> Utilizamos uma variável acumuladora (soma) que vai somando cada número digitado pelo usuário durante as 10 repetições.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 6.3: Jogo de Adivinhação</h4>
+                <p>Desenvolva um jogo onde o computador "pensa" em um número (fixo = 7) e o jogador tenta adivinhar. O jogo continua até o jogador acertar.</p>
+                <p><strong>Conceitos aplicados:</strong> Estrutura "enquanto", flag, condicionais</p>
+                
+                <button class="show-solution-btn" onclick="toggleSolution('sol7')">Mostrar Solução</button>
+                <div class="solution-container" id="sol7">
+                    <h5>💡 Solução do Exercício 6.3:</h5>
+                    <div class="code-block">
+algoritmo "jogo_adivinhacao"
+var
+    numero_secreto, tentativa: inteiro
+inicio
+    numero_secreto ← 7
+    escreva("Tente adivinhar o número que estou pensando (1-10)!")
+    
+    repita
+        escreva("Digite sua tentativa: ")
+        leia(tentativa)
+        se tentativa < numero_secreto então
+            escreva("Muito baixo! Tente novamente.")
+        senão se tentativa > numero_secreto então
+            escreva("Muito alto! Tente novamente.")
+        senão
+            escreva("Parabéns! Você acertou!")
+        fimse
+    até que tentativa = numero_secreto
+fim
+                    </div>
+                    <p><strong>Explicação:</strong> Usamos "repita...até que" para garantir que o jogo continue até o jogador acertar. Damos dicas se o número é maior ou menor.</p>
+                </div>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 6.4: Cadastro de Alunos</h4>
+                <p>Crie um algoritmo que permita cadastrar nomes de alunos. O programa deve continuar pedindo nomes até o usuário digitar "SAIR".</p>
+                <p><strong>Conceitos aplicados:</strong> Flag, estrutura "enquanto", strings</p>
+                
+                <button class="show-solution-btn" onclick="toggleSolution('sol8')">Mostrar Solução</button>
+                <div class="solution-container" id="sol8">
+                    <h5>💡 Solução do Exercício 6.4:</h5>
+                    <div class="code-block">
+algoritmo "cadastro_alunos"
+var
+    nome: caractere
+    contador: inteiro
+inicio
+    contador ← 0
+    escreva("=== CADASTRO DE ALUNOS ===")
+    escreva("Digite os nomes dos alunos (ou 'SAIR' para terminar)")
+    
+    escreva("Nome do aluno: ")
+    leia(nome)
+    
+    enquanto nome <> "SAIR" faça
+        contador ← contador + 1
+        escreva("Aluno ", contador, " cadastrado: ", nome)
+        escreva("Nome do próximo aluno: ")
+        leia(nome)
+    fim-enquanto
+    
+    escreva("Total de alunos cadastrados: ", contador)
+fim
+                    </div>
+                    <p><strong>Explicação:</strong> Usamos uma flag ("SAIR") para controlar quando parar e uma variável contadora para acompanhar quantos alunos foram cadastrados.</p>
+                </div>
+            </div>
+        </section>
     </main>
+
+    <!-- Botões flutuantes -->
+    <div class="floating-buttons">
+        <button class="floating-btn back-to-index" id="backToIndex" onclick="scrollToIndex()" data-tooltip="Voltar ao Índice">📚</button>
+        <button class="floating-btn back-to-top" id="backToTop" onclick="scrollToTop()" data-tooltip="Voltar ao Topo">↑</button>
+    </div>
 
     <footer>
         <div class="container">
@@ -905,6 +1341,53 @@ fim
             // Atualizar botões
             updateButtons();
         }
+
+        // Função para voltar ao topo
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Função para voltar ao índice
+        function scrollToIndex() {
+            const indexSection = document.querySelector('.index-section');
+            if (indexSection) {
+                indexSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Mostrar/esconder botões flutuantes baseado no scroll
+        window.addEventListener('scroll', function() {
+            const backToTopBtn = document.getElementById('backToTop');
+            const backToIndexBtn = document.getElementById('backToIndex');
+            
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+                backToIndexBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+                backToIndexBtn.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll para os links do índice
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
 
         // Inicializar o quiz quando a página carregar
         document.addEventListener('DOMContentLoaded', function() {
