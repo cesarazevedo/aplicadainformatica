@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Introdução à Programação - Algoritmos e Lógica</title>
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --light-bg: #ecf0f1;
+            --white: #ffffff;
+            --text-color: #34495e;
+            --border-color: #bdc3c7;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+
+        /* Cabeçalho */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Seções */
+        section {
+            background: var(--white);
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+        }
+
+        section h3 {
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem 0;
+            font-size: 1.3rem;
+        }
+
+        /* Códigos e exemplos */
+        .code-block {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 1.5rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            margin: 1rem 0;
+            overflow-x: auto;
+            line-height: 1.4;
+        }
+
+        .highlight {
+            background: #f8f9fa;
+            border-left: 4px solid var(--secondary-color);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-radius: 4px;
+        }
+
+        /* Exercícios */
+        .exercise {
+            background: #f8f9fa;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .exercise h4 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        /* Quiz */
+        .quiz-container {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .quiz-question {
+            background: var(--white);
+            color: var(--text-color);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        .quiz-question.active {
+            display: block;
+        }
+
+        .quiz-options {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .quiz-options li {
+            margin: 0.5rem 0;
+        }
+
+        .quiz-options label {
+            display: block;
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-options label:hover {
+            background: #e9ecef;
+            border-color: var(--secondary-color);
+        }
+
+        .quiz-options input[type="radio"] {
+            margin-right: 0.5rem;
+        }
+
+        .quiz-btn {
+            background: var(--secondary-color);
+            color: var(--white);
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s ease;
+            margin: 0.5rem;
+        }
+
+        .quiz-btn:hover {
+            background: #2980b9;
+        }
+
+        .quiz-btn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+        }
+
+        .feedback {
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            font-weight: bold;
+        }
+
+        .feedback.correct {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .feedback.incorrect {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            margin: 1rem 0;
+            display: none;
+        }
+
+        /* Gabarito */
+        .answer-section {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .answer-section h4 {
+            color: #0c5460;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Rodapé */
+        footer {
+            background: var(--primary-color);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 1.5rem;
+                margin: 1rem 0;
+            }
+
+            .code-block {
+                padding: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.7rem;
+            }
+
+            section {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Introdução à Programação</h1>
+            <p>Algoritmos, Lógica e Estruturas de Controle</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Conceitos Fundamentais -->
+        <section>
+            <h2>O que são Algoritmos?</h2>
+            <p>Um algoritmo é uma sequência de instruções realizadas com o objetivo de solucionar um problema. Em programação, utilizamos algoritmos para descrever as etapas que precisam ser efetuadas para que um programa execute as tarefas que lhe são designadas.</p>
+            
+            <div class="highlight">
+                <p><strong>Características dos Algoritmos:</strong></p>
+                <ul>
+                    <li>Conjunto de passos finitos e organizados</li>
+                    <li>Quando executados, resolvem um determinado problema</li>
+                    <li>São compostos por entrada (input), processamento e saída (output)</li>
+                </ul>
+            </div>
+
+            <h3>Pseudocódigo (Portugol)</h3>
+            <p>O pseudocódigo é um método genérico de representar um algoritmo, usando uma linguagem simples sem necessidade de conhecer a sintaxe de linguagem de programação específica.</p>
+
+            <div class="code-block">
+algoritmo "exemplo_basico"
+var
+    numero: inteiro
+    dobro: inteiro
+inicio
+    leia(numero)
+    dobro ← numero * 2
+    escreva("O dobro é: ", dobro)
+fim
+            </div>
+        </section>
+
+        <!-- Variáveis e Tipos -->
+        <section>
+            <h2>Variáveis e Tipos de Dados</h2>
+            <p>Variáveis são espaços alocados na memória do computador para armazenar dados ou expressões utilizados por um algoritmo.</p>
+
+            <h3>Tipos de Dados Principais:</h3>
+            <ul>
+                <li><strong>inteiro:</strong> Números inteiros (10, -5, 42)</li>
+                <li><strong>real:</strong> Números decimais (3.14, -2.5)</li>
+                <li><strong>logico:</strong> Valores booleanos (verdadeiro, falso)</li>
+                <li><strong>caractere:</strong> Sequência de caracteres ("Olá, mundo!")</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Regras para nomes de variáveis:</strong></p>
+                <ul>
+                    <li>Devem ser significativos</li>
+                    <li>Usar padrão snake_case (palavras_separadas_por_underscore)</li>
+                    <li>Começar com letra ou underscore</li>
+                    <li>Não podem ser palavras reservadas</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Estruturas de Controle -->
+        <section>
+            <h2>Estruturas de Controle</h2>
+            <p>As estruturas de controle determinam o fluxo de execução de um algoritmo, permitindo decidir a ordem dos comandos.</p>
+
+            <h3>1. Estrutura Sequencial</h3>
+            <p>Executa comandos em ordem, um após o outro.</p>
+            <div class="code-block">
+leia(nome)
+escreva("Olá, ", nome)
+            </div>
+
+            <h3>2. Estrutura Condicional Simples</h3>
+            <p>Executa comandos apenas se a condição for verdadeira.</p>
+            <div class="code-block">
+se numero > 0 então
+    escreva("Número positivo")
+fimse
+            </div>
+
+            <h3>3. Estrutura Condicional Composta</h3>
+            <p>Permite avaliar múltiplas condições.</p>
+            <div class="code-block">
+se numero > 0 então
+    escreva("Positivo")
+senão se numero < 0 então
+    escreva("Negativo")
+senão
+    escreva("Zero")
+fimse
+            </div>
+        </section>
+
+        <!-- Exercícios Práticos -->
+        <section>
+            <h2>Exercícios Práticos</h2>
+
+            <div class="exercise">
+                <h4>Exercício 1: Calculadora de Idade</h4>
+                <p>Escreva um algoritmo em pseudocódigo que leia o ano de nascimento de uma pessoa e calcule e imprima a idade dela (considere o ano atual como 2025).</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 2: Verificação de Número Par</h4>
+                <p>Desenvolva um algoritmo que leia um número inteiro e verifique se ele é par. Se for par, exiba "O número é par", caso contrário, não exiba nada.</p>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 3: Classificação de Nota</h4>
+                <p>Crie um algoritmo que leia uma nota (0 a 10) e classifique conforme os critérios:</p>
+                <ul>
+                    <li>Nota >= 9: "Excelente"</li>
+                    <li>Nota >= 7: "Bom"</li>
+                    <li>Nota >= 5: "Regular"</li>
+                    <li>Nota < 5: "Insuficiente"</li>
+                </ul>
+            </div>
+
+            <div class="exercise">
+                <h4>Exercício 4: Calculadora de IMC</h4>
+                <p>Desenvolva um algoritmo que calcule o IMC (peso / altura²) e classifique o resultado:</p>
+                <ul>
+                    <li>IMC < 18.5: "Abaixo do peso"</li>
+                    <li>IMC 18.5-24.9: "Peso normal"</li>
+                    <li>IMC 25-29.9: "Sobrepeso"</li>
+                    <li>IMC >= 30: "Obesidade"</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Quiz Interativo -->
+        <section>
+            <h2>Quiz Interativo</h2>
+            <div class="quiz-container">
+                <h3>Teste seus conhecimentos!</h3>
+                <p>Responda às perguntas abaixo para verificar seu aprendizado.</p>
+
+                <div class="quiz-question active" data-question="1">
+                    <h4>Pergunta 1 de 3</h4>
+                    <p>Qual é a definição correta de algoritmo?</p>
+                    <ul class="quiz-options">
+                        <li>
+                            <label>
+                                <input type="radio" name="q1" value="a">
+                                Uma linguagem de programação específica
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q1" value="b">
+                                Um conjunto de passos finitos e organizados para resolver um problema
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q1" value="c">
+                                Um tipo de variável em programação
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q1" value="d">
+                                Um erro no código do programa
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quiz-question" data-question="2">
+                    <h4>Pergunta 2 de 3</h4>
+                    <p>Em uma estrutura condicional composta, qual palavra-chave é usada para testar uma condição adicional?</p>
+                    <ul class="quiz-options">
+                        <li>
+                            <label>
+                                <input type="radio" name="q2" value="a">
+                                se
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q2" value="b">
+                                senão se
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q2" value="c">
+                                senão
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q2" value="d">
+                                fimse
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quiz-question" data-question="3">
+                    <h4>Pergunta 3 de 3</h4>
+                    <p>Qual tipo de variável é apropriado para armazenar a frase "Olá, mundo!"?</p>
+                    <ul class="quiz-options">
+                        <li>
+                            <label>
+                                <input type="radio" name="q3" value="a">
+                                inteiro
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q3" value="b">
+                                real
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q3" value="c">
+                                caractere
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <input type="radio" name="q3" value="d">
+                                logico
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="quiz-result">
+                    <h3>Resultado do Quiz</h3>
+                    <p id="quiz-score"></p>
+                    <button class="quiz-btn" onclick="restartQuiz()">Refazer Quiz</button>
+                </div>
+
+                <div id="quiz-feedback" class="feedback" style="display: none;"></div>
+
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button class="quiz-btn" id="prev-btn" onclick="prevQuestion()" disabled>Anterior</button>
+                    <button class="quiz-btn" id="next-btn" onclick="nextQuestion()">Próxima</button>
+                    <button class="quiz-btn" id="submit-btn" onclick="submitQuiz()" style="display: none;">Finalizar</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gabarito -->
+        <section>
+            <h2>Gabarito dos Exercícios</h2>
+
+            <div class="answer-section">
+                <h4>Resposta do Exercício 1:</h4>
+                <div class="code-block">
+algoritmo "calcula_idade"
+var
+    ano_nascimento: inteiro
+    idade: inteiro
+inicio
+    escreva("Digite seu ano de nascimento: ")
+    leia(ano_nascimento)
+    idade ← 2025 - ano_nascimento
+    escreva("Sua idade é: ", idade)
+fim
+                </div>
+            </div>
+
+            <div class="answer-section">
+                <h4>Resposta do Exercício 2:</h4>
+                <div class="code-block">
+algoritmo "verifica_par"
+var
+    numero: inteiro
+inicio
+    escreva("Digite um número: ")
+    leia(numero)
+    se numero % 2 = 0 então
+        escreva("O número é par")
+    fimse
+fim
+                </div>
+            </div>
+
+            <div class="answer-section">
+                <h4>Resposta do Exercício 3:</h4>
+                <div class="code-block">
+algoritmo "classifica_nota"
+var
+    nota: real
+inicio
+    escreva("Digite a nota (0-10): ")
+    leia(nota)
+    se nota >= 9 então
+        escreva("Excelente")
+    senão se nota >= 7 então
+        escreva("Bom")
+    senão se nota >= 5 então
+        escreva("Regular")
+    senão
+        escreva("Insuficiente")
+    fimse
+fim
+                </div>
+            </div>
+
+            <div class="answer-section">
+                <h4>Resposta do Exercício 4:</h4>
+                <div class="code-block">
+algoritmo "calcula_imc"
+var
+    peso, altura, imc: real
+inicio
+    escreva("Digite seu peso (kg): ")
+    leia(peso)
+    escreva("Digite sua altura (m): ")
+    leia(altura)
+    imc ← peso / (altura * altura)
+    escreva("Seu IMC é: ", imc)
+    se imc < 18.5 então
+        escreva("Abaixo do peso")
+    senão se imc <= 24.9 então
+        escreva("Peso normal")
+    senão se imc <= 29.9 então
+        escreva("Sobrepeso")
+    senão
+        escreva("Obesidade")
+    fimse
+fim
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Introdução à Programação. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Variáveis do quiz
+        let currentQuestion = 1;
+        const totalQuestions = 3;
+        let userAnswers = {};
+        const correctAnswers = {
+            q1: 'b',
+            q2: 'b', 
+            q3: 'c'
+        };
+
+        // Função para navegar para próxima pergunta
+        function nextQuestion() {
+            // Salvar resposta atual
+            const currentAnswer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+            if (currentAnswer) {
+                userAnswers[`q${currentQuestion}`] = currentAnswer.value;
+                
+                // Mostrar feedback
+                showFeedback(currentQuestion, currentAnswer.value);
+                
+                setTimeout(() => {
+                    if (currentQuestion < totalQuestions) {
+                        // Ocultar pergunta atual
+                        document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                        
+                        // Mostrar próxima pergunta
+                        currentQuestion++;
+                        document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                        
+                        // Atualizar botões
+                        updateButtons();
+                        
+                        // Esconder feedback
+                        document.getElementById('quiz-feedback').style.display = 'none';
+                    }
+                }, 2000);
+            } else {
+                alert('Por favor, selecione uma resposta antes de continuar.');
+            }
+        }
+
+        // Função para voltar à pergunta anterior
+        function prevQuestion() {
+            if (currentQuestion > 1) {
+                // Ocultar pergunta atual
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.remove('active');
+                
+                // Mostrar pergunta anterior
+                currentQuestion--;
+                document.querySelector(`[data-question="${currentQuestion}"]`).classList.add('active');
+                
+                // Atualizar botões
+                updateButtons();
+                
+                // Esconder feedback
+                document.getElementById('quiz-feedback').style.display = 'none';
+            }
+        }
+
+        // Função para mostrar feedback
+        function showFeedback(questionNum, answer) {
+            const feedbackDiv = document.getElementById('quiz-feedback');
+            const isCorrect = answer === correctAnswers[`q${questionNum}`];
+            
+            feedbackDiv.className = `feedback ${isCorrect ? 'correct' : 'incorrect'}`;
+            feedbackDiv.textContent = isCorrect ? 
+                'Correto! Muito bem!' : 
+                `Incorreto. A resposta correta é a alternativa "${correctAnswers[`q${questionNum}`].toUpperCase()}".`;
+            feedbackDiv.style.display = 'block';
+        }
+
+        // Função para atualizar estado dos botões
+        function updateButtons() {
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const submitBtn = document.getElementById('submit-btn');
+            
+            // Botão anterior
+            prevBtn.disabled = currentQuestion === 1;
+            
+            // Botões próxima/finalizar
+            if (currentQuestion === totalQuestions) {
+                nextBtn.style.display = 'none';
+                submitBtn.style.display = 'inline-block';
+            } else {
+                nextBtn.style.display = 'inline-block';
+                submitBtn.style.display = 'none';
+            }
+        }
+
+        // Função para finalizar o quiz
+        function submitQuiz() {
+            // Salvar última resposta
+            const currentAnswer = document.querySelector(`input[name="q${currentQuestion}"]:checked`);
+            if (currentAnswer) {
+                userAnswers[`q${currentQuestion}`] = currentAnswer.value;
+                
+                // Mostrar feedback da última pergunta
+                showFeedback(currentQuestion, currentAnswer.value);
+                
+                setTimeout(() => {
+                    // Calcular pontuação
+                    let score = 0;
+                    for (let i = 1; i <= totalQuestions; i++) {
+                        if (userAnswers[`q${i}`] === correctAnswers[`q${i}`]) {
+                            score++;
+                        }
+                    }
+                    
+                    // Esconder todas as perguntas
+                    document.querySelectorAll('.quiz-question').forEach(q => {
+                        q.classList.remove('active');
+                    });
+                    
+                    // Mostrar resultado
+                    const resultDiv = document.querySelector('.quiz-result');
+                    const scoreText = document.getElementById('quiz-score');
+                    
+                    let message = `Você acertou ${score} de ${totalQuestions} perguntas. `;
+                    if (score === totalQuestions) {
+                        message += 'Excelente! Você domina o conteúdo!';
+                    } else if (score >= totalQuestions * 0.7) {
+                        message += 'Muito bom! Continue estudando!';
+                    } else {
+                        message += 'Recomendamos revisar o conteúdo e tentar novamente.';
+                    }
+                    
+                    scoreText.textContent = message;
+                    resultDiv.style.display = 'block';
+                    
+                    // Esconder feedback e botões
+                    document.getElementById('quiz-feedback').style.display = 'none';
+                    document.getElementById('prev-btn').style.display = 'none';
+                    document.getElementById('next-btn').style.display = 'none';
+                    document.getElementById('submit-btn').style.display = 'none';
+                }, 2000);
+            } else {
+                alert('Por favor, selecione uma resposta antes de finalizar.');
+            }
+        }
+
+        // Função para reiniciar o quiz
+        function restartQuiz() {
+            // Resetar variáveis
+            currentQuestion = 1;
+            userAnswers = {};
+            
+            // Limpar seleções
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            
+            // Mostrar primeira pergunta
+            document.querySelectorAll('.quiz-question').forEach(q => {
+                q.classList.remove('active');
+            });
+            document.querySelector('[data-question="1"]').classList.add('active');
+            
+            // Esconder resultado
+            document.querySelector('.quiz-result').style.display = 'none';
+            
+            // Mostrar botões
+            document.getElementById('prev-btn').style.display = 'inline-block';
+            document.getElementById('next-btn').style.display = 'inline-block';
+            document.getElementById('submit-btn').style.display = 'none';
+            
+            // Esconder feedback
+            document.getElementById('quiz-feedback').style.display = 'none';
+            
+            // Atualizar botões
+            updateButtons();
+        }
+
+        // Inicializar o quiz quando a página carregar
+        document.addEventListener('DOMContentLoaded', function() {
+            updateButtons();
+        });
+
+        // Adicionar smooth scroll para links internos
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
