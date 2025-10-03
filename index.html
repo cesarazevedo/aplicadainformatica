@@ -780,6 +780,175 @@
         padding-bottom: 20px;
     }
 }
+        /* Cole isso no seu CSS existente */
+
+/* Estilos para Animações de Vetores */
+.vector-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.vector-cell {
+    width: 80px;
+    border: 3px solid #2196F3;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    background: white;
+}
+
+.vector-cell.active {
+    transform: scale(1.15);
+    border-color: #4CAF50;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+    background: #E8F5E9;
+}
+
+.vector-cell.checking {
+    transform: scale(1.1);
+    border-color: #FF9800;
+    background: #FFF3E0;
+}
+
+.vector-cell.found {
+    border-color: #4CAF50;
+    background: #4CAF50;
+    animation: pulse 0.6s ease;
+}
+
+.vector-cell.not-match {
+    border-color: #ddd;
+    opacity: 0.5;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+.cell-index {
+    background: #2196F3;
+    color: white;
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.cell-value {
+    padding: 20px 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vector-cell.active .cell-index {
+    background: #4CAF50;
+}
+
+.vector-cell.checking .cell-index {
+    background: #FF9800;
+}
+
+.vector-cell.found .cell-index {
+    background: #2E7D32;
+}
+
+.vector-cell.found .cell-value {
+    color: white;
+}
+
+.vector-label {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    color: #666;
+    font-size: 14px;
+}
+
+.var-display {
+    background: #e3f2fd;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.var-display p {
+    margin: 8px 0;
+    font-size: 16px;
+}
+
+.access-arrow {
+    text-align: center;
+    margin-top: 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.access-arrow.show {
+    opacity: 1;
+}
+
+.arrow-pointer {
+    font-size: 40px;
+    animation: bounce 0.6s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.arrow-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-top: 5px;
+}
+
+.search-status {
+    text-align: center;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.search-status.searching {
+    background: #FFF3E0;
+    color: #FF9800;
+}
+
+.search-status.found {
+    background: #E8F5E9;
+    color: #4CAF50;
+}
+
+.equation-display {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff3e0;
+    border-radius: 8px;
+    font-size: 22px;
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
     </style>
 </head>
 <body>
@@ -1852,6 +2021,236 @@ fim
     </div>
 </section>
 
+<!-- Cole isso ANTES da seção de Exercícios de Vetores -->
+
+<!-- Seção de Animações Visuais de Vetores -->
+<section id="animacoes-vetores">
+    <h2>🎬 Visualizando Vetores na Prática</h2>
+    <p>Veja como os vetores funcionam com animações interativas!</p>
+
+    <!-- Animação 1: Preenchendo um Vetor -->
+    <div class="animation-container">
+        <h3>📌 Animação 1: Preenchendo um Vetor</h3>
+        <p>Veja como os valores são armazenados nas "caixinhas" do vetor!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="preenche-code">
+<span id="pv-line1">para i de 1 até 5 faça</span>
+<span id="pv-line2">    vetor[i] ← i * 2</span>
+<span id="pv-line3">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>i =</strong> <span id="pv-i">1</span></p>
+                    <p><strong>Valor =</strong> <span id="pv-valor">2</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📦 Vetor na Memória:</h4>
+                <div class="vector-container">
+                    <div class="vector-cell" id="pv-cell-1">
+                        <div class="cell-index">1</div>
+                        <div class="cell-value" id="pv-val-1">?</div>
+                    </div>
+                    <div class="vector-cell" id="pv-cell-2">
+                        <div class="cell-index">2</div>
+                        <div class="cell-value" id="pv-val-2">?</div>
+                    </div>
+                    <div class="vector-cell" id="pv-cell-3">
+                        <div class="cell-index">3</div>
+                        <div class="cell-value" id="pv-val-3">?</div>
+                    </div>
+                    <div class="vector-cell" id="pv-cell-4">
+                        <div class="cell-index">4</div>
+                        <div class="cell-value" id="pv-val-4">?</div>
+                    </div>
+                    <div class="vector-cell" id="pv-cell-5">
+                        <div class="cell-index">5</div>
+                        <div class="cell-value" id="pv-val-5">?</div>
+                    </div>
+                </div>
+                <div class="vector-label">vetor: vetor[1..5] de inteiro</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playPreenche()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pausePreenche()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetPreenche()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 2: Acessando Valores -->
+    <div class="animation-container">
+        <h3>📌 Animação 2: Acessando Valores do Vetor</h3>
+        <p>Veja como ler valores de posições específicas!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="acessa-code">
+<span id="av-line1">// Vetor já preenchido:</span>
+<span id="av-line2">// [10, 20, 30, 40, 50]</span>
+<span id="av-line3"></span>
+<span id="av-line4">escreva( vetor[3] )</span>
+<span id="av-line5">// Saída: 30</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>Posição acessada:</strong> <span id="av-pos">3</span></p>
+                    <p><strong>Valor lido:</strong> <span id="av-valor" class="big-number">30</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📦 Vetor na Memória:</h4>
+                <div class="vector-container">
+                    <div class="vector-cell" id="av-cell-1">
+                        <div class="cell-index">1</div>
+                        <div class="cell-value">10</div>
+                    </div>
+                    <div class="vector-cell" id="av-cell-2">
+                        <div class="cell-index">2</div>
+                        <div class="cell-value">20</div>
+                    </div>
+                    <div class="vector-cell" id="av-cell-3">
+                        <div class="cell-index">3</div>
+                        <div class="cell-value">30</div>
+                    </div>
+                    <div class="vector-cell" id="av-cell-4">
+                        <div class="cell-index">4</div>
+                        <div class="cell-value">40</div>
+                    </div>
+                    <div class="vector-cell" id="av-cell-5">
+                        <div class="cell-index">5</div>
+                        <div class="cell-value">50</div>
+                    </div>
+                </div>
+                <div class="access-arrow" id="av-arrow">
+                    <div class="arrow-pointer">👆</div>
+                    <div class="arrow-text">Acessando...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playAcessa()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="resetAcessa()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 3: Busca em Vetor -->
+    <div class="animation-container">
+        <h3>📌 Animação 3: Buscando um Valor</h3>
+        <p>Veja como procurar um número específico no vetor!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="busca-code">
+<span id="bv-line1">procurado ← 40</span>
+<span id="bv-line2">encontrou ← falso</span>
+<span id="bv-line3">para i de 1 até 5 faça</span>
+<span id="bv-line4">  se vetor[i] = procurado</span>
+<span id="bv-line5">    encontrou ← verdadeiro</span>
+<span id="bv-line6">  fimse</span>
+<span id="bv-line7">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>Procurando:</strong> <span id="bv-procurado">40</span></p>
+                    <p><strong>Posição atual:</strong> <span id="bv-i">-</span></p>
+                    <p><strong>Encontrou?</strong> <span id="bv-encontrou">Não</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📦 Vetor: [15, 23, 40, 8, 50]</h4>
+                <div class="vector-container">
+                    <div class="vector-cell" id="bv-cell-1">
+                        <div class="cell-index">1</div>
+                        <div class="cell-value">15</div>
+                    </div>
+                    <div class="vector-cell" id="bv-cell-2">
+                        <div class="cell-index">2</div>
+                        <div class="cell-value">23</div>
+                    </div>
+                    <div class="vector-cell" id="bv-cell-3">
+                        <div class="cell-index">3</div>
+                        <div class="cell-value">40</div>
+                    </div>
+                    <div class="vector-cell" id="bv-cell-4">
+                        <div class="cell-index">4</div>
+                        <div class="cell-value">8</div>
+                    </div>
+                    <div class="vector-cell" id="bv-cell-5">
+                        <div class="cell-index">5</div>
+                        <div class="cell-value">50</div>
+                    </div>
+                </div>
+                <div id="bv-status" class="search-status">🔍 Iniciando busca...</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playBusca()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseBusca()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetBusca()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 4: Soma dos Elementos -->
+    <div class="animation-container">
+        <h3>📌 Animação 4: Somando Todos os Valores</h3>
+        <p>Veja como percorrer e somar todos os elementos!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="soma-code">
+<span id="sv-line1">soma ← 0</span>
+<span id="sv-line2">para i de 1 até 5 faça</span>
+<span id="sv-line3">  soma ← soma + vetor[i]</span>
+<span id="sv-line4">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>i =</strong> <span id="sv-i">-</span></p>
+                    <p><strong>soma =</strong> <span id="sv-soma" class="big-number">0</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📦 Vetor: [5, 10, 15, 20, 25]</h4>
+                <div class="vector-container">
+                    <div class="vector-cell" id="sv-cell-1">
+                        <div class="cell-index">1</div>
+                        <div class="cell-value">5</div>
+                    </div>
+                    <div class="vector-cell" id="sv-cell-2">
+                        <div class="cell-index">2</div>
+                        <div class="cell-value">10</div>
+                    </div>
+                    <div class="vector-cell" id="sv-cell-3">
+                        <div class="cell-index">3</div>
+                        <div class="cell-value">15</div>
+                    </div>
+                    <div class="vector-cell" id="sv-cell-4">
+                        <div class="cell-index">4</div>
+                        <div class="cell-value">20</div>
+                    </div>
+                    <div class="vector-cell" id="sv-cell-5">
+                        <div class="cell-index">5</div>
+                        <div class="cell-value">25</div>
+                    </div>
+                </div>
+                <div class="equation-display" id="sv-equation">0</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playSoma()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseSoma()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetSoma()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+</section>
+
 <!-- Exercícios de Vetores -->
 <section>
     <h2>Exercícios: Vetores</h2>
@@ -2477,6 +2876,220 @@ function resetAcumulador() {
     document.getElementById('ac-boxes').innerHTML = '';
     document.querySelectorAll('#acum-code span').forEach(s => s.classList.remove('active'));
 }
+        /* Cole isso no seu JavaScript existente */
+
+// ========== ANIMAÇÕES DE VETORES ==========
+
+// Animação 1: Preenchendo Vetor
+let preencheInterval;
+let preencheI = 1;
+
+function playPreenche() {
+    if (preencheInterval) return;
+    
+    preencheInterval = setInterval(() => {
+        if (preencheI > 5) {
+            pausePreenche();
+            return;
+        }
+        
+        // Remove active de todas as células
+        document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('#preenche-code span').forEach(s => s.classList.remove('active'));
+        
+        // Ativa linha de código
+        document.getElementById('pv-line2').classList.add('active');
+        
+        // Calcula valor
+        const valor = preencheI * 2;
+        
+        // Atualiza displays
+        document.getElementById('pv-i').textContent = preencheI;
+        document.getElementById('pv-valor').textContent = valor;
+        
+        // Ativa célula e preenche valor
+        document.getElementById(`pv-cell-${preencheI}`).classList.add('active');
+        document.getElementById(`pv-val-${preencheI}`).textContent = valor;
+        
+        preencheI++;
+    }, 1200);
+}
+
+function pausePreenche() {
+    clearInterval(preencheInterval);
+    preencheInterval = null;
+}
+
+function resetPreenche() {
+    pausePreenche();
+    preencheI = 1;
+    document.getElementById('pv-i').textContent = '1';
+    document.getElementById('pv-valor').textContent = '2';
+    
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById(`pv-val-${i}`).textContent = '?';
+        document.getElementById(`pv-cell-${i}`).classList.remove('active');
+    }
+    document.querySelectorAll('#preenche-code span').forEach(s => s.classList.remove('active'));
+}
+
+// Animação 2: Acessando Valores
+let acessaTimeout;
+
+function playAcessa() {
+    // Reset primeiro
+    document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
+    document.getElementById('av-arrow').classList.remove('show');
+    
+    // Anima
+    setTimeout(() => {
+        document.getElementById('av-line4').classList.add('active');
+        document.getElementById('av-cell-3').classList.add('active');
+        document.getElementById('av-arrow').classList.add('show');
+    }, 500);
+}
+
+function resetAcessa() {
+    clearTimeout(acessaTimeout);
+    document.querySelectorAll('#acessa-code span').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
+    document.getElementById('av-arrow').classList.remove('show');
+}
+
+// Animação 3: Busca em Vetor
+let buscaInterval;
+let buscaI = 1;
+const vetorBusca = [15, 23, 40, 8, 50];
+const procurado = 40;
+
+function playBusca() {
+    if (buscaInterval) return;
+    
+    buscaInterval = setInterval(() => {
+        if (buscaI > 5) {
+            pauseBusca();
+            return;
+        }
+        
+        // Remove classes anteriores
+        document.querySelectorAll('.vector-cell').forEach(c => {
+            c.classList.remove('active', 'checking', 'not-match');
+        });
+        document.querySelectorAll('#busca-code span').forEach(s => s.classList.remove('active'));
+        
+        // Ativa linha de código
+        document.getElementById('bv-line4').classList.add('active');
+        
+        // Atualiza displays
+        document.getElementById('bv-i').textContent = buscaI;
+        document.getElementById(`bv-cell-${buscaI}`).classList.add('checking');
+        document.getElementById('bv-status').textContent = `🔍 Verificando posição ${buscaI}...`;
+        document.getElementById('bv-status').className = 'search-status searching';
+        
+        // Verifica se encontrou
+        if (vetorBusca[buscaI - 1] === procurado) {
+            setTimeout(() => {
+                document.getElementById(`bv-cell-${buscaI}`).classList.remove('checking');
+                document.getElementById(`bv-cell-${buscaI}`).classList.add('found');
+                document.getElementById('bv-encontrou').textContent = 'SIM! ✓';
+                document.getElementById('bv-encontrou').style.color = '#4CAF50';
+                document.getElementById('bv-status').textContent = `✅ Encontrado na posição ${buscaI}!`;
+                document.getElementById('bv-status').className = 'search-status found';
+                pauseBusca();
+            }, 800);
+        } else {
+            setTimeout(() => {
+                document.getElementById(`bv-cell-${buscaI}`).classList.remove('checking');
+                document.getElementById(`bv-cell-${buscaI}`).classList.add('not-match');
+            }, 800);
+        }
+        
+        buscaI++;
+    }, 1500);
+}
+
+function pauseBusca() {
+    clearInterval(buscaInterval);
+    buscaInterval = null;
+}
+
+function resetBusca() {
+    pauseBusca();
+    buscaI = 1;
+    document.getElementById('bv-i').textContent = '-';
+    document.getElementById('bv-encontrou').textContent = 'Não';
+    document.getElementById('bv-encontrou').style.color = '';
+    document.getElementById('bv-status').textContent = '🔍 Iniciando busca...';
+    document.getElementById('bv-status').className = 'search-status';
+    
+    document.querySelectorAll('.vector-cell').forEach(c => {
+        c.classList.remove('active', 'checking', 'found', 'not-match');
+    });
+    document.querySelectorAll('#busca-code span').forEach(s => s.classList.remove('active'));
+}
+
+// Animação 4: Soma dos Elementos
+let somaInterval;
+let somaI = 1;
+let somaTotal = 0;
+const vetorSoma = [5, 10, 15, 20, 25];
+
+function playSoma() {
+    if (somaInterval) return;
+    
+    somaInterval = setInterval(() => {
+        if (somaI > 5) {
+            pauseSoma();
+            document.getElementById('sv-equation').textContent = `Soma total = ${somaTotal}`;
+            return;
+        }
+        
+        // Remove active
+        document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
+        document.querySelectorAll('#soma-code span').forEach(s => s.classList.remove('active'));
+        
+        // Ativa código
+        document.getElementById('sv-line3').classList.add('active');
+        
+        // Ativa célula
+        document.getElementById(`sv-cell-${somaI}`).classList.add('active');
+        
+        // Soma valor
+        somaTotal += vetorSoma[somaI - 1];
+        
+        // Atualiza displays
+        document.getElementById('sv-i').textContent = somaI;
+        document.getElementById('sv-soma').textContent = somaTotal;
+        
+        // Monta equação
+        let equation = '0';
+        for (let j = 1; j <= somaI; j++) {
+            equation += ` + ${vetorSoma[j - 1]}`;
+        }
+        equation += ` = ${somaTotal}`;
+        document.getElementById('sv-equation').textContent = equation;
+        
+        somaI++;
+    }, 1300);
+}
+
+function pauseSoma() {
+    clearInterval(somaInterval);
+    somaInterval = null;
+}
+
+function resetSoma() {
+    pauseSoma();
+    somaI = 1;
+    somaTotal = 0;
+    document.getElementById('sv-i').textContent = '-';
+    document.getElementById('sv-soma').textContent = '0';
+    document.getElementById('sv-equation').textContent = '0';
+    
+    document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('#soma-code span').forEach(s => s.classList.remove('active'));
+}
+        
     </script>
 </body>
 </html>
