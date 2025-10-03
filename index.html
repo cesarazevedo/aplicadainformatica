@@ -2962,6 +2962,8 @@ let buscaI = 1;
 const vetorBusca = [15, 23, 40, 8, 50];
 const procurado = 40;
 
+// Substitua a função playBusca() completa por esta versão corrigida:
+
 function playBusca() {
     if (buscaInterval) return;
     
@@ -2980,34 +2982,37 @@ function playBusca() {
         // Ativa linha de código
         document.getElementById('bv-line4').classList.add('active');
         
+        // Guarda o valor atual de buscaI antes de incrementar
+        const posicaoAtual = buscaI;
+        
         // Atualiza displays
-        document.getElementById('bv-i').textContent = buscaI;
-        document.getElementById(`bv-cell-${buscaI}`).classList.add('checking');
-        document.getElementById('bv-status').textContent = `🔍 Verificando posição ${buscaI}...`;
+        document.getElementById('bv-i').textContent = posicaoAtual;
+        document.getElementById(`bv-cell-${posicaoAtual}`).classList.add('checking');
+        document.getElementById('bv-status').textContent = `🔍 Verificando posição ${posicaoAtual}...`;
         document.getElementById('bv-status').className = 'search-status searching';
         
         // Verifica se encontrou
-        if (vetorBusca[buscaI - 1] === procurado) {
+        if (vetorBusca[posicaoAtual - 1] === procurado) {
             setTimeout(() => {
-                document.getElementById(`bv-cell-${buscaI}`).classList.remove('checking');
-                document.getElementById(`bv-cell-${buscaI}`).classList.add('found');
+                document.getElementById(`bv-cell-${posicaoAtual}`).classList.remove('checking');
+                document.getElementById(`bv-cell-${posicaoAtual}`).classList.add('found');
                 document.getElementById('bv-encontrou').textContent = 'SIM! ✓';
                 document.getElementById('bv-encontrou').style.color = '#4CAF50';
-                document.getElementById('bv-status').textContent = `✅ Encontrado na posição ${buscaI}!`;
+                document.getElementById('bv-status').textContent = `✅ Encontrado na posição ${posicaoAtual}!`;
                 document.getElementById('bv-status').className = 'search-status found';
                 pauseBusca();
             }, 800);
         } else {
             setTimeout(() => {
-                document.getElementById(`bv-cell-${buscaI}`).classList.remove('checking');
-                document.getElementById(`bv-cell-${buscaI}`).classList.add('not-match');
+                document.getElementById(`bv-cell-${posicaoAtual}`).classList.remove('checking');
+                document.getElementById(`bv-cell-${posicaoAtual}`).classList.add('not-match');
             }, 800);
         }
         
+        // Incrementa DEPOIS de usar o valor
         buscaI++;
     }, 1500);
 }
-
 function pauseBusca() {
     clearInterval(buscaInterval);
     buscaInterval = null;
