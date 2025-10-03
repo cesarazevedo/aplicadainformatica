@@ -595,6 +595,14 @@
                         <p>Laços de repetição: enquanto, repita e para</p>
                     </a>
                 </div>
+                
+                <div class="index-item">
+                <a href="#aula7">
+                        <h3>📦 Aula 7: Vetores (Arrays)</h3>
+                        <p>Armazenando múltiplos valores em uma única variável</p>
+                </a>
+                </div>
+                
             </div>
         </section>
 
@@ -1248,6 +1256,332 @@ fim
                 </div>
             </div>
         </section>
+<!-- Aula 7: Vetores -->
+<section id="aula7">
+    <h2>Aula 7: Vetores (Arrays)</h2>
+    
+    <h3>O que são Vetores?</h3>
+    <p>Imagine que você tem uma gaveta com várias divisórias numeradas, e em cada divisória você guarda um objeto. Um vetor é exatamente isso: uma "gaveta" na memória do computador com várias "caixinhas" numeradas onde você pode guardar valores!</p>
+    
+    <div class="highlight">
+        <p><strong>🔑 Definição:</strong> Vetor é uma estrutura que armazena vários valores do mesmo tipo, organizados em sequência e acessados por um índice (número da posição).</p>
+    </div>
+
+    <h3>Por que usar Vetores?</h3>
+    <p>Sem vetor, para guardar 5 notas você precisaria de 5 variáveis:</p>
+    <div class="code-block">
+nota1, nota2, nota3, nota4, nota5: real
+    </div>
+    
+    <p>Com vetor, você usa apenas uma variável:</p>
+    <div class="code-block">
+notas: vetor[1..5] de real
+    </div>
+
+    <h3>7.1 Como Declarar um Vetor</h3>
+    <div class="code-block">
+algoritmo "exemplo_vetor"
+var
+    numeros: vetor[1..5] de inteiro
+    nomes: vetor[1..3] de caractere
+inicio
+    // Aqui você pode usar os vetores
+fim
+    </div>
+    <p><strong>👉 Explicação:</strong></p>
+    <ul>
+        <li><strong>numeros:</strong> vetor com 5 posições (1, 2, 3, 4, 5) para números inteiros</li>
+        <li><strong>nomes:</strong> vetor com 3 posições (1, 2, 3) para textos</li>
+    </ul>
+
+    <h3>7.2 Como Usar um Vetor</h3>
+    
+    <h3>📌 a) Atribuindo valores</h3>
+    <div class="code-block">
+algoritmo "preenchendo_vetor"
+var
+    notas: vetor[1..3] de real
+inicio
+    notas[1] ← 8.5
+    notas[2] ← 7.0
+    notas[3] ← 9.5
+    
+    escreva("Primeira nota: ", notas[1])
+    escreva("Segunda nota: ", notas[2])
+    escreva("Terceira nota: ", notas[3])
+fim
+    </div>
+    <p><strong>👉 Resultado:</strong> Mostra 8.5, 7.0 e 9.5</p>
+
+    <h3>📌 b) Lendo valores do usuário</h3>
+    <div class="code-block">
+algoritmo "lendo_vetor"
+var
+    idades: vetor[1..4] de inteiro
+    i: inteiro
+inicio
+    para i de 1 até 4 faça
+        escreva("Digite a idade da pessoa ", i, ": ")
+        leia(idades[i])
+    fimpara
+    
+    // Mostrando os valores
+    escreva("Idades cadastradas:")
+    para i de 1 até 4 faça
+        escreva("Pessoa ", i, ": ", idades[i], " anos")
+    fimpara
+fim
+    </div>
+    <p><strong>💡 Dica:</strong> Quase sempre usamos laços de repetição (para, enquanto) para trabalhar com vetores!</p>
+
+    <h3>7.3 Operações Comuns com Vetores</h3>
+    
+    <div class="highlight">
+        <p><strong>🔹 Somar todos os valores:</strong></p>
+        <div class="code-block">
+soma ← 0
+para i de 1 até 5 faça
+    soma ← soma + vetor[i]
+fimpara
+        </div>
+        
+        <p><strong>🔹 Encontrar o maior valor:</strong></p>
+        <div class="code-block">
+maior ← vetor[1]
+para i de 2 até 5 faça
+    se vetor[i] > maior então
+        maior ← vetor[i]
+    fimse
+fimpara
+        </div>
+        
+        <p><strong>🔹 Buscar um valor específico:</strong></p>
+        <div class="code-block">
+encontrou ← falso
+para i de 1 até 5 faça
+    se vetor[i] = valorProcurado então
+        encontrou ← verdadeiro
+    fimse
+fimpara
+        </div>
+    </div>
+
+    <h3>Exemplo Prático Completo: Sistema de Notas</h3>
+    <div class="code-block">
+algoritmo "sistema_notas"
+var
+    notas: vetor[1..5] de real
+    soma, media: real
+    i: inteiro
+inicio
+    // Lendo as notas
+    escreva("=== CADASTRO DE NOTAS ===")
+    para i de 1 até 5 faça
+        escreva("Digite a nota ", i, ": ")
+        leia(notas[i])
+    fimpara
+    
+    // Calculando a média
+    soma ← 0
+    para i de 1 até 5 faça
+        soma ← soma + notas[i]
+    fimpara
+    media ← soma / 5
+    
+    // Mostrando resultado
+    escreva("Notas cadastradas:")
+    para i de 1 até 5 faça
+        escreva("Nota ", i, ": ", notas[i])
+    fimpara
+    escreva("Média final: ", media)
+    
+    se media >= 7 então
+        escreva("Aluno APROVADO!")
+    senão
+        escreva("Aluno REPROVADO!")
+    fimse
+fim
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo Vetores:</strong></p>
+        <ul>
+            <li><strong>Vetor:</strong> guarda vários valores do mesmo tipo</li>
+            <li><strong>Índice:</strong> número da posição (começa em 1 no Visualg)</li>
+            <li><strong>Declaração:</strong> nome: vetor[inicio..fim] de tipo</li>
+            <li><strong>Acesso:</strong> nome[posição] para ler ou escrever</li>
+            <li><strong>Laços:</strong> use "para" para percorrer todo o vetor</li>
+            <li><strong>Tamanho fixo:</strong> defina o tamanho na declaração</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Exercícios de Vetores -->
+<section>
+    <h2>Exercícios: Vetores</h2>
+    <p>Pratique os conceitos de vetores com os exercícios a seguir:</p>
+
+    <div class="exercise">
+        <h4>Exercício 7.1: Vetor Inverso</h4>
+        <p>Crie um algoritmo que leia 6 números inteiros e os armazene em um vetor. Depois, mostre os números na ordem inversa (do último para o primeiro).</p>
+        <p><strong>Conceitos aplicados:</strong> Vetores, laço de repetição decrescente</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol9')">Mostrar Solução</button>
+        <div class="solution-container" id="sol9">
+            <h5>💡 Solução do Exercício 7.1:</h5>
+            <div class="code-block">
+algoritmo "vetor_inverso"
+var
+    numeros: vetor[1..6] de inteiro
+    i: inteiro
+inicio
+    escreva("Digite 6 números:")
+    para i de 1 até 6 faça
+        escreva("Número ", i, ": ")
+        leia(numeros[i])
+    fimpara
+    
+    escreva("Números na ordem inversa:")
+    para i de 6 até 1 passo -1 faça
+        escreva(numeros[i])
+    fimpara
+fim
+            </div>
+            <p><strong>Explicação:</strong> Primeiro preenchemos o vetor normalmente (1 até 6). Depois percorremos de trás para frente (6 até 1) usando "passo -1".</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 7.2: Maior e Menor Temperatura</h4>
+        <p>Faça um algoritmo que leia as temperaturas dos 7 dias da semana e armazene em um vetor. Depois, mostre qual foi a maior e a menor temperatura da semana.</p>
+        <p><strong>Conceitos aplicados:</strong> Vetores, busca de maior e menor valor</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol10')">Mostrar Solução</button>
+        <div class="solution-container" id="sol10">
+            <h5>💡 Solução do Exercício 7.2:</h5>
+            <div class="code-block">
+algoritmo "temperaturas"
+var
+    temp: vetor[1..7] de real
+    maior, menor: real
+    i: inteiro
+inicio
+    escreva("=== TEMPERATURAS DA SEMANA ===")
+    para i de 1 até 7 faça
+        escreva("Temperatura do dia ", i, ": ")
+        leia(temp[i])
+    fimpara
+    
+    // Inicializa maior e menor com o primeiro valor
+    maior ← temp[1]
+    menor ← temp[1]
+    
+    // Busca o maior e menor
+    para i de 2 até 7 faça
+        se temp[i] > maior então
+            maior ← temp[i]
+        fimse
+        se temp[i] < menor então
+            menor ← temp[i]
+        fimse
+    fimpara
+    
+    escreva("Maior temperatura: ", maior, "°C")
+    escreva("Menor temperatura: ", menor, "°C")
+fim
+            </div>
+            <p><strong>Explicação:</strong> Guardamos todas as temperaturas no vetor. Depois, comparamos cada valor para encontrar o maior e o menor.</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 7.3: Buscar Nome na Lista</h4>
+        <p>Desenvolva um algoritmo que cadastre 5 nomes em um vetor. Depois, peça um nome para buscar e informe se ele está ou não na lista.</p>
+        <p><strong>Conceitos aplicados:</strong> Vetores de caracteres, busca, flag</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol11')">Mostrar Solução</button>
+        <div class="solution-container" id="sol11">
+            <h5>💡 Solução do Exercício 7.3:</h5>
+            <div class="code-block">
+algoritmo "buscar_nome"
+var
+    nomes: vetor[1..5] de caractere
+    busca: caractere
+    encontrou: logico
+    i: inteiro
+inicio
+    escreva("=== CADASTRO DE NOMES ===")
+    para i de 1 até 5 faça
+        escreva("Digite o nome ", i, ": ")
+        leia(nomes[i])
+    fimpara
+    
+    escreva("Digite o nome que deseja buscar: ")
+    leia(busca)
+    
+    encontrou ← falso
+    para i de 1 até 5 faça
+        se nomes[i] = busca então
+            encontrou ← verdadeiro
+        fimse
+    fimpara
+    
+    se encontrou então
+        escreva("O nome ", busca, " ESTÁ na lista!")
+    senão
+        escreva("O nome ", busca, " NÃO está na lista!")
+    fimse
+fim
+            </div>
+            <p><strong>Explicação:</strong> Usamos uma variável lógica (encontrou) como flag para indicar se o nome foi encontrado durante a busca no vetor.</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 7.4: Média e Alunos Acima da Média</h4>
+        <p>Crie um programa que leia as notas de 8 alunos, calcule a média da turma e mostre quantos alunos ficaram acima da média.</p>
+        <p><strong>Conceitos aplicados:</strong> Vetores, média, contador, múltiplos laços</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol12')">Mostrar Solução</button>
+        <div class="solution-container" id="sol12">
+            <h5>💡 Solução do Exercício 7.4:</h5>
+            <div class="code-block">
+algoritmo "media_turma"
+var
+    notas: vetor[1..8] de real
+    soma, media: real
+    i, acimaDaMedia: inteiro
+inicio
+    escreva("=== NOTAS DA TURMA ===")
+    para i de 1 até 8 faça
+        escreva("Digite a nota do aluno ", i, ": ")
+        leia(notas[i])
+    fimpara
+    
+    // Calculando a média
+    soma ← 0
+    para i de 1 até 8 faça
+        soma ← soma + notas[i]
+    fimpara
+    media ← soma / 8
+    
+    // Contando quantos ficaram acima da média
+    acimaDaMedia ← 0
+    para i de 1 até 8 faça
+        se notas[i] > media então
+            acimaDaMedia ← acimaDaMedia + 1
+        fimse
+    fimpara
+    
+    escreva("Média da turma: ", media)
+    escreva("Alunos acima da média: ", acimaDaMedia)
+fim
+            </div>
+            <p><strong>Explicação:</strong> Primeiro calculamos a média de todos. Depois, percorremos o vetor novamente para contar quantos alunos têm nota maior que a média.</p>
+        </div>
+    </div>
+</section>
+        
     </main>
 
     <!-- Botões flutuantes -->
