@@ -949,6 +949,186 @@
     align-items: center;
     justify-content: center;
 }
+
+        /* ============================================
+   CSS ADICIONAL PARA MATRIZES (Aula 8)
+   ============================================ */
+
+/* Container da matriz - layout em grid */
+.matrix-container {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.matrix-row {
+    display: flex;
+    gap: 8px;
+}
+
+/* Células da matriz - similar às células de vetor, mas em grid 2D */
+.matrix-cell {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #3498db;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.matrix-cell .cell-index {
+    font-size: 11px;
+    color: #7f8c8d;
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-weight: 600;
+}
+
+.matrix-cell .cell-value {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Estados das células de matriz */
+.matrix-cell.active {
+    background-color: #3498db;
+    border-color: #2980b9;
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px rgba(52, 152, 219, 0.4);
+}
+
+.matrix-cell.active .cell-value {
+    color: white;
+}
+
+.matrix-cell.active .cell-index {
+    color: #ecf0f1;
+}
+
+.matrix-cell.filled {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+}
+
+.matrix-cell.filled .cell-value {
+    color: white;
+}
+
+.matrix-cell.checking {
+    background-color: #f39c12;
+    border-color: #e67e22;
+    animation: pulse 0.6s ease-in-out;
+}
+
+.matrix-cell.found {
+    background-color: #2ecc71;
+    border-color: #27ae60;
+    animation: bounce 0.5s ease;
+}
+
+.matrix-cell.not-found {
+    background-color: #e74c3c;
+    border-color: #c0392b;
+}
+
+/* Destaque de linha completa */
+.matrix-row.highlighted {
+    background-color: rgba(52, 152, 219, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px dashed #3498db;
+}
+
+/* Destaque de diagonal */
+.matrix-cell.diagonal {
+    border: 3px solid #9b59b6;
+    background-color: rgba(155, 89, 182, 0.1);
+}
+
+.matrix-cell.diagonal-active {
+    background-color: #9b59b6;
+    border-color: #8e44ad;
+    transform: scale(1.1);
+}
+
+.matrix-cell.diagonal-active .cell-value {
+    color: white;
+}
+
+/* Info adicional para diagonal */
+.diagonal-info {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #9b59b6;
+    border-radius: 4px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Seta de acesso para matriz */
+.access-arrow {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.access-arrow.show {
+    opacity: 1;
+}
+
+.access-arrow .arrow-pointer {
+    font-size: 32px;
+    animation: bounce 1s infinite;
+}
+
+.access-arrow .arrow-text {
+    font-size: 14px;
+    font-weight: 600;
+    color: #3498db;
+    margin-top: 5px;
+}
+
+/* Display de equação para soma */
+.equation-display {
+    margin-top: 20px;
+    padding: 15px 25px;
+    background-color: #ecf0f1;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #2c3e50;
+    text-align: center;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animações */
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
     </style>
 </head>
 <body>
@@ -2416,6 +2596,741 @@ fim
         </div>
     </div>
 </section>
+
+<!-- Aula 8: Matrizes -->
+<section id="aula8">
+    <h2>Aula 8: Matrizes (Arrays Bidimensionais)</h2>
+    
+    <h3>O que são Matrizes?</h3>
+    <p>Lembra da gaveta com divisórias que usamos para explicar vetores? Agora imagine um armário com várias gavetas, e cada gaveta tem várias divisórias! Uma matriz é exatamente isso: uma "tabela" na memória do computador organizada em linhas e colunas, como uma planilha do Excel!</p>
+    
+    <div class="highlight">
+        <p><strong>🔑 Definição:</strong> Matriz é uma estrutura que armazena vários valores do mesmo tipo, organizados em linhas e colunas, e acessados por dois índices (linha e coluna).</p>
+    </div>
+
+    <h3>Por que usar Matrizes?</h3>
+    <p>Imagine que você quer guardar as notas de 3 alunos em 4 provas. Sem matriz:</p>
+    <div class="code-block">
+nota_aluno1_prova1, nota_aluno1_prova2, nota_aluno1_prova3, nota_aluno1_prova4
+nota_aluno2_prova1, nota_aluno2_prova2, nota_aluno2_prova3, nota_aluno2_prova4
+// ... isso fica muito confuso!
+    </div>
+    
+    <p>Com matriz, você usa apenas uma variável:</p>
+    <div class="code-block">
+notas: vetor[1..3, 1..4] de real
+// 3 linhas (alunos) x 4 colunas (provas)
+    </div>
+
+    <h3>8.1 Como Declarar uma Matriz</h3>
+    <div class="code-block">
+algoritmo "exemplo_matriz"
+var
+    tabuleiro: vetor[1..3, 1..3] de caractere
+    precos: vetor[1..2, 1..5] de real
+inicio
+    // Aqui você pode usar as matrizes
+fim
+    </div>
+    <p><strong>👉 Explicação:</strong></p>
+    <ul>
+        <li><strong>tabuleiro:</strong> matriz 3x3 (3 linhas, 3 colunas) para textos - perfeita para jogo da velha!</li>
+        <li><strong>precos:</strong> matriz 2x5 (2 linhas, 5 colunas) para números decimais</li>
+    </ul>
+
+    <h3>8.2 Como Usar uma Matriz</h3>
+    
+    <h3>📌 a) Atribuindo valores</h3>
+    <div class="code-block">
+algoritmo "preenchendo_matriz"
+var
+    numeros: vetor[1..2, 1..3] de inteiro
+inicio
+    // Linha 1
+    numeros[1,1] ← 10
+    numeros[1,2] ← 20
+    numeros[1,3] ← 30
+    
+    // Linha 2
+    numeros[2,1] ← 40
+    numeros[2,2] ← 50
+    numeros[2,3] ← 60
+    
+    escreval("Valor na linha 2, coluna 3: ", numeros[2,3])
+fim
+    </div>
+    <p><strong>👉 Resultado:</strong> Mostra 60 (linha 2, coluna 3)</p>
+    <p><strong>💡 Visualizando:</strong></p>
+    <div class="code-block">
+    Coluna:  1   2   3
+Linha 1:   [10][20][30]
+Linha 2:   [40][50][60]
+    </div>
+
+    <h3>📌 b) Lendo valores do usuário</h3>
+    <div class="code-block">
+algoritmo "lendo_matriz"
+var
+    matriz: vetor[1..2, 1..3] de inteiro
+    linha, coluna: inteiro
+inicio
+    escreval("=== Preencha a matriz 2x3 ===")
+    
+    para linha de 1 até 2 faça
+        para coluna de 1 até 3 faça
+            escreva("Digite o valor [", linha, ",", coluna, "]: ")
+            leia(matriz[linha, coluna])
+        fimpara
+    fimpara
+    
+    // Mostrando a matriz
+    escreval("=== MATRIZ CADASTRADA ===")
+    para linha de 1 até 2 faça
+        para coluna de 1 até 3 faça
+            escreva(matriz[linha, coluna], " ")
+        fimpara
+        escreval("") // Pula linha ao final de cada linha da matriz
+    fimpara
+fim
+    </div>
+    <p><strong>💡 Dica:</strong> Use dois laços "para" aninhados - um para linhas e outro para colunas!</p>
+
+    <h3>8.3 Operações Comuns com Matrizes</h3>
+    
+    <div class="highlight">
+        <p><strong>🔹 Somar todos os valores:</strong></p>
+        <div class="code-block">
+soma ← 0
+para linha de 1 até 3 faça
+    para coluna de 1 até 3 faça
+        soma ← soma + matriz[linha, coluna]
+    fimpara
+fimpara
+        </div>
+        
+        <p><strong>🔹 Somar uma linha específica:</strong></p>
+        <div class="code-block">
+somaLinha ← 0
+linha ← 2 // Queremos somar a linha 2
+para coluna de 1 até 3 faça
+    somaLinha ← somaLinha + matriz[linha, coluna]
+fimpara
+        </div>
+        
+        <p><strong>🔹 Somar uma coluna específica:</strong></p>
+        <div class="code-block">
+somaColuna ← 0
+coluna ← 1 // Queremos somar a coluna 1
+para linha de 1 até 3 faça
+    somaColuna ← somaColuna + matriz[linha, coluna]
+fimpara
+        </div>
+        
+        <p><strong>🔹 Diagonal principal (matriz quadrada):</strong></p>
+        <div class="code-block">
+somaDiagonal ← 0
+para i de 1 até 3 faça
+    somaDiagonal ← somaDiagonal + matriz[i, i]
+    // [1,1], [2,2], [3,3]
+fimpara
+        </div>
+    </div>
+
+    <h3>Exemplo Prático Completo: Sistema de Notas Bimestral</h3>
+    <div class="code-block">
+algoritmo "notas_bimestrais"
+var
+    notas: vetor[1..3, 1..4] de real
+    // 3 alunos x 4 bimestres
+    somaAluno, mediaAluno: real
+    aluno, bimestre: inteiro
+inicio
+    // Lendo as notas
+    escreval("=== CADASTRO DE NOTAS ===")
+    para aluno de 1 até 3 faça
+        escreval("--- Aluno ", aluno, " ---")
+        para bimestre de 1 até 4 faça
+            escreva("Nota do ", bimestre, "º bimestre: ")
+            leia(notas[aluno, bimestre])
+        fimpara
+    fimpara
+    
+    // Calculando e mostrando a média de cada aluno
+    escreval("")
+    escreval("=== RESULTADO FINAL ===")
+    para aluno de 1 até 3 faça
+        somaAluno ← 0
+        
+        // Soma as notas do aluno
+        para bimestre de 1 até 4 faça
+            somaAluno ← somaAluno + notas[aluno, bimestre]
+        fimpara
+        
+        mediaAluno ← somaAluno / 4
+        
+        escreva("Aluno ", aluno, " - Média: ", mediaAluno)
+        se mediaAluno >= 7 então
+            escreval(" -> APROVADO! ✓")
+        senão
+            escreval(" -> REPROVADO! ✗")
+        fimse
+    fimpara
+fim
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo Matrizes:</strong></p>
+        <ul>
+            <li><strong>Matriz:</strong> tabela com linhas e colunas para guardar valores</li>
+            <li><strong>Índices:</strong> [linha, coluna] - sempre nessa ordem!</li>
+            <li><strong>Declaração:</strong> nome: vetor[lin_inicio..lin_fim, col_inicio..col_fim] de tipo</li>
+            <li><strong>Acesso:</strong> nome[linha, coluna] para ler ou escrever</li>
+            <li><strong>Laços aninhados:</strong> um "para" dentro do outro para percorrer toda a matriz</li>
+            <li><strong>Matriz quadrada:</strong> quando número de linhas = número de colunas (ex: 3x3)</li>
+            <li><strong>Diagonal principal:</strong> elementos onde linha = coluna [1,1], [2,2], [3,3]...</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Seção de Animações Visuais de Matrizes -->
+<section id="animacoes-matrizes">
+    <h2>🎬 Visualizando Matrizes na Prática</h2>
+    <p>Veja como as matrizes funcionam com animações interativas!</p>
+
+    <!-- Animação 1: Preenchendo uma Matriz -->
+    <div class="animation-container">
+        <h3>📌 Animação 1: Preenchendo uma Matriz</h3>
+        <p>Veja como os valores são armazenados linha por linha!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="preenche-matriz-code">
+<span id="pm-line1">para linha de 1 até 3 faça</span>
+<span id="pm-line2">  para coluna de 1 até 3 faça</span>
+<span id="pm-line3">    matriz[linha,coluna] ← linha*10+coluna</span>
+<span id="pm-line4">  fimpara</span>
+<span id="pm-line5">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>linha =</strong> <span id="pm-linha">1</span></p>
+                    <p><strong>coluna =</strong> <span id="pm-coluna">1</span></p>
+                    <p><strong>Valor =</strong> <span id="pm-valor">11</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📊 Matriz 3x3 na Memória:</h4>
+                <div class="matrix-container">
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="pm-cell-1-1">
+                            <div class="cell-index">1,1</div>
+                            <div class="cell-value" id="pm-val-1-1">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-1-2">
+                            <div class="cell-index">1,2</div>
+                            <div class="cell-value" id="pm-val-1-2">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-1-3">
+                            <div class="cell-index">1,3</div>
+                            <div class="cell-value" id="pm-val-1-3">?</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="pm-cell-2-1">
+                            <div class="cell-index">2,1</div>
+                            <div class="cell-value" id="pm-val-2-1">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-2-2">
+                            <div class="cell-index">2,2</div>
+                            <div class="cell-value" id="pm-val-2-2">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-2-3">
+                            <div class="cell-index">2,3</div>
+                            <div class="cell-value" id="pm-val-2-3">?</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="pm-cell-3-1">
+                            <div class="cell-index">3,1</div>
+                            <div class="cell-value" id="pm-val-3-1">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-3-2">
+                            <div class="cell-index">3,2</div>
+                            <div class="cell-value" id="pm-val-3-2">?</div>
+                        </div>
+                        <div class="matrix-cell" id="pm-cell-3-3">
+                            <div class="cell-index">3,3</div>
+                            <div class="cell-value" id="pm-val-3-3">?</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="vector-label">matriz: vetor[1..3, 1..3] de inteiro</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playPreencheMatriz()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pausePreencheMatriz()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetPreencheMatriz()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 2: Acessando Posição Específica -->
+    <div class="animation-container">
+        <h3>📌 Animação 2: Acessando uma Posição</h3>
+        <p>Veja como ler valores de posições específicas!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="acessa-matriz-code">
+<span id="am-line1">// Matriz já preenchida:</span>
+<span id="am-line2">// [1][2][3]</span>
+<span id="am-line3">// [4][5][6]</span>
+<span id="am-line4">// [7][8][9]</span>
+<span id="am-line5"></span>
+<span id="am-line6">escreva( matriz[2,3] )</span>
+<span id="am-line7">// Saída: 6</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>Linha:</strong> <span id="am-linha">2</span></p>
+                    <p><strong>Coluna:</strong> <span id="am-coluna">3</span></p>
+                    <p><strong>Valor lido:</strong> <span id="am-valor" class="big-number">6</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📊 Matriz 3x3:</h4>
+                <div class="matrix-container">
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="am-cell-1-1">
+                            <div class="cell-value">1</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-1-2">
+                            <div class="cell-value">2</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-1-3">
+                            <div class="cell-value">3</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="am-cell-2-1">
+                            <div class="cell-value">4</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-2-2">
+                            <div class="cell-value">5</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-2-3">
+                            <div class="cell-value">6</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="am-cell-3-1">
+                            <div class="cell-value">7</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-3-2">
+                            <div class="cell-value">8</div>
+                        </div>
+                        <div class="matrix-cell" id="am-cell-3-3">
+                            <div class="cell-value">9</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="access-arrow" id="am-arrow">
+                    <div class="arrow-pointer">👆</div>
+                    <div class="arrow-text">Acessando [2,3]...</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playAcessaMatriz()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="resetAcessaMatriz()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 3: Soma de uma Linha -->
+    <div class="animation-container">
+        <h3>📌 Animação 3: Somando uma Linha Inteira</h3>
+        <p>Veja como somar todos os valores de uma linha específica!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="soma-linha-code">
+<span id="sl-line1">linha ← 2</span>
+<span id="sl-line2">somaLinha ← 0</span>
+<span id="sl-line3">para coluna de 1 até 3 faça</span>
+<span id="sl-line4">  somaLinha ← somaLinha + matriz[linha,coluna]</span>
+<span id="sl-line5">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>linha =</strong> <span id="sl-linha">2</span></p>
+                    <p><strong>coluna =</strong> <span id="sl-coluna">-</span></p>
+                    <p><strong>somaLinha =</strong> <span id="sl-soma" class="big-number">0</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📊 Matriz: Somando Linha 2</h4>
+                <div class="matrix-container">
+                    <div class="matrix-row">
+                        <div class="matrix-cell">
+                            <div class="cell-value">10</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">20</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">30</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row" id="sl-target-row">
+                        <div class="matrix-cell" id="sl-cell-2-1">
+                            <div class="cell-value">5</div>
+                        </div>
+                        <div class="matrix-cell" id="sl-cell-2-2">
+                            <div class="cell-value">15</div>
+                        </div>
+                        <div class="matrix-cell" id="sl-cell-2-3">
+                            <div class="cell-value">25</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell">
+                            <div class="cell-value">7</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">8</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">9</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="equation-display" id="sl-equation">0</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playSomaLinha()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseSomaLinha()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetSomaLinha()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 4: Diagonal Principal -->
+    <div class="animation-container">
+        <h3>📌 Animação 4: Percorrendo a Diagonal Principal</h3>
+        <p>Veja como acessar os elementos onde linha = coluna!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="diagonal-code">
+<span id="dg-line1">somaDiagonal ← 0</span>
+<span id="dg-line2">para i de 1 até 3 faça</span>
+<span id="dg-line3">  somaDiagonal ← somaDiagonal + matriz[i,i]</span>
+<span id="dg-line4">  // [1,1], [2,2], [3,3]</span>
+<span id="dg-line5">fimpara</span>
+                </pre>
+                <div class="var-display">
+                    <p><strong>i =</strong> <span id="dg-i">-</span></p>
+                    <p><strong>Posição:</strong> <span id="dg-pos">-</span></p>
+                    <p><strong>somaDiagonal =</strong> <span id="dg-soma" class="big-number">0</span></p>
+                </div>
+            </div>
+            
+            <div class="execution-side">
+                <h4 style="text-align: center; margin-bottom: 15px;">📊 Diagonal Principal</h4>
+                <div class="matrix-container">
+                    <div class="matrix-row">
+                        <div class="matrix-cell" id="dg-cell-1-1">
+                            <div class="cell-value">3</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">2</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">1</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell">
+                            <div class="cell-value">4</div>
+                        </div>
+                        <div class="matrix-cell" id="dg-cell-2-2">
+                            <div class="cell-value">5</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">6</div>
+                        </div>
+                    </div>
+                    <div class="matrix-row">
+                        <div class="matrix-cell">
+                            <div class="cell-value">7</div>
+                        </div>
+                        <div class="matrix-cell">
+                            <div class="cell-value">8</div>
+                        </div>
+                        <div class="matrix-cell" id="dg-cell-3-3">
+                            <div class="cell-value">9</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="equation-display" id="dg-equation">0</div>
+                <div class="diagonal-info">↘️ Diagonal: [1,1] + [2,2] + [3,3]</div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playDiagonal()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseDiagonal()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetDiagonal()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+</section>
+
+<!-- Exercícios de Matrizes -->
+<section>
+    <h2>Exercícios: Matrizes</h2>
+    <p>Pratique os conceitos de matrizes com os exercícios a seguir:</p>
+
+    <div class="exercise">
+        <h4>Exercício 8.1: Matriz Identidade</h4>
+        <p>Crie um algoritmo que preencha uma matriz 4x4 como uma "matriz identidade": diagonal principal com 1 e resto com 0.</p>
+        <p><strong>Exemplo de saída:</strong></p>
+        <div class="code-block">
+[1][0][0][0]
+[0][1][0][0]
+[0][0][1][0]
+[0][0][0][1]
+        </div>
+        <p><strong>Conceitos aplicados:</strong> Matrizes, laços aninhados, condicionais</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol13')">Mostrar Solução</button>
+        <div class="solution-container" id="sol13">
+            <h5>💡 Solução do Exercício 8.1:</h5>
+            <div class="code-block">
+algoritmo "matriz_identidade"
+var
+    matriz: vetor[1..4, 1..4] de inteiro
+    linha, coluna: inteiro
+inicio
+    escreval("=== MATRIZ IDENTIDADE 4x4 ===")
+    
+    para linha de 1 até 4 faça
+        para coluna de 1 até 4 faça
+            se linha = coluna então
+                matriz[linha, coluna] ← 1
+            senão
+                matriz[linha, coluna] ← 0
+            fimse
+        fimpara
+    fimpara
+    
+    // Mostrando a matriz
+    para linha de 1 até 4 faça
+        para coluna de 1 até 4 faça
+            escreva("[", matriz[linha, coluna], "]")
+        fimpara
+        escreval("")
+    fimpara
+fim
+            </div>
+            <p><strong>Explicação:</strong> Percorremos toda a matriz. Quando linha = coluna (diagonal principal), colocamos 1. Caso contrário, colocamos 0.</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 8.2: Soma de Linhas e Colunas</h4>
+        <p>Faça um algoritmo que leia uma matriz 3x3 de números inteiros. Depois, calcule e mostre:</p>
+        <ul>
+            <li>A soma de cada linha</li>
+            <li>A soma de cada coluna</li>
+            <li>A soma total da matriz</li>
+        </ul>
+        <p><strong>Conceitos aplicados:</strong> Matrizes, múltiplos laços, acumuladores</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol14')">Mostrar Solução</button>
+        <div class="solution-container" id="sol14">
+            <h5>💡 Solução do Exercício 8.2:</h5>
+            <div class="code-block">
+algoritmo "soma_linhas_colunas"
+var
+    matriz: vetor[1..3, 1..3] de inteiro
+    linha, coluna, soma, somaTotal: inteiro
+inicio
+    escreval("=== Digite os valores da matriz 3x3 ===")
+    para linha de 1 até 3 faça
+        para coluna de 1 até 3 faça
+            escreva("Elemento [", linha, ",", coluna, "]: ")
+            leia(matriz[linha, coluna])
+        fimpara
+    fimpara
+    
+    // Soma de cada linha
+    escreval("")
+    escreval("=== SOMA DAS LINHAS ===")
+    para linha de 1 até 3 faça
+        soma ← 0
+        para coluna de 1 até 3 faça
+            soma ← soma + matriz[linha, coluna]
+        fimpara
+        escreval("Linha ", linha, ": ", soma)
+    fimpara
+    
+    // Soma de cada coluna
+    escreval("")
+    escreval("=== SOMA DAS COLUNAS ===")
+    para coluna de 1 até 3 faça
+        soma ← 0
+        para linha de 1 até 3 faça
+            soma ← soma + matriz[linha, coluna]
+        fimpara
+        escreval("Coluna ", coluna, ": ", soma)
+    fimpara
+    
+    // Soma total
+    somaTotal ← 0
+    para linha de 1 até 3 faça
+        para coluna de 1 até 3 faça
+            somaTotal ← somaTotal + matriz[linha, coluna]
+        fimpara
+    fimpara
+    escreval("")
+    escreval("SOMA TOTAL DA MATRIZ: ", somaTotal)
+fim
+            </div>
+            <p><strong>Explicação:</strong> Para somar linhas, fixamos a linha e variamos a coluna. Para somar colunas, fixamos a coluna e variamos a linha. Para a soma total, percorremos tudo!</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 8.3: Jogo da Velha</h4>
+        <p>Crie um tabuleiro de jogo da velha usando uma matriz 3x3 de caracteres. Inicialize todas as posições com "-". Depois, peça ao usuário para preencher 5 jogadas alternadas (X e O).</p>
+        <p><strong>Exemplo:</strong></p>
+        <div class="code-block">
+[X][-][O]
+[-][X][-]
+[O][-][-]
+        </div>
+        <p><strong>Conceitos aplicados:</strong> Matrizes de caracteres, alternância de valores</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol15')">Mostrar Solução</button>
+        <div class="solution-container" id="sol15">
+            <h5>💡 Solução do Exercício 8.3:</h5>
+            <div class="code-block">
+algoritmo "jogo_da_velha"
+var
+    tabuleiro: vetor[1..3, 1..3] de caractere
+    linha, coluna, jogada: inteiro
+    simbolo: caractere
+inicio
+    // Inicializa o tabuleiro
+    para linha de 1 até 3 faça
+        para coluna de 1 até 3 faça
+            tabuleiro[linha, coluna] ← "-"
+        fimpara
+    fimpara
+    
+    escreval("=== JOGO DA VELHA ===")
+    escreval("Vamos fazer 5 jogadas alternadas!")
+    
+    para jogada de 1 até 5 faça
+        // Define o símbolo (X para jogadas ímpares, O para pares)
+        se jogada mod 2 = 1 então
+            simbolo ← "X"
+        senão
+            simbolo ← "O"
+        fimse
+        
+        escreval("")
+        escreval("--- Jogada ", jogada, " (", simbolo, ") ---")
+        escreva("Digite a linha (1-3): ")
+        leia(linha)
+        escreva("Digite a coluna (1-3): ")
+        leia(coluna)
+        
+        tabuleiro[linha, coluna] ← simbolo
+        
+        // Mostra o tabuleiro
+        escreval("Tabuleiro atual:")
+        para linha de 1 até 3 faça
+            para coluna de 1 até 3 faça
+                escreva("[", tabuleiro[linha, coluna], "]")
+            fimpara
+            escreval("")
+        fimpara
+    fimpara
+    
+    escreval("")
+    escreval("Fim do jogo!")
+fim
+            </div>
+            <p><strong>Explicação:</strong> Inicializamos tudo com "-". Depois, alternamos entre X e O usando o operador mod. A cada jogada, mostramos o tabuleiro atualizado!</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 8.4: Transposta de uma Matriz</h4>
+        <p>Desenvolva um algoritmo que leia uma matriz 2x3. Depois, crie e mostre a matriz transposta (3x2), onde linhas viram colunas e colunas viram linhas.</p>
+        <p><strong>Exemplo:</strong></p>
+        <div class="code-block">
+Original 2x3:        Transposta 3x2:
+[1][2][3]            [1][4]
+[4][5][6]            [2][5]
+                     [3][6]
+        </div>
+        <p><strong>Conceitos aplicados:</strong> Matrizes, inversão de índices</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol16')">Mostrar Solução</button>
+        <div class="solution-container" id="sol16">
+            <h5>💡 Solução do Exercício 8.4:</h5>
+            <div class="code-block">
+algoritmo "matriz_transposta"
+var
+    original: vetor[1..2, 1..3] de inteiro
+    transposta: vetor[1..3, 1..2] de inteiro
+    linha, coluna: inteiro
+inicio
+    escreval("=== Digite os valores da matriz 2x3 ===")
+    para linha de 1 até 2 faça
+        para coluna de 1 até 3 faça
+            escreva("Elemento [", linha, ",", coluna, "]: ")
+            leia(original[linha, coluna])
+        fimpara
+    fimpara
+    
+    // Criando a transposta
+    para linha de 1 até 2 faça
+        para coluna de 1 até 3 faça
+            transposta[coluna, linha] ← original[linha, coluna]
+        fimpara
+    fimpara
+    
+    // Mostrando matriz original
+    escreval("")
+    escreval("=== MATRIZ ORIGINAL (2x3) ===")
+    para linha de 1 até 2 faça
+        para coluna de 1 até 3 faça
+            escreva("[", original[linha, coluna], "]")
+        fimpara
+        escreval("")
+    fimpara
+    
+    // Mostrando matriz transposta
+    escreval("")
+    escreval("=== MATRIZ TRANSPOSTA (3x2) ===")
+    para linha de 1 até 3 faça
+        para coluna de 1 até 2 faça
+            escreva("[", transposta[linha, coluna], "]")
+        fimpara
+        escreval("")
+    fimpara
+fim
+            </div>
+            <p><strong>Explicação:</strong> O segredo é inverter os índices! O elemento original[linha, coluna] vai para transposta[coluna, linha]. Assim, a primeira linha vira a primeira coluna, e por aí vai!</p>
+        </div>
+    </div>
+</section>
         
     </main>
 
@@ -3093,6 +4008,292 @@ function resetSoma() {
     
     document.querySelectorAll('.vector-cell').forEach(c => c.classList.remove('active'));
     document.querySelectorAll('#soma-code span').forEach(s => s.classList.remove('active'));
+}
+        /* ============================================
+   JAVASCRIPT PARA ANIMAÇÕES DE MATRIZES (Aula 8)
+   ============================================ */
+
+// ===== ANIMAÇÃO 1: PREENCHENDO MATRIZ =====
+let preencheMatrizInterval;
+let pmLinha = 1, pmColuna = 1;
+let pmPaused = false;
+
+function playPreencheMatriz() {
+    if (pmPaused) {
+        pmPaused = false;
+    } else {
+        resetPreencheMatriz();
+    }
+    
+    preencheMatrizInterval = setInterval(() => {
+        if (pmLinha > 3) {
+            pausePreencheMatriz();
+            return;
+        }
+        
+        // Destaca linha de código
+        document.querySelectorAll('#preenche-matriz-code span').forEach(el => el.style.backgroundColor = 'transparent');
+        document.getElementById('pm-line3').style.backgroundColor = '#fff3cd';
+        
+        // Calcula valor
+        const valor = pmLinha * 10 + pmColuna;
+        
+        // Atualiza display de variáveis
+        document.getElementById('pm-linha').textContent = pmLinha;
+        document.getElementById('pm-coluna').textContent = pmColuna;
+        document.getElementById('pm-valor').textContent = valor;
+        
+        // Atualiza célula
+        const cellId = `pm-cell-${pmLinha}-${pmColuna}`;
+        const valId = `pm-val-${pmLinha}-${pmColuna}`;
+        const cell = document.getElementById(cellId);
+        const valElement = document.getElementById(valId);
+        
+        // Animação
+        cell.classList.add('active');
+        setTimeout(() => {
+            valElement.textContent = valor;
+            cell.classList.remove('active');
+            cell.classList.add('filled');
+        }, 500);
+        
+        // Avança para próxima posição
+        pmColuna++;
+        if (pmColuna > 3) {
+            pmColuna = 1;
+            pmLinha++;
+        }
+    }, 1000);
+}
+
+function pausePreencheMatriz() {
+    clearInterval(preencheMatrizInterval);
+    pmPaused = true;
+}
+
+function resetPreencheMatriz() {
+    clearInterval(preencheMatrizInterval);
+    pmLinha = 1;
+    pmColuna = 1;
+    pmPaused = false;
+    
+    // Limpa células
+    for (let i = 1; i <= 3; i++) {
+        for (let j = 1; j <= 3; j++) {
+            const cell = document.getElementById(`pm-cell-${i}-${j}`);
+            const val = document.getElementById(`pm-val-${i}-${j}`);
+            cell.classList.remove('active', 'filled');
+            val.textContent = '?';
+        }
+    }
+    
+    // Limpa código destacado
+    document.querySelectorAll('#preenche-matriz-code span').forEach(el => el.style.backgroundColor = 'transparent');
+    
+    // Reset variáveis
+    document.getElementById('pm-linha').textContent = '1';
+    document.getElementById('pm-coluna').textContent = '1';
+    document.getElementById('pm-valor').textContent = '11';
+}
+
+// ===== ANIMAÇÃO 2: ACESSANDO POSIÇÃO =====
+function playAcessaMatriz() {
+    const linha = 2, coluna = 3;
+    
+    // Destaca código
+    document.querySelectorAll('#acessa-matriz-code span').forEach(el => el.style.backgroundColor = 'transparent');
+    document.getElementById('am-line6').style.backgroundColor = '#fff3cd';
+    
+    // Atualiza variáveis
+    document.getElementById('am-linha').textContent = linha;
+    document.getElementById('am-coluna').textContent = coluna;
+    document.getElementById('am-valor').textContent = '6';
+    
+    // Animação da célula
+    const cell = document.getElementById(`am-cell-${linha}-${coluna}`);
+    const arrow = document.getElementById('am-arrow');
+    
+    // Remove classes anteriores
+    document.querySelectorAll('.matrix-cell').forEach(c => c.classList.remove('active'));
+    
+    setTimeout(() => {
+        cell.classList.add('active');
+        arrow.classList.add('show');
+    }, 300);
+}
+
+function resetAcessaMatriz() {
+    document.querySelectorAll('#acessa-matriz-code span').forEach(el => el.style.backgroundColor = 'transparent');
+    document.querySelectorAll('.matrix-cell').forEach(c => c.classList.remove('active'));
+    document.getElementById('am-arrow').classList.remove('show');
+    
+    document.getElementById('am-linha').textContent = '2';
+    document.getElementById('am-coluna').textContent = '3';
+    document.getElementById('am-valor').textContent = '6';
+}
+
+// ===== ANIMAÇÃO 3: SOMA DE LINHA =====
+let somaLinhaInterval;
+let slColuna = 1;
+let slSoma = 0;
+let slPaused = false;
+const slValores = [5, 15, 25]; // Valores da linha 2
+
+function playSomaLinha() {
+    if (slPaused) {
+        slPaused = false;
+    } else {
+        resetSomaLinha();
+    }
+    
+    // Destaca a linha alvo
+    document.getElementById('sl-target-row').classList.add('highlighted');
+    
+    somaLinhaInterval = setInterval(() => {
+        if (slColuna > 3) {
+            pauseSomaLinha();
+            document.getElementById('sl-equation').innerHTML = `<strong>Resultado: ${slSoma}</strong>`;
+            return;
+        }
+        
+        // Destaca código
+        document.querySelectorAll('#soma-linha-code span').forEach(el => el.style.backgroundColor = 'transparent');
+        document.getElementById('sl-line4').style.backgroundColor = '#fff3cd';
+        
+        // Atualiza variáveis
+        document.getElementById('sl-coluna').textContent = slColuna;
+        
+        const valor = slValores[slColuna - 1];
+        const cell = document.getElementById(`sl-cell-2-${slColuna}`);
+        
+        // Animação
+        cell.classList.add('active');
+        
+        setTimeout(() => {
+            slSoma += valor;
+            document.getElementById('sl-soma').textContent = slSoma;
+            
+            // Atualiza equação
+            let equation = '';
+            for (let i = 1; i <= slColuna; i++) {
+                equation += slValores[i - 1];
+                if (i < slColuna) equation += ' + ';
+            }
+            equation += ` = ${slSoma}`;
+            document.getElementById('sl-equation').textContent = equation;
+            
+            cell.classList.remove('active');
+            cell.classList.add('filled');
+            
+            slColuna++;
+        }, 500);
+    }, 1000);
+}
+
+function pauseSomaLinha() {
+    clearInterval(somaLinhaInterval);
+    slPaused = true;
+}
+
+function resetSomaLinha() {
+    clearInterval(somaLinhaInterval);
+    slColuna = 1;
+    slSoma = 0;
+    slPaused = false;
+    
+    // Limpa células
+    for (let i = 1; i <= 3; i++) {
+        const cell = document.getElementById(`sl-cell-2-${i}`);
+        cell.classList.remove('active', 'filled');
+    }
+    
+    document.getElementById('sl-target-row').classList.remove('highlighted');
+    document.querySelectorAll('#soma-linha-code span').forEach(el => el.style.backgroundColor = 'transparent');
+    
+    document.getElementById('sl-linha').textContent = '2';
+    document.getElementById('sl-coluna').textContent = '-';
+    document.getElementById('sl-soma').textContent = '0';
+    document.getElementById('sl-equation').textContent = '0';
+}
+
+// ===== ANIMAÇÃO 4: DIAGONAL PRINCIPAL =====
+let diagonalInterval;
+let dgI = 1;
+let dgSoma = 0;
+let dgPaused = false;
+const dgValores = [3, 5, 9]; // Valores da diagonal
+
+function playDiagonal() {
+    if (dgPaused) {
+        dgPaused = false;
+    } else {
+        resetDiagonal();
+    }
+    
+    diagonalInterval = setInterval(() => {
+        if (dgI > 3) {
+            pauseDiagonal();
+            document.getElementById('dg-equation').innerHTML = `<strong>Resultado: ${dgSoma}</strong>`;
+            return;
+        }
+        
+        // Destaca código
+        document.querySelectorAll('#diagonal-code span').forEach(el => el.style.backgroundColor = 'transparent');
+        document.getElementById('dg-line3').style.backgroundColor = '#fff3cd';
+        
+        // Atualiza variáveis
+        document.getElementById('dg-i').textContent = dgI;
+        document.getElementById('dg-pos').textContent = `[${dgI},${dgI}]`;
+        
+        const valor = dgValores[dgI - 1];
+        const cell = document.getElementById(`dg-cell-${dgI}-${dgI}`);
+        
+        // Animação
+        cell.classList.add('diagonal-active');
+        
+        setTimeout(() => {
+            dgSoma += valor;
+            document.getElementById('dg-soma').textContent = dgSoma;
+            
+            // Atualiza equação
+            let equation = '';
+            for (let i = 1; i <= dgI; i++) {
+                equation += dgValores[i - 1];
+                if (i < dgI) equation += ' + ';
+            }
+            equation += ` = ${dgSoma}`;
+            document.getElementById('dg-equation').textContent = equation;
+            
+            cell.classList.remove('diagonal-active');
+            
+            dgI++;
+        }, 500);
+    }, 1200);
+}
+
+function pauseDiagonal() {
+    clearInterval(diagonalInterval);
+    dgPaused = true;
+}
+
+function resetDiagonal() {
+    clearInterval(diagonalInterval);
+    dgI = 1;
+    dgSoma = 0;
+    dgPaused = false;
+    
+    // Limpa células
+    for (let i = 1; i <= 3; i++) {
+        const cell = document.getElementById(`dg-cell-${i}-${i}`);
+        cell.classList.remove('diagonal-active');
+    }
+    
+    document.querySelectorAll('#diagonal-code span').forEach(el => el.style.backgroundColor = 'transparent');
+    
+    document.getElementById('dg-i').textContent = '-';
+    document.getElementById('dg-pos').textContent = '-';
+    document.getElementById('dg-soma').textContent = '0';
+    document.getElementById('dg-equation').textContent = '0';
 }
         
     </script>
