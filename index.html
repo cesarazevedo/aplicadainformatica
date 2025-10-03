@@ -1388,7 +1388,184 @@ fim
                 </ul>
             </div>
         </section>
+<!-- Cole isso depois do fechamento </section> da Aula 6 -->
 
+<!-- Seção de Animações Visuais -->
+<section id="animacoes-repeticao">
+    <h2>🎬 Visualizando as Estruturas de Repetição</h2>
+    <p>Veja como cada estrutura funciona na prática com animações interativas!</p>
+
+    <!-- Animação 1: Enquanto -->
+    <div class="animation-container">
+        <h3>📌 Animação: Enquanto (while)</h3>
+        <p>Observe: primeiro verifica, depois executa!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="enquanto-code">
+<span id="eq-line1">numero ← 1</span>
+<span id="eq-line2">enquanto numero <= 3 faça</span>
+<span id="eq-line3">    escreva(numero)</span>
+<span id="eq-line4">    numero ← numero + 1</span>
+<span id="eq-line5">fimenquanto</span>
+                </pre>
+            </div>
+            
+            <div class="execution-side">
+                <div class="status-box">
+                    <p><strong>Variável:</strong> <span id="eq-var">numero = 1</span></p>
+                    <p><strong>Condição:</strong> <span id="eq-cond">1 <= 3 ✓</span></p>
+                    <p><strong>Saída:</strong> <span id="eq-output"></span></p>
+                </div>
+                
+                <div class="flow-diagram">
+                    <div class="flow-step" id="eq-check">
+                        <div class="step-icon">❓</div>
+                        <p>Verifica condição</p>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step" id="eq-execute">
+                        <div class="step-icon">▶️</div>
+                        <p>Executa comandos</p>
+                    </div>
+                    <div class="flow-arrow-back">↻</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playEnquanto()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseEnquanto()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetEnquanto()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 2: Repita -->
+    <div class="animation-container">
+        <h3>📌 Animação: Repita (do-while)</h3>
+        <p>Observe: primeiro executa, depois verifica!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="repita-code">
+<span id="rp-line1">numero ← 1</span>
+<span id="rp-line2">repita</span>
+<span id="rp-line3">    escreva(numero)</span>
+<span id="rp-line4">    numero ← numero + 1</span>
+<span id="rp-line5">até numero > 3</span>
+                </pre>
+            </div>
+            
+            <div class="execution-side">
+                <div class="status-box">
+                    <p><strong>Variável:</strong> <span id="rp-var">numero = 1</span></p>
+                    <p><strong>Condição:</strong> <span id="rp-cond">1 > 3? ✗</span></p>
+                    <p><strong>Saída:</strong> <span id="rp-output"></span></p>
+                </div>
+                
+                <div class="flow-diagram">
+                    <div class="flow-step active" id="rp-execute">
+                        <div class="step-icon">▶️</div>
+                        <p>Executa comandos</p>
+                    </div>
+                    <div class="flow-arrow">↓</div>
+                    <div class="flow-step" id="rp-check">
+                        <div class="step-icon">❓</div>
+                        <p>Verifica condição</p>
+                    </div>
+                    <div class="flow-arrow-back">↻</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playRepita()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseRepita()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetRepita()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 3: Para -->
+    <div class="animation-container">
+        <h3>📌 Animação: Para (for)</h3>
+        <p>Contador automático de 1 até 5!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="para-code">
+<span id="pr-line1">para i de 1 até 5 faça</span>
+<span id="pr-line2">    escreva(i)</span>
+<span id="pr-line3">fimpara</span>
+                </pre>
+            </div>
+            
+            <div class="execution-side">
+                <div class="status-box">
+                    <p><strong>Contador:</strong> <span id="pr-var">i = 1</span></p>
+                    <p><strong>Limite:</strong> até 5</p>
+                    <p><strong>Saída:</strong> <span id="pr-output"></span></p>
+                </div>
+                
+                <div class="counter-visual">
+                    <div class="counter-bar">
+                        <div class="counter-progress" id="pr-progress"></div>
+                    </div>
+                    <div class="counter-numbers">
+                        <span class="num" id="num-1">1</span>
+                        <span class="num" id="num-2">2</span>
+                        <span class="num" id="num-3">3</span>
+                        <span class="num" id="num-4">4</span>
+                        <span class="num" id="num-5">5</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playPara()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pausePara()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetPara()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+
+    <!-- Animação 4: Acumulador Visual -->
+    <div class="animation-container">
+        <h3>📌 Animação: Acumulador (Soma)</h3>
+        <p>Veja a soma sendo acumulada passo a passo!</p>
+        
+        <div class="visual-box">
+            <div class="code-side">
+                <pre class="code-highlight" id="acum-code">
+<span id="ac-line1">soma ← 0</span>
+<span id="ac-line2">para i de 1 até 4 faça</span>
+<span id="ac-line3">    soma ← soma + i</span>
+<span id="ac-line4">fimpara</span>
+                </pre>
+            </div>
+            
+            <div class="execution-side">
+                <div class="status-box">
+                    <p><strong>i:</strong> <span id="ac-i">1</span></p>
+                    <p><strong>soma:</strong> <span id="ac-soma" class="big-number">0</span></p>
+                </div>
+                
+                <div class="accumulator-visual">
+                    <div class="acc-equation" id="ac-equation">0</div>
+                    <div class="acc-boxes" id="ac-boxes"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="playAcumulador()" class="btn-play">▶️ Iniciar</button>
+            <button onclick="pauseAcumulador()" class="btn-pause">⏸️ Pausar</button>
+            <button onclick="resetAcumulador()" class="btn-reset">🔄 Reiniciar</button>
+        </div>
+    </div>
+</section>
+        
+
+        
         <!-- Exercícios de Estruturas de Repetição -->
         <section>
             <h2>Exercícios: Estruturas de Repetição</h2>
