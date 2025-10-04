@@ -2057,9 +2057,9 @@ var
 inicio
 &nbsp;&nbsp;&nbsp;&nbsp;soma ← 0
 &nbsp;&nbsp;&nbsp;&nbsp;para cont de 1 até 3 faça
-&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite a nota ", cont, ": ")
-&nbsp;&nbsp;&nbsp;&nbsp;leia(nota)
-&nbsp;&nbsp;&nbsp;&nbsp;soma ← soma + nota
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite a nota ", cont, ": ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leia(nota)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soma ← soma + nota
 &nbsp;&nbsp;&nbsp;&nbsp;fimpara
 &nbsp;&nbsp;&nbsp;&nbsp;media ← soma / 3
 &nbsp;&nbsp;&nbsp;&nbsp;escreva("Média: ", media)
@@ -2071,16 +2071,16 @@ Fimalgoritmo
             <div class="code-block">
 algoritmo "exemplo_flag"
 var
-    pessoa: caractere
+&nbsp;&nbsp;&nbsp;&nbsp;pessoa: caractere
 inicio
-    escreva("Digite um nome (ou 'FIM' para sair): ")
-    leia(pessoa)
-    enquanto pessoa <> "FIM" faça
-        escreva("Olá, ", pessoa)
-        escreva("Digite outro nome (ou 'FIM' para sair): ")
-        leia(pessoa)
-    fimenquanto
-    escreva("Programa encerrado!")
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite um nome (ou 'FIM' para sair): ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(pessoa)
+&nbsp;&nbsp;&nbsp;&nbsp;enquanto pessoa <> "FIM" faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Olá, ", pessoa)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite outro nome (ou 'FIM' para sair): ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leia(pessoa)
+&nbsp;&nbsp;&nbsp;&nbsp;fimenquanto
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Programa encerrado!")
 fim
             </div>
             <p><strong>👉 Aqui, o usuário digita nomes até escrever "FIM".</strong></p>
