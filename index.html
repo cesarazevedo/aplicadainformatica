@@ -1307,51 +1307,49 @@ fimalgoritmo
     <li><code>fimalgoritmo</code> → Fim do programa</li>
   </ul>
 
-  <h4>Exemplo 2: Calculadora de IMC</h4>
+  <h4>Exemplo 2: Soma de dois números</h4>
   <div class="code-block">
-algoritmo "calcula_imc"
-// IMC = peso / (altura * altura)
+algoritmo "soma_dois_numeros"
 var
-   peso, altura, imc: real
+   numero1, numero2, resultado: inteiro
 inicio
-   escreva("Digite seu peso (kg): ")
-   leia(peso)
-   escreva("Digite sua altura (m): ")
-   leia(altura)
+   escreva("Digite o primeiro número: ")
+   leia(numero1)
+   escreva("Digite o segundo número: ")
+   leia(numero2)
    
-   imc ← peso / (altura * altura)
+   resultado ← numero1 + numero2
    
-   escreva("Seu IMC é: ", imc)
-   
-   se (imc < 18.5) entao
-      escreva(" - Abaixo do peso")
-   senao
-      se (imc < 25) entao
-         escreva(" - Peso normal")
-      senao
-         escreva(" - Acima do peso")
-      fimse
-   fimse
+   escreva("A soma de ", numero1, " + ", numero2, " é: ", resultado)
 fimalgoritmo
   </div>
+  
+  <p><strong>O que acontece aqui:</strong></p>
+  <ul>
+    <li>O programa pede dois números para o usuário</li>
+    <li>Guarda esses números nas caixinhas "numero1" e "numero2"</li>
+    <li>Soma os dois e guarda o resultado em "resultado"</li>
+    <li>Mostra a resposta na tela</li>
+  </ul>
 
-  <h4>Exemplo 3: Verificar se número é par ou ímpar</h4>
+  <h4>Exemplo 3: Calcular área de um retângulo</h4>
   <div class="code-block">
-algoritmo "par_ou_impar"
+algoritmo "area_retangulo"
 var
-   numero, resto: inteiro
+   base, altura, area: real
 inicio
-   escreva("Digite um número: ")
-   leia(numero)
+   escreva("Digite a base do retângulo (em metros): ")
+   leia(base)
+   escreva("Digite a altura do retângulo (em metros): ")
+   leia(altura)
    
-   resto ← numero % 2  // O símbolo % calcula o resto da divisão
+   area ← base * altura
    
-   se (resto = 0) entao
-      escreva(numero, " é PAR")
-   senao
-      escreva(numero, " é ÍMPAR")
-   fimse
+   escreva("A área do retângulo é: ", area, " metros quadrados")
 fimalgoritmo
+  </div>
+  
+  <p><strong>Explicação:</strong> A área de um retângulo é calculada multiplicando a base pela altura. Se um retângulo tem 5m de base e 3m de altura, a área será 5 × 3 = 15m².</p>
   </div>
 
   <h3>Estrutura Básica de um Algoritmo</h3>
