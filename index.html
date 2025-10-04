@@ -1220,47 +1220,190 @@
         </section>
 
         <!-- Aula 1: Introdução aos Algoritmos -->
-        <section id="aula1">
-            <h2>Aula 1: Introdução aos Algoritmos</h2>
-            
-            <h3>O que são Algoritmos?</h3>
-            <p>Um algoritmo é uma sequência de instruções realizadas com o objetivo de solucionar um problema. Em programação, utilizamos algoritmos para descrever as etapas que precisam ser efetuadas para que um programa execute as tarefas que lhe são designadas.</p>
-            
-            <div class="highlight">
-                <p><strong>Características dos Algoritmos:</strong></p>
-                <ul>
-                    <li>Conjunto de passos finitos e organizados</li>
-                    <li>Quando executados, resolvem um determinado problema</li>
-                    <li>São compostos por entrada (input), processamento e saída (output)</li>
-                </ul>
-            </div>
+<section id="aula1">
+  <h2>Aula 1: Introdução aos Algoritmos</h2>
+  
+  <h3>O que são Algoritmos?</h3>
+  <p>Um algoritmo é uma sequência de instruções realizadas com o objetivo de solucionar um problema. Pense como uma <strong>receita de bolo</strong>: você segue passos específicos (misture os ingredientes, leve ao forno por 40 minutos, espere esfriar) para obter um resultado (o bolo pronto).</p>
+  
+  <p>Em programação, utilizamos algoritmos para descrever as etapas que precisam ser efetuadas para que um programa execute as tarefas que lhe são designadas.</p>
 
-            <h3>Pseudocódigo (Portugol)</h3>
-            <p>O pseudocódigo é um método genérico de representar um algoritmo, usando uma linguagem simples sem necessidade de conhecer a sintaxe de linguagem de programação específica.</p>
+  <h4>Algoritmos no Dia a Dia</h4>
+  <p>Você usa algoritmos o tempo todo sem perceber:</p>
+  <ul>
+    <li><strong>Fazer café:</strong> 1) Coloque água na cafeteira, 2) Adicione o pó de café, 3) Ligue a cafeteira, 4) Espere o café ficar pronto</li>
+    <li><strong>Atravessar a rua:</strong> 1) Olhe para os dois lados, 2) Se não vier carro, atravesse, 3) Se vier carro, espere passar</li>
+    <li><strong>Buscar um nome na agenda telefônica:</strong> 1) Abra no meio, 2) Se o nome estiver antes, procure na metade da esquerda, 3) Se estiver depois, procure na metade da direita, 4) Repita até encontrar</li>
+  </ul>
 
-            <div class="code-block">
-algoritmo "exemplo_basico"
+  <div class="highlight">
+    <p><strong>Características dos Algoritmos:</strong></p>
+    <ul>
+      <li><strong>Finitude:</strong> Deve ter um início e um fim definidos (não pode ficar rodando eternamente sem propósito)</li>
+      <li><strong>Definição:</strong> Cada passo deve ser claro e sem ambiguidade (não pode ter instrução tipo "adicione sal a gosto" - quanto é "a gosto"?)</li>
+      <li><strong>Entrada:</strong> Pode ter zero ou mais dados de entrada (inputs)</li>
+      <li><strong>Saída:</strong> Deve produzir pelo menos um resultado (output)</li>
+      <li><strong>Efetividade:</strong> Todas as operações devem ser básicas o suficiente para serem executadas</li>
+    </ul>
+  </div>
+
+  <h3>Entrada → Processamento → Saída</h3>
+  <p>Todo algoritmo segue essa lógica básica:</p>
+  <div class="code-block">
+┌─────────┐      ┌────────────────┐      ┌─────────┐
+│ ENTRADA │  →   │ PROCESSAMENTO  │  →   │  SAÍDA  │
+└─────────┘      └────────────────┘      └─────────┘
+  (Input)          (Cálculos/Lógica)       (Output)
+  </div>
+  
+  <p><strong>Exemplo prático:</strong> Calcular a média de um aluno</p>
+  <ul>
+    <li><strong>Entrada:</strong> Notas das 4 provas (7.0, 8.5, 6.0, 9.0)</li>
+    <li><strong>Processamento:</strong> Soma todas as notas e divide por 4 → (7.0 + 8.5 + 6.0 + 9.0) / 4 = 7.625</li>
+    <li><strong>Saída:</strong> Média final = 7.625</li>
+  </ul>
+
+  <h3>Pseudocódigo (Portugol)</h3>
+  <p>O pseudocódigo é como um "meio termo" entre o português e uma linguagem de programação real. É tipo escrever as instruções em português, mas seguindo algumas regras básicas de programação.</p>
+  
+  <p><strong>Por que usar pseudocódigo?</strong> Porque você pode focar na <em>lógica</em> do problema sem se preocupar com detalhes técnicos de cada linguagem (Java usa um jeito, Python usa outro, C++ usa outro...).</p>
+
+  <h4>Exemplo 1: Dobro de um número</h4>
+  <div class="code-block">
+algoritmo "calcular_dobro"
 var
-    numero, dobro: inteiro
+   numero, dobro: inteiro
 inicio
-    leia(numero)
-    dobro ← numero * 2
-    escreva("O dobro é: ", dobro)
-Fimalgoritmo
-            </div>
+   escreva("Digite um número: ")
+   leia(numero)
+   dobro ← numero * 2
+   escreva("O dobro de ", numero, " é: ", dobro)
+fimalgoritmo
+  </div>
+  
+  <p><strong>Vamos entender passo a passo:</strong></p>
+  <ul>
+    <li><code>algoritmo "calcular_dobro"</code> → Nome do seu programa</li>
+    <li><code>var</code> → Aqui você declara as "caixinhas" que vão guardar valores</li>
+    <li><code>numero, dobro: inteiro</code> → Duas caixinhas que guardam números inteiros</li>
+    <li><code>inicio</code> → Aqui começa a execução do programa</li>
+    <li><code>leia(numero)</code> → O computador espera o usuário digitar um valor</li>
+    <li><code>dobro ← numero * 2</code> → Calcula e guarda o resultado (a setinha ← significa "recebe")</li>
+    <li><code>escreva(...)</code> → Mostra o resultado na tela</li>
+    <li><code>fimalgoritmo</code> → Fim do programa</li>
+  </ul>
 
-            <h3>Estrutura Básica de um Algoritmo</h3>
-            <p>Todo algoritmo em pseudocódigo segue uma estrutura padrão:</p>
-            <div class="code-block">
+  <h4>Exemplo 2: Calculadora de IMC</h4>
+  <div class="code-block">
+algoritmo "calcula_imc"
+// IMC = peso / (altura * altura)
+var
+   peso, altura, imc: real
+inicio
+   escreva("Digite seu peso (kg): ")
+   leia(peso)
+   escreva("Digite sua altura (m): ")
+   leia(altura)
+   
+   imc ← peso / (altura * altura)
+   
+   escreva("Seu IMC é: ", imc)
+   
+   se (imc < 18.5) entao
+      escreva(" - Abaixo do peso")
+   senao
+      se (imc < 25) entao
+         escreva(" - Peso normal")
+      senao
+         escreva(" - Acima do peso")
+      fimse
+   fimse
+fimalgoritmo
+  </div>
+
+  <h4>Exemplo 3: Verificar se número é par ou ímpar</h4>
+  <div class="code-block">
+algoritmo "par_ou_impar"
+var
+   numero, resto: inteiro
+inicio
+   escreva("Digite um número: ")
+   leia(numero)
+   
+   resto ← numero % 2  // O símbolo % calcula o resto da divisão
+   
+   se (resto = 0) entao
+      escreva(numero, " é PAR")
+   senao
+      escreva(numero, " é ÍMPAR")
+   fimse
+fimalgoritmo
+  </div>
+
+  <h3>Estrutura Básica de um Algoritmo</h3>
+  <p>Todo algoritmo em pseudocódigo segue uma estrutura padrão com três partes principais:</p>
+  
+  <div class="code-block">
 algoritmo "nome_do_algoritmo"
-// comentários e informações do autor
+// Aqui você pode colocar comentários
+// Comentários são ignorados pelo computador
+// Servem para você explicar o que o código faz
+
 var
-    // declaração de variáveis
+   // DECLARAÇÃO DE VARIÁVEIS
+   // É onde você cria as "caixinhas" para guardar dados
+   nome: caractere
+   idade: inteiro
+   altura: real
+
 inicio
-    // comandos do programa
-Fimalgoritmo
-            </div>
-        </section>
+   // COMANDOS DO PROGRAMA
+   // Aqui fica a lógica, os cálculos, as decisões
+   escreva("Olá!")
+   leia(nome)
+   // ... mais comandos ...
+   
+fimalgoritmo
+  </div>
+
+  <h3>Tipos de Dados Básicos</h3>
+  <p>Variáveis são como caixas que guardam informações. Cada caixa só pode guardar um tipo específico de coisa:</p>
+  <ul>
+    <li><strong>inteiro:</strong> Números sem vírgula (1, 42, -15, 1000)</li>
+    <li><strong>real:</strong> Números com vírgula (3.14, 9.8, -0.5, 100.99)</li>
+    <li><strong>caractere:</strong> Textos e letras ("João", "A", "Olá mundo!")</li>
+    <li><strong>logico:</strong> Verdadeiro ou Falso (VERDADEIRO, FALSO)</li>
+  </ul>
+
+  <h4>Analogia das Variáveis</h4>
+  <p>Imagine que variáveis são <strong>etiquetas coladas em caixas</strong>:</p>
+  <div class="code-block">
+var
+   nome: caractere      // Caixa etiquetada "nome" que guarda texto
+   idade: inteiro       // Caixa etiquetada "idade" que guarda número inteiro
+   aprovado: logico     // Caixa etiquetada "aprovado" que guarda sim/não
+
+inicio
+   nome ← "Maria"       // Coloca "Maria" na caixa "nome"
+   idade ← 25           // Coloca 25 na caixa "idade"
+   aprovado ← VERDADEIRO  // Coloca VERDADEIRO na caixa "aprovado"
+  </div>
+
+  <h3>Exercícios para Praticar</h3>
+  <p>Tente criar algoritmos em pseudocódigo para:</p>
+  <ol>
+    <li>Ler dois números e mostrar a soma deles</li>
+    <li>Ler o nome e a idade de uma pessoa e mostrar uma mensagem dizendo se ela é maior de idade</li>
+    <li>Calcular a área de um retângulo (base × altura)</li>
+    <li>Converter temperatura de Celsius para Fahrenheit (F = C × 1.8 + 32)</li>
+    <li>Ler três notas e calcular a média</li>
+  </ol>
+
+  <div class="highlight">
+    <p><strong>Dica importante:</strong> Antes de programar, escreva em papel os passos em português simples. Depois transforme em pseudocódigo. Isso ajuda muito na lógica!</p>
+  </div>
+
+</section>
 
         <!-- Aula 2: Variáveis e Tipos de Dados -->
         <section id="aula2">
