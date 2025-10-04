@@ -1416,56 +1416,270 @@ inicio
 
 </section>
 
-        <!-- Aula 2: Variáveis e Tipos de Dados -->
-        <section id="aula2">
-            <h2>Aula 2: Variáveis e Tipos de Dados</h2>
-            
-            <h3>O que são Variáveis?</h3>
-            <p>Variáveis são espaços alocados na memória do computador para armazenar dados ou expressões utilizados por um algoritmo. Cada variável possui um nome (identificador) e um tipo que define que tipo de dados ela pode armazenar.</p>
+<!-- Aula 2: Variáveis e Tipos de Dados -->
+<section id="aula2">
+  <h2>Aula 2: Variáveis e Tipos de Dados</h2>
+  
+  <h3>O que são Variáveis?</h3>
+  <p>Variáveis são <strong>espaços na memória do computador</strong> para armazenar dados que seu programa usa. Pense na memória do computador como um grande armário com várias gavetas. Cada gaveta (variável) tem:</p>
+  <ul>
+    <li>Um <strong>nome/etiqueta</strong> para você encontrá-la (identificador)</li>
+    <li>Um <strong>tipo</strong> que define o que pode guardar dentro (número, texto, etc.)</li>
+    <li>Um <strong>valor</strong> que está guardado nela</li>
+  </ul>
 
-            <h3>Tipos de Dados Principais:</h3>
-            <ul>
-                <li><strong>inteiro:</strong> Números inteiros (10, -5, 42)</li>
-                <li><strong>real:</strong> Números decimais (3.14, -2.5)</li>
-                <li><strong>logico:</strong> Valores booleanos (verdadeiro, falso)</li>
-                <li><strong>caractere:</strong> Sequência de caracteres ("Olá, mundo!")</li>
-            </ul>
+  <div class="code-block">
+┌─────────────────────────────────────┐
+│  MEMÓRIA DO COMPUTADOR              │
+│                                     │
+│  ┌──────────┐  ┌──────────┐        │
+│  │  nome    │  │  idade   │        │
+│  │ "Maria"  │  │    25    │        │
+│  └──────────┘  └──────────┘        │
+│   (caractere)    (inteiro)         │
+└─────────────────────────────────────┘
+  </div>
 
-            <h3>Declaração de Variáveis</h3>
-            <div class="code-block">
+  <h3>Tipos de Dados Principais</h3>
+  <p>Cada variável tem um tipo específico. É como gavetas especializadas: uma para guardar roupas, outra para sapatos, outra para documentos...</p>
+
+  <h4>1. inteiro</h4>
+  <p>Guarda números inteiros (sem vírgula).</p>
+  <div class="code-block">
 var
-    nome: caractere
-    idade: inteiro
-    altura: real
-    estudante: logico
-            </div>
+   idade: inteiro
+   quantidade_alunos: inteiro
+   temperatura: inteiro
 
-            <div class="highlight">
-                <p><strong>Regras para nomes de variáveis:</strong></p>
-                <ul>
-                    <li>Devem ser significativos (evite: a, x, y, teste)</li>
-                    <li>Usar padrão snake_case (nome_completo, idade_usuario)</li>
-                    <li>Começar com letra ou underscore</li>
-                    <li>Não podem ser palavras reservadas</li>
-                    <li>Não podem conter caracteres especiais no meio</li>
-                </ul>
-            </div>
+inicio
+   idade ← 25
+   quantidade_alunos ← 30
+   temperatura ← -5
+  </div>
+  <p><strong>Exemplos:</strong> 10, -5, 42, 0, 1000, -999</p>
 
-            <h3>Operadores de Atribuição</h3>
-            <p>Para atribuir valores às variáveis, usamos os operadores:</p>
-            <ul>
-                <li><strong>←</strong> (seta para esquerda)</li>
-                <li><strong>:=</strong> (dois pontos igual)</li>
-                <li><strong>=</strong> (igual simples)</li>
-            </ul>
+  <h4>2. real</h4>
+  <p>Guarda números com vírgula (decimais).</p>
+  <div class="code-block">
+var
+   altura: real
+   peso: real
+   preco: real
 
-            <div class="code-block">
+inicio
+   altura ← 1.75
+   peso ← 68.5
+   preco ← 49.90
+  </div>
+  <p><strong>Exemplos:</strong> 3.14, -2.5, 0.99, 100.0, -15.75</p>
+
+  <h4>3. caractere</h4>
+  <p>Guarda textos, palavras, frases ou até um único caractere. Sempre entre aspas!</p>
+  <div class="code-block">
+var
+   nome: caractere
+   cidade: caractere
+   mensagem: caractere
+
+inicio
+   nome ← "João Silva"
+   cidade ← "São Paulo"
+   mensagem ← "Bem-vindo ao curso!"
+  </div>
+  <p><strong>Exemplos:</strong> "Olá", "A", "123" (texto, não número!), "Rua das Flores, 100"</p>
+
+  <h4>4. logico</h4>
+  <p>Guarda apenas dois valores possíveis: VERDADEIRO ou FALSO. Útil para decisões!</p>
+  <div class="code-block">
+var
+   esta_chovendo: logico
+   maior_de_idade: logico
+   tem_desconto: logico
+
+inicio
+   esta_chovendo ← FALSO
+   maior_de_idade ← VERDADEIRO
+   tem_desconto ← VERDADEIRO
+  </div>
+  <p><strong>Exemplos:</strong> VERDADEIRO, FALSO (são os únicos valores possíveis!)</p>
+
+  <h3>Declaração vs Atribuição</h3>
+  <p>São duas coisas diferentes e importantes:</p>
+  
+  <h4>Declaração (criar a variável)</h4>
+  <p>É quando você <strong>cria</strong> a gaveta na memória.</p>
+  <div class="code-block">
+var
+   nome: caractere      // Criou a gaveta "nome" que guarda texto
+   idade: inteiro       // Criou a gaveta "idade" que guarda número inteiro
+  </div>
+
+  <h4>Atribuição (colocar valor na variável)</h4>
+  <p>É quando você <strong>coloca um valor</strong> dentro da gaveta.</p>
+  <div class="code-block">
+inicio
+   nome ← "Maria"       // Colocou "Maria" dentro da gaveta "nome"
+   idade ← 30           // Colocou 30 dentro da gaveta "idade"
+  </div>
+
+  <h3>Operadores de Atribuição</h3>
+  <p>Para colocar valores nas variáveis, usamos estes símbolos (dependendo da ferramenta):</p>
+  <ul>
+    <li><strong>←</strong> (seta para esquerda) - mais usado em pseudocódigo</li>
+    <li><strong>:=</strong> (dois pontos igual)</li>
+    <li><strong>=</strong> (igual simples)</li>
+  </ul>
+  
+  <div class="code-block">
 nome ← "João"
 idade := 25
 altura = 1.75
-            </div>
-        </section>
+  </div>
+  <p>Todos fazem a mesma coisa! Usaremos <strong>←</strong> neste curso.</p>
 
+  <h3>Regras para Nomes de Variáveis</h3>
+  
+  <div class="highlight">
+    <p><strong>BOAS PRÁTICAS:</strong></p>
+    <ul>
+      <li>Use nomes <strong>significativos</strong> que explicam o que a variável guarda</li>
+      <li>Use <strong>snake_case</strong>: palavras separadas por _ (underline)</li>
+      <li>Comece sempre com letra ou _ (underline)</li>
+      <li>Use apenas letras, números e _ (sem acentos, espaços ou caracteres especiais)</li>
+      <li>Não use palavras reservadas (algoritmo, var, inicio, etc.)</li>
+    </ul>
+  </div>
+
+  <h4>✅ Bons exemplos:</h4>
+  <div class="code-block">
+nome_completo
+idade_usuario
+salario_mensal
+esta_aprovado
+numero_telefone
+preco_total
+quantidade_produtos
+  </div>
+
+  <h4>❌ Maus exemplos (evite!):</h4>
+  <div class="code-block">
+a                    // Muito genérico, não diz nada
+x                    // Idem
+teste                // Muito vago
+nomecompleto         // Difícil de ler (junte as palavras)
+nome completo        // ERRO! Não pode ter espaço
+2nome                // ERRO! Não pode começar com número
+nome-completo        // ERRO! Não pode ter hífen (-)
+salário              // Evite acentos
+  </div>
+
+  <h3>Operações Básicas com Cada Tipo</h3>
+  
+  <h4>Com inteiro e real (números):</h4>
+  <div class="code-block">
+var
+   a, b, resultado: inteiro
+inicio
+   a ← 10
+   b ← 5
+   
+   resultado ← a + b      // Soma: 15
+   resultado ← a - b      // Subtração: 5
+   resultado ← a * b      // Multiplicação: 50
+   resultado ← a / b      // Divisão: 2
+  </div>
+
+  <h4>Com caractere (textos):</h4>
+  <div class="code-block">
+var
+   nome, sobrenome, nome_completo: caractere
+inicio
+   nome ← "João"
+   sobrenome ← "Silva"
+   
+   nome_completo ← nome + " " + sobrenome  // Junta textos: "João Silva"
+  </div>
+
+  <h4>Com logico:</h4>
+  <div class="code-block">
+var
+   tem_carteira: logico
+   maior_18: logico
+   pode_dirigir: logico
+inicio
+   tem_carteira ← VERDADEIRO
+   maior_18 ← VERDADEIRO
+   
+   pode_dirigir ← tem_carteira E maior_18  // Ambos precisam ser verdadeiros
+  </div>
+
+  <h3>Constantes</h3>
+  <p>Constantes são como variáveis, mas com um detalhe importante: <strong>o valor não pode mudar</strong> depois de definido. É tipo uma gaveta que você tranca com cadeado!</p>
+  
+  <div class="code-block">
+algoritmo "exemplo_constantes"
+const
+   PI = 3.14159
+   NOME_EMPRESA = "Tech Solutions"
+   MAIORIDADE = 18
+
+var
+   raio, area: real
+
+inicio
+   raio ← 5
+   area ← PI * raio * raio
+   escreva("Área do círculo: ", area)
+   
+   // PI ← 3.14  // ERRO! Não pode mudar o valor de uma constante
+fimalgoritmo
+  </div>
+  
+  <p><strong>Quando usar constantes?</strong> Para valores que não mudam, como: PI, velocidade da luz, impostos fixos, configurações do sistema, etc.</p>
+
+  <h3>Exemplo Completo: Calculadora de Troco</h3>
+  <div class="code-block">
+algoritmo "calculadora_troco"
+var
+   preco_produto: real
+   valor_pago: real
+   troco: real
+   nome_produto: caractere
+
+inicio
+   escreva("Nome do produto: ")
+   leia(nome_produto)
+   
+   escreva("Preço do produto: R$ ")
+   leia(preco_produto)
+   
+   escreva("Valor pago: R$ ")
+   leia(valor_pago)
+   
+   troco ← valor_pago - preco_produto
+   
+   escreva("─────────────────────────")
+   escreva("Produto: ", nome_produto)
+   escreva("Preço: R$ ", preco_produto)
+   escreva("Pago: R$ ", valor_pago)
+   escreva("Troco: R$ ", troco)
+fimalgoritmo
+  </div>
+
+  <h3>Exercícios para Praticar</h3>
+  <ol>
+    <li>Declare variáveis para guardar: seu nome completo, sua idade, sua altura e se você é estudante.</li>
+    <li>Crie um algoritmo que leia o nome e a idade de uma pessoa e mostre: "Olá [nome], você tem [idade] anos!"</li>
+    <li>Faça um programa que leia dois números e mostre: a soma, subtração, multiplicação e divisão entre eles.</li>
+    <li>Crie um algoritmo que calcule a área de um círculo (área = PI * raio * raio). Use uma constante para o PI.</li>
+    <li>Faça um programa que leia nome e sobrenome separadamente e mostre o nome completo.</li>
+  </ol>
+
+  <div class="highlight">
+    <p><strong>Dica de ouro:</strong> Sempre escolha nomes de variáveis que deixem claro o que elas guardam. Isso torna seu código muito mais fácil de entender depois!</p>
+  </div>
+
+</section>
         <!-- Aula 3: Estruturas de Controle -->
         <section id="aula3">
             <h2>Aula 3: Estruturas de Controle</h2>
