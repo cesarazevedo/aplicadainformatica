@@ -2514,36 +2514,35 @@ fimpara
     <div class="code-block">
 algoritmo "sistema_notas"
 var
-    notas: vetor[1..5] de real
-    soma, media: real
-    i: inteiro
+&nbsp;&nbsp;&nbsp;&nbsp;notas: vetor[1..5] de real
+&nbsp;&nbsp;&nbsp;&nbsp;soma, media: real
+&nbsp;&nbsp;&nbsp;&nbsp;i: inteiro
 inicio
     // Lendo as notas
-    escreva("=== CADASTRO DE NOTAS ===")
-    para i de 1 até 5 faça
-        escreva("Digite a nota ", i, ": ")
-        leia(notas[i])
-    fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("=== CADASTRO DE NOTAS ===")
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite a nota ", i, ": ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leia(notas[i])
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
     
     // Calculando a média
-    soma ← 0
-    para i de 1 até 5 faça
-        soma ← soma + notas[i]
-    fimpara
-    media ← soma / 5
+&nbsp;&nbsp;&nbsp;&nbsp;soma ← 0
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soma ← soma + notas[i]
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;media ← soma / 5
     
     // Mostrando resultado
-    escreva("Notas cadastradas:")
-    para i de 1 até 5 faça
-        escreva("Nota ", i, ": ", notas[i])
-    fimpara
-    escreva("Média final: ", media)
-    
-    se media >= 7 então
-        escreva("Aluno APROVADO!")
-    senão
-        escreva("Aluno REPROVADO!")
-    fimse
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Notas cadastradas:")
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Nota ", i, ": ", notas[i])
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Média final: ", media)
+&nbsp;&nbsp;&nbsp;&nbsp;se media >= 7 então
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Aluno APROVADO!")
+&nbsp;&nbsp;&nbsp;&nbsp;senão
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Aluno REPROVADO!")
+&nbsp;&nbsp;&nbsp;&nbsp;fimse
 fim
     </div>
 
