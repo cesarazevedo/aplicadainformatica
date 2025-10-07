@@ -1848,14 +1848,16 @@ inicio
     escreva("Seu IMC é: ", imc)
     se imc < 18.5 então
         escreva("Abaixo do peso")
-    senão se imc <= 24.9 então
-        escreva("Peso normal")
-    senão se imc <= 29.9 então
-        escreva("Sobrepeso")
-    senão
-        escreva("Obesidade")
-    fimse
-    fimse
+    senão 
+        se imc <= 24.9 então
+            escreva("Peso normal")
+        senão 
+            se imc <= 29.9 então
+            escreva("Sobrepeso")
+            senão
+                escreva("Obesidade")
+            fimse
+        fimse
     fimse
 Fimalgoritmo</pre>
                     </div>
