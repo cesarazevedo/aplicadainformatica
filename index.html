@@ -1618,6 +1618,222 @@ inicio
    pode_dirigir ← tem_carteira E maior_18  // Ambos precisam ser verdadeiros
   </div>
 
+<h3>Operadores Aritméticos</h3>
+  <p>São os operadores usados para fazer <strong>cálculos matemáticos</strong> com números (inteiro e real). Pense neles como as operações que você já conhece da matemática!</p>
+  
+  <div class="code-block">
++   →  Adição (soma)
+-   →  Subtração
+*   →  Multiplicação
+/   →  Divisão
+\   →  Divisão inteira (resultado sem vírgula)
+%   →  Resto da divisão (módulo)
+^   →  Potenciação (elevar a um número)
+  </div>
+
+  <h4>Exemplos práticos:</h4>
+  <div class="code-block">
+var
+   a, b, resultado: inteiro
+   
+inicio
+   a ← 10
+   b ← 3
+   
+   resultado ← a + b      // 10 + 3 = 13
+   resultado ← a - b      // 10 - 3 = 7
+   resultado ← a * b      // 10 * 3 = 30
+   resultado ← a / b      // 10 / 3 = 3.333... (resultado real)
+   resultado ← a \ b      // 10 \ 3 = 3 (só a parte inteira)
+   resultado ← a % b      // 10 % 3 = 1 (resto da divisão)
+   resultado ← a ^ b      // 10 ^ 3 = 1000 (10 elevado a 3)
+  </div>
+
+  <div class="highlight">
+    <p><strong>Entendendo o resto da divisão (%):</strong></p>
+    <p>O operador % (módulo) retorna o que "sobra" de uma divisão. Por exemplo:</p>
+    <ul>
+      <li>10 % 3 = 1 (porque 10 ÷ 3 = 3 e sobra 1)</li>
+      <li>15 % 4 = 3 (porque 15 ÷ 4 = 3 e sobra 3)</li>
+      <li>20 % 5 = 0 (porque 20 ÷ 5 = 4 e não sobra nada)</li>
+    </ul>
+    <p>Isso é muito útil para saber se um número é par (% 2 = 0) ou ímpar (% 2 = 1)!</p>
+  </div>
+
+  <h3>Operadores Relacionais</h3>
+  <p>São operadores usados para <strong>comparar valores</strong>. O resultado é sempre VERDADEIRO ou FALSO (tipo lógico). É como fazer perguntas: "Este número é maior que aquele?" → Resposta: Sim (VERDADEIRO) ou Não (FALSO).</p>
+  
+  <div class="code-block">
+=   →  Igual a
+<>  →  Diferente de (não igual)
+>   →  Maior que
+<   →  Menor que
+>=  →  Maior ou igual a
+<=  →  Menor ou igual a
+  </div>
+
+  <h4>Exemplos práticos:</h4>
+  <div class="code-block">
+var
+   idade: inteiro
+   maior_idade, menor_idade: logico
+   
+inicio
+   idade ← 20
+   
+   maior_idade ← idade >= 18       // 20 >= 18 = VERDADEIRO
+   menor_idade ← idade < 18        // 20 < 18 = FALSO
+   
+   escreva(10 = 10)      // VERDADEIRO (10 é igual a 10)
+   escreva(10 <> 5)      // VERDADEIRO (10 é diferente de 5)
+   escreva(5 > 10)       // FALSO (5 não é maior que 10)
+   escreva(5 < 10)       // VERDADEIRO (5 é menor que 10)
+   escreva(18 >= 18)     // VERDADEIRO (18 é igual a 18)
+   escreva(17 <= 18)     // VERDADEIRO (17 é menor que 18)
+  </div>
+
+  <div class="highlight">
+    <p><strong>Analogia:</strong> Imagine que você está na porta de uma festa. Os operadores relacionais são como as regras de entrada:</p>
+    <ul>
+      <li>"idade >= 18" → Só entra se tiver 18 anos ou mais</li>
+      <li>"senha = 'abc123'" → Só entra se a senha estiver correta</li>
+      <li>"convidados < 100" → Ainda tem vaga se houver menos de 100 pessoas</li>
+    </ul>
+  </div>
+
+  <h3>Operadores Lógicos</h3>
+  <p>São operadores que trabalham com valores lógicos (VERDADEIRO/FALSO) e permitem <strong>combinar condições</strong>. É como quando você precisa verificar duas ou mais coisas ao mesmo tempo!</p>
+  
+  <div class="code-block">
+E    (AND)     →  Todas as condições precisam ser verdadeiras
+OU   (OR)      →  Pelo menos uma condição precisa ser verdadeira
+NAO  (NOT)     →  Inverte o valor (VERDADEIRO vira FALSO e vice-versa)
+  </div>
+
+  <h4>Operador E (AND) - Todos precisam ser verdadeiros</h4>
+  <div class="code-block">
+var
+   tem_carteira, maior_18, pode_dirigir: logico
+   
+inicio
+   tem_carteira ← VERDADEIRO
+   maior_18 ← VERDADEIRO
+   
+   pode_dirigir ← tem_carteira E maior_18
+   // Resultado: VERDADEIRO (porque AMBOS são verdadeiros)
+   
+   // Exemplo 2:
+   tem_carteira ← VERDADEIRO
+   maior_18 ← FALSO
+   
+   pode_dirigir ← tem_carteira E maior_18
+   // Resultado: FALSO (porque um deles é falso)
+  </div>
+
+  <h4>Operador OU (OR) - Pelo menos um precisa ser verdadeiro</h4>
+  <div class="code-block">
+var
+   final_semana, feriado, pode_descansar: logico
+   
+inicio
+   final_semana ← VERDADEIRO
+   feriado ← FALSO
+   
+   pode_descansar ← final_semana OU feriado
+   // Resultado: VERDADEIRO (porque pelo menos um é verdadeiro)
+   
+   // Exemplo 2:
+   final_semana ← FALSO
+   feriado ← FALSO
+   
+   pode_descansar ← final_semana OU feriado
+   // Resultado: FALSO (porque nenhum é verdadeiro)
+  </div>
+
+  <h4>Operador NAO (NOT) - Inverte o valor</h4>
+  <div class="code-block">
+var
+   esta_chovendo, pode_sair: logico
+   
+inicio
+   esta_chovendo ← VERDADEIRO
+   
+   pode_sair ← NAO esta_chovendo
+   // Resultado: FALSO (inverteu o VERDADEIRO)
+   
+   // Exemplo 2:
+   esta_chovendo ← FALSO
+   
+   pode_sair ← NAO esta_chovendo
+   // Resultado: VERDADEIRO (inverteu o FALSO)
+  </div>
+
+  <h4>Tabela verdade - E (AND):</h4>
+  <div class="code-block">
+VERDADEIRO  E  VERDADEIRO  =  VERDADEIRO
+VERDADEIRO  E  FALSO       =  FALSO
+FALSO       E  VERDADEIRO  =  FALSO
+FALSO       E  FALSO       =  FALSO
+  </div>
+
+  <h4>Tabela verdade - OU (OR):</h4>
+  <div class="code-block">
+VERDADEIRO  OU  VERDADEIRO  =  VERDADEIRO
+VERDADEIRO  OU  FALSO       =  VERDADEIRO
+FALSO       OU  VERDADEIRO  =  VERDADEIRO
+FALSO       OU  FALSO       =  FALSO
+  </div>
+
+  <h4>Tabela verdade - NAO (NOT):</h4>
+  <div class="code-block">
+NAO VERDADEIRO  =  FALSO
+NAO FALSO       =  VERDADEIRO
+  </div>
+
+  <div class="highlight">
+    <p><strong>Analogia do dia a dia:</strong></p>
+    <ul>
+      <li><strong>E:</strong> "Só vou ao cinema SE tiver dinheiro E tiver tempo livre" → Preciso dos DOIS!</li>
+      <li><strong>OU:</strong> "Vou viajar de ônibus OU de avião" → Só preciso de UM dos dois!</li>
+      <li><strong>NAO:</strong> "Se NAO estiver chovendo, vou jogar bola" → Inverte a condição!</li>
+    </ul>
+  </div>
+
+  <h3>Combinando Operadores</h3>
+  <p>Você pode combinar vários operadores para criar condições mais complexas. Veja alguns exemplos:</p>
+  
+  <div class="code-block">
+var
+   idade: inteiro
+   tem_ingresso: logico
+   pode_entrar: logico
+   
+inicio
+   idade ← 16
+   tem_ingresso ← VERDADEIRO
+   
+   // Pode entrar se for maior de 18 E tiver ingresso
+   pode_entrar ← (idade >= 18) E tem_ingresso
+   // Resultado: FALSO (idade é menor que 18)
+   
+   // Exemplo 2: Desconto para idosos OU crianças
+   tem_desconto ← (idade >= 60) OU (idade <= 12)
+   // Resultado: FALSO (16 não é >= 60 nem <= 12)
+   
+   // Exemplo 3: Não é final de semana
+   dia_semana ← 3  // quarta-feira
+   trabalha ← NAO ((dia_semana = 6) OU (dia_semana = 7))
+   // Resultado: VERDADEIRO (não é sábado nem domingo)
+  </div>
+
+  <h3>Exercícios Extras para Praticar</h3>
+  <ol>
+    <li>Crie um algoritmo que leia dois números e mostre qual é maior, qual é menor e se são iguais.</li>
+    <li>Faça um programa que calcule se um número é par ou ímpar usando o operador % (módulo).</li>
+    <li>Crie um algoritmo que verifique se uma pessoa pode votar (idade >= 16).</li>
+    <li>Faça um programa que verifique se uma pessoa pode dirigir (idade >= 18 E tem_carteira = VERDADEIRO).</li>
+    <li>Crie um algoritmo que calcule o desconto: 10% se o valor for >= 100, senão 5%.</li>
+  </ol>
   <h3>Constantes</h3>
   <p>Constantes são como variáveis, mas com um detalhe importante: <strong>o valor não pode mudar</strong> depois de definido. É tipo uma gaveta que você tranca com cadeado!</p>
   
