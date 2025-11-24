@@ -4256,6 +4256,480 @@ print("100 / 4 =", 100 / 4)
 
     
 </section>
+                <!-- Aula 10: Variáveis e Tipos de Dados em Python -->
+<section id="aula10">
+    <h2>Aula 10: Variáveis e Tipos de Dados em Python</h2>
+    
+    <h3>Variáveis em Python: Muito Mais Simples!</h3>
+    <p>Lembra que no Portugol você precisava declarar o tipo da variável antes de usar?</p>
+    
+    <div class="code-block">
+// Em Portugol:
+var
+&nbsp;&nbsp;&nbsp;&nbsp;nome: caractere
+&nbsp;&nbsp;&nbsp;&nbsp;idade: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;nome ← "Maria"
+&nbsp;&nbsp;&nbsp;&nbsp;idade ← 25
+    </div>
+    
+    <p>Em Python, é <strong>muito mais fácil</strong>! Você simplesmente cria a variável e atribui o valor. O Python descobre o tipo sozinho!</p>
+    
+    <div class="code-block">
+# Em Python:
+nome = "Maria"
+idade = 25
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🎯 Isso se chama "Tipagem Dinâmica":</strong></p>
+        <ul>
+            <li>Você <strong>não precisa</strong> declarar o tipo da variável</li>
+            <li>O Python <strong>descobre automaticamente</strong> pelo valor que você atribui</li>
+            <li>"Maria" → Python entende que é texto (str)</li>
+            <li>25 → Python entende que é número inteiro (int)</li>
+        </ul>
+    </div>
+
+    <h3>Criando Variáveis em Python</h3>
+    <p>A sintaxe é simples: <code>nome_da_variavel = valor</code></p>
+    
+    <div class="code-block">
+# Criando variáveis de diferentes tipos
+nome = "João Silva"          # Texto (string)
+idade = 17                   # Número inteiro (int)
+altura = 1.75                # Número decimal (float)
+estudante = True             # Verdadeiro/Falso (bool)
+
+# Mostrando os valores
+print(nome)
+print(idade)
+print(altura)
+print(estudante)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+João Silva
+17
+1.75
+True
+    </div>
+
+    <h3>Os 4 Tipos de Dados Principais</h3>
+    <p>Assim como no Portugol, Python tem tipos básicos para guardar diferentes informações:</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #3498db; color: white;">
+            <th>Tipo</th>
+            <th>Nome em Python</th>
+            <th>Exemplo</th>
+            <th>Equivalente Portugol</th>
+        </tr>
+        <tr>
+            <td><strong>Inteiro</strong></td>
+            <td><code>int</code></td>
+            <td>10, -5, 0, 1000</td>
+            <td>inteiro</td>
+        </tr>
+        <tr>
+            <td><strong>Decimal</strong></td>
+            <td><code>float</code></td>
+            <td>3.14, -2.5, 0.0</td>
+            <td>real</td>
+        </tr>
+        <tr>
+            <td><strong>Texto</strong></td>
+            <td><code>str</code></td>
+            <td>"Olá", 'Python'</td>
+            <td>caractere</td>
+        </tr>
+        <tr>
+            <td><strong>Lógico</strong></td>
+            <td><code>bool</code></td>
+            <td>True, False</td>
+            <td>logico</td>
+        </tr>
+    </table>
+
+    <h4>1. int (Inteiro)</h4>
+    <p>Números sem casas decimais. Podem ser positivos, negativos ou zero.</p>
+    <div class="code-block">
+idade = 25
+temperatura = -10
+quantidade = 0
+ano = 2025
+
+print(idade)         # 25
+print(type(idade))   # &lt;class 'int'&gt;
+    </div>
+    <p><strong>💡 Dica:</strong> A função <code>type()</code> mostra qual é o tipo da variável!</p>
+
+    <h4>2. float (Decimal)</h4>
+    <p>Números com casas decimais. Use <strong>ponto</strong> (não vírgula!) para separar.</p>
+    <div class="code-block">
+altura = 1.75
+peso = 68.5
+preco = 49.90
+pi = 3.14159
+
+print(preco)         # 49.9
+print(type(preco))   # &lt;class 'float'&gt;
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Atenção:</strong> Em Python, usamos <strong>ponto</strong> para decimais, não vírgula!</p>
+        <ul>
+            <li>✅ Correto: <code>altura = 1.75</code></li>
+            <li>❌ Errado: <code>altura = 1,75</code></li>
+        </ul>
+    </div>
+
+    <h4>3. str (String/Texto)</h4>
+    <p>Qualquer texto, palavra ou frase. Deve estar entre aspas (simples ou duplas).</p>
+    <div class="code-block">
+nome = "Maria"
+sobrenome = 'Silva'
+frase = "Python é legal!"
+endereco = "Rua das Flores, 123"
+
+print(nome)          # Maria
+print(type(nome))    # &lt;class 'str'&gt;
+    </div>
+    
+    <p><strong>Aspas simples ou duplas?</strong> Tanto faz! Use a que preferir:</p>
+    <div class="code-block">
+texto1 = "Olá, mundo!"   # Com aspas duplas
+texto2 = 'Olá, mundo!'   # Com aspas simples - mesmo resultado!
+
+# Útil quando o texto tem aspas dentro:
+frase1 = "Ele disse 'oi' para mim"
+frase2 = 'Ele disse "oi" para mim'
+    </div>
+
+    <h4>4. bool (Booleano/Lógico)</h4>
+    <p>Só pode ter dois valores: <code>True</code> (verdadeiro) ou <code>False</code> (falso).</p>
+    <div class="code-block">
+estudante = True
+formado = False
+maior_de_idade = True
+
+print(estudante)       # True
+print(type(estudante)) # &lt;class 'bool'&gt;
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Atenção com maiúsculas:</strong></p>
+        <ul>
+            <li>✅ Correto: <code>True</code> e <code>False</code> (primeira letra maiúscula)</li>
+            <li>❌ Errado: <code>true</code>, <code>false</code>, <code>TRUE</code>, <code>FALSE</code></li>
+        </ul>
+    </div>
+
+    <h3>Regras para Nomes de Variáveis</h3>
+    <p>As regras são parecidas com Portugol, mas com algumas diferenças:</p>
+    
+    <div class="highlight">
+        <p><strong>✅ Regras obrigatórias:</strong></p>
+        <ul>
+            <li>Deve começar com <strong>letra</strong> ou <strong>underline (_)</strong></li>
+            <li>Pode conter letras, números e underline</li>
+            <li><strong>Não pode</strong> ter espaços ou caracteres especiais</li>
+            <li><strong>Não pode</strong> ser uma palavra reservada (if, for, while, etc.)</li>
+            <li>Python diferencia maiúsculas de minúsculas: <code>Nome</code> ≠ <code>nome</code></li>
+        </ul>
+    </div>
+    
+    <h4>✅ Bons exemplos:</h4>
+    <div class="code-block">
+nome_completo = "João"
+idade_usuario = 25
+preco_total = 99.90
+_variavel_privada = 10
+usuario2 = "Maria"
+    </div>
+    
+    <h4>❌ Exemplos inválidos:</h4>
+    <div class="code-block">
+# ERROS - NÃO FAÇA ISSO:
+2usuario = "erro"      # Não pode começar com número
+nome completo = "erro" # Não pode ter espaço
+preço = 10             # Evite acentos (pode dar problema)
+for = 5                # 'for' é palavra reservada
+    </div>
+    
+    <h4>🐍 Convenção Python: snake_case</h4>
+    <p>Em Python, a convenção é usar <strong>snake_case</strong>: palavras em minúsculas separadas por underline.</p>
+    <div class="code-block">
+# Estilo Python (snake_case) - RECOMENDADO
+nome_do_aluno = "Pedro"
+data_de_nascimento = "15/03/2008"
+numero_de_telefone = "84999887766"
+
+# Outros estilos (evite em Python)
+nomeDoAluno = "Pedro"      # camelCase - usado em Java
+NomeDoAluno = "Pedro"      # PascalCase - usado para classes
+    </div>
+
+    <h3>Entrada de Dados: input()</h3>
+    <p>Para ler dados digitados pelo usuário, usamos a função <code>input()</code>.</p>
+    
+    <div class="code-block">
+nome = input("Digite seu nome: ")
+print("Olá,", nome)
+    </div>
+    
+    <p><strong>👉 Execução:</strong></p>
+    <div class="code-block">
+Digite seu nome: Maria
+Olá, Maria
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ MUITO IMPORTANTE:</strong></p>
+        <p>O <code>input()</code> <strong>SEMPRE</strong> retorna um texto (string), mesmo que o usuário digite um número!</p>
+    </div>
+    
+    <div class="code-block">
+idade = input("Digite sua idade: ")
+print(type(idade))  # &lt;class 'str'&gt; - É TEXTO, não número!
+    </div>
+
+    <h3>Convertendo Tipos de Dados</h3>
+    <p>Como o <code>input()</code> sempre retorna texto, precisamos converter para número quando necessário:</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #27ae60; color: white;">
+            <th>Função</th>
+            <th>Converte para</th>
+            <th>Exemplo</th>
+        </tr>
+        <tr>
+            <td><code>int()</code></td>
+            <td>Número inteiro</td>
+            <td><code>int("25")</code> → 25</td>
+        </tr>
+        <tr>
+            <td><code>float()</code></td>
+            <td>Número decimal</td>
+            <td><code>float("3.14")</code> → 3.14</td>
+        </tr>
+        <tr>
+            <td><code>str()</code></td>
+            <td>Texto</td>
+            <td><code>str(100)</code> → "100"</td>
+        </tr>
+        <tr>
+            <td><code>bool()</code></td>
+            <td>Booleano</td>
+            <td><code>bool(1)</code> → True</td>
+        </tr>
+    </table>
+    
+    <h4>Exemplo prático: Lendo números do usuário</h4>
+    <div class="code-block">
+# ERRADO - vai dar erro ao tentar somar!
+idade = input("Digite sua idade: ")
+proxima_idade = idade + 1  # ERRO! Não pode somar texto com número
+
+# CERTO - converte para inteiro primeiro
+idade = int(input("Digite sua idade: "))
+proxima_idade = idade + 1  # Agora funciona!
+print("Ano que vem você terá", proxima_idade, "anos")
+    </div>
+    
+    <h4>Exemplo com número decimal:</h4>
+    <div class="code-block">
+altura = float(input("Digite sua altura (ex: 1.75): "))
+print("Sua altura é:", altura, "metros")
+    </div>
+
+    <h3>Exemplo Completo: Ficha de Cadastro</h3>
+    <div class="code-block">
+# Programa de cadastro de pessoa
+print("=== CADASTRO ===")
+
+nome = input("Nome completo: ")
+idade = int(input("Idade: "))
+altura = float(input("Altura (em metros): "))
+estudante = input("É estudante? (s/n): ")
+
+# Convertendo resposta para booleano
+eh_estudante = estudante == "s"
+
+print()
+print("=== DADOS CADASTRADOS ===")
+print("Nome:", nome)
+print("Idade:", idade, "anos")
+print("Altura:", altura, "m")
+print("Estudante:", eh_estudante)
+    </div>
+    
+    <p><strong>👉 Exemplo de execução:</strong></p>
+    <div class="code-block">
+=== CADASTRO ===
+Nome completo: Ana Paula
+Idade: 16
+Altura (em metros): 1.65
+É estudante? (s/n): s
+
+=== DADOS CADASTRADOS ===
+Nome: Ana Paula
+Idade: 16 anos
+Altura: 1.65 m
+Estudante: True
+    </div>
+
+    <h3>Comparando: Portugol vs Python</h3>
+    
+    <h4>Exemplo: Calculadora de Idade</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "calcula_idade"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;ano_nascimento, idade: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite seu ano de nascimento: ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(ano_nascimento)
+&nbsp;&nbsp;&nbsp;&nbsp;idade ← 2025 - ano_nascimento
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Sua idade é: ", idade)
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+ano_nascimento = int(input("Digite seu ano de nascimento: "))
+idade = 2025 - ano_nascimento
+print("Sua idade é:", idade)
+    </div>
+    
+    <p><strong>😮 De 10 linhas para 3!</strong> É a mesma lógica, só que muito mais direto.</p>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 10:</strong></p>
+        <ul>
+            <li><strong>Variáveis:</strong> criadas com <code>=</code>, sem declarar tipo</li>
+            <li><strong>int:</strong> números inteiros (10, -5, 0)</li>
+            <li><strong>float:</strong> números decimais (3.14, 1.75)</li>
+            <li><strong>str:</strong> textos entre aspas ("Olá")</li>
+            <li><strong>bool:</strong> True ou False</li>
+            <li><strong>input():</strong> lê dados do usuário (sempre retorna texto!)</li>
+            <li><strong>Conversão:</strong> int(), float(), str() para converter tipos</li>
+            <li><strong>snake_case:</strong> padrão para nomes de variáveis em Python</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 10.1: Dados Pessoais</h4>
+        <p>Crie um programa que peça ao usuário: nome, idade e altura. Depois mostre todos os dados formatados.</p>
+        <p><strong>Conceitos aplicados:</strong> input(), int(), float(), print()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol20')">Mostrar Solução</button>
+        <div class="solution-container" id="sol20">
+            <h5>💡 Solução do Exercício 10.1:</h5>
+            <div class="code-block">
+# Coletando dados pessoais
+nome = input("Digite seu nome: ")
+idade = int(input("Digite sua idade: "))
+altura = float(input("Digite sua altura (ex: 1.70): "))
+
+# Mostrando os dados
+print()
+print("=== SEUS DADOS ===")
+print("Nome:", nome)
+print("Idade:", idade, "anos")
+print("Altura:", altura, "metros")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 10.2: Calculadora de Nascimento</h4>
+        <p>Peça a idade do usuário e calcule em que ano ele nasceu.</p>
+        <p><strong>Conceitos aplicados:</strong> input(), int(), operações matemáticas</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol21')">Mostrar Solução</button>
+        <div class="solution-container" id="sol21">
+            <h5>💡 Solução do Exercício 10.2:</h5>
+            <div class="code-block">
+# Calculadora de ano de nascimento
+idade = int(input("Quantos anos você tem? "))
+ano_atual = 2025
+ano_nascimento = ano_atual - idade
+
+print("Você nasceu em", ano_nascimento)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 10.3: Soma de Dois Números</h4>
+        <p>Peça dois números ao usuário e mostre a soma deles.</p>
+        <p><strong>Conceitos aplicados:</strong> input(), int() ou float(), operadores</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol22')">Mostrar Solução</button>
+        <div class="solution-container" id="sol22">
+            <h5>💡 Solução do Exercício 10.3:</h5>
+            <div class="code-block">
+# Soma de dois números
+print("=== CALCULADORA DE SOMA ===")
+numero1 = float(input("Digite o primeiro número: "))
+numero2 = float(input("Digite o segundo número: "))
+
+soma = numero1 + numero2
+
+print("A soma de", numero1, "+", numero2, "=", soma)
+            </div>
+            <p><strong>Explicação:</strong> Usamos float() para aceitar tanto números inteiros quanto decimais.</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 10.4: Área do Retângulo</h4>
+        <p>Peça a base e a altura de um retângulo e calcule a área (base × altura).</p>
+        <p><strong>Conceitos aplicados:</strong> input(), float(), multiplicação</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol23')">Mostrar Solução</button>
+        <div class="solution-container" id="sol23">
+            <h5>💡 Solução do Exercício 10.4:</h5>
+            <div class="code-block">
+# Calculadora de área do retângulo
+print("=== ÁREA DO RETÂNGULO ===")
+base = float(input("Digite a base (em metros): "))
+altura = float(input("Digite a altura (em metros): "))
+
+area = base * altura
+
+print("A área do retângulo é:", area, "m²")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 10.5: Conversor de Temperatura</h4>
+        <p>Peça uma temperatura em Celsius e converta para Fahrenheit usando a fórmula: F = C × 1.8 + 32</p>
+        <p><strong>Conceitos aplicados:</strong> input(), float(), fórmulas matemáticas</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol24')">Mostrar Solução</button>
+        <div class="solution-container" id="sol24">
+            <h5>💡 Solução do Exercício 10.5:</h5>
+            <div class="code-block">
+# Conversor Celsius para Fahrenheit
+print("=== CONVERSOR DE TEMPERATURA ===")
+celsius = float(input("Digite a temperatura em Celsius: "))
+
+fahrenheit = celsius * 1.8 + 32
+
+print(celsius, "°C equivale a", fahrenheit, "°F")
+            </div>
+            <p><strong>Exemplo:</strong> 25°C = 77.0°F</p>
+        </div>
+    </div>
+
+</section>
         
     </main>
 
