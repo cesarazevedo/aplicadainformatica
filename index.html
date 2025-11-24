@@ -1250,6 +1250,13 @@
                     <p>Repetição com condição de parada</p>
                 </a>
                 </div>
+
+                <div class="index-item">
+                <a href="#aula14">
+                    <h3>🔁 Aula 14: Estrutura for</h3>
+                    <p>Repetição com range() e iteração em sequências</p>
+                </a>
+</div>
                 
             </div>
         </section>
@@ -6732,6 +6739,711 @@ while opcao != "5":
     
     else:
         print("❌ Opção inválida!")
+            </div>
+        </div>
+    </div>
+
+</section>
+                <!-- Aula 14: Estrutura de Repetição for -->
+<section id="aula14">
+    <h2>Aula 14: Estrutura de Repetição for</h2>
+    
+    <h3>O que é o for?</h3>
+    <p>O <code>for</code> é uma estrutura de repetição usada quando <strong>sabemos quantas vezes</strong> queremos repetir, ou quando queremos <strong>percorrer uma sequência</strong> de valores.</p>
+    
+    <p>É equivalente ao <code>para</code> do Portugol!</p>
+    
+    <div class="highlight">
+        <p><strong>🔑 Comparação Portugol → Python:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Portugol</th>
+                <th>Python</th>
+            </tr>
+            <tr>
+                <td><code>para</code></td>
+                <td><code>for</code></td>
+            </tr>
+            <tr>
+                <td><code>de ... até</code></td>
+                <td><code>in range(...)</code></td>
+            </tr>
+            <tr>
+                <td><code>passo</code></td>
+                <td>terceiro parâmetro do range()</td>
+            </tr>
+            <tr>
+                <td><code>fimpara</code></td>
+                <td>(não precisa - usa indentação)</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>for vs while: Quando usar cada um?</h3>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #27ae60; color: white;">
+            <th>Use for quando...</th>
+            <th>Use while quando...</th>
+        </tr>
+        <tr>
+            <td>Sabe quantas vezes vai repetir</td>
+            <td>Não sabe quantas vezes vai repetir</td>
+        </tr>
+        <tr>
+            <td>Quer percorrer uma sequência</td>
+            <td>Depende de uma condição</td>
+        </tr>
+        <tr>
+            <td>Exemplo: "repita 10 vezes"</td>
+            <td>Exemplo: "repita até acertar"</td>
+        </tr>
+        <tr>
+            <td>Exemplo: "para cada aluno na lista"</td>
+            <td>Exemplo: "enquanto tiver saldo"</td>
+        </tr>
+    </table>
+
+    <h3>A Função range()</h3>
+    <p>O <code>range()</code> gera uma sequência de números. É o parceiro inseparável do <code>for</code>!</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+range(fim)              # De 0 até fim-1
+range(inicio, fim)      # De inicio até fim-1
+range(inicio, fim, passo)  # De inicio até fim-1, pulando de passo em passo
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ IMPORTANTE:</strong> O <code>range()</code> vai até <strong>fim - 1</strong>, não inclui o fim!</p>
+        <ul>
+            <li><code>range(5)</code> → 0, 1, 2, 3, 4 (não inclui o 5!)</li>
+            <li><code>range(1, 6)</code> → 1, 2, 3, 4, 5 (não inclui o 6!)</li>
+        </ul>
+    </div>
+
+    <h4>range(fim) - Um parâmetro:</h4>
+    <div class="code-block">
+# Conta de 0 até 4 (5 números)
+for i in range(5):
+    print(i)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+0
+1
+2
+3
+4
+    </div>
+
+    <h4>range(inicio, fim) - Dois parâmetros:</h4>
+    <div class="code-block">
+# Conta de 1 até 5
+for i in range(1, 6):
+    print(i)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1
+2
+3
+4
+5
+    </div>
+
+    <h4>range(inicio, fim, passo) - Três parâmetros:</h4>
+    <div class="code-block">
+# Conta de 0 até 10, de 2 em 2
+for i in range(0, 11, 2):
+    print(i)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+0
+2
+4
+6
+8
+10
+    </div>
+
+    <h4>Contagem Regressiva (passo negativo):</h4>
+    <div class="code-block">
+# Conta de 10 até 1 (regressivo)
+for i in range(10, 0, -1):
+    print(i)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+    </div>
+
+    <h3>Comparando Portugol vs Python</h3>
+    
+    <h4>Exemplo: Contar de 1 a 5</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "contar_1_a_5"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;i: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva(i)
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+for i in range(1, 6):
+    print(i)
+    </div>
+    
+    <p><strong>😮 Muito mais simples!</strong> Mas lembre-se: <code>range(1, 6)</code> vai de 1 a 5 (não inclui o 6).</p>
+
+    <h4>Exemplo: Números pares de 2 a 20</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+para i de 2 até 20 passo 2 faça
+&nbsp;&nbsp;&nbsp;&nbsp;escreva(i)
+fimpara
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+for i in range(2, 21, 2):
+    print(i)
+    </div>
+
+    <h3>Exemplos Práticos</h3>
+    
+    <h4>Exemplo 1: Tabuada</h4>
+    <div class="code-block">
+numero = int(input("Digite um número para ver a tabuada: "))
+
+print()
+print(f"=== TABUADA DO {numero} ===")
+
+for i in range(1, 11):
+    resultado = numero * i
+    print(f"{numero} x {i} = {resultado}")
+    </div>
+
+    <h4>Exemplo 2: Soma de 1 a N</h4>
+    <div class="code-block">
+n = int(input("Digite um número: "))
+
+soma = 0
+
+for i in range(1, n + 1):
+    soma += i
+
+print(f"A soma de 1 até {n} é: {soma}")
+    </div>
+
+    <h4>Exemplo 3: Fatorial</h4>
+    <div class="code-block">
+n = int(input("Digite um número: "))
+
+fatorial = 1
+
+for i in range(1, n + 1):
+    fatorial *= i
+
+print(f"{n}! = {fatorial}")
+    </div>
+
+    <h3>for com Strings</h3>
+    <p>O <code>for</code> pode percorrer cada caractere de uma string:</p>
+    
+    <div class="code-block">
+nome = "Python"
+
+for letra in nome:
+    print(letra)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+P
+y
+t
+h
+o
+n
+    </div>
+    
+    <h4>Contando letras:</h4>
+    <div class="code-block">
+texto = input("Digite uma frase: ")
+
+contador_a = 0
+
+for letra in texto:
+    if letra == "a" or letra == "A":
+        contador_a += 1
+
+print(f"A letra 'a' aparece {contador_a} vezes")
+    </div>
+
+    <h3>for com Listas</h3>
+    <p>O <code>for</code> é perfeito para percorrer listas (veremos mais na próxima aula):</p>
+    
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "uva"]
+
+for fruta in frutas:
+    print(f"Eu gosto de {fruta}")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Eu gosto de maçã
+Eu gosto de banana
+Eu gosto de laranja
+Eu gosto de uva
+    </div>
+
+    <h4>Usando índice com enumerate():</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "uva"]
+
+for indice, fruta in enumerate(frutas):
+    print(f"{indice + 1}. {fruta}")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1. maçã
+2. banana
+3. laranja
+4. uva
+    </div>
+
+    <h3>for Aninhado (for dentro de for)</h3>
+    <p>Quando colocamos um <code>for</code> dentro de outro, criamos repetições "multiplicadas":</p>
+    
+    <h4>Exemplo: Tabuadas de 1 a 5</h4>
+    <div class="code-block">
+for numero in range(1, 6):
+    print(f"=== TABUADA DO {numero} ===")
+    
+    for i in range(1, 11):
+        print(f"{numero} x {i} = {numero * i}")
+    
+    print()  # Linha em branco entre tabuadas
+    </div>
+    
+    <h4>Exemplo: Retângulo de Asteriscos</h4>
+    <div class="code-block">
+largura = int(input("Largura: "))
+altura = int(input("Altura: "))
+
+for linha in range(altura):
+    for coluna in range(largura):
+        print("*", end="")  # end="" evita pular linha
+    print()  # Pula linha ao final de cada linha
+    </div>
+    
+    <p><strong>👉 Saída (largura=5, altura=3):</strong></p>
+    <div class="code-block">
+*****
+*****
+*****
+    </div>
+    
+    <h4>Exemplo: Triângulo de Números</h4>
+    <div class="code-block">
+n = int(input("Quantas linhas? "))
+
+for linha in range(1, n + 1):
+    for numero in range(1, linha + 1):
+        print(numero, end=" ")
+    print()
+    </div>
+    
+    <p><strong>👉 Saída (n=5):</strong></p>
+    <div class="code-block">
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+    </div>
+
+    <h3>break e continue no for</h3>
+    <p>Funcionam igual no <code>while</code>:</p>
+    
+    <h4>break - Sai do loop:</h4>
+    <div class="code-block">
+# Encontrar o primeiro múltiplo de 7
+for numero in range(1, 100):
+    if numero % 7 == 0:
+        print(f"Primeiro múltiplo de 7: {numero}")
+        break
+    </div>
+    
+    <h4>continue - Pula para próxima iteração:</h4>
+    <div class="code-block">
+# Imprimir apenas números ímpares de 1 a 10
+for i in range(1, 11):
+    if i % 2 == 0:
+        continue  # Pula os pares
+    print(i)
+    </div>
+
+    <h3>for com else</h3>
+    <p>O bloco <code>else</code> executa quando o loop termina <strong>sem break</strong>:</p>
+    
+    <div class="code-block">
+# Verificar se um número é primo
+numero = int(input("Digite um número: "))
+
+for i in range(2, numero):
+    if numero % i == 0:
+        print(f"{numero} NÃO é primo (divisível por {i})")
+        break
+else:
+    print(f"{numero} É PRIMO!")
+    </div>
+
+    <h3>Função print() com end e sep</h3>
+    <p>Parâmetros úteis para formatação:</p>
+    
+    <h4>end - O que colocar no final (padrão é \n):</h4>
+    <div class="code-block">
+# Imprimir na mesma linha
+for i in range(1, 6):
+    print(i, end=" ")
+
+print()  # Pula linha no final
+
+# Saída: 1 2 3 4 5
+    </div>
+    
+    <div class="code-block">
+# Imprimir com separador diferente
+for i in range(1, 6):
+    print(i, end=" - ")
+
+# Saída: 1 - 2 - 3 - 4 - 5 -
+    </div>
+
+    <h4>sep - Separador entre valores (padrão é espaço):</h4>
+    <div class="code-block">
+print(1, 2, 3, 4, 5)              # 1 2 3 4 5
+print(1, 2, 3, 4, 5, sep=", ")    # 1, 2, 3, 4, 5
+print(1, 2, 3, 4, 5, sep=" - ")   # 1 - 2 - 3 - 4 - 5
+print(1, 2, 3, 4, 5, sep="")      # 12345
+    </div>
+
+    <h3>Exemplo Completo: Jogo da Tabuada</h3>
+    <div class="code-block">
+import random
+
+print("🎮 JOGO DA TABUADA")
+print("Responda 5 perguntas!")
+print()
+
+pontos = 0
+
+for rodada in range(1, 6):
+    n1 = random.randint(1, 10)
+    n2 = random.randint(1, 10)
+    
+    print(f"Pergunta {rodada}: Quanto é {n1} x {n2}?")
+    resposta = int(input("Sua resposta: "))
+    
+    if resposta == n1 * n2:
+        print("✓ Correto!")
+        pontos += 1
+    else:
+        print(f"✗ Errado! A resposta era {n1 * n2}")
+    
+    print()
+
+print("=== FIM DO JOGO ===")
+print(f"Você acertou {pontos} de 5 perguntas!")
+
+if pontos == 5:
+    print("🏆 PERFEITO! Você é um gênio!")
+elif pontos >= 3:
+    print("👍 Muito bom! Continue praticando!")
+else:
+    print("📚 Precisa estudar mais a tabuada!")
+    </div>
+
+    <h3>Exemplo Completo: Desenho de Pirâmide</h3>
+    <div class="code-block">
+altura = int(input("Digite a altura da pirâmide: "))
+
+print()
+print("🔺 PIRÂMIDE:")
+print()
+
+for linha in range(1, altura + 1):
+    # Espaços antes dos asteriscos
+    espacos = altura - linha
+    
+    # Quantidade de asteriscos (1, 3, 5, 7...)
+    asteriscos = 2 * linha - 1
+    
+    print(" " * espacos + "*" * asteriscos)
+    </div>
+    
+    <p><strong>👉 Saída (altura=5):</strong></p>
+    <div class="code-block">
+🔺 PIRÂMIDE:
+
+    *
+   ***
+  *****
+ *******
+*********
+    </div>
+
+    <h3>Exemplo Completo: Sequência de Fibonacci</h3>
+    <div class="code-block">
+n = int(input("Quantos termos de Fibonacci? "))
+
+print(f"Primeiros {n} termos da sequência de Fibonacci:")
+
+a, b = 0, 1
+
+for i in range(n):
+    print(a, end=" ")
+    a, b = b, a + b
+
+print()
+    </div>
+    
+    <p><strong>👉 Saída (n=10):</strong></p>
+    <div class="code-block">
+Primeiros 10 termos da sequência de Fibonacci:
+0 1 1 2 3 5 8 13 21 34 
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 14:</strong></p>
+        <ul>
+            <li><strong>for:</strong> repete um número definido de vezes</li>
+            <li><strong>range(fim):</strong> de 0 até fim-1</li>
+            <li><strong>range(inicio, fim):</strong> de inicio até fim-1</li>
+            <li><strong>range(inicio, fim, passo):</strong> com incremento personalizado</li>
+            <li><strong>for em strings:</strong> percorre cada caractere</li>
+            <li><strong>for em listas:</strong> percorre cada elemento</li>
+            <li><strong>for aninhado:</strong> repetições dentro de repetições</li>
+            <li><strong>break/continue:</strong> controlam o fluxo do loop</li>
+            <li><strong>end=" ":</strong> mantém impressão na mesma linha</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 14.1: Números de 1 a 20</h4>
+        <p>Use for para imprimir os números de 1 a 20.</p>
+        <p><strong>Conceitos aplicados:</strong> for, range()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol43')">Mostrar Solução</button>
+        <div class="solution-container" id="sol43">
+            <h5>💡 Solução do Exercício 14.1:</h5>
+            <div class="code-block">
+print("Números de 1 a 20:")
+
+for i in range(1, 21):
+    print(i)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.2: Números Ímpares de 1 a 50</h4>
+        <p>Mostre todos os números ímpares de 1 a 50 usando range com passo.</p>
+        <p><strong>Conceitos aplicados:</strong> for, range() com passo</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol44')">Mostrar Solução</button>
+        <div class="solution-container" id="sol44">
+            <h5>💡 Solução do Exercício 14.2:</h5>
+            <div class="code-block">
+print("Números ímpares de 1 a 50:")
+
+for i in range(1, 51, 2):
+    print(i, end=" ")
+
+print()
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.3: Somatório de N Números</h4>
+        <p>Peça N números ao usuário e calcule a soma usando for.</p>
+        <p><strong>Conceitos aplicados:</strong> for, acumulador</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol45')">Mostrar Solução</button>
+        <div class="solution-container" id="sol45">
+            <h5>💡 Solução do Exercício 14.3:</h5>
+            <div class="code-block">
+quantidade = int(input("Quantos números deseja somar? "))
+
+soma = 0
+
+for i in range(1, quantidade + 1):
+    numero = float(input(f"Digite o {i}º número: "))
+    soma += numero
+
+print(f"A soma é: {soma}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.4: Média de Notas</h4>
+        <p>Peça a quantidade de alunos, leia as notas de cada um e calcule a média da turma.</p>
+        <p><strong>Conceitos aplicados:</strong> for, acumulador, média</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol46')">Mostrar Solução</button>
+        <div class="solution-container" id="sol46">
+            <h5>💡 Solução do Exercício 14.4:</h5>
+            <div class="code-block">
+quantidade = int(input("Quantos alunos na turma? "))
+
+soma = 0
+
+for i in range(1, quantidade + 1):
+    nota = float(input(f"Nota do aluno {i}: "))
+    soma += nota
+
+media = soma / quantidade
+
+print()
+print(f"Soma das notas: {soma}")
+print(f"Média da turma: {media:.2f}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.5: Tabuada de 1 a 10</h4>
+        <p>Mostre as tabuadas de multiplicação de 1 a 10 usando for aninhado.</p>
+        <p><strong>Conceitos aplicados:</strong> for aninhado</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol47')">Mostrar Solução</button>
+        <div class="solution-container" id="sol47">
+            <h5>💡 Solução do Exercício 14.5:</h5>
+            <div class="code-block">
+for num in range(1, 11):
+    print(f"=== TABUADA DO {num} ===")
+    
+    for i in range(1, 11):
+        print(f"{num} x {i} = {num * i}")
+    
+    print()
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.6: Contar Vogais</h4>
+        <p>Peça uma frase e conte quantas vogais (a, e, i, o, u) ela possui.</p>
+        <p><strong>Conceitos aplicados:</strong> for em string, contador</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol48')">Mostrar Solução</button>
+        <div class="solution-container" id="sol48">
+            <h5>💡 Solução do Exercício 14.6:</h5>
+            <div class="code-block">
+frase = input("Digite uma frase: ")
+
+vogais = "aeiouAEIOU"
+contador = 0
+
+for letra in frase:
+    if letra in vogais:
+        contador += 1
+
+print(f"A frase possui {contador} vogais")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.7: Retângulo Personalizado</h4>
+        <p>Peça largura, altura e um caractere. Desenhe um retângulo com essas dimensões usando o caractere informado.</p>
+        <p><strong>Conceitos aplicados:</strong> for aninhado, end=""</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol49')">Mostrar Solução</button>
+        <div class="solution-container" id="sol49">
+            <h5>💡 Solução do Exercício 14.7:</h5>
+            <div class="code-block">
+largura = int(input("Largura: "))
+altura = int(input("Altura: "))
+caractere = input("Caractere: ")
+
+print()
+
+for linha in range(altura):
+    for coluna in range(largura):
+        print(caractere, end="")
+    print()
+            </div>
+            <p><strong>Exemplo:</strong> Largura=6, Altura=4, Caractere=#</p>
+            <div class="code-block">
+######
+######
+######
+######
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 14.8: Potências de 2</h4>
+        <p>Mostre as potências de 2 de 2⁰ até 2¹⁰.</p>
+        <p><strong>Conceitos aplicados:</strong> for, operador **</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol50')">Mostrar Solução</button>
+        <div class="solution-container" id="sol50">
+            <h5>💡 Solução do Exercício 14.8:</h5>
+            <div class="code-block">
+print("Potências de 2:")
+print()
+
+for i in range(11):
+    resultado = 2 ** i
+    print(f"2^{i} = {resultado}")
+            </div>
+            <p><strong>👉 Saída:</strong></p>
+            <div class="code-block">
+Potências de 2:
+
+2^0 = 1
+2^1 = 2
+2^2 = 4
+2^3 = 8
+2^4 = 16
+2^5 = 32
+2^6 = 64
+2^7 = 128
+2^8 = 256
+2^9 = 512
+2^10 = 1024
             </div>
         </div>
     </div>
