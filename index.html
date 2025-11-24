@@ -1222,10 +1222,18 @@
                         <p>Conhecendo a linguagem, instalação e primeiro programa</p>
                 </a>
                 </div>
+                
                 <div class="index-item">
                 <a href="#aula10">
                     <h3>📦 Aula 10: Variáveis e Tipos de Dados</h3>
                     <p>Criando variáveis, tipos de dados e entrada do usuário</p>
+                </a>
+                </div>
+
+                <div class="index-item">
+                <a href="#aula11">
+                    <h3>🔢 Aula 11: Operadores em Python</h3>
+                    <p>Operadores aritméticos, relacionais e lógicos</p>
                 </a>
 </div>
                 
@@ -4726,6 +4734,666 @@ fahrenheit = celsius * 1.8 + 32
 print(celsius, "°C equivale a", fahrenheit, "°F")
             </div>
             <p><strong>Exemplo:</strong> 25°C = 77.0°F</p>
+        </div>
+    </div>
+
+</section>
+                <!-- Aula 11: Operadores em Python -->
+<section id="aula11">
+    <h2>Aula 11: Operadores em Python</h2>
+    
+    <h3>O que são Operadores?</h3>
+    <p>Operadores são símbolos que dizem ao Python para fazer alguma operação com os valores. É como na matemática: o símbolo <code>+</code> diz para somar, o <code>-</code> para subtrair, e assim por diante.</p>
+    
+    <p>Existem três tipos principais de operadores:</p>
+    <ul>
+        <li><strong>Aritméticos:</strong> fazem cálculos matemáticos</li>
+        <li><strong>Relacionais:</strong> comparam valores</li>
+        <li><strong>Lógicos:</strong> combinam condições</li>
+    </ul>
+
+    <h3>Operadores Aritméticos</h3>
+    <p>São os operadores para fazer contas. Você já conhece a maioria do Portugol!</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #3498db; color: white;">
+            <th>Operador</th>
+            <th>Nome</th>
+            <th>Exemplo</th>
+            <th>Resultado</th>
+        </tr>
+        <tr>
+            <td><code>+</code></td>
+            <td>Adição</td>
+            <td><code>10 + 3</code></td>
+            <td>13</td>
+        </tr>
+        <tr>
+            <td><code>-</code></td>
+            <td>Subtração</td>
+            <td><code>10 - 3</code></td>
+            <td>7</td>
+        </tr>
+        <tr>
+            <td><code>*</code></td>
+            <td>Multiplicação</td>
+            <td><code>10 * 3</code></td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td><code>/</code></td>
+            <td>Divisão</td>
+            <td><code>10 / 3</code></td>
+            <td>3.333...</td>
+        </tr>
+        <tr>
+            <td><code>//</code></td>
+            <td>Divisão inteira</td>
+            <td><code>10 // 3</code></td>
+            <td>3</td>
+        </tr>
+        <tr>
+            <td><code>%</code></td>
+            <td>Resto (módulo)</td>
+            <td><code>10 % 3</code></td>
+            <td>1</td>
+        </tr>
+        <tr>
+            <td><code>**</code></td>
+            <td>Potência</td>
+            <td><code>10 ** 3</code></td>
+            <td>1000</td>
+        </tr>
+    </table>
+
+    <h4>Exemplos Práticos:</h4>
+    <div class="code-block">
+# Operadores aritméticos em ação
+a = 10
+b = 3
+
+print("a =", a)
+print("b =", b)
+print()
+print("Soma: a + b =", a + b)           # 13
+print("Subtração: a - b =", a - b)      # 7
+print("Multiplicação: a * b =", a * b)  # 30
+print("Divisão: a / b =", a / b)        # 3.333...
+print("Divisão inteira: a // b =", a // b)  # 3
+print("Resto: a % b =", a % b)          # 1
+print("Potência: a ** b =", a ** b)     # 1000
+    </div>
+
+    <h4>Divisão Normal vs Divisão Inteira</h4>
+    <p>Essa é uma diferença importante!</p>
+    
+    <div class="code-block">
+# Divisão normal (/) - sempre retorna float
+print(10 / 2)    # 5.0 (não 5!)
+print(10 / 3)    # 3.3333333333333335
+
+# Divisão inteira (//) - descarta a parte decimal
+print(10 // 2)   # 5
+print(10 // 3)   # 3 (descarta o 0.333...)
+print(7 // 2)    # 3 (descarta o 0.5)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Quando usar cada uma?</strong></p>
+        <ul>
+            <li><code>/</code> → Quando precisa do resultado exato (ex: média de notas)</li>
+            <li><code>//</code> → Quando quer só a parte inteira (ex: quantas caixas cheias cabem)</li>
+        </ul>
+    </div>
+
+    <h4>Operador Resto (%) - Muito Útil!</h4>
+    <p>O operador <code>%</code> (módulo) retorna o <strong>resto</strong> da divisão. É super útil para várias situações:</p>
+    
+    <div class="code-block">
+# Exemplos de resto da divisão
+print(10 % 3)   # 1 (10 ÷ 3 = 3, resto 1)
+print(15 % 4)   # 3 (15 ÷ 4 = 3, resto 3)
+print(20 % 5)   # 0 (20 ÷ 5 = 4, resto 0 - divisão exata!)
+print(7 % 2)    # 1 (7 ÷ 2 = 3, resto 1)
+print(8 % 2)    # 0 (8 ÷ 2 = 4, resto 0)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🎯 Truque importante: Verificar se número é PAR ou ÍMPAR</strong></p>
+        <div class="code-block">
+numero = 7
+
+# Se o resto da divisão por 2 for 0, é PAR
+# Se o resto for 1, é ÍMPAR
+
+print(numero % 2)  # 1, então 7 é ímpar
+
+print(10 % 2)  # 0, então 10 é par
+print(15 % 2)  # 1, então 15 é ímpar
+        </div>
+    </div>
+
+    <h4>Operador Potência (**)</h4>
+    <p>No Portugol usávamos <code>^</code>, em Python usamos <code>**</code> (dois asteriscos).</p>
+    
+    <div class="code-block">
+# Potenciação
+print(2 ** 3)    # 2³ = 8
+print(5 ** 2)    # 5² = 25
+print(10 ** 3)   # 10³ = 1000
+print(9 ** 0.5)  # √9 = 3.0 (raiz quadrada!)
+
+# Raiz quadrada = elevar a 0.5
+print(16 ** 0.5)  # √16 = 4.0
+print(25 ** 0.5)  # √25 = 5.0
+    </div>
+
+    <h3>Precedência de Operadores</h3>
+    <p>Assim como na matemática, Python segue uma ordem de prioridade:</p>
+    
+    <div class="code-block">
+# Ordem de prioridade (do maior para menor):
+# 1º: ** (potência)
+# 2º: * / // % (multiplicação, divisões, resto)
+# 3º: + - (soma, subtração)
+
+print(2 + 3 * 4)      # 14 (não 20!) - multiplica primeiro
+print((2 + 3) * 4)    # 20 - parênteses mudam a ordem
+print(2 ** 3 * 2)     # 16 - potência primeiro: 8 * 2
+print(10 - 4 / 2)     # 8.0 - divide primeiro: 10 - 2
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Dica de ouro:</strong> Na dúvida, use parênteses! Deixa o código mais claro e evita erros.</p>
+        <div class="code-block">
+# É melhor escrever assim:
+resultado = (a + b) * c
+
+# Do que depender da precedência:
+resultado = a + b * c  # Pode confundir!
+        </div>
+    </div>
+
+    <h3>Operadores Relacionais (Comparação)</h3>
+    <p>Usados para <strong>comparar valores</strong>. O resultado é sempre <code>True</code> ou <code>False</code>.</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #27ae60; color: white;">
+            <th>Operador</th>
+            <th>Significado</th>
+            <th>Exemplo</th>
+            <th>Resultado</th>
+        </tr>
+        <tr>
+            <td><code>==</code></td>
+            <td>Igual a</td>
+            <td><code>5 == 5</code></td>
+            <td>True</td>
+        </tr>
+        <tr>
+            <td><code>!=</code></td>
+            <td>Diferente de</td>
+            <td><code>5 != 3</code></td>
+            <td>True</td>
+        </tr>
+        <tr>
+            <td><code>&gt;</code></td>
+            <td>Maior que</td>
+            <td><code>5 &gt; 3</code></td>
+            <td>True</td>
+        </tr>
+        <tr>
+            <td><code>&lt;</code></td>
+            <td>Menor que</td>
+            <td><code>5 &lt; 3</code></td>
+            <td>False</td>
+        </tr>
+        <tr>
+            <td><code>&gt;=</code></td>
+            <td>Maior ou igual</td>
+            <td><code>5 &gt;= 5</code></td>
+            <td>True</td>
+        </tr>
+        <tr>
+            <td><code>&lt;=</code></td>
+            <td>Menor ou igual</td>
+            <td><code>5 &lt;= 3</code></td>
+            <td>False</td>
+        </tr>
+    </table>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Cuidado!</strong> Não confunda:</p>
+        <ul>
+            <li><code>=</code> → Atribuição (coloca valor na variável)</li>
+            <li><code>==</code> → Comparação (verifica se são iguais)</li>
+        </ul>
+        <div class="code-block">
+x = 10      # Atribui 10 a x
+x == 10     # Pergunta: x é igual a 10? (True)
+        </div>
+    </div>
+
+    <h4>Exemplos Práticos:</h4>
+    <div class="code-block">
+idade = 18
+nota = 7.5
+nome = "João"
+
+# Comparações numéricas
+print(idade == 18)    # True
+print(idade != 18)    # False
+print(idade > 17)     # True
+print(idade < 21)     # True
+print(idade >= 18)    # True
+print(nota <= 7.0)    # False
+
+# Comparação de strings
+print(nome == "João")   # True
+print(nome == "joão")   # False (maiúscula ≠ minúscula!)
+print(nome != "Maria")  # True
+    </div>
+
+    <h4>Comparando no Portugol vs Python:</h4>
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #9b59b6; color: white;">
+            <th>Portugol</th>
+            <th>Python</th>
+            <th>Significado</th>
+        </tr>
+        <tr>
+            <td><code>=</code></td>
+            <td><code>==</code></td>
+            <td>Igual a</td>
+        </tr>
+        <tr>
+            <td><code>&lt;&gt;</code></td>
+            <td><code>!=</code></td>
+            <td>Diferente de</td>
+        </tr>
+        <tr>
+            <td><code>&gt;</code></td>
+            <td><code>&gt;</code></td>
+            <td>Maior que</td>
+        </tr>
+        <tr>
+            <td><code>&lt;</code></td>
+            <td><code>&lt;</code></td>
+            <td>Menor que</td>
+        </tr>
+        <tr>
+            <td><code>&gt;=</code></td>
+            <td><code>&gt;=</code></td>
+            <td>Maior ou igual</td>
+        </tr>
+        <tr>
+            <td><code>&lt;=</code></td>
+            <td><code>&lt;=</code></td>
+            <td>Menor ou igual</td>
+        </tr>
+    </table>
+
+    <h3>Operadores Lógicos</h3>
+    <p>Usados para <strong>combinar condições</strong>. Lembra do E, OU e NÃO do Portugol?</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #e74c3c; color: white;">
+            <th>Portugol</th>
+            <th>Python</th>
+            <th>Significado</th>
+            <th>Resultado é True quando...</th>
+        </tr>
+        <tr>
+            <td><code>E</code></td>
+            <td><code>and</code></td>
+            <td>E lógico</td>
+            <td>AMBAS as condições são verdadeiras</td>
+        </tr>
+        <tr>
+            <td><code>OU</code></td>
+            <td><code>or</code></td>
+            <td>OU lógico</td>
+            <td>PELO MENOS UMA condição é verdadeira</td>
+        </tr>
+        <tr>
+            <td><code>NAO</code></td>
+            <td><code>not</code></td>
+            <td>NÃO lógico</td>
+            <td>Inverte o valor (True vira False)</td>
+        </tr>
+    </table>
+
+    <h4>Operador <code>and</code> (E)</h4>
+    <p>Retorna <code>True</code> somente se <strong>TODAS</strong> as condições forem verdadeiras.</p>
+    
+    <div class="code-block">
+idade = 20
+tem_carteira = True
+
+# Pode dirigir se tiver 18+ E tiver carteira
+pode_dirigir = idade >= 18 and tem_carteira
+print(pode_dirigir)  # True
+
+# Exemplos
+print(True and True)    # True
+print(True and False)   # False
+print(False and True)   # False
+print(False and False)  # False
+    </div>
+    
+    <p><strong>Analogia:</strong> "Só vou à praia SE fizer sol E SE for feriado" → Preciso dos DOIS!</p>
+
+    <h4>Operador <code>or</code> (OU)</h4>
+    <p>Retorna <code>True</code> se <strong>PELO MENOS UMA</strong> condição for verdadeira.</p>
+    
+    <div class="code-block">
+tem_dinheiro = False
+tem_cartao = True
+
+# Pode comprar se tiver dinheiro OU cartão
+pode_comprar = tem_dinheiro or tem_cartao
+print(pode_comprar)  # True (tem cartão!)
+
+# Exemplos
+print(True or True)    # True
+print(True or False)   # True
+print(False or True)   # True
+print(False or False)  # False
+    </div>
+    
+    <p><strong>Analogia:</strong> "Vou de ônibus OU de metrô" → Só preciso de UM dos dois!</p>
+
+    <h4>Operador <code>not</code> (NÃO)</h4>
+    <p>Inverte o valor lógico: True vira False, False vira True.</p>
+    
+    <div class="code-block">
+chovendo = True
+
+# Posso sair se NÃO estiver chovendo
+posso_sair = not chovendo
+print(posso_sair)  # False (está chovendo!)
+
+# Exemplos
+print(not True)   # False
+print(not False)  # True
+    </div>
+
+    <h4>Combinando Operadores</h4>
+    <div class="code-block">
+idade = 16
+acompanhado = True
+
+# Pode entrar no cinema se:
+# - Tiver 18 anos ou mais, OU
+# - Tiver menos de 18 mas estiver acompanhado
+
+pode_entrar = idade >= 18 or (idade < 18 and acompanhado)
+print(pode_entrar)  # True (é menor mas está acompanhado)
+
+# Outro exemplo
+nota = 8.5
+frequencia = 75
+
+# Aprovado se nota >= 7 E frequência >= 75%
+aprovado = nota >= 7 and frequencia >= 75
+print("Aprovado:", aprovado)  # True
+    </div>
+
+    <h3>Operadores de Atribuição Compostos</h3>
+    <p>Atalhos para fazer operações e atribuir ao mesmo tempo:</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #f39c12; color: white;">
+            <th>Operador</th>
+            <th>Exemplo</th>
+            <th>Equivalente a</th>
+        </tr>
+        <tr>
+            <td><code>+=</code></td>
+            <td><code>x += 5</code></td>
+            <td><code>x = x + 5</code></td>
+        </tr>
+        <tr>
+            <td><code>-=</code></td>
+            <td><code>x -= 3</code></td>
+            <td><code>x = x - 3</code></td>
+        </tr>
+        <tr>
+            <td><code>*=</code></td>
+            <td><code>x *= 2</code></td>
+            <td><code>x = x * 2</code></td>
+        </tr>
+        <tr>
+            <td><code>/=</code></td>
+            <td><code>x /= 4</code></td>
+            <td><code>x = x / 4</code></td>
+        </tr>
+        <tr>
+            <td><code>//=</code></td>
+            <td><code>x //= 2</code></td>
+            <td><code>x = x // 2</code></td>
+        </tr>
+        <tr>
+            <td><code>%=</code></td>
+            <td><code>x %= 3</code></td>
+            <td><code>x = x % 3</code></td>
+        </tr>
+        <tr>
+            <td><code>**=</code></td>
+            <td><code>x **= 2</code></td>
+            <td><code>x = x ** 2</code></td>
+        </tr>
+    </table>
+    
+    <div class="code-block">
+# Exemplo prático
+pontos = 100
+
+pontos += 50   # pontos = 100 + 50 = 150
+print(pontos)  # 150
+
+pontos -= 20   # pontos = 150 - 20 = 130
+print(pontos)  # 130
+
+pontos *= 2    # pontos = 130 * 2 = 260
+print(pontos)  # 260
+
+# Muito usado em contadores e acumuladores!
+contador = 0
+contador += 1  # contador = 1
+contador += 1  # contador = 2
+contador += 1  # contador = 3
+print(contador)  # 3
+    </div>
+
+    <h3>Exemplo Completo: Calculadora</h3>
+    <div class="code-block">
+# Mini calculadora
+print("=== CALCULADORA ===")
+
+num1 = float(input("Digite o primeiro número: "))
+num2 = float(input("Digite o segundo número: "))
+
+print()
+print("Resultados:")
+print(num1, "+", num2, "=", num1 + num2)
+print(num1, "-", num2, "=", num1 - num2)
+print(num1, "*", num2, "=", num1 * num2)
+print(num1, "/", num2, "=", num1 / num2)
+print(num1, "//", num2, "=", num1 // num2)
+print(num1, "%", num2, "=", num1 % num2)
+print(num1, "**", num2, "=", num1 ** num2)
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 11:</strong></p>
+        <ul>
+            <li><strong>Aritméticos:</strong> + - * / // % **</li>
+            <li><strong>/ vs //:</strong> divisão normal vs divisão inteira</li>
+            <li><strong>%:</strong> resto da divisão (ótimo para par/ímpar)</li>
+            <li><strong>**:</strong> potência (diferente do ^ do Portugol)</li>
+            <li><strong>Relacionais:</strong> == != > < >= <= (resultado: True/False)</li>
+            <li><strong>Lógicos:</strong> and, or, not</li>
+            <li><strong>Atribuição composta:</strong> += -= *= /= etc.</li>
+            <li><strong>Precedência:</strong> ** → * / // % → + -</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 11.1: Par ou Ímpar</h4>
+        <p>Peça um número ao usuário e mostre se ele é par ou ímpar (use o operador %).</p>
+        <p><strong>Conceitos aplicados:</strong> input(), %, comparação</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol25')">Mostrar Solução</button>
+        <div class="solution-container" id="sol25">
+            <h5>💡 Solução do Exercício 11.1:</h5>
+            <div class="code-block">
+numero = int(input("Digite um número: "))
+
+resto = numero % 2
+
+print("Número:", numero)
+print("Resto da divisão por 2:", resto)
+
+# Se resto for 0, é par. Se for 1, é ímpar.
+print("É par?", resto == 0)
+print("É ímpar?", resto == 1)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 11.2: Verificar Maioridade</h4>
+        <p>Peça a idade do usuário e mostre se ele é maior de idade (>= 18).</p>
+        <p><strong>Conceitos aplicados:</strong> input(), operadores relacionais</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol26')">Mostrar Solução</button>
+        <div class="solution-container" id="sol26">
+            <h5>💡 Solução do Exercício 11.2:</h5>
+            <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+maior_de_idade = idade >= 18
+
+print("Idade:", idade)
+print("É maior de idade?", maior_de_idade)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 11.3: Pode Dirigir?</h4>
+        <p>Verifique se uma pessoa pode dirigir. Ela precisa ter 18 anos ou mais E ter carteira de motorista.</p>
+        <p><strong>Conceitos aplicados:</strong> input(), and, operadores relacionais</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol27')">Mostrar Solução</button>
+        <div class="solution-container" id="sol27">
+            <h5>💡 Solução do Exercício 11.3:</h5>
+            <div class="code-block">
+idade = int(input("Digite sua idade: "))
+resposta = input("Tem carteira de motorista? (s/n): ")
+
+tem_carteira = resposta == "s"
+maior_de_idade = idade >= 18
+
+pode_dirigir = maior_de_idade and tem_carteira
+
+print()
+print("Idade:", idade)
+print("Tem carteira:", tem_carteira)
+print("Pode dirigir:", pode_dirigir)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 11.4: Desconto por Idade</h4>
+        <p>Verifique se a pessoa tem direito a desconto. Tem desconto quem é criança (<= 12 anos) OU idoso (>= 60 anos).</p>
+        <p><strong>Conceitos aplicados:</strong> input(), or, operadores relacionais</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol28')">Mostrar Solução</button>
+        <div class="solution-container" id="sol28">
+            <h5>💡 Solução do Exercício 11.4:</h5>
+            <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+crianca = idade <= 12
+idoso = idade >= 60
+
+tem_desconto = crianca or idoso
+
+print()
+print("Idade:", idade)
+print("É criança?", crianca)
+print("É idoso?", idoso)
+print("Tem direito a desconto?", tem_desconto)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 11.5: Cálculo de Potência e Raiz</h4>
+        <p>Peça um número e mostre: o quadrado dele, o cubo dele e a raiz quadrada dele.</p>
+        <p><strong>Conceitos aplicados:</strong> input(), operador **</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol29')">Mostrar Solução</button>
+        <div class="solution-container" id="sol29">
+            <h5>💡 Solução do Exercício 11.5:</h5>
+            <div class="code-block">
+numero = float(input("Digite um número: "))
+
+quadrado = numero ** 2
+cubo = numero ** 3
+raiz = numero ** 0.5
+
+print()
+print("Número:", numero)
+print("Quadrado (n²):", quadrado)
+print("Cubo (n³):", cubo)
+print("Raiz quadrada (√n):", raiz)
+            </div>
+            <p><strong>Exemplo:</strong> Para número = 9: quadrado = 81, cubo = 729, raiz = 3.0</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 11.6: Troco em Notas</h4>
+        <p>Dado um valor em reais, calcule quantas notas de 50, 20, 10, 5 e 1 são necessárias (use // e %).</p>
+        <p><strong>Conceitos aplicados:</strong> //, %, atribuição composta</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol30')">Mostrar Solução</button>
+        <div class="solution-container" id="sol30">
+            <h5>💡 Solução do Exercício 11.6:</h5>
+            <div class="code-block">
+valor = int(input("Digite o valor em reais: "))
+
+print("=== TROCO EM NOTAS ===")
+print("Valor: R$", valor)
+print()
+
+notas_50 = valor // 50
+valor = valor % 50   # Resto para as próximas notas
+
+notas_20 = valor // 20
+valor = valor % 20
+
+notas_10 = valor // 10
+valor = valor % 10
+
+notas_5 = valor // 5
+valor = valor % 5
+
+notas_1 = valor  # O que sobrou são as notas de 1
+
+print("Notas de R$ 50:", notas_50)
+print("Notas de R$ 20:", notas_20)
+print("Notas de R$ 10:", notas_10)
+print("Notas de R$ 5:", notas_5)
+print("Notas de R$ 1:", notas_1)
+            </div>
+            <p><strong>Exemplo:</strong> Para R$ 178: 3 notas de 50, 1 de 20, 0 de 10, 1 de 5, 3 de 1.</p>
         </div>
     </div>
 
