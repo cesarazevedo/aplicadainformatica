@@ -1256,8 +1256,21 @@
                     <h3>🔁 Aula 14: Estrutura for</h3>
                     <p>Repetição com range() e iteração em sequências</p>
                 </a>
-</div>
-                
+                </div>
+
+                <div class="index-item">
+                <a href="#aula15">
+                    <h3>📋 Aula 15: Listas (Vetores)</h3>
+                    <p>Armazenando múltiplos valores em uma única variável</p>
+                </a>
+                </div>
+
+                <div class="index-item">
+                <a href="#aula15">
+                    <h3>📋 Aula 15: Listas (Vetores)</h3>
+                    <p>Armazenando múltiplos valores em uma única variável</p>
+                </a>
+                </div>
             </div>
         </section>
 
@@ -7449,6 +7462,562 @@ Potências de 2:
     </div>
 
 </section>
+
+                <!-- Aula 15: Listas (Vetores em Python) -->
+<section id="aula15">
+    <h2>Aula 15: Listas (Vetores em Python)</h2>
+    
+    <h3>O que são Listas?</h3>
+    <p>Listas são estruturas que armazenam <strong>múltiplos valores</strong> em uma única variável. São equivalentes aos <strong>vetores</strong> do Portugol!</p>
+    
+    <p>Imagine que você precise guardar as notas de 5 alunos. Sem lista:</p>
+    <div class="code-block">
+nota1 = 8.5
+nota2 = 7.0
+nota3 = 9.0
+nota4 = 6.5
+nota5 = 8.0
+# Muito trabalhoso! 😓
+    </div>
+    
+    <p>Com lista:</p>
+    <div class="code-block">
+notas = [8.5, 7.0, 9.0, 6.5, 8.0]
+# Tudo em uma única variável! 😎
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🔑 Comparação Portugol → Python:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Característica</th>
+                <th>Portugol (Vetor)</th>
+                <th>Python (Lista)</th>
+            </tr>
+            <tr>
+                <td>Declaração</td>
+                <td><code>notas: vetor[1..5] de real</code></td>
+                <td><code>notas = []</code></td>
+            </tr>
+            <tr>
+                <td>Tamanho</td>
+                <td>Fixo (definido na declaração)</td>
+                <td>Dinâmico (cresce e diminui)</td>
+            </tr>
+            <tr>
+                <td>Índice inicial</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Acesso</td>
+                <td><code>notas[1]</code></td>
+                <td><code>notas[0]</code></td>
+            </tr>
+            <tr>
+                <td>Tipos</td>
+                <td>Mesmo tipo</td>
+                <td>Pode misturar tipos</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Criando Listas</h3>
+    
+    <h4>Lista vazia:</h4>
+    <div class="code-block">
+lista = []
+# ou
+lista = list()
+    </div>
+    
+    <h4>Lista com valores:</h4>
+    <div class="code-block">
+# Lista de números inteiros
+numeros = [1, 2, 3, 4, 5]
+
+# Lista de números decimais
+notas = [8.5, 7.0, 9.0, 6.5]
+
+# Lista de strings
+nomes = ["Ana", "Bruno", "Carlos"]
+
+# Lista de booleanos
+respostas = [True, False, True, True]
+
+# Lista mista (Python permite!)
+misturada = ["João", 25, 1.75, True]
+    </div>
+
+    <h3>Acessando Elementos</h3>
+    <p>Cada elemento tem um <strong>índice</strong> (posição). <strong>IMPORTANTE:</strong> Em Python, o índice começa em <strong>0</strong>!</p>
+    
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "uva", "manga"]
+#          [0]       [1]       [2]      [3]     [4]
+    </div>
+    
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "uva", "manga"]
+
+print(frutas[0])   # maçã (primeiro elemento)
+print(frutas[1])   # banana (segundo elemento)
+print(frutas[2])   # laranja (terceiro elemento)
+print(frutas[4])   # manga (último elemento)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ CUIDADO com o índice!</strong></p>
+        <ul>
+            <li>Portugol: índice começa em <strong>1</strong></li>
+            <li>Python: índice começa em <strong>0</strong></li>
+        </ul>
+        <p>Uma lista com 5 elementos tem índices de 0 a 4!</p>
+    </div>
+
+    <h4>Índices Negativos:</h4>
+    <p>Python permite acessar do final para o início usando índices negativos!</p>
+    
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "uva", "manga"]
+#          [0]       [1]       [2]      [3]     [4]
+#          [-5]     [-4]      [-3]     [-2]    [-1]
+
+print(frutas[-1])   # manga (último)
+print(frutas[-2])   # uva (penúltimo)
+print(frutas[-5])   # maçã (primeiro)
+    </div>
+
+    <h3>Modificando Elementos</h3>
+    <p>Você pode alterar um elemento usando seu índice:</p>
+    
+    <div class="code-block">
+notas = [7.0, 8.5, 6.0, 9.0]
+
+print(notas)       # [7.0, 8.5, 6.0, 9.0]
+
+notas[2] = 7.5     # Altera o terceiro elemento (índice 2)
+
+print(notas)       # [7.0, 8.5, 7.5, 9.0]
+    </div>
+
+    <h3>Tamanho da Lista: len()</h3>
+    <p>A função <code>len()</code> retorna quantos elementos a lista possui:</p>
+    
+    <div class="code-block">
+numeros = [10, 20, 30, 40, 50]
+
+tamanho = len(numeros)
+print(tamanho)   # 5
+
+# Acessar o último elemento de forma dinâmica
+ultimo = numeros[len(numeros) - 1]
+print(ultimo)    # 50
+
+# Ou simplesmente:
+print(numeros[-1])  # 50
+    </div>
+
+    <h3>Percorrendo Listas com for</h3>
+    
+    <h4>Forma 1: Percorrer os elementos diretamente</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja"]
+
+for fruta in frutas:
+    print(fruta)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+maçã
+banana
+laranja
+    </div>
+
+    <h4>Forma 2: Percorrer pelos índices</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja"]
+
+for i in range(len(frutas)):
+    print(f"Índice {i}: {frutas[i]}")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Índice 0: maçã
+Índice 1: banana
+Índice 2: laranja
+    </div>
+
+    <h4>Forma 3: Usando enumerate() (índice + elemento)</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja"]
+
+for indice, fruta in enumerate(frutas):
+    print(f"{indice}: {fruta}")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+0: maçã
+1: banana
+2: laranja
+    </div>
+
+    <h3>Adicionando Elementos</h3>
+    
+    <h4>append() - Adiciona no final:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3]
+print(numeros)      # [1, 2, 3]
+
+numeros.append(4)
+print(numeros)      # [1, 2, 3, 4]
+
+numeros.append(5)
+print(numeros)      # [1, 2, 3, 4, 5]
+    </div>
+
+    <h4>insert() - Adiciona em posição específica:</h4>
+    <div class="code-block">
+numeros = [1, 2, 4, 5]
+print(numeros)      # [1, 2, 4, 5]
+
+numeros.insert(2, 3)  # Insere 3 na posição 2
+print(numeros)      # [1, 2, 3, 4, 5]
+
+numeros.insert(0, 0)  # Insere 0 no início
+print(numeros)      # [0, 1, 2, 3, 4, 5]
+    </div>
+
+    <h4>extend() - Adiciona vários elementos:</h4>
+    <div class="code-block">
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+
+lista1.extend(lista2)
+print(lista1)      # [1, 2, 3, 4, 5, 6]
+
+# Também pode usar +
+numeros = [1, 2, 3] + [4, 5, 6]
+print(numeros)     # [1, 2, 3, 4, 5, 6]
+    </div>
+
+    <h3>Removendo Elementos</h3>
+    
+    <h4>remove() - Remove pelo valor:</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja", "banana"]
+
+frutas.remove("banana")  # Remove a PRIMEIRA ocorrência
+print(frutas)            # ["maçã", "laranja", "banana"]
+    </div>
+
+    <h4>pop() - Remove pelo índice (e retorna o valor):</h4>
+    <div class="code-block">
+numeros = [10, 20, 30, 40, 50]
+
+removido = numeros.pop()    # Remove o último
+print(removido)             # 50
+print(numeros)              # [10, 20, 30, 40]
+
+removido = numeros.pop(1)   # Remove o índice 1
+print(removido)             # 20
+print(numeros)              # [10, 30, 40]
+    </div>
+
+    <h4>del - Remove pelo índice:</h4>
+    <div class="code-block">
+numeros = [10, 20, 30, 40, 50]
+
+del numeros[2]    # Remove o índice 2
+print(numeros)    # [10, 20, 40, 50]
+    </div>
+
+    <h4>clear() - Remove todos os elementos:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5]
+numeros.clear()
+print(numeros)    # []
+    </div>
+
+    <h3>Buscando Elementos</h3>
+    
+    <h4>in - Verifica se existe:</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja"]
+
+print("banana" in frutas)    # True
+print("uva" in frutas)       # False
+print("uva" not in frutas)   # True
+    </div>
+
+    <h4>index() - Encontra a posição:</h4>
+    <div class="code-block">
+frutas = ["maçã", "banana", "laranja"]
+
+posicao = frutas.index("banana")
+print(posicao)    # 1
+
+# Cuidado! Se não existir, dá erro
+# frutas.index("uva")  # ValueError!
+    </div>
+
+    <h4>count() - Conta ocorrências:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 2, 4, 2, 5]
+
+quantidade = numeros.count(2)
+print(quantidade)    # 3 (o número 2 aparece 3 vezes)
+    </div>
+
+    <h3>Ordenando Listas</h3>
+    
+    <h4>sort() - Ordena a própria lista:</h4>
+    <div class="code-block">
+numeros = [5, 2, 8, 1, 9, 3]
+
+numeros.sort()           # Ordem crescente
+print(numeros)           # [1, 2, 3, 5, 8, 9]
+
+numeros.sort(reverse=True)  # Ordem decrescente
+print(numeros)           # [9, 8, 5, 3, 2, 1]
+    </div>
+
+    <h4>sorted() - Retorna nova lista ordenada:</h4>
+    <div class="code-block">
+numeros = [5, 2, 8, 1, 9, 3]
+
+ordenados = sorted(numeros)
+print(ordenados)     # [1, 2, 3, 5, 8, 9]
+print(numeros)       # [5, 2, 8, 1, 9, 3] (original não muda)
+    </div>
+
+    <h4>reverse() - Inverte a ordem:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5]
+
+numeros.reverse()
+print(numeros)    # [5, 4, 3, 2, 1]
+    </div>
+
+    <h3>Funções Úteis com Listas Numéricas</h3>
+    
+    <div class="code-block">
+numeros = [10, 5, 8, 20, 3, 15]
+
+print(len(numeros))    # 6 (quantidade de elementos)
+print(sum(numeros))    # 61 (soma de todos)
+print(max(numeros))    # 20 (maior valor)
+print(min(numeros))    # 3 (menor valor)
+
+# Média
+media = sum(numeros) / len(numeros)
+print(media)           # 10.166666...
+    </div>
+
+    <h3>Fatiamento (Slicing)</h3>
+    <p>Permite extrair partes da lista:</p>
+    
+    <div class="code-block">
+numeros = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+
+# lista[inicio:fim] - do inicio até fim-1
+print(numeros[2:5])     # [2, 3, 4]
+print(numeros[0:3])     # [0, 1, 2]
+print(numeros[:4])      # [0, 1, 2, 3] (do início até 3)
+print(numeros[6:])      # [6, 7, 8, 9] (do 6 até o final)
+print(numeros[:])       # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9] (cópia)
+
+# lista[inicio:fim:passo]
+print(numeros[::2])     # [0, 2, 4, 6, 8] (de 2 em 2)
+print(numeros[1::2])    # [1, 3, 5, 7, 9] (ímpares)
+print(numeros[::-1])    # [9, 8, 7, 6, 5, 4, 3, 2, 1, 0] (invertida)
+    </div>
+
+    <h3>Comparando: Portugol vs Python</h3>
+    
+    <h4>Exemplo: Ler 5 notas e calcular média</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "media_notas"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;notas: vetor[1..5] de real
+&nbsp;&nbsp;&nbsp;&nbsp;soma, media: real
+&nbsp;&nbsp;&nbsp;&nbsp;i: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;soma ← 0
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite a nota ", i, ": ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leia(notas[i])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;soma ← soma + notas[i]
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;media ← soma / 5
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Média: ", media)
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+notas = []
+
+for i in range(5):
+    nota = float(input(f"Digite a nota {i + 1}: "))
+    notas.append(nota)
+
+media = sum(notas) / len(notas)
+print(f"Média: {media:.2f}")
+    </div>
+
+    <h3>Exemplo Completo: Sistema de Notas</h3>
+    <div class="code-block">
+print("=== SISTEMA DE NOTAS ===")
+print()
+
+notas = []
+quantidade = int(input("Quantos alunos? "))
+
+# Lendo as notas
+for i in range(quantidade):
+    nota = float(input(f"Nota do aluno {i + 1}: "))
+    notas.append(nota)
+
+print()
+print("=== RESULTADOS ===")
+print(f"Notas: {notas}")
+print(f"Quantidade: {len(notas)}")
+print(f"Soma: {sum(notas):.2f}")
+print(f"Média: {sum(notas) / len(notas):.2f}")
+print(f"Maior nota: {max(notas)}")
+print(f"Menor nota: {min(notas)}")
+
+# Contando aprovados
+aprovados = 0
+for nota in notas:
+    if nota >= 7:
+        aprovados += 1
+
+print(f"Aprovados (nota >= 7): {aprovados}")
+print(f"Reprovados: {len(notas) - aprovados}")
+    </div>
+
+    <h3>Exemplo Completo: Lista de Compras</h3>
+    <div class="code-block">
+print("🛒 LISTA DE COMPRAS")
+print()
+
+lista = []
+opcao = ""
+
+while opcao != "5":
+    print()
+    print("1 - Adicionar item")
+    print("2 - Remover item")
+    print("3 - Ver lista")
+    print("4 - Limpar lista")
+    print("5 - Sair")
+    
+    opcao = input("Escolha: ")
+    
+    if opcao == "1":
+        item = input("Item para adicionar: ")
+        lista.append(item)
+        print(f"✓ '{item}' adicionado!")
+    
+    elif opcao == "2":
+        if len(lista) == 0:
+            print("❌ Lista está vazia!")
+        else:
+            item = input("Item para remover: ")
+            if item in lista:
+                lista.remove(item)
+                print(f"✓ '{item}' removido!")
+            else:
+                print(f"❌ '{item}' não encontrado!")
+    
+    elif opcao == "3":
+        if len(lista) == 0:
+            print("Lista vazia!")
+        else:
+            print("=== SUA LISTA ===")
+            for i, item in enumerate(lista, 1):
+                print(f"{i}. {item}")
+    
+    elif opcao == "4":
+        lista.clear()
+        print("✓ Lista limpa!")
+    
+    elif opcao == "5":
+        print("👋 Até logo!")
+    
+    else:
+        print("❌ Opção inválida!")
+    </div>
+
+    <h3>Exemplo Completo: Busca e Estatísticas</h3>
+    <div class="code-block">
+print("=== ANÁLISE DE NÚMEROS ===")
+print()
+
+numeros = []
+print("Digite números (0 para encerrar):")
+
+while True:
+    n = float(input("Número: "))
+    if n == 0:
+        break
+    numeros.append(n)
+
+if len(numeros) == 0:
+    print("Nenhum número digitado!")
+else:
+    print()
+    print("=== ESTATÍSTICAS ===")
+    print(f"Números digitados: {numeros}")
+    print(f"Quantidade: {len(numeros)}")
+    print(f"Soma: {sum(numeros)}")
+    print(f"Média: {sum(numeros) / len(numeros):.2f}")
+    print(f"Maior: {max(numeros)}")
+    print(f"Menor: {min(numeros)}")
+    
+    # Contar positivos e negativos
+    positivos = 0
+    negativos = 0
+    for n in numeros:
+        if n > 0:
+            positivos += 1
+        elif n < 0:
+            negativos += 1
+    
+    print(f"Positivos: {positivos}")
+    print(f"Negativos: {negativos}")
+    
+    # Ordenar
+    numeros.sort()
+    print(f"Ordenados: {numeros}")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 15:</strong></p>
+        <ul>
+            <li><strong>Lista:</strong> coleção ordenada de elementos</li>
+            <li><strong>Índice:</strong> começa em 0 (não em 1!)</li>
+            <li><strong>Criar:</strong> <code>lista = []</code> ou <code>lista = [1, 2, 3]</code></li>
+            <li><strong>Adicionar:</strong> <code>append()</code>, <code>insert()</code>, <code>extend()</code></li>
+            <li><strong>Remover:</strong> <code>remove()</code>, <code>pop()</code>, <code>del</code>, <code>clear()</code></li>
+            <li><strong>Buscar:</strong> <code>in</code>, <code>index()</code>, <code>count()</code></li>
+            <li><strong>Ordenar:</strong> <code>sort()</code>, <code>sorted()</code>, <code>reverse()</code></li>
+            <li><strong>Funções:</strong> <code>len()</code>, <code>sum()</code>, <code>max()</code>, <code>min()</code></li>
+            <li><strong>Fatiamento:</strong> <code>lista[inicio:fim:passo]</code></li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 15.1: Criar e Mostrar Lista</h4>
     </main>
 
     <!-- Botões flutuantes -->
