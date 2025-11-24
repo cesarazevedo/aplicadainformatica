@@ -1216,6 +1216,13 @@
                 </a>
                 </div>      
                 
+                <div class="index-item">
+                <a href="#aula9">
+                        <h3>🐍 Aula 9: Introdução ao Python</h3>
+                        <p>Conhecendo a linguagem, instalação e primeiro programa</p>
+                </a>
+                </div>
+                
             </div>
         </section>
 
@@ -3950,6 +3957,319 @@ fim
             <p><strong>Explicação:</strong> O segredo é inverter os índices! O elemento original[linha, coluna] vai para transposta[coluna, linha]. Assim, a primeira linha vira a primeira coluna, e por aí vai!</p>
         </div>
     </div>
+</section>
+                <!-- Aula 9: Introdução ao Python -->
+<section id="aula9">
+    <h2>Aula 9: Introdução ao Python</h2>
+    
+    <h3>O que é Python?</h3>
+    <p>Python é uma linguagem de programação criada em 1991 por Guido van Rossum. O nome vem do grupo de comédia britânico "Monty Python" (não da cobra! 🐍).</p>
+    
+    <p>Python é conhecida por ser <strong>simples de aprender</strong> e <strong>fácil de ler</strong>. É como se você estivesse escrevendo em inglês simplificado!</p>
+
+    <div class="highlight">
+        <p><strong>🔑 Por que aprender Python?</strong></p>
+        <ul>
+            <li><strong>Sintaxe limpa:</strong> Código fácil de ler e escrever</li>
+            <li><strong>Muito usada:</strong> Ciência de dados, IA, web, automação, jogos...</li>
+            <li><strong>Grande comunidade:</strong> Milhões de programadores, muita ajuda disponível</li>
+            <li><strong>Gratuita:</strong> 100% livre para usar</li>
+            <li><strong>Multiplataforma:</strong> Funciona em Windows, Mac e Linux</li>
+        </ul>
+    </div>
+
+    <h3>Comparando: Pseudocódigo vs Python</h3>
+    <p>Lembra do pseudocódigo que aprendemos? Python é bem parecido! Veja a comparação:</p>
+    
+    <h4>Exemplo: Calcular o dobro de um número</h4>
+    
+    <p><strong>Em Pseudocódigo (Portugol):</strong></p>
+    <div class="code-block">
+algoritmo "calcular_dobro"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;numero, dobro: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite um número: ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(numero)
+&nbsp;&nbsp;&nbsp;&nbsp;dobro ← numero * 2
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("O dobro é: ", dobro)
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+numero = int(input("Digite um número: "))
+dobro = numero * 2
+print("O dobro é:", dobro)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>😮 Percebeu a diferença?</strong></p>
+        <ul>
+            <li>Python não precisa de <code>algoritmo</code>, <code>var</code>, <code>inicio</code>, <code>fimalgoritmo</code></li>
+            <li>Python não precisa declarar o tipo da variável (ele descobre sozinho!)</li>
+            <li>O código fica muito mais curto e direto</li>
+            <li><code>escreva</code> virou <code>print</code></li>
+            <li><code>leia</code> virou <code>input</code></li>
+            <li><code>←</code> virou <code>=</code></li>
+        </ul>
+    </div>
+
+    <h3>Instalando Python</h3>
+    <p>Para programar em Python, você precisa instalar o interpretador. Siga os passos:</p>
+    
+    <h4>📥 Passo 1: Baixar o Python</h4>
+    <ol>
+        <li>Acesse <a href="https://www.python.org/downloads/" target="_blank">python.org/downloads</a></li>
+        <li>Clique no botão amarelo "Download Python 3.x.x"</li>
+        <li>Salve o arquivo no seu computador</li>
+    </ol>
+    
+    <h4>⚙️ Passo 2: Instalar</h4>
+    <ol>
+        <li>Execute o arquivo baixado</li>
+        <li><strong>IMPORTANTE:</strong> Marque a opção "Add Python to PATH" ✅</li>
+        <li>Clique em "Install Now"</li>
+        <li>Aguarde a instalação terminar</li>
+    </ol>
+    
+    <h4>✅ Passo 3: Verificar a instalação</h4>
+    <p>Abra o Prompt de Comando (Windows) ou Terminal (Mac/Linux) e digite:</p>
+    <div class="code-block">
+python --version
+    </div>
+    <p>Se aparecer algo como <code>Python 3.12.0</code>, está tudo certo! 🎉</p>
+
+    <h3>Onde escrever código Python?</h3>
+    <p>Existem várias opções. Vamos usar as mais simples:</p>
+    
+    <h4>Opção 1: IDLE (já vem com Python)</h4>
+    <p>Ao instalar Python, você ganha o IDLE de graça. É um editor simples e prático para iniciantes.</p>
+    <ul>
+        <li>Procure por "IDLE" no menu iniciar</li>
+        <li>Abra e você verá o <strong>Shell</strong> (modo interativo)</li>
+        <li>Para criar um arquivo, vá em <strong>File → New File</strong></li>
+    </ul>
+    
+    <h4>Opção 2: Thonny (recomendado para iniciantes)</h4>
+    <p>Editor feito especialmente para quem está aprendendo. Baixe em <a href="https://thonny.org" target="_blank">thonny.org</a></p>
+    
+    <h4>Opção 3: VS Code (mais avançado)</h4>
+    <p>Editor profissional e gratuito. Baixe em <a href="https://code.visualstudio.com" target="_blank">code.visualstudio.com</a></p>
+    
+    <h4>Opção 4: Online (sem instalar nada)</h4>
+    <p>Para testar rapidamente, use sites como:</p>
+    <ul>
+        <li><a href="https://www.online-python.com" target="_blank">online-python.com</a></li>
+        <li><a href="https://replit.com" target="_blank">replit.com</a></li>
+    </ul>
+
+    <h3>Seu Primeiro Programa: Olá, Mundo!</h3>
+    <p>É tradição em programação que o primeiro programa mostre "Olá, Mundo!" na tela. Vamos lá!</p>
+    
+    <h4>Passo a passo:</h4>
+    <ol>
+        <li>Abra o IDLE (ou seu editor preferido)</li>
+        <li>Crie um novo arquivo (File → New File)</li>
+        <li>Digite o código abaixo:</li>
+    </ol>
+    
+    <div class="code-block">
+print("Olá, Mundo!")
+    </div>
+    
+    <ol start="4">
+        <li>Salve o arquivo como <code>ola_mundo.py</code> (arquivos Python terminam em .py)</li>
+        <li>Execute pressionando <strong>F5</strong> ou indo em <strong>Run → Run Module</strong></li>
+    </ol>
+    
+    <p><strong>👉 Resultado:</strong></p>
+    <div class="code-block">
+Olá, Mundo!
+    </div>
+    
+    <p>🎉 <strong>Parabéns!</strong> Você acabou de criar seu primeiro programa em Python!</p>
+
+    <h3>Entendendo o print()</h3>
+    <p>O comando <code>print()</code> é usado para mostrar informações na tela. Funciona assim:</p>
+    
+    <div class="code-block">
+print("Texto entre aspas")
+print("Meu nome é João")
+print("Python é legal!")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Texto entre aspas
+Meu nome é João
+Python é legal!
+    </div>
+    
+    <h4>Dicas sobre o print():</h4>
+    <ul>
+        <li>Textos (strings) devem estar entre aspas: <code>"texto"</code> ou <code>'texto'</code></li>
+        <li>Números não precisam de aspas: <code>print(42)</code></li>
+        <li>Você pode misturar: <code>print("Tenho", 25, "anos")</code></li>
+        <li>Cada <code>print()</code> pula uma linha automaticamente</li>
+    </ul>
+
+    <h3>Comentários em Python</h3>
+    <p>Comentários são anotações no código que o computador ignora. Servem para explicar o que o código faz.</p>
+    
+    <div class="code-block">
+# Isso é um comentário de uma linha
+# O computador ignora tudo depois do #
+
+print("Olá!")  # Comentário no final da linha
+
+"""
+Isso é um comentário
+de múltiplas linhas.
+Útil para explicações maiores.
+"""
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Dica:</strong> Use comentários para explicar partes importantes do código. Seu "eu do futuro" agradecerá quando precisar entender o código depois!</p>
+    </div>
+
+    <h3>Tabela de Equivalências: Portugol → Python</h3>
+    <p>Guarde esta tabela! Ela vai te ajudar na transição:</p>
+    
+    <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin: 20px 0;">
+        <tr style="background-color: #3498db; color: white;">
+            <th>Portugol</th>
+            <th>Python</th>
+            <th>O que faz</th>
+        </tr>
+        <tr>
+            <td><code>escreva()</code></td>
+            <td><code>print()</code></td>
+            <td>Mostra texto na tela</td>
+        </tr>
+        <tr>
+            <td><code>leia()</code></td>
+            <td><code>input()</code></td>
+            <td>Lê entrada do usuário</td>
+        </tr>
+        <tr>
+            <td><code>←</code> ou <code>:=</code></td>
+            <td><code>=</code></td>
+            <td>Atribui valor à variável</td>
+        </tr>
+        <tr>
+            <td><code>// comentário</code></td>
+            <td><code># comentário</code></td>
+            <td>Comentário de linha</td>
+        </tr>
+        <tr>
+            <td><code>inteiro</code></td>
+            <td><code>int</code></td>
+            <td>Número inteiro</td>
+        </tr>
+        <tr>
+            <td><code>real</code></td>
+            <td><code>float</code></td>
+            <td>Número decimal</td>
+        </tr>
+        <tr>
+            <td><code>caractere</code></td>
+            <td><code>str</code></td>
+            <td>Texto (string)</td>
+        </tr>
+        <tr>
+            <td><code>logico</code></td>
+            <td><code>bool</code></td>
+            <td>Verdadeiro/Falso</td>
+        </tr>
+    </table>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 9:</strong></p>
+        <ul>
+            <li><strong>Python:</strong> linguagem simples, popular e gratuita</li>
+            <li><strong>Instalação:</strong> baixe em python.org (marque "Add to PATH"!)</li>
+            <li><strong>Editores:</strong> IDLE, Thonny, VS Code ou online</li>
+            <li><strong>print():</strong> mostra texto na tela</li>
+            <li><strong>Comentários:</strong> use # para explicar o código</li>
+            <li><strong>Arquivos:</strong> salve com extensão .py</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 9.1: Apresentação Pessoal</h4>
+        <p>Crie um programa Python que mostre na tela:</p>
+        <ul>
+            <li>Seu nome</li>
+            <li>Sua idade</li>
+            <li>Sua cidade</li>
+        </ul>
+        <p><strong>Conceitos aplicados:</strong> print(), strings</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol17')">Mostrar Solução</button>
+        <div class="solution-container" id="sol17">
+            <h5>💡 Solução do Exercício 9.1:</h5>
+            <div class="code-block">
+# Minha apresentação pessoal
+print("Meu nome é João Silva")
+print("Tenho 16 anos")
+print("Moro em Natal - RN")
+            </div>
+            <p><strong>Explicação:</strong> Usamos três comandos print() para mostrar cada informação em uma linha separada.</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 9.2: Calculadora Simples</h4>
+        <p>Faça um programa que mostre o resultado das operações: 10 + 5, 20 - 8, 6 * 7, 100 / 4</p>
+        <p><strong>Conceitos aplicados:</strong> print() com números, operações matemáticas</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol18')">Mostrar Solução</button>
+        <div class="solution-container" id="sol18">
+            <h5>💡 Solução do Exercício 9.2:</h5>
+            <div class="code-block">
+# Calculadora simples
+print("10 + 5 =", 10 + 5)
+print("20 - 8 =", 20 - 8)
+print("6 * 7 =", 6 * 7)
+print("100 / 4 =", 100 / 4)
+            </div>
+            <p><strong>Saída:</strong></p>
+            <div class="code-block">
+10 + 5 = 15
+20 - 8 = 12
+6 * 7 = 42
+100 / 4 = 25.0
+            </div>
+            <p><strong>Explicação:</strong> O Python calcula automaticamente as operações dentro do print(). Note que a divisão retorna um número decimal (25.0).</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 9.3: Arte com Texto</h4>
+        <p>Crie uma "arte" usando apenas caracteres de texto, como um rosto ou uma casinha.</p>
+        <p><strong>Conceitos aplicados:</strong> print(), criatividade!</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol19')">Mostrar Solução</button>
+        <div class="solution-container" id="sol19">
+            <h5>💡 Solução do Exercício 9.3:</h5>
+            <div class="code-block">
+# Desenhando uma casinha
+print("    /\\")
+print("   /  \\")
+print("  /    \\")
+print(" /______\\")
+print(" |      |")
+print(" |  []  |")
+print(" |______|")
+            </div>
+            <p><strong>Explicação:</strong> Cada print() desenha uma linha da casinha. Note o uso de espaços para alinhar o desenho. A barra invertida (\\) precisa ser duplicada porque é um caractere especial em Python.</p>
+        </div>
+    </div>
+
 </section>
         
     </main>
