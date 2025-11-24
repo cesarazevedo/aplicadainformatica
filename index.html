@@ -1235,6 +1235,13 @@
                     <h3>🔢 Aula 11: Operadores em Python</h3>
                     <p>Operadores aritméticos, relacionais e lógicos</p>
                 </a>
+                </div>
+
+                <div class="index-item">
+                <a href="#aula12">
+                <h3>🔀 Aula 12: Estruturas Condicionais</h3>
+                <p>Tomando decisões com if, elif e else</p>
+                </a>
 </div>
                 
             </div>
@@ -5394,6 +5401,640 @@ print("Notas de R$ 5:", notas_5)
 print("Notas de R$ 1:", notas_1)
             </div>
             <p><strong>Exemplo:</strong> Para R$ 178: 3 notas de 50, 1 de 20, 0 de 10, 1 de 5, 3 de 1.</p>
+        </div>
+    </div>
+
+</section>
+                <!-- Aula 12: Estruturas Condicionais em Python -->
+<section id="aula12">
+    <h2>Aula 12: Estruturas Condicionais (if/elif/else)</h2>
+    
+    <h3>O que são Estruturas Condicionais?</h3>
+    <p>Estruturas condicionais permitem que o programa tome <strong>decisões</strong>. Dependendo de uma condição, o código executa um caminho ou outro.</p>
+    
+    <p>É como na vida real:</p>
+    <ul>
+        <li><strong>SE</strong> estiver chovendo, <strong>ENTÃO</strong> levo guarda-chuva</li>
+        <li><strong>SE</strong> a nota for maior ou igual a 7, <strong>ENTÃO</strong> aprovado, <strong>SENÃO</strong> reprovado</li>
+    </ul>
+    
+    <div class="highlight">
+        <p><strong>🔑 Comparação Portugol → Python:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Portugol</th>
+                <th>Python</th>
+            </tr>
+            <tr>
+                <td><code>se</code></td>
+                <td><code>if</code></td>
+            </tr>
+            <tr>
+                <td><code>então</code></td>
+                <td><code>:</code> (dois pontos)</td>
+            </tr>
+            <tr>
+                <td><code>senão</code></td>
+                <td><code>else</code></td>
+            </tr>
+            <tr>
+                <td><code>senão se</code></td>
+                <td><code>elif</code></td>
+            </tr>
+            <tr>
+                <td><code>fimse</code></td>
+                <td>(não precisa - usa indentação)</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>A Regra de Ouro: INDENTAÇÃO</h3>
+    <p>Em Python, a <strong>indentação</strong> (espaços no início da linha) é <strong>OBRIGATÓRIA</strong>! Ela define quais comandos estão dentro do if.</p>
+    
+    <div class="code-block">
+# A indentação define o bloco de código
+if condicao:
+    # Tudo que está indentado (4 espaços) pertence ao if
+    comando1
+    comando2
+    comando3
+# Aqui já está fora do if (sem indentação extra)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ MUITO IMPORTANTE:</strong></p>
+        <ul>
+            <li>Use <strong>4 espaços</strong> para indentar (ou 1 Tab)</li>
+            <li>Seja <strong>consistente</strong>: não misture espaços e tabs</li>
+            <li>Se errar a indentação, Python dá erro: <code>IndentationError</code></li>
+        </ul>
+    </div>
+
+    <h3>Estrutura Condicional Simples (if)</h3>
+    <p>Executa um bloco de código <strong>somente se</strong> a condição for verdadeira.</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+if condição:
+    # código executado se condição for True
+    </div>
+    
+    <h4>Comparando Portugol vs Python:</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+se idade >= 18 então
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Você é maior de idade!")
+fimse
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+if idade >= 18:
+    print("Você é maior de idade!")
+    </div>
+    
+    <h4>Exemplo Completo:</h4>
+    <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+if idade >= 18:
+    print("Você é maior de idade!")
+    print("Pode tirar carteira de motorista.")
+
+print("Fim do programa")  # Sempre executa (está fora do if)
+    </div>
+    
+    <p><strong>👉 Se idade = 20:</strong></p>
+    <div class="code-block">
+Você é maior de idade!
+Pode tirar carteira de motorista.
+Fim do programa
+    </div>
+    
+    <p><strong>👉 Se idade = 15:</strong></p>
+    <div class="code-block">
+Fim do programa
+    </div>
+
+    <h3>Estrutura Condicional Composta (if/else)</h3>
+    <p>Executa um bloco se a condição for verdadeira, <strong>outro bloco</strong> se for falsa.</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+if condição:
+    # código se condição for True
+else:
+    # código se condição for False
+    </div>
+    
+    <h4>Comparando Portugol vs Python:</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+se nota >= 7 então
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Aprovado!")
+senão
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Reprovado!")
+fimse
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+if nota >= 7:
+    print("Aprovado!")
+else:
+    print("Reprovado!")
+    </div>
+    
+    <h4>Exemplo Completo:</h4>
+    <div class="code-block">
+nota = float(input("Digite sua nota: "))
+
+if nota >= 7:
+    print("Parabéns! Você foi APROVADO!")
+else:
+    print("Infelizmente você foi REPROVADO.")
+    print("Estude mais para a próxima!")
+
+print("Fim da consulta.")
+    </div>
+
+    <h3>Estrutura com Múltiplas Condições (if/elif/else)</h3>
+    <p>Quando você precisa testar <strong>várias condições</strong> diferentes, use <code>elif</code> (abreviação de "else if").</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+if condição1:
+    # código se condição1 for True
+elif condição2:
+    # código se condição2 for True
+elif condição3:
+    # código se condição3 for True
+else:
+    # código se NENHUMA condição for True
+    </div>
+    
+    <h4>Comparando Portugol vs Python:</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+se nota >= 9 então
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Excelente")
+senão
+&nbsp;&nbsp;&nbsp;&nbsp;se nota >= 7 então
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Bom")
+&nbsp;&nbsp;&nbsp;&nbsp;senão
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;se nota >= 5 então
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Regular")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;senão
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Insuficiente")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fimse
+&nbsp;&nbsp;&nbsp;&nbsp;fimse
+fimse
+    </div>
+    
+    <p><strong>Em Python (muito mais simples!):</strong></p>
+    <div class="code-block">
+if nota >= 9:
+    print("Excelente")
+elif nota >= 7:
+    print("Bom")
+elif nota >= 5:
+    print("Regular")
+else:
+    print("Insuficiente")
+    </div>
+    
+    <div class="highlight">
+        <p><strong>😮 Percebeu a diferença?</strong></p>
+        <ul>
+            <li>Python é muito mais <strong>limpo e legível</strong></li>
+            <li>Não precisa de <code>fimse</code> - a indentação resolve!</li>
+            <li><code>elif</code> evita a "escadinha" de senão-se aninhados</li>
+        </ul>
+    </div>
+    
+    <h4>Exemplo Completo - Classificação de Notas:</h4>
+    <div class="code-block">
+nota = float(input("Digite a nota (0 a 10): "))
+
+print()
+print("=== RESULTADO ===")
+
+if nota >= 9:
+    print("Conceito: A - Excelente!")
+    print("Parabéns pelo ótimo desempenho!")
+elif nota >= 7:
+    print("Conceito: B - Bom")
+    print("Continue assim!")
+elif nota >= 5:
+    print("Conceito: C - Regular")
+    print("Você pode melhorar!")
+elif nota >= 3:
+    print("Conceito: D - Insuficiente")
+    print("Precisa estudar mais.")
+else:
+    print("Conceito: F - Muito baixo")
+    print("Procure ajuda do professor.")
+    </div>
+
+    <h3>Condições Compostas (and, or, not)</h3>
+    <p>Você pode combinar várias condições usando operadores lógicos:</p>
+    
+    <h4>Usando <code>and</code> (E):</h4>
+    <div class="code-block">
+idade = int(input("Digite sua idade: "))
+tem_carteira = input("Tem carteira? (s/n): ") == "s"
+
+if idade >= 18 and tem_carteira:
+    print("Você pode dirigir!")
+else:
+    print("Você NÃO pode dirigir.")
+    </div>
+    
+    <h4>Usando <code>or</code> (OU):</h4>
+    <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+if idade <= 12 or idade >= 60:
+    print("Você tem direito a meia-entrada!")
+else:
+    print("Você paga entrada inteira.")
+    </div>
+    
+    <h4>Usando <code>not</code> (NÃO):</h4>
+    <div class="code-block">
+chovendo = input("Está chovendo? (s/n): ") == "s"
+
+if not chovendo:
+    print("Ótimo dia para passear!")
+else:
+    print("Melhor ficar em casa.")
+    </div>
+    
+    <h4>Combinando vários operadores:</h4>
+    <div class="code-block">
+nota = float(input("Digite a nota: "))
+frequencia = float(input("Digite a frequência (%): "))
+
+# Aprovado se: nota >= 7 E frequência >= 75%
+if nota >= 7 and frequencia >= 75:
+    print("APROVADO!")
+elif nota >= 7 and frequencia < 75:
+    print("REPROVADO por falta!")
+elif nota < 7 and frequencia >= 75:
+    print("REPROVADO por nota!")
+else:
+    print("REPROVADO por nota e falta!")
+    </div>
+
+    <h3>if Aninhado (if dentro de if)</h3>
+    <p>Às vezes precisamos de um if dentro de outro:</p>
+    
+    <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+if idade >= 18:
+    print("Você é maior de idade.")
+    
+    tem_carteira = input("Tem carteira de motorista? (s/n): ")
+    
+    if tem_carteira == "s":
+        print("Você pode dirigir!")
+    else:
+        print("Você precisa tirar a carteira primeiro.")
+else:
+    print("Você é menor de idade.")
+    print("Não pode dirigir ainda.")
+    </div>
+
+    <h3>Operador Ternário (if em uma linha)</h3>
+    <p>Para condições simples, Python permite escrever o if em uma única linha:</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+valor_se_true if condição else valor_se_false
+    </div>
+    
+    <h4>Exemplos:</h4>
+    <div class="code-block">
+idade = 20
+
+# Forma tradicional
+if idade >= 18:
+    status = "maior"
+else:
+    status = "menor"
+
+# Forma compacta (operador ternário)
+status = "maior" if idade >= 18 else "menor"
+
+print(status)  # maior
+    </div>
+    
+    <div class="code-block">
+nota = 8.5
+
+resultado = "Aprovado" if nota >= 7 else "Reprovado"
+print(resultado)  # Aprovado
+
+# Também funciona direto no print
+print("Aprovado" if nota >= 7 else "Reprovado")
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Quando usar o operador ternário?</strong></p>
+        <ul>
+            <li>Apenas para condições <strong>simples e curtas</strong></li>
+            <li>Quando melhora a legibilidade</li>
+            <li>Evite para lógicas complexas - use if/else normal</li>
+        </ul>
+    </div>
+
+    <h3>Comparando Strings</h3>
+    <p>Podemos comparar textos diretamente:</p>
+    
+    <div class="code-block">
+senha_correta = "python123"
+senha_digitada = input("Digite a senha: ")
+
+if senha_digitada == senha_correta:
+    print("Acesso permitido!")
+else:
+    print("Senha incorreta!")
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Cuidado com maiúsculas/minúsculas!</strong></p>
+        <div class="code-block">
+nome = "João"
+
+print(nome == "João")   # True
+print(nome == "joão")   # False (j minúsculo!)
+print(nome == "JOÃO")   # False (tudo maiúsculo!)
+
+# Para ignorar maiúsculas/minúsculas, use .lower()
+print(nome.lower() == "joão")  # True
+        </div>
+    </div>
+
+    <h3>Exemplo Completo: Sistema de Login</h3>
+    <div class="code-block">
+print("=== SISTEMA DE LOGIN ===")
+print()
+
+usuario_correto = "admin"
+senha_correta = "1234"
+
+usuario = input("Usuário: ")
+senha = input("Senha: ")
+
+if usuario == usuario_correto and senha == senha_correta:
+    print()
+    print("✓ Login realizado com sucesso!")
+    print("Bem-vindo ao sistema!")
+elif usuario != usuario_correto:
+    print()
+    print("✗ Usuário não encontrado!")
+else:
+    print()
+    print("✗ Senha incorreta!")
+    </div>
+
+    <h3>Exemplo Completo: Calculadora de IMC</h3>
+    <div class="code-block">
+print("=== CALCULADORA DE IMC ===")
+print()
+
+peso = float(input("Digite seu peso (kg): "))
+altura = float(input("Digite sua altura (m): "))
+
+imc = peso / (altura ** 2)
+
+print()
+print(f"Seu IMC é: {imc:.2f}")  # :.2f mostra 2 casas decimais
+print()
+
+if imc < 18.5:
+    print("Classificação: Abaixo do peso")
+    print("Recomendação: Consulte um nutricionista.")
+elif imc < 25:
+    print("Classificação: Peso normal")
+    print("Recomendação: Continue mantendo hábitos saudáveis!")
+elif imc < 30:
+    print("Classificação: Sobrepeso")
+    print("Recomendação: Atenção com alimentação e exercícios.")
+else:
+    print("Classificação: Obesidade")
+    print("Recomendação: Procure orientação médica.")
+    </div>
+
+    <h3>Exemplo Completo: Calculadora com Menu</h3>
+    <div class="code-block">
+print("=== CALCULADORA ===")
+print()
+print("Escolha a operação:")
+print("1 - Soma")
+print("2 - Subtração")
+print("3 - Multiplicação")
+print("4 - Divisão")
+print()
+
+opcao = input("Digite o número da opção: ")
+
+num1 = float(input("Digite o primeiro número: "))
+num2 = float(input("Digite o segundo número: "))
+
+print()
+
+if opcao == "1":
+    resultado = num1 + num2
+    print(f"{num1} + {num2} = {resultado}")
+elif opcao == "2":
+    resultado = num1 - num2
+    print(f"{num1} - {num2} = {resultado}")
+elif opcao == "3":
+    resultado = num1 * num2
+    print(f"{num1} × {num2} = {resultado}")
+elif opcao == "4":
+    if num2 != 0:
+        resultado = num1 / num2
+        print(f"{num1} ÷ {num2} = {resultado}")
+    else:
+        print("Erro: Divisão por zero!")
+else:
+    print("Opção inválida!")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 12:</strong></p>
+        <ul>
+            <li><strong>if:</strong> executa código se condição for True</li>
+            <li><strong>else:</strong> executa código se condição for False</li>
+            <li><strong>elif:</strong> testa condições adicionais (else if)</li>
+            <li><strong>Indentação:</strong> OBRIGATÓRIA! Use 4 espaços</li>
+            <li><strong>Dois pontos (:):</strong> sempre após if, elif, else</li>
+            <li><strong>and, or, not:</strong> combinam condições</li>
+            <li><strong>Operador ternário:</strong> if/else em uma linha</li>
+            <li><strong>Comparação de strings:</strong> cuidado com maiúsculas!</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 12.1: Positivo, Negativo ou Zero</h4>
+        <p>Peça um número e informe se ele é positivo, negativo ou zero.</p>
+        <p><strong>Conceitos aplicados:</strong> if/elif/else</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol31')">Mostrar Solução</button>
+        <div class="solution-container" id="sol31">
+            <h5>💡 Solução do Exercício 12.1:</h5>
+            <div class="code-block">
+numero = float(input("Digite um número: "))
+
+if numero > 0:
+    print("O número é POSITIVO")
+elif numero < 0:
+    print("O número é NEGATIVO")
+else:
+    print("O número é ZERO")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 12.2: Par ou Ímpar com Mensagem</h4>
+        <p>Peça um número inteiro e informe se é par ou ímpar.</p>
+        <p><strong>Conceitos aplicados:</strong> if/else, operador %</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol32')">Mostrar Solução</button>
+        <div class="solution-container" id="sol32">
+            <h5>💡 Solução do Exercício 12.2:</h5>
+            <div class="code-block">
+numero = int(input("Digite um número inteiro: "))
+
+if numero % 2 == 0:
+    print(f"O número {numero} é PAR")
+else:
+    print(f"O número {numero} é ÍMPAR")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 12.3: Maior de Três</h4>
+        <p>Peça três números e mostre qual é o maior.</p>
+        <p><strong>Conceitos aplicados:</strong> if/elif/else, and</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol33')">Mostrar Solução</button>
+        <div class="solution-container" id="sol33">
+            <h5>💡 Solução do Exercício 12.3:</h5>
+            <div class="code-block">
+n1 = float(input("Digite o primeiro número: "))
+n2 = float(input("Digite o segundo número: "))
+n3 = float(input("Digite o terceiro número: "))
+
+print()
+
+if n1 >= n2 and n1 >= n3:
+    print(f"O maior número é: {n1}")
+elif n2 >= n1 and n2 >= n3:
+    print(f"O maior número é: {n2}")
+else:
+    print(f"O maior número é: {n3}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 12.4: Classificação de Triângulo</h4>
+        <p>Peça os três lados de um triângulo e classifique-o como: Equilátero (3 lados iguais), Isósceles (2 lados iguais) ou Escaleno (3 lados diferentes).</p>
+        <p><strong>Conceitos aplicados:</strong> if/elif/else, and, or</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol34')">Mostrar Solução</button>
+        <div class="solution-container" id="sol34">
+            <h5>💡 Solução do Exercício 12.4:</h5>
+            <div class="code-block">
+print("=== CLASSIFICAÇÃO DE TRIÂNGULO ===")
+print()
+
+lado1 = float(input("Digite o lado 1: "))
+lado2 = float(input("Digite o lado 2: "))
+lado3 = float(input("Digite o lado 3: "))
+
+print()
+
+if lado1 == lado2 and lado2 == lado3:
+    print("Triângulo EQUILÁTERO")
+    print("(todos os lados são iguais)")
+elif lado1 == lado2 or lado2 == lado3 or lado1 == lado3:
+    print("Triângulo ISÓSCELES")
+    print("(dois lados são iguais)")
+else:
+    print("Triângulo ESCALENO")
+    print("(todos os lados são diferentes)")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 12.5: Faixa Etária</h4>
+        <p>Peça a idade e classifique: Criança (0-11), Adolescente (12-17), Adulto (18-59), Idoso (60+).</p>
+        <p><strong>Conceitos aplicados:</strong> if/elif/else</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol35')">Mostrar Solução</button>
+        <div class="solution-container" id="sol35">
+            <h5>💡 Solução do Exercício 12.5:</h5>
+            <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+print()
+
+if idade < 0:
+    print("Idade inválida!")
+elif idade <= 11:
+    print("Classificação: CRIANÇA")
+elif idade <= 17:
+    print("Classificação: ADOLESCENTE")
+elif idade <= 59:
+    print("Classificação: ADULTO")
+else:
+    print("Classificação: IDOSO")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 12.6: Calculadora de Desconto</h4>
+        <p>Uma loja dá descontos baseados no valor da compra: acima de R$ 500 = 15%, entre R$ 200 e R$ 500 = 10%, abaixo de R$ 200 = 5%. Calcule o valor final.</p>
+        <p><strong>Conceitos aplicados:</strong> if/elif/else, cálculos</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol36')">Mostrar Solução</button>
+        <div class="solution-container" id="sol36">
+            <h5>💡 Solução do Exercício 12.6:</h5>
+            <div class="code-block">
+print("=== CALCULADORA DE DESCONTO ===")
+print()
+
+valor = float(input("Digite o valor da compra: R$ "))
+
+if valor > 500:
+    desconto = 15
+elif valor >= 200:
+    desconto = 10
+else:
+    desconto = 5
+
+valor_desconto = valor * desconto / 100
+valor_final = valor - valor_desconto
+
+print()
+print(f"Valor original: R$ {valor:.2f}")
+print(f"Desconto: {desconto}% (R$ {valor_desconto:.2f})")
+print(f"Valor final: R$ {valor_final:.2f}")
+            </div>
         </div>
     </div>
 
