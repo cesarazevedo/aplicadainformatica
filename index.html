@@ -1239,10 +1239,17 @@
 
                 <div class="index-item">
                 <a href="#aula12">
-                <h3>🔀 Aula 12: Estruturas Condicionais</h3>
-                <p>Tomando decisões com if, elif e else</p>
+                    <h3>🔀 Aula 12: Estruturas Condicionais</h3>
+                    <p>Tomando decisões com if, elif e else</p>
                 </a>
-</div>
+                </div>
+
+                <div class="index-item">
+                <a href="#aula13">
+                    <h3>🔄 Aula 13: Estrutura while</h3>
+                    <p>Repetição com condição de parada</p>
+                </a>
+                </div>
                 
             </div>
         </section>
@@ -6039,7 +6046,697 @@ print(f"Valor final: R$ {valor_final:.2f}")
     </div>
 
 </section>
+
+    <!-- Aula 13: Estrutura de Repetição while -->
+<section id="aula13">
+    <h2>Aula 13: Estrutura de Repetição while</h2>
+    
+    <h3>O que são Estruturas de Repetição?</h3>
+    <p>Estruturas de repetição (também chamadas de <strong>laços</strong> ou <strong>loops</strong>) permitem executar um bloco de código <strong>várias vezes</strong>, sem precisar escrever o mesmo código repetidamente.</p>
+    
+    <p>Imagine que você precise imprimir "Olá!" 100 vezes. Sem repetição:</p>
+    <div class="code-block">
+print("Olá!")
+print("Olá!")
+print("Olá!")
+# ... mais 97 linhas iguais! 😱
+    </div>
+    
+    <p>Com repetição:</p>
+    <div class="code-block">
+contador = 0
+while contador < 100:
+    print("Olá!")
+    contador += 1
+# Apenas 4 linhas! 😎
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🔑 Comparação Portugol → Python:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Portugol</th>
+                <th>Python</th>
+            </tr>
+            <tr>
+                <td><code>enquanto</code></td>
+                <td><code>while</code></td>
+            </tr>
+            <tr>
+                <td><code>faça</code></td>
+                <td><code>:</code> (dois pontos)</td>
+            </tr>
+            <tr>
+                <td><code>fimenquanto</code></td>
+                <td>(não precisa - usa indentação)</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Estrutura while (Enquanto)</h3>
+    <p>O <code>while</code> repete um bloco de código <strong>enquanto</strong> uma condição for verdadeira.</p>
+    
+    <h4>Sintaxe:</h4>
+    <div class="code-block">
+while condição:
+    # código que será repetido
+    # enquanto condição for True
+    </div>
+    
+    <h4>Fluxo de execução:</h4>
+    <ol>
+        <li>Verifica a condição</li>
+        <li>Se for <strong>True</strong>: executa o bloco e volta ao passo 1</li>
+        <li>Se for <strong>False</strong>: sai do loop e continua o programa</li>
+    </ol>
+
+    <h4>Comparando Portugol vs Python:</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "contar_ate_5"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;numero: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;numero ← 1
+&nbsp;&nbsp;&nbsp;&nbsp;enquanto numero <= 5 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva(numero)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;numero ← numero + 1
+&nbsp;&nbsp;&nbsp;&nbsp;fimenquanto
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+numero = 1
+while numero <= 5:
+    print(numero)
+    numero += 1
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1
+2
+3
+4
+5
+    </div>
+
+    <h3>Anatomia do while</h3>
+    <p>Todo loop while precisa de três elementos essenciais:</p>
+    
+    <div class="code-block">
+# 1. INICIALIZAÇÃO: criar e definir valor inicial da variável de controle
+contador = 1
+
+# 2. CONDIÇÃO: quando parar de repetir
+while contador <= 5:
+    print(contador)
+    
+    # 3. ATUALIZAÇÃO: modificar a variável para eventualmente sair do loop
+    contador += 1
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ CUIDADO: Loop Infinito!</strong></p>
+        <p>Se você esquecer de atualizar a variável de controle, o loop nunca para!</p>
+        <div class="code-block">
+# ❌ ERRADO - Loop infinito!
+contador = 1
+while contador <= 5:
+    print(contador)
+    # Esqueceu de fazer contador += 1
+    # O programa trava! 😱
+    
+# Para parar um loop infinito: pressione Ctrl + C
+        </div>
+    </div>
+
+    <h3>Exemplos Práticos</h3>
+    
+    <h4>Exemplo 1: Contagem Regressiva</h4>
+    <div class="code-block">
+print("🚀 Contagem regressiva para o lançamento!")
+print()
+
+contagem = 10
+
+while contagem >= 0:
+    if contagem == 0:
+        print("🔥 FOGO! Lançamento!")
+    else:
+        print(contagem)
+    contagem -= 1
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+🚀 Contagem regressiva para o lançamento!
+
+10
+9
+8
+7
+6
+5
+4
+3
+2
+1
+🔥 FOGO! Lançamento!
+    </div>
+
+    <h4>Exemplo 2: Tabuada</h4>
+    <div class="code-block">
+numero = int(input("Digite um número para ver a tabuada: "))
+
+print()
+print(f"=== TABUADA DO {numero} ===")
+
+multiplicador = 1
+
+while multiplicador <= 10:
+    resultado = numero * multiplicador
+    print(f"{numero} x {multiplicador} = {resultado}")
+    multiplicador += 1
+    </div>
+    
+    <p><strong>👉 Saída (para número = 7):</strong></p>
+    <div class="code-block">
+=== TABUADA DO 7 ===
+7 x 1 = 7
+7 x 2 = 14
+7 x 3 = 21
+7 x 4 = 28
+7 x 5 = 35
+7 x 6 = 42
+7 x 7 = 49
+7 x 8 = 56
+7 x 9 = 63
+7 x 10 = 70
+    </div>
+
+    <h3>Variável Contadora</h3>
+    <p>Usada para <strong>contar quantas vezes</strong> algo aconteceu.</p>
+    
+    <div class="code-block">
+# Contar quantos números pares existem de 1 a 20
+numero = 1
+contador_pares = 0  # Variável contadora
+
+while numero <= 20:
+    if numero % 2 == 0:
+        contador_pares += 1  # Incrementa o contador
+    numero += 1
+
+print(f"Existem {contador_pares} números pares de 1 a 20")
+# Saída: Existem 10 números pares de 1 a 20
+    </div>
+
+    <h3>Variável Acumuladora</h3>
+    <p>Usada para <strong>somar valores</strong> ao longo das repetições.</p>
+    
+    <div class="code-block">
+# Somar os números de 1 a 10
+numero = 1
+soma = 0  # Variável acumuladora
+
+while numero <= 10:
+    soma += numero  # Acumula o valor
+    numero += 1
+
+print(f"A soma de 1 a 10 é: {soma}")
+# Saída: A soma de 1 a 10 é: 55
+    </div>
+    
+    <h4>Exemplo: Calculando Média de Notas</h4>
+    <div class="code-block">
+print("=== CÁLCULO DE MÉDIA ===")
+print()
+
+quantidade = int(input("Quantas notas você quer digitar? "))
+
+soma = 0  # Acumuladora
+contador = 1  # Contadora
+
+while contador <= quantidade:
+    nota = float(input(f"Digite a nota {contador}: "))
+    soma += nota
+    contador += 1
+
+media = soma / quantidade
+
+print()
+print(f"Soma das notas: {soma}")
+print(f"Média: {media:.2f}")
+    </div>
+
+    <h3>Flag (Sentinela)</h3>
+    <p>Às vezes não sabemos quantas vezes o loop vai repetir. Usamos uma <strong>flag</strong> (palavra de parada) para controlar.</p>
+    
+    <div class="code-block">
+print("=== CADASTRO DE NOMES ===")
+print("Digite 'SAIR' para encerrar")
+print()
+
+contador = 0
+
+nome = input("Digite um nome: ")
+
+while nome != "SAIR":
+    contador += 1
+    print(f"✓ {nome} cadastrado!")
+    nome = input("Digite outro nome (ou SAIR): ")
+
+print()
+print(f"Total de nomes cadastrados: {contador}")
+    </div>
+    
+    <p><strong>👉 Exemplo de execução:</strong></p>
+    <div class="code-block">
+=== CADASTRO DE NOMES ===
+Digite 'SAIR' para encerrar
+
+Digite um nome: Maria
+✓ Maria cadastrado!
+Digite outro nome (ou SAIR): João
+✓ João cadastrado!
+Digite outro nome (ou SAIR): Ana
+✓ Ana cadastrado!
+Digite outro nome (ou SAIR): SAIR
+
+Total de nomes cadastrados: 3
+    </div>
+
+    <h3>Validação de Entrada</h3>
+    <p>O <code>while</code> é perfeito para <strong>validar dados</strong> do usuário:</p>
+    
+    <div class="code-block">
+# Garantir que o usuário digite um número positivo
+numero = int(input("Digite um número positivo: "))
+
+while numero <= 0:
+    print("❌ Número inválido! Deve ser positivo.")
+    numero = int(input("Digite um número positivo: "))
+
+print(f"✓ Você digitou: {numero}")
+    </div>
+    
+    <h4>Validando Idade:</h4>
+    <div class="code-block">
+idade = int(input("Digite sua idade: "))
+
+while idade < 0 or idade > 150:
+    print("❌ Idade inválida! Digite um valor entre 0 e 150.")
+    idade = int(input("Digite sua idade: "))
+
+print(f"✓ Idade registrada: {idade} anos")
+    </div>
+    
+    <h4>Validando Opção de Menu:</h4>
+    <div class="code-block">
+print("=== MENU ===")
+print("1 - Opção A")
+print("2 - Opção B")
+print("3 - Opção C")
+
+opcao = input("Escolha (1, 2 ou 3): ")
+
+while opcao not in ["1", "2", "3"]:
+    print("❌ Opção inválida!")
+    opcao = input("Escolha (1, 2 ou 3): ")
+
+print(f"✓ Você escolheu a opção {opcao}")
+    </div>
+
+    <h3>Comandos break e continue</h3>
+    
+    <h4>break - Interrompe o loop imediatamente</h4>
+    <p>Sai do loop antes que a condição se torne False.</p>
+    
+    <div class="code-block">
+# Encontrar o primeiro múltiplo de 7 maior que 50
+numero = 51
+
+while True:  # Loop "infinito"
+    if numero % 7 == 0:
+        print(f"Encontrei! {numero} é múltiplo de 7")
+        break  # Sai do loop imediatamente
+    numero += 1
+
+print("Fim do programa")
+    </div>
+    
+    <h4>continue - Pula para a próxima iteração</h4>
+    <p>Ignora o resto do bloco e volta para o início do loop.</p>
+    
+    <div class="code-block">
+# Imprimir apenas números ímpares de 1 a 10
+numero = 0
+
+while numero < 10:
+    numero += 1
+    
+    if numero % 2 == 0:  # Se for par
+        continue  # Pula para a próxima iteração
+    
+    print(numero)  # Só imprime ímpares
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1
+3
+5
+7
+9
+    </div>
+
+    <h3>while com else</h3>
+    <p>Python permite usar <code>else</code> com <code>while</code>. O bloco <code>else</code> executa quando o loop termina <strong>normalmente</strong> (sem break).</p>
+    
+    <div class="code-block">
+numero = 1
+
+while numero <= 5:
+    print(numero)
+    numero += 1
+else:
+    print("Loop terminou normalmente!")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1
+2
+3
+4
+5
+Loop terminou normalmente!
+    </div>
+    
+    <div class="code-block">
+# Se usar break, o else NÃO executa
+numero = 1
+
+while numero <= 5:
+    print(numero)
+    if numero == 3:
+        break
+    numero += 1
+else:
+    print("Isso não será impresso!")
+
+print("Fim")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1
+2
+3
+Fim
+    </div>
+
+    <h3>Exemplo Completo: Jogo de Adivinhação</h3>
+    <div class="code-block">
+import random
+
+print("🎮 JOGO DE ADIVINHAÇÃO")
+print("Tente adivinhar o número de 1 a 100!")
+print()
+
+numero_secreto = random.randint(1, 100)
+tentativas = 0
+acertou = False
+
+while not acertou:
+    palpite = int(input("Seu palpite: "))
+    tentativas += 1
+    
+    if palpite < numero_secreto:
+        print("📈 Muito baixo! Tente um número maior.")
+    elif palpite > numero_secreto:
+        print("📉 Muito alto! Tente um número menor.")
+    else:
+        acertou = True
+        print()
+        print(f"🎉 PARABÉNS! Você acertou em {tentativas} tentativas!")
+
+print("Obrigado por jogar!")
+    </div>
+
+    <h3>Exemplo Completo: Caixa Eletrônico</h3>
+    <div class="code-block">
+print("🏦 BEM-VINDO AO BANCO PYTHON")
+print()
+
+saldo = 1000.00
+senha_correta = "1234"
+
+# Validar senha
+senha = input("Digite sua senha: ")
+tentativas = 1
+
+while senha != senha_correta and tentativas < 3:
+    print("❌ Senha incorreta!")
+    tentativas += 1
+    senha = input(f"Tente novamente ({tentativas}/3): ")
+
+if senha != senha_correta:
+    print("🔒 Cartão bloqueado! Procure sua agência.")
+else:
+    print("✓ Acesso autorizado!")
+    print()
+    
+    opcao = ""
+    
+    while opcao != "4":
+        print()
+        print("=== MENU ===")
+        print("1 - Ver saldo")
+        print("2 - Depositar")
+        print("3 - Sacar")
+        print("4 - Sair")
         
+        opcao = input("Escolha: ")
+        
+        if opcao == "1":
+            print(f"💰 Seu saldo é: R$ {saldo:.2f}")
+        
+        elif opcao == "2":
+            valor = float(input("Valor do depósito: R$ "))
+            if valor > 0:
+                saldo += valor
+                print(f"✓ Depósito realizado! Novo saldo: R$ {saldo:.2f}")
+            else:
+                print("❌ Valor inválido!")
+        
+        elif opcao == "3":
+            valor = float(input("Valor do saque: R$ "))
+            if valor > 0 and valor <= saldo:
+                saldo -= valor
+                print(f"✓ Saque realizado! Novo saldo: R$ {saldo:.2f}")
+            elif valor > saldo:
+                print("❌ Saldo insuficiente!")
+            else:
+                print("❌ Valor inválido!")
+        
+        elif opcao == "4":
+            print("👋 Obrigado por usar o Banco Python!")
+        
+        else:
+            print("❌ Opção inválida!")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 13:</strong></p>
+        <ul>
+            <li><strong>while:</strong> repete enquanto condição for True</li>
+            <li><strong>Três elementos:</strong> inicialização, condição, atualização</li>
+            <li><strong>Loop infinito:</strong> acontece se esquecer de atualizar a variável</li>
+            <li><strong>Contadora:</strong> conta quantas vezes algo aconteceu</li>
+            <li><strong>Acumuladora:</strong> soma valores ao longo do loop</li>
+            <li><strong>Flag:</strong> palavra de parada (ex: "SAIR")</li>
+            <li><strong>Validação:</strong> repete até usuário digitar valor válido</li>
+            <li><strong>break:</strong> sai do loop imediatamente</li>
+            <li><strong>continue:</strong> pula para próxima iteração</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 13.1: Contagem de 1 a N</h4>
+        <p>Peça um número N e mostre todos os números de 1 até N.</p>
+        <p><strong>Conceitos aplicados:</strong> while, contador</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol37')">Mostrar Solução</button>
+        <div class="solution-container" id="sol37">
+            <h5>💡 Solução do Exercício 13.1:</h5>
+            <div class="code-block">
+n = int(input("Digite um número: "))
+
+print(f"Contando de 1 até {n}:")
+
+contador = 1
+
+while contador <= n:
+    print(contador)
+    contador += 1
+
+print("Fim!")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 13.2: Soma de Números</h4>
+        <p>Peça números ao usuário até que ele digite 0. Ao final, mostre a soma de todos os números digitados.</p>
+        <p><strong>Conceitos aplicados:</strong> while, acumulador, flag</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol38')">Mostrar Solução</button>
+        <div class="solution-container" id="sol38">
+            <h5>💡 Solução do Exercício 13.2:</h5>
+            <div class="code-block">
+print("Digite números para somar (0 para encerrar)")
+print()
+
+soma = 0
+numero = int(input("Digite um número: "))
+
+while numero != 0:
+    soma += numero
+    numero = int(input("Digite outro número (0 para sair): "))
+
+print()
+print(f"Soma total: {soma}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 13.3: Validar Nota</h4>
+        <p>Peça uma nota de 0 a 10. Se o usuário digitar um valor inválido, peça novamente até que seja válido.</p>
+        <p><strong>Conceitos aplicados:</strong> while, validação de entrada</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol39')">Mostrar Solução</button>
+        <div class="solution-container" id="sol39">
+            <h5>💡 Solução do Exercício 13.3:</h5>
+            <div class="code-block">
+nota = float(input("Digite uma nota (0 a 10): "))
+
+while nota < 0 or nota > 10:
+    print("❌ Nota inválida! Deve ser entre 0 e 10.")
+    nota = float(input("Digite uma nota (0 a 10): "))
+
+print(f"✓ Nota registrada: {nota}")
+
+if nota >= 7:
+    print("Situação: APROVADO")
+else:
+    print("Situação: REPROVADO")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 13.4: Fatorial</h4>
+        <p>Calcule o fatorial de um número N. (Fatorial de 5 = 5 × 4 × 3 × 2 × 1 = 120)</p>
+        <p><strong>Conceitos aplicados:</strong> while, acumulador multiplicativo</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol40')">Mostrar Solução</button>
+        <div class="solution-container" id="sol40">
+            <h5>💡 Solução do Exercício 13.4:</h5>
+            <div class="code-block">
+n = int(input("Digite um número para calcular o fatorial: "))
+
+fatorial = 1
+contador = n
+
+while contador > 1:
+    fatorial *= contador  # fatorial = fatorial * contador
+    contador -= 1
+
+print(f"{n}! = {fatorial}")
+            </div>
+            <p><strong>Exemplo:</strong> 5! = 120</p>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 13.5: Números Pares de 1 a N</h4>
+        <p>Peça um número N e mostre todos os números pares de 1 até N.</p>
+        <p><strong>Conceitos aplicados:</strong> while, if, operador %</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol41')">Mostrar Solução</button>
+        <div class="solution-container" id="sol41">
+            <h5>💡 Solução do Exercício 13.5:</h5>
+            <div class="code-block">
+n = int(input("Digite um número: "))
+
+print(f"Números pares de 1 a {n}:")
+
+numero = 1
+
+while numero <= n:
+    if numero % 2 == 0:
+        print(numero)
+    numero += 1
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 13.6: Menu Interativo</h4>
+        <p>Crie um menu com opções: 1-Somar, 2-Subtrair, 3-Multiplicar, 4-Dividir, 5-Sair. O programa deve continuar até o usuário escolher sair.</p>
+        <p><strong>Conceitos aplicados:</strong> while, if/elif, menu</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol42')">Mostrar Solução</button>
+        <div class="solution-container" id="sol42">
+            <h5>💡 Solução do Exercício 13.6:</h5>
+            <div class="code-block">
+print("=== CALCULADORA ===")
+
+opcao = "0"
+
+while opcao != "5":
+    print()
+    print("1 - Somar")
+    print("2 - Subtrair")
+    print("3 - Multiplicar")
+    print("4 - Dividir")
+    print("5 - Sair")
+    
+    opcao = input("Escolha uma opção: ")
+    
+    if opcao in ["1", "2", "3", "4"]:
+        n1 = float(input("Primeiro número: "))
+        n2 = float(input("Segundo número: "))
+        
+        if opcao == "1":
+            print(f"Resultado: {n1} + {n2} = {n1 + n2}")
+        elif opcao == "2":
+            print(f"Resultado: {n1} - {n2} = {n1 - n2}")
+        elif opcao == "3":
+            print(f"Resultado: {n1} × {n2} = {n1 * n2}")
+        elif opcao == "4":
+            if n2 != 0:
+                print(f"Resultado: {n1} ÷ {n2} = {n1 / n2}")
+            else:
+                print("❌ Erro: divisão por zero!")
+    
+    elif opcao == "5":
+        print("👋 Até logo!")
+    
+    else:
+        print("❌ Opção inválida!")
+            </div>
+        </div>
+    </div>
+
+</section>
     </main>
 
     <!-- Botões flutuantes -->
