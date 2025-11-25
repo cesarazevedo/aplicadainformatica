@@ -9806,6 +9806,914 @@ for linha in transposta:
     </div>
 
 </section>
+
+            <!-- Aula 18: Manipulação de Strings -->
+<section id="aula18">
+    <h2>Aula 18: Manipulação de Strings</h2>
+    
+    <h3>O que são Strings?</h3>
+    <p>Strings são sequências de caracteres (texto). Em Python, strings são <strong>imutáveis</strong>, ou seja, uma vez criadas, não podem ser alteradas diretamente. Qualquer "modificação" na verdade cria uma nova string.</p>
+    
+    <div class="code-block">
+# Criando strings
+nome = "Maria"
+frase = 'Python é incrível!'
+texto = """Este é um texto
+que ocupa várias
+linhas."""
+
+print(nome)    # Maria
+print(frase)   # Python é incrível!
+print(texto)
+    </div>
+
+    <div class="highlight">
+        <p><strong>🔑 Aspas simples vs duplas:</strong></p>
+        <p>Em Python, <code>'texto'</code> e <code>"texto"</code> são equivalentes. Use uma dentro da outra quando precisar:</p>
+        <div class="code-block">
+frase1 = "Ele disse: 'Olá!'"
+frase2 = 'Ela respondeu: "Oi!"'
+print(frase1)   # Ele disse: 'Olá!'
+print(frase2)   # Ela respondeu: "Oi!"
+        </div>
+    </div>
+
+    <h3>Strings são Sequências</h3>
+    <p>Assim como listas, strings são sequências. Cada caractere tem um índice, começando em 0.</p>
+    
+    <div class="code-block">
+texto = "Python"
+#        012345
+
+print(texto[0])    # P (primeiro)
+print(texto[1])    # y
+print(texto[5])    # n (último)
+print(texto[-1])   # n (último, índice negativo)
+print(texto[-2])   # o (penúltimo)
+
+print(len(texto))  # 6 (tamanho)
+    </div>
+
+    <h3>Fatiamento (Slicing)</h3>
+    <p>Funciona igual às listas: <code>string[inicio:fim:passo]</code></p>
+    
+    <div class="code-block">
+texto = "Programação"
+#        01234567890
+
+print(texto[0:4])     # Prog (posições 0, 1, 2, 3)
+print(texto[4:])      # amação (do 4 até o final)
+print(texto[:4])      # Prog (do início até 3)
+print(texto[::2])     # Pormço (de 2 em 2)
+print(texto[::-1])    # oãçamargorP (invertido!)
+
+# Extrair partes
+print(texto[0:7])     # Program
+print(texto[-4:])     # ação (últimos 4)
+    </div>
+
+    <h3>Percorrendo Strings</h3>
+    
+    <h4>Com for direto:</h4>
+    <div class="code-block">
+palavra = "IFRN"
+
+for letra in palavra:
+    print(letra)
+
+# Saída:
+# I
+# F
+# R
+# N
+    </div>
+    
+    <h4>Com índices:</h4>
+    <div class="code-block">
+palavra = "Python"
+
+for i in range(len(palavra)):
+    print(f"Posição {i}: {palavra[i]}")
+
+# Saída:
+# Posição 0: P
+# Posição 1: y
+# ...
+    </div>
+    
+    <h4>Com enumerate:</h4>
+    <div class="code-block">
+palavra = "IFRN"
+
+for i, letra in enumerate(palavra):
+    print(f"Índice {i} = '{letra}'")
+    </div>
+
+    <h3>Operações Básicas</h3>
+    
+    <h4>Concatenação (+):</h4>
+    <div class="code-block">
+nome = "Maria"
+sobrenome = "Silva"
+
+nome_completo = nome + " " + sobrenome
+print(nome_completo)   # Maria Silva
+    </div>
+    
+    <h4>Repetição (*):</h4>
+    <div class="code-block">
+linha = "-" * 30
+print(linha)   # ------------------------------
+
+emoji = "🎉 "
+festa = emoji * 5
+print(festa)   # 🎉 🎉 🎉 🎉 🎉 
+    </div>
+    
+    <h4>Pertencimento (in):</h4>
+    <div class="code-block">
+frase = "Python é fácil de aprender"
+
+print("Python" in frase)     # True
+print("Java" in frase)       # False
+print("fácil" in frase)      # True
+print("FÁCIL" in frase)      # False (case-sensitive!)
+
+# Muito útil em condicionais
+if "Python" in frase:
+    print("A frase menciona Python!")
+    </div>
+
+    <h3>Métodos de Transformação</h3>
+    <p>Métodos são funções que pertencem às strings. Use com <code>string.metodo()</code>.</p>
+    
+    <h4>Maiúsculas e minúsculas:</h4>
+    <div class="code-block">
+texto = "Python É Legal"
+
+print(texto.upper())       # PYTHON É LEGAL
+print(texto.lower())       # python é legal
+print(texto.capitalize())  # Python é legal (só 1ª letra)
+print(texto.title())       # Python É Legal (cada palavra)
+print(texto.swapcase())    # pYTHON é lEGAL (inverte)
+
+# Original não muda (strings são imutáveis)
+print(texto)   # Python É Legal
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Dica prática:</strong></p>
+        <p>Use <code>.lower()</code> ou <code>.upper()</code> para comparar strings ignorando maiúsculas/minúsculas:</p>
+        <div class="code-block">
+resposta = input("Você gosta de Python? (sim/não): ")
+
+if resposta.lower() == "sim":
+    print("Ótima escolha!")
+
+# Funciona para: sim, SIM, Sim, sIm...
+        </div>
+    </div>
+
+    <h4>Removendo espaços:</h4>
+    <div class="code-block">
+texto = "   Python   "
+
+print(f"'{texto}'")            # '   Python   '
+print(f"'{texto.strip()}'")    # 'Python' (remove dos dois lados)
+print(f"'{texto.lstrip()}'")   # 'Python   ' (remove da esquerda)
+print(f"'{texto.rstrip()}'")   # '   Python' (remove da direita)
+
+# Também remove outros caracteres
+linha = "###Título###"
+print(linha.strip("#"))   # Título
+    </div>
+
+    <h4>Substituindo:</h4>
+    <div class="code-block">
+frase = "Eu gosto de Java, Java é legal"
+
+nova = frase.replace("Java", "Python")
+print(nova)   # Eu gosto de Python, Python é legal
+
+# Limitar substituições
+nova = frase.replace("Java", "Python", 1)
+print(nova)   # Eu gosto de Python, Java é legal (só a primeira)
+
+# Remover (substituir por vazio)
+texto = "A-B-C-D"
+limpo = texto.replace("-", "")
+print(limpo)   # ABCD
+    </div>
+
+    <h3>Métodos de Busca</h3>
+    
+    <div class="code-block">
+frase = "Python é uma linguagem de programação"
+
+# find() - retorna posição ou -1 se não encontrar
+print(frase.find("uma"))       # 10
+print(frase.find("Java"))      # -1
+
+# index() - retorna posição ou ERRO se não encontrar
+print(frase.index("uma"))      # 10
+# print(frase.index("Java"))   # ValueError!
+
+# rfind() e rindex() - busca da direita para esquerda
+texto = "banana"
+print(texto.find("a"))         # 1 (primeira)
+print(texto.rfind("a"))        # 5 (última)
+
+# count() - conta ocorrências
+print(texto.count("a"))        # 3
+print(texto.count("na"))       # 2
+
+# startswith() e endswith()
+arquivo = "documento.pdf"
+print(arquivo.startswith("doc"))   # True
+print(arquivo.endswith(".pdf"))    # True
+print(arquivo.endswith(".txt"))    # False
+    </div>
+
+    <h3>Métodos de Verificação</h3>
+    <p>Retornam True ou False:</p>
+    
+    <div class="code-block">
+# isalpha() - só letras?
+print("Python".isalpha())      # True
+print("Python3".isalpha())     # False
+
+# isdigit() - só dígitos?
+print("123".isdigit())         # True
+print("12.5".isdigit())        # False (tem ponto)
+
+# isalnum() - letras e/ou números?
+print("Python3".isalnum())     # True
+print("Python 3".isalnum())    # False (tem espaço)
+
+# isspace() - só espaços?
+print("   ".isspace())         # True
+print(" a ".isspace())         # False
+
+# isupper() e islower()
+print("PYTHON".isupper())      # True
+print("python".islower())      # True
+print("Python".isupper())      # False
+
+# istitle() - formato título?
+print("Python É Legal".istitle())   # True
+print("Python é legal".istitle())   # False
+    </div>
+
+    <h3>Split e Join</h3>
+    <p>Dois métodos muito poderosos para trabalhar com strings e listas.</p>
+    
+    <h4>split() - String → Lista:</h4>
+    <div class="code-block">
+# Dividir por espaço (padrão)
+frase = "Python é muito legal"
+palavras = frase.split()
+print(palavras)   # ['Python', 'é', 'muito', 'legal']
+
+# Dividir por outro caractere
+data = "25/11/2025"
+partes = data.split("/")
+print(partes)   # ['25', '11', '2025']
+
+dia, mes, ano = data.split("/")
+print(f"Dia: {dia}, Mês: {mes}, Ano: {ano}")
+
+# Dividir CSV
+linha = "Maria,25,Natal,RN"
+dados = linha.split(",")
+print(dados)   # ['Maria', '25', 'Natal', 'RN']
+
+# Limitar divisões
+texto = "a-b-c-d-e"
+print(texto.split("-", 2))   # ['a', 'b', 'c-d-e']
+    </div>
+    
+    <h4>join() - Lista → String:</h4>
+    <div class="code-block">
+# Juntar com espaço
+palavras = ['Python', 'é', 'legal']
+frase = " ".join(palavras)
+print(frase)   # Python é legal
+
+# Juntar com outro separador
+partes = ['25', '11', '2025']
+data = "/".join(partes)
+print(data)   # 25/11/2025
+
+# Juntar sem separador
+letras = ['P', 'y', 't', 'h', 'o', 'n']
+palavra = "".join(letras)
+print(palavra)   # Python
+
+# Juntar com quebra de linha
+linhas = ['Linha 1', 'Linha 2', 'Linha 3']
+texto = "\n".join(linhas)
+print(texto)
+# Linha 1
+# Linha 2
+# Linha 3
+    </div>
+
+    <h3>Formatação de Strings</h3>
+    
+    <h4>f-strings (moderno, recomendado):</h4>
+    <div class="code-block">
+nome = "Maria"
+idade = 25
+altura = 1.65
+
+# Inserir variáveis
+print(f"Nome: {nome}, Idade: {idade}")
+
+# Expressões dentro
+print(f"Ano de nascimento: {2025 - idade}")
+
+# Formatação de números
+preco = 49.9
+print(f"Preço: R$ {preco:.2f}")     # R$ 49.90
+
+numero = 42
+print(f"Binário: {numero:b}")       # 101010
+print(f"Hexadecimal: {numero:x}")   # 2a
+
+# Alinhamento
+print(f"|{nome:<10}|")   # |Maria     | (esquerda)
+print(f"|{nome:>10}|")   # |     Maria| (direita)
+print(f"|{nome:^10}|")   # |  Maria   | (centro)
+print(f"|{nome:*^10}|")  # |**Maria***| (preenchimento)
+    </div>
+    
+    <h4>format():</h4>
+    <div class="code-block">
+# Posicional
+print("Olá, {}! Você tem {} anos.".format("Maria", 25))
+
+# Com índices
+print("{0} gosta de {1}. {0} programa em {1}.".format("Ana", "Python"))
+
+# Com nomes
+print("{nome} tem {idade} anos".format(nome="João", idade=30))
+    </div>
+    
+    <h4>% (estilo antigo):</h4>
+    <div class="code-block">
+# Ainda funciona, mas f-strings são preferíveis
+nome = "Pedro"
+idade = 20
+nota = 8.5
+
+print("Nome: %s" % nome)
+print("Idade: %d" % idade)
+print("Nota: %.1f" % nota)
+print("%s tem %d anos e nota %.1f" % (nome, idade, nota))
+    </div>
+
+    <h3>Métodos de Alinhamento</h3>
+    <div class="code-block">
+texto = "Python"
+
+# Centralizar
+print(texto.center(20))         #        Python       
+print(texto.center(20, "-"))    # -------Python-------
+
+# Alinhar à esquerda
+print(texto.ljust(20))          # Python              
+print(texto.ljust(20, "."))     # Python..............
+
+# Alinhar à direita
+print(texto.rjust(20))          #               Python
+print(texto.rjust(20, "0"))     # 00000000000000Python
+
+# Preencher com zeros
+numero = "42"
+print(numero.zfill(5))          # 00042
+    </div>
+
+    <h3>Caracteres Especiais</h3>
+    <div class="code-block">
+# \n - nova linha
+print("Linha 1\nLinha 2")
+
+# \t - tabulação
+print("Nome:\tMaria")
+print("Idade:\t25")
+
+# \\ - barra invertida
+print("Pasta: C:\\Users\\Maria")
+
+# \' e \" - aspas
+print('Ele disse: \'Olá!\'')
+print("Ela disse: \"Oi!\"")
+
+# Raw strings (ignora escapes)
+caminho = r"C:\Users\Maria\Documents"
+print(caminho)   # C:\Users\Maria\Documents
+    </div>
+
+    <h3>Strings e Listas de Caracteres</h3>
+    <div class="code-block">
+# String para lista de caracteres
+palavra = "Python"
+letras = list(palavra)
+print(letras)   # ['P', 'y', 't', 'h', 'o', 'n']
+
+# Lista de caracteres para string
+letras = ['I', 'F', 'R', 'N']
+sigla = "".join(letras)
+print(sigla)   # IFRN
+
+# Como strings são imutáveis, para "modificar":
+texto = "Pithon"  # Erro de digitação
+letras = list(texto)
+letras[1] = "y"   # Corrigir
+texto = "".join(letras)
+print(texto)   # Python
+    </div>
+
+    <h3>Comparando: Portugol vs Python</h3>
+    
+    <h4>Exemplo: Contar vogais em uma frase</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "conta_vogais"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;frase: caractere
+&nbsp;&nbsp;&nbsp;&nbsp;i, contador: inteiro
+&nbsp;&nbsp;&nbsp;&nbsp;letra: caractere
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite uma frase: ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(frase)
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;contador <- 0
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até comprimento(frase) faca
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;letra <- maiusc(copia(frase, i, 1))
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;se (letra = "A") ou (letra = "E") ou (letra = "I") ou (letra = "O") ou (letra = "U") entao
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contador <- contador + 1
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fimse
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;escreval("Quantidade de vogais: ", contador)
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+frase = input("Digite uma frase: ")
+
+contador = 0
+for letra in frase.upper():
+    if letra in "AEIOU":
+        contador += 1
+
+print(f"Quantidade de vogais: {contador}")
+
+# Forma pythonica (uma linha!)
+contador = sum(1 for letra in frase.upper() if letra in "AEIOU")
+print(f"Quantidade de vogais: {contador}")
+    </div>
+
+    <h3>Exemplo Completo: Analisador de Texto</h3>
+    <div class="code-block">
+print("=== ANALISADOR DE TEXTO ===")
+print()
+
+texto = input("Digite um texto: ")
+
+# Estatísticas básicas
+num_caracteres = len(texto)
+num_caracteres_sem_espaco = len(texto.replace(" ", ""))
+palavras = texto.split()
+num_palavras = len(palavras)
+
+print(f"\n📊 Estatísticas:")
+print(f"   Caracteres (com espaços): {num_caracteres}")
+print(f"   Caracteres (sem espaços): {num_caracteres_sem_espaco}")
+print(f"   Palavras: {num_palavras}")
+
+# Contagem de tipos
+letras = sum(1 for c in texto if c.isalpha())
+digitos = sum(1 for c in texto if c.isdigit())
+espacos = sum(1 for c in texto if c.isspace())
+especiais = num_caracteres - letras - digitos - espacos
+
+print(f"\n🔤 Tipos de caracteres:")
+print(f"   Letras: {letras}")
+print(f"   Dígitos: {digitos}")
+print(f"   Espaços: {espacos}")
+print(f"   Especiais: {especiais}")
+
+# Vogais e consoantes
+vogais = sum(1 for c in texto.upper() if c in "AEIOU")
+consoantes = sum(1 for c in texto.upper() if c.isalpha() and c not in "AEIOU")
+
+print(f"\n🅰️ Letras:")
+print(f"   Vogais: {vogais}")
+print(f"   Consoantes: {consoantes}")
+
+# Palavras
+if num_palavras > 0:
+    maior_palavra = max(palavras, key=len)
+    menor_palavra = min(palavras, key=len)
+    media_tamanho = sum(len(p) for p in palavras) / num_palavras
+    
+    print(f"\n📝 Palavras:")
+    print(f"   Maior: '{maior_palavra}' ({len(maior_palavra)} letras)")
+    print(f"   Menor: '{menor_palavra}' ({len(menor_palavra)} letras)")
+    print(f"   Média de tamanho: {media_tamanho:.1f} letras")
+    </div>
+
+    <h3>Exemplo Completo: Validador de Dados</h3>
+    <div class="code-block">
+print("=== VALIDADOR DE DADOS ===")
+print()
+
+def validar_nome(nome):
+    """Verifica se o nome é válido"""
+    nome = nome.strip()
+    if len(nome) < 2:
+        return False, "Nome muito curto"
+    if not nome.replace(" ", "").isalpha():
+        return False, "Nome deve conter apenas letras"
+    return True, "OK"
+
+def validar_email(email):
+    """Verifica se o email é válido (básico)"""
+    email = email.strip().lower()
+    if "@" not in email:
+        return False, "Falta @"
+    if "." not in email.split("@")[1]:
+        return False, "Domínio inválido"
+    if email.count("@") > 1:
+        return False, "Múltiplos @"
+    return True, "OK"
+
+def validar_cpf(cpf):
+    """Verifica formato do CPF"""
+    cpf = cpf.replace(".", "").replace("-", "")
+    if not cpf.isdigit():
+        return False, "CPF deve conter apenas números"
+    if len(cpf) != 11:
+        return False, "CPF deve ter 11 dígitos"
+    return True, "OK"
+
+def validar_telefone(tel):
+    """Verifica formato do telefone"""
+    tel = tel.replace("(", "").replace(")", "").replace("-", "").replace(" ", "")
+    if not tel.isdigit():
+        return False, "Telefone deve conter apenas números"
+    if len(tel) < 10 or len(tel) > 11:
+        return False, "Telefone deve ter 10 ou 11 dígitos"
+    return True, "OK"
+
+# Testar validações
+print("Digite seus dados para validação:")
+print()
+
+nome = input("Nome: ")
+valido, msg = validar_nome(nome)
+print(f"   → {'✅' if valido else '❌'} {msg}")
+
+email = input("Email: ")
+valido, msg = validar_email(email)
+print(f"   → {'✅' if valido else '❌'} {msg}")
+
+cpf = input("CPF: ")
+valido, msg = validar_cpf(cpf)
+print(f"   → {'✅' if valido else '❌'} {msg}")
+
+tel = input("Telefone: ")
+valido, msg = validar_telefone(tel)
+print(f"   → {'✅' if valido else '❌'} {msg}")
+    </div>
+
+    <h3>Exemplo Completo: Gerador de Senhas</h3>
+    <div class="code-block">
+import random
+import string
+
+print("=== GERADOR DE SENHAS ===")
+print()
+
+# Opções de caracteres
+maiusculas = string.ascii_uppercase   # ABCD...XYZ
+minusculas = string.ascii_lowercase   # abcd...xyz
+numeros = string.digits               # 0123456789
+especiais = "!@#$%&*"
+
+print("Configuração da senha:")
+tamanho = int(input("Tamanho (mínimo 6): "))
+if tamanho < 6:
+    tamanho = 6
+    print("Ajustado para tamanho mínimo: 6")
+
+usar_maiusculas = input("Incluir maiúsculas? (s/n): ").lower() == "s"
+usar_numeros = input("Incluir números? (s/n): ").lower() == "s"
+usar_especiais = input("Incluir especiais? (s/n): ").lower() == "s"
+
+# Montar conjunto de caracteres
+caracteres = minusculas
+if usar_maiusculas:
+    caracteres += maiusculas
+if usar_numeros:
+    caracteres += numeros
+if usar_especiais:
+    caracteres += especiais
+
+# Gerar senha
+senha = ""
+for _ in range(tamanho):
+    senha += random.choice(caracteres)
+
+print(f"\n🔐 Sua senha: {senha}")
+
+# Avaliar força
+forca = 0
+if len(senha) >= 8:
+    forca += 1
+if any(c.isupper() for c in senha):
+    forca += 1
+if any(c.isdigit() for c in senha):
+    forca += 1
+if any(c in especiais for c in senha):
+    forca += 1
+
+niveis = ["Fraca", "Razoável", "Boa", "Forte", "Muito Forte"]
+print(f"💪 Força: {niveis[forca]}")
+    </div>
+
+    <h3>Exemplo Completo: Cifra de César</h3>
+    <div class="code-block">
+print("=== CIFRA DE CÉSAR ===")
+print("Criptografia simples que desloca letras no alfabeto")
+print()
+
+def cifrar(texto, deslocamento):
+    """Cifra um texto usando deslocamento"""
+    resultado = ""
+    
+    for char in texto:
+        if char.isalpha():
+            # Determinar se é maiúscula ou minúscula
+            base = ord('A') if char.isupper() else ord('a')
+            # Calcular nova posição (0-25)
+            posicao = (ord(char) - base + deslocamento) % 26
+            # Converter de volta para letra
+            resultado += chr(base + posicao)
+        else:
+            # Manter caracteres não-alfabéticos
+            resultado += char
+    
+    return resultado
+
+def decifrar(texto, deslocamento):
+    """Decifra um texto (inverso do cifrar)"""
+    return cifrar(texto, -deslocamento)
+
+# Menu
+while True:
+    print("\n1. Cifrar mensagem")
+    print("2. Decifrar mensagem")
+    print("3. Sair")
+    
+    opcao = input("\nEscolha: ")
+    
+    if opcao == "1":
+        texto = input("Digite a mensagem: ")
+        desloc = int(input("Deslocamento (1-25): "))
+        resultado = cifrar(texto, desloc)
+        print(f"\n🔒 Cifrado: {resultado}")
+        
+    elif opcao == "2":
+        texto = input("Digite a mensagem cifrada: ")
+        desloc = int(input("Deslocamento usado: "))
+        resultado = decifrar(texto, desloc)
+        print(f"\n🔓 Decifrado: {resultado}")
+        
+    elif opcao == "3":
+        print("Até logo!")
+        break
+    else:
+        print("Opção inválida!")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 18:</strong></p>
+        <ul>
+            <li><strong>Strings são imutáveis:</strong> métodos retornam novas strings</li>
+            <li><strong>Índices:</strong> começam em 0, negativos contam do fim</li>
+            <li><strong>Fatiamento:</strong> <code>string[inicio:fim:passo]</code></li>
+            <li><strong>Transformação:</strong> upper(), lower(), strip(), replace()</li>
+            <li><strong>Busca:</strong> find(), index(), count(), in</li>
+            <li><strong>Verificação:</strong> isalpha(), isdigit(), isalnum()</li>
+            <li><strong>Dividir/Juntar:</strong> split() e join()</li>
+            <li><strong>Formatação:</strong> f-strings são o método moderno</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 18.1: Inverter String</h4>
+        <p>Leia uma palavra e mostre-a invertida.</p>
+        <p><strong>Conceitos aplicados:</strong> fatiamento</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol71')">Mostrar Solução</button>
+        <div class="solution-container" id="sol71">
+            <h5>💡 Solução do Exercício 18.1:</h5>
+            <div class="code-block">
+palavra = input("Digite uma palavra: ")
+
+invertida = palavra[::-1]
+
+print(f"Original: {palavra}")
+print(f"Invertida: {invertida}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.2: Palíndromo</h4>
+        <p>Verifique se uma palavra é um palíndromo (lê-se igual de trás para frente).</p>
+        <p><strong>Conceitos aplicados:</strong> fatiamento, lower()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol72')">Mostrar Solução</button>
+        <div class="solution-container" id="sol72">
+            <h5>💡 Solução do Exercício 18.2:</h5>
+            <div class="code-block">
+palavra = input("Digite uma palavra: ")
+
+# Remover espaços e converter para minúsculas
+limpa = palavra.replace(" ", "").lower()
+
+if limpa == limpa[::-1]:
+    print(f"'{palavra}' é um palíndromo! ✅")
+else:
+    print(f"'{palavra}' não é um palíndromo ❌")
+
+# Exemplos: ana, arara, ovo, radar, socorram me subi no onibus em marrocos
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.3: Contar Palavras</h4>
+        <p>Leia uma frase e conte quantas palavras ela possui.</p>
+        <p><strong>Conceitos aplicados:</strong> split(), len()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol73')">Mostrar Solução</button>
+        <div class="solution-container" id="sol73">
+            <h5>💡 Solução do Exercício 18.3:</h5>
+            <div class="code-block">
+frase = input("Digite uma frase: ")
+
+palavras = frase.split()
+quantidade = len(palavras)
+
+print(f"A frase tem {quantidade} palavra(s)")
+print(f"Palavras: {palavras}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.4: Primeira e Última Letra</h4>
+        <p>Para cada palavra de uma frase, mostre a primeira e última letra.</p>
+        <p><strong>Conceitos aplicados:</strong> split(), índices</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol74')">Mostrar Solução</button>
+        <div class="solution-container" id="sol74">
+            <h5>💡 Solução do Exercício 18.4:</h5>
+            <div class="code-block">
+frase = input("Digite uma frase: ")
+
+palavras = frase.split()
+
+print("\nPalavra -> Primeira | Última")
+print("-" * 30)
+
+for palavra in palavras:
+    primeira = palavra[0]
+    ultima = palavra[-1]
+    print(f"{palavra:12} -> {primeira:^8} | {ultima:^6}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.5: Substituir Vogais</h4>
+        <p>Substitua todas as vogais de um texto por asteriscos (*).</p>
+        <p><strong>Conceitos aplicados:</strong> replace() ou loop</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol75')">Mostrar Solução</button>
+        <div class="solution-container" id="sol75">
+            <h5>💡 Solução do Exercício 18.5:</h5>
+            <div class="code-block">
+texto = input("Digite um texto: ")
+
+# Forma 1: com replace()
+resultado = texto
+for vogal in "aeiouAEIOU":
+    resultado = resultado.replace(vogal, "*")
+
+print(f"Original: {texto}")
+print(f"Modificado: {resultado}")
+
+# Forma 2: com loop e join
+resultado2 = "".join("*" if c.lower() in "aeiou" else c for c in texto)
+print(f"Modificado: {resultado2}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.6: Formatar Nome</h4>
+        <p>Receba um nome completo e formate como "SOBRENOME, Nome".</p>
+        <p><strong>Conceitos aplicados:</strong> split(), upper(), title()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol76')">Mostrar Solução</button>
+        <div class="solution-container" id="sol76">
+            <h5>💡 Solução do Exercício 18.6:</h5>
+            <div class="code-block">
+nome_completo = input("Digite seu nome completo: ")
+
+partes = nome_completo.split()
+
+if len(partes) >= 2:
+    primeiro_nome = partes[0].title()
+    sobrenome = partes[-1].upper()
+    
+    formatado = f"{sobrenome}, {primeiro_nome}"
+    print(f"Formatado: {formatado}")
+else:
+    print("Por favor, digite nome e sobrenome")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.7: Siglas</h4>
+        <p>Crie uma sigla a partir de um nome composto (ex: "Instituto Federal" → "IF").</p>
+        <p><strong>Conceitos aplicados:</strong> split(), índices, join()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol77')">Mostrar Solução</button>
+        <div class="solution-container" id="sol77">
+            <h5>💡 Solução do Exercício 18.7:</h5>
+            <div class="code-block">
+nome = input("Digite o nome: ")
+
+palavras = nome.split()
+
+# Pegar primeira letra de cada palavra
+sigla = ""
+for palavra in palavras:
+    sigla += palavra[0].upper()
+
+print(f"Nome: {nome}")
+print(f"Sigla: {sigla}")
+
+# Forma pythonica
+sigla = "".join(p[0].upper() for p in palavras)
+print(f"Sigla: {sigla}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 18.8: Censurar Palavra</h4>
+        <p>Substitua uma palavra específica em um texto por asteriscos.</p>
+        <p><strong>Conceitos aplicados:</strong> replace(), len()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol78')">Mostrar Solução</button>
+        <div class="solution-container" id="sol78">
+            <h5>💡 Solução do Exercício 18.8:</h5>
+            <div class="code-block">
+texto = input("Digite o texto: ")
+palavra_censurar = input("Palavra a censurar: ")
+
+# Criar substituição com asteriscos do mesmo tamanho
+censura = "*" * len(palavra_censurar)
+
+# Substituir (ignorando maiúsculas/minúsculas)
+# Forma simples:
+resultado = texto.replace(palavra_censurar, censura)
+
+print(f"\nOriginal: {texto}")
+print(f"Censurado: {resultado}")
+
+# Para ignorar case, seria mais complexo:
+import re
+resultado_case = re.sub(palavra_censurar, censura, texto, flags=re.IGNORECASE)
+print(f"Censurado (case-insensitive): {resultado_case}")
+            </div>
+        </div>
+    </div>
+
+</section>
         </main>
         
 
