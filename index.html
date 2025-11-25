@@ -1285,6 +1285,13 @@
                         <p>Manipulação avançada de textos em Python</p>
                     </a>
                 </div>
+
+                <div class="index-item">
+                    <a href="#aula19">
+                        <h3>🔧 Aula 19: Funções</h3>
+                        <p>Criando blocos de código reutilizáveis</p>
+                    </a>
+                </div>
                 
             </div>
         </section>
@@ -10709,6 +10716,924 @@ print(f"Censurado: {resultado}")
 import re
 resultado_case = re.sub(palavra_censurar, censura, texto, flags=re.IGNORECASE)
 print(f"Censurado (case-insensitive): {resultado_case}")
+            </div>
+        </div>
+    </div>
+
+</section>
+
+        <!-- Aula 19: Funções em Python -->
+<section id="aula19">
+    <h2>Aula 19: Funções em Python</h2>
+    
+    <h3>O que são Funções?</h3>
+    <p>Funções são <strong>blocos de código reutilizáveis</strong> que executam uma tarefa específica. Pense nelas como "mini-programas" dentro do seu programa principal.</p>
+    
+    <p><strong>Analogia:</strong> Imagine uma receita de bolo. Você escreve a receita uma vez e pode usá-la sempre que quiser fazer o bolo. A função é a receita — você define uma vez e usa quantas vezes precisar.</p>
+    
+    <div class="highlight">
+        <p><strong>🎯 Por que usar funções?</strong></p>
+        <ul>
+            <li><strong>Reutilização:</strong> Escreva uma vez, use várias vezes</li>
+            <li><strong>Organização:</strong> Divida problemas grandes em partes menores</li>
+            <li><strong>Manutenção:</strong> Corrija em um lugar, funciona em todos</li>
+            <li><strong>Clareza:</strong> Código mais fácil de ler e entender</li>
+        </ul>
+    </div>
+
+    <h3>Já Usamos Funções!</h3>
+    <p>Você já conhece várias funções prontas do Python:</p>
+    
+    <div class="code-block">
+# Funções que já usamos
+print("Olá")           # Exibe na tela
+nome = input("Nome: ") # Lê do teclado
+tamanho = len("Python") # Retorna tamanho
+numero = int("42")      # Converte para inteiro
+soma = sum([1, 2, 3])   # Soma elementos
+maior = max(5, 8, 3)    # Retorna o maior
+    </div>
+    
+    <p>Agora vamos aprender a <strong>criar nossas próprias funções</strong>!</p>
+
+    <h3>Criando Funções: Sintaxe Básica</h3>
+    
+    <div class="code-block">
+def nome_da_funcao():
+    # código da função
+    # (indentado com 4 espaços)
+    pass
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🔑 Estrutura de uma função:</strong></p>
+        <ul>
+            <li><code>def</code> — palavra-chave que define uma função</li>
+            <li><code>nome_da_funcao</code> — nome que você escolhe (snake_case)</li>
+            <li><code>()</code> — parênteses (podem conter parâmetros)</li>
+            <li><code>:</code> — dois pontos obrigatórios</li>
+            <li><code>código indentado</code> — o corpo da função</li>
+        </ul>
+    </div>
+
+    <h3>Função Simples (sem parâmetros)</h3>
+    
+    <div class="code-block">
+# Definindo a função
+def saudacao():
+    print("Olá! Bem-vindo ao Python!")
+    print("Vamos programar!")
+
+# Chamando a função
+saudacao()   # Executa o código da função
+saudacao()   # Pode chamar quantas vezes quiser
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Olá! Bem-vindo ao Python!
+Vamos programar!
+Olá! Bem-vindo ao Python!
+Vamos programar!
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Importante:</strong></p>
+        <p>Definir uma função <strong>não executa</strong> o código dela. A função só roda quando você a <strong>chama</strong> pelo nome seguido de parênteses: <code>nome_funcao()</code></p>
+    </div>
+
+    <h3>Função com Parâmetros</h3>
+    <p>Parâmetros são valores que a função recebe para trabalhar.</p>
+    
+    <div class="code-block">
+# Função com um parâmetro
+def saudacao_pessoal(nome):
+    print(f"Olá, {nome}! Seja bem-vindo!")
+
+# Chamando com diferentes argumentos
+saudacao_pessoal("Maria")   # Olá, Maria! Seja bem-vindo!
+saudacao_pessoal("João")    # Olá, João! Seja bem-vindo!
+saudacao_pessoal("Ana")     # Olá, Ana! Seja bem-vindo!
+    </div>
+    
+    <h4>Múltiplos parâmetros:</h4>
+    <div class="code-block">
+def apresentar(nome, idade, cidade):
+    print(f"Nome: {nome}")
+    print(f"Idade: {idade} anos")
+    print(f"Cidade: {cidade}")
+    print("-" * 20)
+
+apresentar("Maria", 25, "Natal")
+apresentar("João", 30, "Recife")
+    </div>
+    
+    <div class="highlight">
+        <p><strong>📝 Parâmetro vs Argumento:</strong></p>
+        <ul>
+            <li><strong>Parâmetro:</strong> variável na definição da função</li>
+            <li><strong>Argumento:</strong> valor passado na chamada da função</li>
+        </ul>
+        <div class="code-block">
+def somar(a, b):    # a e b são PARÂMETROS
+    print(a + b)
+
+somar(5, 3)         # 5 e 3 são ARGUMENTOS
+        </div>
+    </div>
+
+    <h3>Função com Retorno (return)</h3>
+    <p>Funções podem <strong>devolver um valor</strong> usando <code>return</code>.</p>
+    
+    <div class="code-block">
+def somar(a, b):
+    resultado = a + b
+    return resultado   # Devolve o valor
+
+# Usando o valor retornado
+soma = somar(5, 3)
+print(soma)            # 8
+
+# Pode usar direto
+print(somar(10, 20))   # 30
+
+# Pode usar em expressões
+total = somar(5, 3) + somar(2, 7)
+print(total)           # 17
+    </div>
+    
+    <h4>Diferença: print vs return</h4>
+    <div class="code-block">
+# Com print: apenas exibe, não retorna nada
+def dobro_print(n):
+    print(n * 2)
+
+resultado1 = dobro_print(5)   # Exibe: 10
+print(resultado1)              # None (não retornou nada!)
+
+# Com return: retorna o valor para uso posterior
+def dobro_return(n):
+    return n * 2
+
+resultado2 = dobro_return(5)   # Não exibe nada
+print(resultado2)              # 10 (usou o valor retornado)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Quando usar print vs return?</strong></p>
+        <ul>
+            <li><code>print</code>: quando quer apenas EXIBIR algo na tela</li>
+            <li><code>return</code>: quando precisa USAR o resultado em outra parte do código</li>
+        </ul>
+        <p>Na maioria dos casos, <code>return</code> é mais útil!</p>
+    </div>
+
+    <h3>Retornando Múltiplos Valores</h3>
+    <div class="code-block">
+def operacoes(a, b):
+    soma = a + b
+    diferenca = a - b
+    produto = a * b
+    quociente = a / b
+    return soma, diferenca, produto, quociente
+
+# Recebendo todos os valores
+s, d, p, q = operacoes(10, 3)
+print(f"Soma: {s}")        # 13
+print(f"Diferença: {d}")   # 7
+print(f"Produto: {p}")     # 30
+print(f"Quociente: {q}")   # 3.333...
+
+# Ou como tupla
+resultados = operacoes(10, 3)
+print(resultados)   # (13, 7, 30, 3.333...)
+    </div>
+
+    <h3>Parâmetros com Valores Padrão</h3>
+    <p>Você pode definir valores padrão para parâmetros. Se não forem passados, usam o padrão.</p>
+    
+    <div class="code-block">
+def saudacao(nome, saudacao="Olá"):
+    print(f"{saudacao}, {nome}!")
+
+saudacao("Maria")                # Olá, Maria!
+saudacao("João", "Bom dia")      # Bom dia, João!
+saudacao("Ana", "Oi")            # Oi, Ana!
+    </div>
+    
+    <h4>Mais exemplos:</h4>
+    <div class="code-block">
+def calcular_preco(valor, desconto=0, taxa=0):
+    preco_final = valor - (valor * desconto / 100) + taxa
+    return preco_final
+
+print(calcular_preco(100))              # 100 (sem desconto, sem taxa)
+print(calcular_preco(100, 10))          # 90 (10% desconto)
+print(calcular_preco(100, 10, 5))       # 95 (10% desconto + R$5 taxa)
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Regra importante:</strong></p>
+        <p>Parâmetros com valor padrão devem vir <strong>depois</strong> dos parâmetros obrigatórios:</p>
+        <div class="code-block">
+# ✅ Correto
+def funcao(obrigatorio, opcional=10):
+    pass
+
+# ❌ Errado (dará erro)
+def funcao(opcional=10, obrigatorio):
+    pass
+        </div>
+    </div>
+
+    <h3>Argumentos Nomeados</h3>
+    <p>Você pode passar argumentos pelo nome, independente da ordem:</p>
+    
+    <div class="code-block">
+def ficha(nome, idade, cidade):
+    print(f"Nome: {nome}, Idade: {idade}, Cidade: {cidade}")
+
+# Por posição (ordem importa)
+ficha("Maria", 25, "Natal")
+
+# Por nome (ordem não importa)
+ficha(cidade="Recife", nome="João", idade=30)
+
+# Misturando (posicionais primeiro!)
+ficha("Ana", cidade="Fortaleza", idade=28)
+    </div>
+
+    <h3>Comparando: Portugol vs Python</h3>
+    
+    <h4>Exemplo: Função que calcula área do retângulo</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "area_retangulo"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;base, altura, area: real
+
+funcao calculaArea(b, a: real): real
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;retorne b * a
+fimfuncao
+
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Base: ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(base)
+&nbsp;&nbsp;&nbsp;&nbsp;escreva("Altura: ")
+&nbsp;&nbsp;&nbsp;&nbsp;leia(altura)
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;area <- calculaArea(base, altura)
+&nbsp;&nbsp;&nbsp;&nbsp;escreval("Área: ", area)
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+def calcula_area(base, altura):
+    return base * altura
+
+base = float(input("Base: "))
+altura = float(input("Altura: "))
+
+area = calcula_area(base, altura)
+print(f"Área: {area}")
+    </div>
+    
+    <div class="highlight">
+        <p><strong>🔑 Diferenças principais:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Aspecto</th>
+                <th>Portugol</th>
+                <th>Python</th>
+            </tr>
+            <tr>
+                <td>Palavra-chave</td>
+                <td><code>funcao</code></td>
+                <td><code>def</code></td>
+            </tr>
+            <tr>
+                <td>Tipo de retorno</td>
+                <td>Declarar após <code>:</code></td>
+                <td>Não precisa declarar</td>
+            </tr>
+            <tr>
+                <td>Tipo parâmetros</td>
+                <td>Declarar tipo</td>
+                <td>Não precisa declarar</td>
+            </tr>
+            <tr>
+                <td>Retorno</td>
+                <td><code>retorne</code></td>
+                <td><code>return</code></td>
+            </tr>
+            <tr>
+                <td>Fim da função</td>
+                <td><code>fimfuncao</code></td>
+                <td>Apenas indentação</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Funções sem Return (Procedimentos)</h3>
+    <p>Funções que não retornam valor são chamadas de <strong>procedimentos</strong>. Elas fazem algo, mas não devolvem resultado.</p>
+    
+    <div class="code-block">
+def exibir_linha(caractere="-", tamanho=40):
+    """Exibe uma linha decorativa"""
+    print(caractere * tamanho)
+
+def exibir_titulo(texto):
+    """Exibe um título formatado"""
+    exibir_linha("=")
+    print(texto.center(40))
+    exibir_linha("=")
+
+# Usando
+exibir_titulo("SISTEMA DE VENDAS")
+print("1. Nova venda")
+print("2. Consultar")
+exibir_linha()
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+========================================
+           SISTEMA DE VENDAS            
+========================================
+1. Nova venda
+2. Consultar
+----------------------------------------
+    </div>
+
+    <h3>Docstrings (Documentação)</h3>
+    <p>Use strings de 3 aspas logo após o <code>def</code> para documentar sua função:</p>
+    
+    <div class="code-block">
+def calcular_imc(peso, altura):
+    """
+    Calcula o Índice de Massa Corporal (IMC).
+    
+    Parâmetros:
+        peso (float): Peso em kg
+        altura (float): Altura em metros
+    
+    Retorna:
+        float: Valor do IMC
+    """
+    return peso / (altura ** 2)
+
+# Ver a documentação
+print(calcular_imc.__doc__)
+
+# Ou usar help()
+help(calcular_imc)
+    </div>
+
+    <h3>Funções Chamando Funções</h3>
+    <p>Funções podem chamar outras funções, criando código modular:</p>
+    
+    <div class="code-block">
+def calcular_imc(peso, altura):
+    """Calcula o IMC"""
+    return peso / (altura ** 2)
+
+def classificar_imc(imc):
+    """Classifica o IMC"""
+    if imc < 18.5:
+        return "Abaixo do peso"
+    elif imc < 25:
+        return "Peso normal"
+    elif imc < 30:
+        return "Sobrepeso"
+    else:
+        return "Obesidade"
+
+def avaliar_saude(peso, altura):
+    """Avalia saúde baseado no peso e altura"""
+    imc = calcular_imc(peso, altura)
+    classificacao = classificar_imc(imc)
+    return imc, classificacao
+
+# Usando
+peso = float(input("Peso (kg): "))
+altura = float(input("Altura (m): "))
+
+imc, classe = avaliar_saude(peso, altura)
+print(f"IMC: {imc:.2f}")
+print(f"Classificação: {classe}")
+    </div>
+
+    <h3>O Comando return Encerra a Função</h3>
+    <div class="code-block">
+def verificar_idade(idade):
+    if idade < 0:
+        return "Idade inválida"   # Sai da função aqui
+    
+    if idade < 18:
+        return "Menor de idade"
+    else:
+        return "Maior de idade"
+    
+    print("Esta linha NUNCA executa!")  # Código morto
+
+resultado = verificar_idade(25)
+print(resultado)   # Maior de idade
+    </div>
+
+    <h3>Funções com Listas</h3>
+    <div class="code-block">
+def calcular_media(notas):
+    """Calcula a média de uma lista de notas"""
+    if len(notas) == 0:
+        return 0
+    return sum(notas) / len(notas)
+
+def maior_nota(notas):
+    """Retorna a maior nota"""
+    return max(notas)
+
+def menor_nota(notas):
+    """Retorna a menor nota"""
+    return min(notas)
+
+def estatisticas(notas):
+    """Retorna várias estatísticas"""
+    return {
+        "media": calcular_media(notas),
+        "maior": maior_nota(notas),
+        "menor": menor_nota(notas),
+        "quantidade": len(notas)
+    }
+
+# Usando
+notas_turma = [7.5, 8.0, 6.5, 9.0, 7.0, 8.5]
+
+print(f"Média: {calcular_media(notas_turma):.2f}")
+print(f"Maior: {maior_nota(notas_turma)}")
+print(f"Menor: {menor_nota(notas_turma)}")
+
+stats = estatisticas(notas_turma)
+print(stats)
+    </div>
+
+    <h3>Exemplo Completo: Calculadora com Funções</h3>
+    <div class="code-block">
+def somar(a, b):
+    return a + b
+
+def subtrair(a, b):
+    return a - b
+
+def multiplicar(a, b):
+    return a * b
+
+def dividir(a, b):
+    if b == 0:
+        return "Erro: divisão por zero!"
+    return a / b
+
+def potencia(a, b):
+    return a ** b
+
+def raiz_quadrada(n):
+    if n < 0:
+        return "Erro: número negativo!"
+    return n ** 0.5
+
+def exibir_menu():
+    print("\n=== CALCULADORA ===")
+    print("1. Somar")
+    print("2. Subtrair")
+    print("3. Multiplicar")
+    print("4. Dividir")
+    print("5. Potência")
+    print("6. Raiz Quadrada")
+    print("0. Sair")
+    print("=" * 20)
+
+def obter_dois_numeros():
+    a = float(input("Primeiro número: "))
+    b = float(input("Segundo número: "))
+    return a, b
+
+def obter_um_numero():
+    return float(input("Digite o número: "))
+
+# Programa principal
+while True:
+    exibir_menu()
+    opcao = input("Escolha: ")
+    
+    if opcao == "0":
+        print("Até logo!")
+        break
+    
+    elif opcao == "1":
+        a, b = obter_dois_numeros()
+        print(f"Resultado: {somar(a, b)}")
+    
+    elif opcao == "2":
+        a, b = obter_dois_numeros()
+        print(f"Resultado: {subtrair(a, b)}")
+    
+    elif opcao == "3":
+        a, b = obter_dois_numeros()
+        print(f"Resultado: {multiplicar(a, b)}")
+    
+    elif opcao == "4":
+        a, b = obter_dois_numeros()
+        print(f"Resultado: {dividir(a, b)}")
+    
+    elif opcao == "5":
+        a, b = obter_dois_numeros()
+        print(f"Resultado: {potencia(a, b)}")
+    
+    elif opcao == "6":
+        n = obter_um_numero()
+        print(f"Resultado: {raiz_quadrada(n)}")
+    
+    else:
+        print("Opção inválida!")
+    </div>
+
+    <h3>Exemplo Completo: Sistema de Notas</h3>
+    <div class="code-block">
+def ler_notas(quantidade):
+    """Lê uma quantidade de notas do usuário"""
+    notas = []
+    for i in range(quantidade):
+        while True:
+            try:
+                nota = float(input(f"Nota {i + 1}: "))
+                if 0 <= nota <= 10:
+                    notas.append(nota)
+                    break
+                else:
+                    print("Nota deve ser entre 0 e 10!")
+            except ValueError:
+                print("Digite um número válido!")
+    return notas
+
+def calcular_media(notas):
+    """Calcula a média das notas"""
+    if not notas:
+        return 0
+    return sum(notas) / len(notas)
+
+def determinar_situacao(media):
+    """Determina aprovação ou reprovação"""
+    if media >= 7:
+        return "APROVADO"
+    elif media >= 5:
+        return "RECUPERAÇÃO"
+    else:
+        return "REPROVADO"
+
+def exibir_resultado(nome, notas, media, situacao):
+    """Exibe o boletim formatado"""
+    print("\n" + "=" * 40)
+    print("BOLETIM DO ALUNO".center(40))
+    print("=" * 40)
+    print(f"Nome: {nome}")
+    print(f"Notas: {notas}")
+    print(f"Média: {media:.2f}")
+    print(f"Situação: {situacao}")
+    print("=" * 40)
+
+# Programa principal
+print("=== SISTEMA DE NOTAS ===\n")
+
+nome = input("Nome do aluno: ")
+qtd = int(input("Quantas notas? "))
+
+notas = ler_notas(qtd)
+media = calcular_media(notas)
+situacao = determinar_situacao(media)
+
+exibir_resultado(nome, notas, media, situacao)
+    </div>
+
+    <h3>Exemplo Completo: Validações</h3>
+    <div class="code-block">
+def validar_cpf(cpf):
+    """Valida formato básico do CPF"""
+    cpf = cpf.replace(".", "").replace("-", "")
+    
+    if len(cpf) != 11:
+        return False, "CPF deve ter 11 dígitos"
+    
+    if not cpf.isdigit():
+        return False, "CPF deve conter apenas números"
+    
+    if cpf == cpf[0] * 11:
+        return False, "CPF inválido (todos dígitos iguais)"
+    
+    return True, "CPF válido"
+
+def validar_email(email):
+    """Valida formato básico do email"""
+    if "@" not in email:
+        return False, "Email deve conter @"
+    
+    partes = email.split("@")
+    if len(partes) != 2:
+        return False, "Email com formato inválido"
+    
+    usuario, dominio = partes
+    if len(usuario) == 0:
+        return False, "Usuário do email vazio"
+    
+    if "." not in dominio:
+        return False, "Domínio inválido"
+    
+    return True, "Email válido"
+
+def validar_idade(idade):
+    """Valida se idade é válida"""
+    try:
+        idade = int(idade)
+        if idade < 0:
+            return False, "Idade não pode ser negativa"
+        if idade > 150:
+            return False, "Idade improvável"
+        return True, "Idade válida"
+    except ValueError:
+        return False, "Idade deve ser um número"
+
+# Testando
+print("=== VALIDADOR ===\n")
+
+cpf = input("CPF: ")
+valido, msg = validar_cpf(cpf)
+print(f"  {'✅' if valido else '❌'} {msg}")
+
+email = input("Email: ")
+valido, msg = validar_email(email)
+print(f"  {'✅' if valido else '❌'} {msg}")
+
+idade = input("Idade: ")
+valido, msg = validar_idade(idade)
+print(f"  {'✅' if valido else '❌'} {msg}")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 19:</strong></p>
+        <ul>
+            <li><strong>Definir:</strong> <code>def nome_funcao(parametros):</code></li>
+            <li><strong>Chamar:</strong> <code>nome_funcao(argumentos)</code></li>
+            <li><strong>Retornar:</strong> <code>return valor</code></li>
+            <li><strong>Parâmetros padrão:</strong> <code>def func(x, y=10):</code></li>
+            <li><strong>Múltiplos retornos:</strong> <code>return a, b, c</code></li>
+            <li><strong>Documentar:</strong> use docstrings com """texto"""</li>
+            <li><strong>return vs print:</strong> return para usar valor, print para exibir</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 19.1: Função de Saudação</h4>
+        <p>Crie uma função que receba um nome e retorne uma saudação personalizada.</p>
+        <p><strong>Conceitos aplicados:</strong> parâmetro, return</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol79')">Mostrar Solução</button>
+        <div class="solution-container" id="sol79">
+            <h5>💡 Solução do Exercício 19.1:</h5>
+            <div class="code-block">
+def saudar(nome):
+    """Retorna uma saudação personalizada"""
+    return f"Olá, {nome}! Seja bem-vindo!"
+
+# Testando
+nome = input("Seu nome: ")
+mensagem = saudar(nome)
+print(mensagem)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.2: Área do Círculo</h4>
+        <p>Crie uma função que calcule a área de um círculo dado o raio.</p>
+        <p><strong>Conceitos aplicados:</strong> parâmetro, cálculo, return</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol80')">Mostrar Solução</button>
+        <div class="solution-container" id="sol80">
+            <h5>💡 Solução do Exercício 19.2:</h5>
+            <div class="code-block">
+import math
+
+def area_circulo(raio):
+    """Calcula a área de um círculo"""
+    return math.pi * raio ** 2
+
+# Testando
+raio = float(input("Raio do círculo: "))
+area = area_circulo(raio)
+print(f"Área: {area:.2f}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.3: Par ou Ímpar</h4>
+        <p>Crie uma função que retorne True se um número for par, False se for ímpar.</p>
+        <p><strong>Conceitos aplicados:</strong> return booleano</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol81')">Mostrar Solução</button>
+        <div class="solution-container" id="sol81">
+            <h5>💡 Solução do Exercício 19.3:</h5>
+            <div class="code-block">
+def eh_par(numero):
+    """Verifica se um número é par"""
+    return numero % 2 == 0
+
+# Testando
+num = int(input("Digite um número: "))
+
+if eh_par(num):
+    print(f"{num} é PAR")
+else:
+    print(f"{num} é ÍMPAR")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.4: Maior de Três</h4>
+        <p>Crie uma função que receba três números e retorne o maior deles.</p>
+        <p><strong>Conceitos aplicados:</strong> múltiplos parâmetros, comparação</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol82')">Mostrar Solução</button>
+        <div class="solution-container" id="sol82">
+            <h5>💡 Solução do Exercício 19.4:</h5>
+            <div class="code-block">
+def maior_de_tres(a, b, c):
+    """Retorna o maior entre três números"""
+    if a >= b and a >= c:
+        return a
+    elif b >= a and b >= c:
+        return b
+    else:
+        return c
+
+# Forma mais simples
+def maior_de_tres_v2(a, b, c):
+    return max(a, b, c)
+
+# Testando
+n1 = float(input("Primeiro número: "))
+n2 = float(input("Segundo número: "))
+n3 = float(input("Terceiro número: "))
+
+maior = maior_de_tres(n1, n2, n3)
+print(f"O maior é: {maior}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.5: Fatorial</h4>
+        <p>Crie uma função que calcule o fatorial de um número.</p>
+        <p><strong>Conceitos aplicados:</strong> loop, acumulador, return</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol83')">Mostrar Solução</button>
+        <div class="solution-container" id="sol83">
+            <h5>💡 Solução do Exercício 19.5:</h5>
+            <div class="code-block">
+def fatorial(n):
+    """Calcula o fatorial de n"""
+    if n < 0:
+        return None  # Fatorial não existe para negativos
+    
+    resultado = 1
+    for i in range(1, n + 1):
+        resultado *= i
+    return resultado
+
+# Testando
+num = int(input("Digite um número: "))
+fat = fatorial(num)
+
+if fat is None:
+    print("Fatorial não existe para números negativos!")
+else:
+    print(f"{num}! = {fat}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.6: Conversor de Temperatura</h4>
+        <p>Crie funções para converter Celsius para Fahrenheit e vice-versa.</p>
+        <p><strong>Conceitos aplicados:</strong> múltiplas funções, fórmulas</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol84')">Mostrar Solução</button>
+        <div class="solution-container" id="sol84">
+            <h5>💡 Solução do Exercício 19.6:</h5>
+            <div class="code-block">
+def celsius_para_fahrenheit(c):
+    """Converte Celsius para Fahrenheit"""
+    return (c * 9/5) + 32
+
+def fahrenheit_para_celsius(f):
+    """Converte Fahrenheit para Celsius"""
+    return (f - 32) * 5/9
+
+# Menu
+print("=== CONVERSOR DE TEMPERATURA ===")
+print("1. Celsius → Fahrenheit")
+print("2. Fahrenheit → Celsius")
+
+opcao = input("Escolha: ")
+
+if opcao == "1":
+    c = float(input("Temperatura em Celsius: "))
+    f = celsius_para_fahrenheit(c)
+    print(f"{c}°C = {f:.2f}°F")
+
+elif opcao == "2":
+    f = float(input("Temperatura em Fahrenheit: "))
+    c = fahrenheit_para_celsius(f)
+    print(f"{f}°F = {c:.2f}°C")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.7: Estatísticas de Lista</h4>
+        <p>Crie uma função que receba uma lista e retorne média, maior e menor valor.</p>
+        <p><strong>Conceitos aplicados:</strong> lista como parâmetro, múltiplos retornos</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol85')">Mostrar Solução</button>
+        <div class="solution-container" id="sol85">
+            <h5>💡 Solução do Exercício 19.7:</h5>
+            <div class="code-block">
+def estatisticas(lista):
+    """Retorna média, maior e menor de uma lista"""
+    if not lista:
+        return 0, 0, 0
+    
+    media = sum(lista) / len(lista)
+    maior = max(lista)
+    menor = min(lista)
+    
+    return media, maior, menor
+
+# Testando
+numeros = [15, 8, 23, 4, 16, 42, 7]
+
+media, maior, menor = estatisticas(numeros)
+
+print(f"Lista: {numeros}")
+print(f"Média: {media:.2f}")
+print(f"Maior: {maior}")
+print(f"Menor: {menor}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 19.8: Validar Triângulo</h4>
+        <p>Crie uma função que verifique se três lados formam um triângulo válido.</p>
+        <p><strong>Conceitos aplicados:</strong> validação, return booleano</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol86')">Mostrar Solução</button>
+        <div class="solution-container" id="sol86">
+            <h5>💡 Solução do Exercício 19.8:</h5>
+            <div class="code-block">
+def eh_triangulo(a, b, c):
+    """Verifica se três lados formam um triângulo"""
+    # Condição: cada lado deve ser menor que a soma dos outros dois
+    if a < b + c and b < a + c and c < a + b:
+        return True
+    return False
+
+def tipo_triangulo(a, b, c):
+    """Determina o tipo de triângulo"""
+    if not eh_triangulo(a, b, c):
+        return "Não é triângulo"
+    
+    if a == b == c:
+        return "Equilátero"
+    elif a == b or b == c or a == c:
+        return "Isósceles"
+    else:
+        return "Escaleno"
+
+# Testando
+print("Digite os três lados:")
+l1 = float(input("Lado 1: "))
+l2 = float(input("Lado 2: "))
+l3 = float(input("Lado 3: "))
+
+if eh_triangulo(l1, l2, l3):
+    print(f"✅ Forma um triângulo {tipo_triangulo(l1, l2, l3)}")
+else:
+    print("❌ Não forma um triângulo")
             </div>
         </div>
     </div>
