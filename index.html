@@ -1299,7 +1299,13 @@
                         <p>Lendo e gravando dados em arquivos de texto</p>
                     </a>
                 </div>
-                
+
+                <div class="index-item">
+                    <a href="#aula21">
+                        <h3>🎓 Aula 21: Projeto Final</h3>
+                        <p>Sistema completo integrando todos os conceitos</p>
+                    </a>
+                </div>
             </div>
         </section>
 
@@ -12518,6 +12524,879 @@ except FileNotFoundError:
 
 </section>
 
+<!-- Aula 20: Arquivos em Python -->
+<section id="aula20">
+    <h2>Aula 20: Arquivos em Python</h2>
+    
+    <h3>Por que usar Arquivos?</h3>
+    <p>Até agora, todos os dados que usamos nos programas <strong>desapareciam</strong> quando o programa terminava. Com arquivos, podemos:</p>
+    
+    <ul>
+        <li><strong>Salvar dados permanentemente</strong> (persistência)</li>
+        <li><strong>Ler dados externos</strong> (configurações, listas, etc.)</li>
+        <li><strong>Compartilhar informações</strong> entre programas</li>
+        <li><strong>Processar grandes volumes</strong> de dados</li>
+    </ul>
+    
+    <p><strong>Analogia:</strong> Imagine que as variáveis são como anotações em um quadro branco — quando você apaga, somem. Arquivos são como um caderno — o que você escreve fica guardado.</p>
+
+    <div class="highlight">
+        <p><strong>📝 Tipos de arquivos:</strong></p>
+        <ul>
+            <li><strong>Arquivos de texto (.txt, .csv, .html):</strong> Contêm texto legível por humanos</li>
+            <li><strong>Arquivos binários (.jpg, .exe, .pdf):</strong> Contêm dados em formato binário</li>
+        </ul>
+        <p>Nesta aula, focaremos em <strong>arquivos de texto</strong>.</p>
+    </div>
+
+    <h3>Abrindo Arquivos: a função open()</h3>
+    <p>Para trabalhar com arquivos, usamos a função <code>open()</code>:</p>
+    
+    <div class="code-block">
+arquivo = open("nome_do_arquivo.txt", "modo")
+    </div>
+    
+    <h4>Modos de abertura:</h4>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin: 20px 0; width: 100%;">
+        <tr style="background-color: #3498db; color: white;">
+            <th>Modo</th>
+            <th>Descrição</th>
+            <th>Se o arquivo não existe</th>
+        </tr>
+        <tr>
+            <td><code>"r"</code></td>
+            <td>Leitura (read) — padrão</td>
+            <td>Erro!</td>
+        </tr>
+        <tr>
+            <td><code>"w"</code></td>
+            <td>Escrita (write) — apaga conteúdo anterior</td>
+            <td>Cria novo arquivo</td>
+        </tr>
+        <tr>
+            <td><code>"a"</code></td>
+            <td>Acrescentar (append) — adiciona no final</td>
+            <td>Cria novo arquivo</td>
+        </tr>
+        <tr>
+            <td><code>"r+"</code></td>
+            <td>Leitura e escrita</td>
+            <td>Erro!</td>
+        </tr>
+    </table>
+
+    <h3>Fechando Arquivos: close()</h3>
+    <p>Sempre feche o arquivo após usar para liberar recursos:</p>
+    
+    <div class="code-block">
+arquivo = open("dados.txt", "r")
+# ... trabalhar com o arquivo ...
+arquivo.close()   # Sempre fechar!
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Problema:</strong> Se ocorrer um erro antes do <code>close()</code>, o arquivo fica aberto!</p>
+        <p><strong>✅ Solução:</strong> Usar o <code>with</code> (veremos adiante)</p>
+    </div>
+
+    <h3>Escrevendo em Arquivos</h3>
+    
+    <h4>Modo "w" (write) — Sobrescreve tudo:</h4>
+    <div class="code-block">
+# Criar/sobrescrever arquivo
+arquivo = open("mensagem.txt", "w")
+arquivo.write("Olá, mundo!\n")
+arquivo.write("Este é meu primeiro arquivo.\n")
+arquivo.write("Python é incrível!")
+arquivo.close()
+
+print("Arquivo criado com sucesso!")
+    </div>
+    
+    <p><strong>👉 Conteúdo do arquivo mensagem.txt:</strong></p>
+    <div class="code-block">
+Olá, mundo!
+Este é meu primeiro arquivo.
+Python é incrível!
+    </div>
+    
+    <div class="highlight">
+        <p><strong>💡 Observações importantes:</strong></p>
+        <ul>
+            <li><code>\n</code> — quebra de linha (Enter)</li>
+            <li>Modo <code>"w"</code> APAGA todo o conteúdo anterior!</li>
+            <li>Se o arquivo não existe, ele é criado</li>
+        </ul>
+    </div>
+
+    <h4>Modo "a" (append) — Adiciona no final:</h4>
+    <div class="code-block">
+# Adicionar ao arquivo existente
+arquivo = open("mensagem.txt", "a")
+arquivo.write("\nNova linha adicionada!")
+arquivo.write("\nMais uma linha.")
+arquivo.close()
+
+print("Conteúdo adicionado!")
+    </div>
+    
+    <p><strong>👉 Agora o arquivo tem:</strong></p>
+    <div class="code-block">
+Olá, mundo!
+Este é meu primeiro arquivo.
+Python é incrível!
+Nova linha adicionada!
+Mais uma linha.
+    </div>
+
+    <h4>Escrevendo várias linhas de uma vez:</h4>
+    <div class="code-block">
+linhas = [
+    "Primeira linha\n",
+    "Segunda linha\n",
+    "Terceira linha\n"
+]
+
+arquivo = open("varias_linhas.txt", "w")
+arquivo.writelines(linhas)   # Escreve lista de strings
+arquivo.close()
+    </div>
+
+    <h3>Lendo Arquivos</h3>
+    
+    <h4>read() — Lê tudo de uma vez:</h4>
+    <div class="code-block">
+arquivo = open("mensagem.txt", "r")
+conteudo = arquivo.read()   # Lê TUDO como uma string
+arquivo.close()
+
+print(conteudo)
+    </div>
+    
+    <h4>readline() — Lê uma linha por vez:</h4>
+    <div class="code-block">
+arquivo = open("mensagem.txt", "r")
+
+linha1 = arquivo.readline()   # Primeira linha
+linha2 = arquivo.readline()   # Segunda linha
+linha3 = arquivo.readline()   # Terceira linha
+
+arquivo.close()
+
+print("Linha 1:", linha1)
+print("Linha 2:", linha2)
+print("Linha 3:", linha3)
+    </div>
+    
+    <h4>readlines() — Lê todas as linhas como lista:</h4>
+    <div class="code-block">
+arquivo = open("mensagem.txt", "r")
+linhas = arquivo.readlines()   # Lista com todas as linhas
+arquivo.close()
+
+print(linhas)
+# ['Olá, mundo!\n', 'Este é meu primeiro arquivo.\n', ...]
+
+for i, linha in enumerate(linhas):
+    print(f"Linha {i + 1}: {linha.strip()}")   # strip() remove \n
+    </div>
+
+    <h4>Lendo com for (mais elegante):</h4>
+    <div class="code-block">
+arquivo = open("mensagem.txt", "r")
+
+for linha in arquivo:
+    print(linha.strip())   # strip() remove espaços e \n
+
+arquivo.close()
+    </div>
+
+    <h3>O Comando with (Recomendado!)</h3>
+    <p>O <code>with</code> abre e fecha o arquivo automaticamente, mesmo se houver erro:</p>
+    
+    <div class="code-block">
+# Escrevendo com with
+with open("dados.txt", "w") as arquivo:
+    arquivo.write("Linha 1\n")
+    arquivo.write("Linha 2\n")
+# Arquivo fechado automaticamente aqui!
+
+# Lendo com with
+with open("dados.txt", "r") as arquivo:
+    conteudo = arquivo.read()
+    print(conteudo)
+# Arquivo fechado automaticamente aqui!
+    </div>
+    
+    <div class="highlight">
+        <p><strong>✅ Sempre use <code>with</code>!</strong></p>
+        <p>Vantagens:</p>
+        <ul>
+            <li>Fecha automaticamente (não precisa de <code>close()</code>)</li>
+            <li>Funciona mesmo se ocorrer erro</li>
+            <li>Código mais limpo e seguro</li>
+        </ul>
+    </div>
+
+    <h3>Tratando Erros de Arquivo</h3>
+    <p>Erros comuns ao trabalhar com arquivos:</p>
+    
+    <div class="code-block">
+# Arquivo não encontrado
+try:
+    with open("arquivo_inexistente.txt", "r") as arquivo:
+        conteudo = arquivo.read()
+except FileNotFoundError:
+    print("❌ Erro: Arquivo não encontrado!")
+
+# Tratamento completo
+try:
+    with open("dados.txt", "r") as arquivo:
+        conteudo = arquivo.read()
+        print(conteudo)
+except FileNotFoundError:
+    print("❌ Arquivo não encontrado!")
+except PermissionError:
+    print("❌ Sem permissão para acessar o arquivo!")
+except Exception as erro:
+    print(f"❌ Erro inesperado: {erro}")
+    </div>
+
+    <h3>Verificando se Arquivo Existe</h3>
+    <div class="code-block">
+import os
+
+nome_arquivo = "dados.txt"
+
+if os.path.exists(nome_arquivo):
+    print(f"✅ O arquivo '{nome_arquivo}' existe!")
+    
+    with open(nome_arquivo, "r") as arquivo:
+        print(arquivo.read())
+else:
+    print(f"❌ O arquivo '{nome_arquivo}' não existe!")
+    </div>
+
+    <h3>Exemplo Prático: Lista de Tarefas</h3>
+    <div class="code-block">
+ARQUIVO = "tarefas.txt"
+
+def carregar_tarefas():
+    """Carrega tarefas do arquivo"""
+    tarefas = []
+    try:
+        with open(ARQUIVO, "r") as arquivo:
+            for linha in arquivo:
+                tarefas.append(linha.strip())
+    except FileNotFoundError:
+        pass  # Arquivo ainda não existe
+    return tarefas
+
+def salvar_tarefas(tarefas):
+    """Salva tarefas no arquivo"""
+    with open(ARQUIVO, "w") as arquivo:
+        for tarefa in tarefas:
+            arquivo.write(tarefa + "\n")
+
+def exibir_tarefas(tarefas):
+    """Exibe todas as tarefas"""
+    if not tarefas:
+        print("\n📋 Nenhuma tarefa cadastrada.")
+    else:
+        print("\n📋 Lista de Tarefas:")
+        print("-" * 30)
+        for i, tarefa in enumerate(tarefas, 1):
+            print(f"  {i}. {tarefa}")
+        print("-" * 30)
+
+def adicionar_tarefa(tarefas):
+    """Adiciona nova tarefa"""
+    tarefa = input("Nova tarefa: ").strip()
+    if tarefa:
+        tarefas.append(tarefa)
+        salvar_tarefas(tarefas)
+        print("✅ Tarefa adicionada!")
+    else:
+        print("❌ Tarefa não pode ser vazia!")
+
+def remover_tarefa(tarefas):
+    """Remove uma tarefa"""
+    exibir_tarefas(tarefas)
+    if tarefas:
+        try:
+            num = int(input("Número da tarefa a remover: "))
+            if 1 <= num <= len(tarefas):
+                removida = tarefas.pop(num - 1)
+                salvar_tarefas(tarefas)
+                print(f"✅ Removida: {removida}")
+            else:
+                print("❌ Número inválido!")
+        except ValueError:
+            print("❌ Digite um número!")
+
+# Programa principal
+print("=== LISTA DE TAREFAS ===")
+tarefas = carregar_tarefas()
+
+while True:
+    print("\n1. Ver tarefas")
+    print("2. Adicionar tarefa")
+    print("3. Remover tarefa")
+    print("0. Sair")
+    
+    opcao = input("\nEscolha: ")
+    
+    if opcao == "1":
+        exibir_tarefas(tarefas)
+    elif opcao == "2":
+        adicionar_tarefa(tarefas)
+    elif opcao == "3":
+        remover_tarefa(tarefas)
+    elif opcao == "0":
+        print("Até logo! 👋")
+        break
+    else:
+        print("❌ Opção inválida!")
+    </div>
+
+    <h3>Trabalhando com Arquivos CSV</h3>
+    <p>CSV (Comma-Separated Values) são arquivos de texto com dados separados por vírgula, muito usados para planilhas.</p>
+    
+    <h4>Exemplo de arquivo alunos.csv:</h4>
+    <div class="code-block">
+nome,idade,nota
+Maria,18,8.5
+João,19,7.0
+Ana,17,9.5
+Pedro,20,6.0
+    </div>
+    
+    <h4>Lendo CSV manualmente:</h4>
+    <div class="code-block">
+with open("alunos.csv", "r") as arquivo:
+    # Pular cabeçalho
+    cabecalho = arquivo.readline()
+    
+    print("=== LISTA DE ALUNOS ===")
+    for linha in arquivo:
+        dados = linha.strip().split(",")
+        nome = dados[0]
+        idade = int(dados[1])
+        nota = float(dados[2])
+        
+        situacao = "Aprovado" if nota >= 7 else "Reprovado"
+        print(f"{nome}, {idade} anos, nota {nota} - {situacao}")
+    </div>
+    
+    <h4>Escrevendo CSV:</h4>
+    <div class="code-block">
+alunos = [
+    ["Maria", 18, 8.5],
+    ["João", 19, 7.0],
+    ["Ana", 17, 9.5],
+    ["Pedro", 20, 6.0]
+]
+
+with open("alunos.csv", "w") as arquivo:
+    # Escrever cabeçalho
+    arquivo.write("nome,idade,nota\n")
+    
+    # Escrever dados
+    for aluno in alunos:
+        linha = f"{aluno[0]},{aluno[1]},{aluno[2]}\n"
+        arquivo.write(linha)
+
+print("✅ Arquivo CSV criado!")
+    </div>
+
+    <h4>Usando o módulo csv (mais robusto):</h4>
+    <div class="code-block">
+import csv
+
+# Lendo CSV com módulo csv
+with open("alunos.csv", "r") as arquivo:
+    leitor = csv.reader(arquivo)
+    cabecalho = next(leitor)  # Pula cabeçalho
+    
+    for linha in leitor:
+        nome, idade, nota = linha
+        print(f"{nome}: {nota}")
+
+# Escrevendo CSV com módulo csv
+alunos = [
+    ["nome", "idade", "nota"],  # cabeçalho
+    ["Maria", 18, 8.5],
+    ["João", 19, 7.0]
+]
+
+with open("novos_alunos.csv", "w", newline="") as arquivo:
+    escritor = csv.writer(arquivo)
+    escritor.writerows(alunos)  # Escreve todas as linhas
+    </div>
+
+    <h3>Exemplo Completo: Agenda de Contatos</h3>
+    <div class="code-block">
+ARQUIVO = "contatos.csv"
+
+def carregar_contatos():
+    """Carrega contatos do arquivo CSV"""
+    contatos = []
+    try:
+        with open(ARQUIVO, "r") as arquivo:
+            for linha in arquivo:
+                dados = linha.strip().split(",")
+                if len(dados) == 3:
+                    contatos.append({
+                        "nome": dados[0],
+                        "telefone": dados[1],
+                        "email": dados[2]
+                    })
+    except FileNotFoundError:
+        pass
+    return contatos
+
+def salvar_contatos(contatos):
+    """Salva contatos no arquivo CSV"""
+    with open(ARQUIVO, "w") as arquivo:
+        for c in contatos:
+            arquivo.write(f"{c['nome']},{c['telefone']},{c['email']}\n")
+
+def listar_contatos(contatos):
+    """Lista todos os contatos"""
+    if not contatos:
+        print("\n📞 Agenda vazia!")
+        return
+    
+    print("\n" + "=" * 50)
+    print("📞 AGENDA DE CONTATOS")
+    print("=" * 50)
+    
+    for i, c in enumerate(contatos, 1):
+        print(f"\n{i}. {c['nome']}")
+        print(f"   📱 {c['telefone']}")
+        print(f"   📧 {c['email']}")
+    
+    print("\n" + "=" * 50)
+
+def adicionar_contato(contatos):
+    """Adiciona novo contato"""
+    print("\n--- Novo Contato ---")
+    nome = input("Nome: ").strip()
+    telefone = input("Telefone: ").strip()
+    email = input("Email: ").strip()
+    
+    if nome:
+        contatos.append({
+            "nome": nome,
+            "telefone": telefone,
+            "email": email
+        })
+        salvar_contatos(contatos)
+        print("✅ Contato adicionado!")
+    else:
+        print("❌ Nome é obrigatório!")
+
+def buscar_contato(contatos):
+    """Busca contato por nome"""
+    termo = input("Buscar por nome: ").strip().lower()
+    
+    encontrados = []
+    for c in contatos:
+        if termo in c['nome'].lower():
+            encontrados.append(c)
+    
+    if encontrados:
+        print(f"\n🔍 {len(encontrados)} contato(s) encontrado(s):")
+        for c in encontrados:
+            print(f"  - {c['nome']}: {c['telefone']}")
+    else:
+        print("❌ Nenhum contato encontrado.")
+
+def remover_contato(contatos):
+    """Remove um contato"""
+    listar_contatos(contatos)
+    
+    if contatos:
+        try:
+            num = int(input("\nNúmero do contato a remover: "))
+            if 1 <= num <= len(contatos):
+                removido = contatos.pop(num - 1)
+                salvar_contatos(contatos)
+                print(f"✅ {removido['nome']} removido!")
+            else:
+                print("❌ Número inválido!")
+        except ValueError:
+            print("❌ Digite um número!")
+
+# Programa principal
+print("=" * 40)
+print("📞 AGENDA DE CONTATOS")
+print("=" * 40)
+
+contatos = carregar_contatos()
+
+while True:
+    print("\n1. Listar contatos")
+    print("2. Adicionar contato")
+    print("3. Buscar contato")
+    print("4. Remover contato")
+    print("0. Sair")
+    
+    opcao = input("\nEscolha: ")
+    
+    if opcao == "1":
+        listar_contatos(contatos)
+    elif opcao == "2":
+        adicionar_contato(contatos)
+    elif opcao == "3":
+        buscar_contato(contatos)
+    elif opcao == "4":
+        remover_contato(contatos)
+    elif opcao == "0":
+        print("\n👋 Até logo!")
+        break
+    else:
+        print("❌ Opção inválida!")
+    </div>
+
+    <h3>Exemplo Completo: Registro de Vendas</h3>
+    <div class="code-block">
+from datetime import datetime
+
+ARQUIVO = "vendas.txt"
+
+def registrar_venda():
+    """Registra uma nova venda"""
+    print("\n--- Nova Venda ---")
+    produto = input("Produto: ")
+    quantidade = int(input("Quantidade: "))
+    preco = float(input("Preço unitário: R$ "))
+    
+    total = quantidade * preco
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    
+    # Adicionar ao arquivo
+    with open(ARQUIVO, "a") as arquivo:
+        arquivo.write(f"{data_hora}|{produto}|{quantidade}|{preco:.2f}|{total:.2f}\n")
+    
+    print(f"\n✅ Venda registrada!")
+    print(f"   Total: R$ {total:.2f}")
+
+def ver_vendas():
+    """Mostra todas as vendas"""
+    try:
+        with open(ARQUIVO, "r") as arquivo:
+            linhas = arquivo.readlines()
+        
+        if not linhas:
+            print("\n📊 Nenhuma venda registrada.")
+            return
+        
+        print("\n" + "=" * 60)
+        print("📊 RELATÓRIO DE VENDAS")
+        print("=" * 60)
+        print(f"{'Data/Hora':<18} {'Produto':<15} {'Qtd':>5} {'Unit':>10} {'Total':>10}")
+        print("-" * 60)
+        
+        total_geral = 0
+        for linha in linhas:
+            dados = linha.strip().split("|")
+            data, produto, qtd, preco, total = dados
+            total_geral += float(total)
+            print(f"{data:<18} {produto:<15} {qtd:>5} R${preco:>8} R${total:>8}")
+        
+        print("-" * 60)
+        print(f"{'TOTAL GERAL:':>50} R${total_geral:>8.2f}")
+        print("=" * 60)
+        
+    except FileNotFoundError:
+        print("\n📊 Nenhuma venda registrada ainda.")
+
+def limpar_vendas():
+    """Limpa o arquivo de vendas"""
+    confirma = input("⚠️ Tem certeza? (s/n): ").lower()
+    if confirma == "s":
+        with open(ARQUIVO, "w") as arquivo:
+            pass  # Arquivo vazio
+        print("✅ Vendas apagadas!")
+
+# Programa principal
+print("=" * 40)
+print("💰 SISTEMA DE VENDAS")
+print("=" * 40)
+
+while True:
+    print("\n1. Registrar venda")
+    print("2. Ver vendas")
+    print("3. Limpar vendas")
+    print("0. Sair")
+    
+    opcao = input("\nEscolha: ")
+    
+    if opcao == "1":
+        registrar_venda()
+    elif opcao == "2":
+        ver_vendas()
+    elif opcao == "3":
+        limpar_vendas()
+    elif opcao == "0":
+        print("\n👋 Até logo!")
+        break
+    else:
+        print("❌ Opção inválida!")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 20:</strong></p>
+        <ul>
+            <li><strong>Abrir:</strong> <code>open("arquivo.txt", "modo")</code></li>
+            <li><strong>Modos:</strong> "r" (ler), "w" (escrever), "a" (adicionar)</li>
+            <li><strong>Escrever:</strong> <code>write()</code>, <code>writelines()</code></li>
+            <li><strong>Ler:</strong> <code>read()</code>, <code>readline()</code>, <code>readlines()</code></li>
+            <li><strong>Fechar:</strong> <code>close()</code> ou usar <code>with</code> (recomendado!)</li>
+            <li><strong>CSV:</strong> dados separados por vírgula, use <code>split(",")</code></li>
+            <li><strong>Erros:</strong> trate com <code>try/except FileNotFoundError</code></li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 20.1: Escrever e Ler</h4>
+        <p>Crie um programa que escreva seu nome e idade em um arquivo, depois leia e exiba.</p>
+        <p><strong>Conceitos aplicados:</strong> write, read, with</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol87')">Mostrar Solução</button>
+        <div class="solution-container" id="sol87">
+            <h5>💡 Solução do Exercício 20.1:</h5>
+            <div class="code-block">
+# Escrever
+nome = input("Seu nome: ")
+idade = input("Sua idade: ")
+
+with open("meus_dados.txt", "w") as arquivo:
+    arquivo.write(f"Nome: {nome}\n")
+    arquivo.write(f"Idade: {idade}\n")
+
+print("✅ Dados salvos!")
+
+# Ler
+print("\n📄 Conteúdo do arquivo:")
+with open("meus_dados.txt", "r") as arquivo:
+    print(arquivo.read())
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 20.2: Contador de Linhas</h4>
+        <p>Crie um programa que conte quantas linhas tem em um arquivo de texto.</p>
+        <p><strong>Conceitos aplicados:</strong> readlines, len</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol88')">Mostrar Solução</button>
+        <div class="solution-container" id="sol88">
+            <h5>💡 Solução do Exercício 20.2:</h5>
+            <div class="code-block">
+nome_arquivo = input("Nome do arquivo: ")
+
+try:
+    with open(nome_arquivo, "r") as arquivo:
+        linhas = arquivo.readlines()
+    
+    print(f"📄 O arquivo '{nome_arquivo}' tem {len(linhas)} linha(s)")
+
+except FileNotFoundError:
+    print(f"❌ Arquivo '{nome_arquivo}' não encontrado!")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 20.3: Diário</h4>
+        <p>Crie um diário que adicione entradas com data e hora, usando modo append.</p>
+        <p><strong>Conceitos aplicados:</strong> append, datetime</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol89')">Mostrar Solução</button>
+        <div class="solution-container" id="sol89">
+            <h5>💡 Solução do Exercício 20.3:</h5>
+            <div class="code-block">
+from datetime import datetime
+
+ARQUIVO = "diario.txt"
+
+print("=== MEU DIÁRIO ===")
+print("1. Escrever entrada")
+print("2. Ler diário")
+
+opcao = input("\nEscolha: ")
+
+if opcao == "1":
+    entrada = input("\nO que aconteceu hoje?\n> ")
+    
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    
+    with open(ARQUIVO, "a") as arquivo:
+        arquivo.write(f"\n[{data_hora}]\n{entrada}\n")
+        arquivo.write("-" * 40 + "\n")
+    
+    print("✅ Entrada salva!")
+
+elif opcao == "2":
+    try:
+        with open(ARQUIVO, "r") as arquivo:
+            print("\n📖 MEU DIÁRIO:")
+            print(arquivo.read())
+    except FileNotFoundError:
+        print("📖 Diário vazio. Comece a escrever!")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 20.4: Lista de Compras</h4>
+        <p>Crie uma lista de compras que salva e carrega itens de um arquivo.</p>
+        <p><strong>Conceitos aplicados:</strong> append, leitura, lista</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol90')">Mostrar Solução</button>
+        <div class="solution-container" id="sol90">
+            <h5>💡 Solução do Exercício 20.4:</h5>
+            <div class="code-block">
+ARQUIVO = "compras.txt"
+
+def carregar():
+    try:
+        with open(ARQUIVO, "r") as arq:
+            return [linha.strip() for linha in arq]
+    except FileNotFoundError:
+        return []
+
+def salvar(itens):
+    with open(ARQUIVO, "w") as arq:
+        for item in itens:
+            arq.write(item + "\n")
+
+itens = carregar()
+
+while True:
+    print("\n🛒 LISTA DE COMPRAS")
+    print("1. Ver lista")
+    print("2. Adicionar item")
+    print("3. Remover item")
+    print("0. Sair")
+    
+    op = input("Opção: ")
+    
+    if op == "1":
+        if itens:
+            for i, item in enumerate(itens, 1):
+                print(f"  {i}. {item}")
+        else:
+            print("  Lista vazia!")
+    
+    elif op == "2":
+        novo = input("Item: ").strip()
+        if novo:
+            itens.append(novo)
+            salvar(itens)
+            print("✅ Adicionado!")
+    
+    elif op == "3":
+        if itens:
+            for i, item in enumerate(itens, 1):
+                print(f"  {i}. {item}")
+            num = int(input("Número: "))
+            if 1 <= num <= len(itens):
+                itens.pop(num - 1)
+                salvar(itens)
+                print("✅ Removido!")
+    
+    elif op == "0":
+        break
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 20.5: Média de Notas (CSV)</h4>
+        <p>Leia um arquivo CSV com nome e nota de alunos, e calcule a média da turma.</p>
+        <p><strong>Conceitos aplicados:</strong> CSV, split, cálculos</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol91')">Mostrar Solução</button>
+        <div class="solution-container" id="sol91">
+            <h5>💡 Solução do Exercício 20.5:</h5>
+            <div class="code-block">
+# Primeiro, criar o arquivo de exemplo
+with open("notas.csv", "w") as arq:
+    arq.write("nome,nota\n")
+    arq.write("Maria,8.5\n")
+    arq.write("João,7.0\n")
+    arq.write("Ana,9.0\n")
+    arq.write("Pedro,6.5\n")
+
+# Agora ler e calcular
+with open("notas.csv", "r") as arq:
+    arq.readline()  # Pular cabeçalho
+    
+    soma = 0
+    quantidade = 0
+    
+    print("📊 NOTAS DOS ALUNOS:")
+    print("-" * 25)
+    
+    for linha in arq:
+        nome, nota = linha.strip().split(",")
+        nota = float(nota)
+        soma += nota
+        quantidade += 1
+        print(f"  {nome}: {nota}")
+    
+    media = soma / quantidade
+    print("-" * 25)
+    print(f"  Média da turma: {media:.2f}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 20.6: Backup de Arquivo</h4>
+        <p>Crie um programa que leia um arquivo e crie uma cópia de backup.</p>
+        <p><strong>Conceitos aplicados:</strong> leitura, escrita, manipulação de nome</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol92')">Mostrar Solução</button>
+        <div class="solution-container" id="sol92">
+            <h5>💡 Solução do Exercício 20.6:</h5>
+            <div class="code-block">
+import os
+
+nome_original = input("Arquivo para backup: ")
+
+try:
+    # Ler conteúdo original
+    with open(nome_original, "r") as original:
+        conteudo = original.read()
+    
+    # Criar nome do backup
+    nome_base = nome_original.rsplit(".", 1)
+    if len(nome_base) == 2:
+        nome_backup = f"{nome_base[0]}_backup.{nome_base[1]}"
+    else:
+        nome_backup = f"{nome_original}_backup"
+    
+    # Escrever backup
+    with open(nome_backup, "w") as backup:
+        backup.write(conteudo)
+    
+    print(f"✅ Backup criado: {nome_backup}")
+
+except FileNotFoundError:
+    print("❌ Arquivo não encontrado!")
+            </div>
+        </div>
+    </div>
+
+</section>
+
+                
                     
 </main>
         
