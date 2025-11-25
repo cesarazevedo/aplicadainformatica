@@ -7464,7 +7464,7 @@ Potências de 2:
 
 </section>
 
- <!-- Aula 15: Listas (Vetores em Python) -->
+                <!-- Aula 15: Listas (Vetores em Python) -->
 <section id="aula15">
     <h2>Aula 15: Listas (Vetores em Python)</h2>
     
@@ -8019,7 +8019,167 @@ else:
     
     <div class="exercise">
         <h4>Exercício 15.1: Criar e Mostrar Lista</h4>
-    </main>
+        <p>Peça 5 números ao usuário, guarde em uma lista e mostre a lista completa.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, append(), for</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol51')">Mostrar Solução</button>
+        <div class="solution-container" id="sol51">
+            <h5>💡 Solução do Exercício 15.1:</h5>
+            <div class="code-block">
+numeros = []
+
+for i in range(5):
+    n = float(input(f"Digite o {i + 1}º número: "))
+    numeros.append(n)
+
+print()
+print("Lista completa:", numeros)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 15.2: Maior e Menor</h4>
+        <p>Peça 10 números, guarde em uma lista e mostre o maior e o menor.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, max(), min()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol52')">Mostrar Solução</button>
+        <div class="solution-container" id="sol52">
+            <h5>💡 Solução do Exercício 15.2:</h5>
+            <div class="code-block">
+numeros = []
+
+for i in range(10):
+    n = float(input(f"Número {i + 1}: "))
+    numeros.append(n)
+
+print()
+print(f"Lista: {numeros}")
+print(f"Maior: {max(numeros)}")
+print(f"Menor: {min(numeros)}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 15.3: Lista ao Contrário</h4>
+        <p>Peça 6 números e mostre a lista na ordem inversa.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, reverse() ou [::-1]</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol53')">Mostrar Solução</button>
+        <div class="solution-container" id="sol53">
+            <h5>💡 Solução do Exercício 15.3:</h5>
+            <div class="code-block">
+numeros = []
+
+for i in range(6):
+    n = float(input(f"Número {i + 1}: "))
+    numeros.append(n)
+
+print()
+print(f"Lista original: {numeros}")
+print(f"Lista invertida: {numeros[::-1]}")
+
+# Ou usando reverse():
+# numeros.reverse()
+# print(f"Lista invertida: {numeros}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 15.4: Buscar Elemento</h4>
+        <p>Crie uma lista com 5 nomes. Peça um nome e informe se ele está na lista.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, in</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol54')">Mostrar Solução</button>
+        <div class="solution-container" id="sol54">
+            <h5>💡 Solução do Exercício 15.4:</h5>
+            <div class="code-block">
+nomes = []
+
+print("Digite 5 nomes:")
+for i in range(5):
+    nome = input(f"Nome {i + 1}: ")
+    nomes.append(nome)
+
+print()
+print(f"Lista: {nomes}")
+print()
+
+busca = input("Digite um nome para buscar: ")
+
+if busca in nomes:
+    posicao = nomes.index(busca)
+    print(f"✓ '{busca}' encontrado na posição {posicao}!")
+else:
+    print(f"✗ '{busca}' não está na lista.")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 15.5: Separar Pares e Ímpares</h4>
+        <p>Peça 8 números inteiros. Separe-os em duas listas: pares e ímpares.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, if, append()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol55')">Mostrar Solução</button>
+        <div class="solution-container" id="sol55">
+            <h5>💡 Solução do Exercício 15.5:</h5>
+            <div class="code-block">
+pares = []
+impares = []
+
+print("Digite 8 números inteiros:")
+for i in range(8):
+    n = int(input(f"Número {i + 1}: "))
+    
+    if n % 2 == 0:
+        pares.append(n)
+    else:
+        impares.append(n)
+
+print()
+print(f"Números pares: {pares}")
+print(f"Números ímpares: {impares}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 15.6: Acima da Média</h4>
+        <p>Peça as notas de 5 alunos. Calcule a média e mostre quais notas estão acima da média.</p>
+        <p><strong>Conceitos aplicados:</strong> lista, sum(), len(), for, if</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol56')">Mostrar Solução</button>
+        <div class="solution-container" id="sol56">
+            <h5>💡 Solução do Exercício 15.6:</h5>
+            <div class="code-block">
+notas = []
+
+print("Digite as notas de 5 alunos:")
+for i in range(5):
+    nota = float(input(f"Nota do aluno {i + 1}: "))
+    notas.append(nota)
+
+media = sum(notas) / len(notas)
+
+print()
+print(f"Notas: {notas}")
+print(f"Média da turma: {media:.2f}")
+print()
+print("Notas acima da média:")
+
+for i, nota in enumerate(notas):
+    if nota > media:
+        print(f"  Aluno {i + 1}: {nota}")
+            </div>
+        </div>
+    </div>
+
+</section>
+                
+     </main>
 
     <!-- Botões flutuantes -->
     <div class="floating-buttons">
