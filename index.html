@@ -1278,6 +1278,13 @@
                         <p>Listas de listas - trabalhando com linhas e colunas</p>
                     </a>
                 </div>
+
+                <div class="index-item">
+                    <a href="#aula18">
+                        <h3>📝 Aula 18: Strings</h3>
+                        <p>Manipulação avançada de textos em Python</p>
+                    </a>
+                </div>
                 
             </div>
         </section>
@@ -8877,7 +8884,7 @@ print(f"Média geral da turma: {sum(medias) / len(medias):.2f}")
 
 </section>
 
-                <!-- Aula 17: Matrizes (Listas de Listas) -->
+<!-- Aula 17: Matrizes (Listas de Listas) -->
 <section id="aula17">
     <h2>Aula 17: Matrizes (Listas de Listas)</h2>
     
@@ -9577,7 +9584,230 @@ for i in range(linhas):
     linha = []
     for j in range(colunas):
         valor = int(input(f"  B[{i}][{j}]: "))
-     </main>
+        linha.append(valor)
+    matriz_b.append(linha)
+
+# Calcular soma
+matriz_soma = []
+for i in range(linhas):
+    linha = []
+    for j in range(colunas):
+        soma = matriz_a[i][j] + matriz_b[i][j]
+        linha.append(soma)
+    matriz_soma.append(linha)
+
+# Exibir resultados
+print("\n=== RESULTADO ===")
+
+print("\nMatriz A:")
+for linha in matriz_a:
+    print(linha)
+
+print("\nMatriz B:")
+for linha in matriz_b:
+    print(linha)
+
+print("\nMatriz A + B:")
+for linha in matriz_soma:
+    print(linha)
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 17:</strong></p>
+        <ul>
+            <li><strong>Matriz:</strong> lista de listas (estrutura 2D)</li>
+            <li><strong>Criar:</strong> <code>[[...], [...], [...]]</code></li>
+            <li><strong>Acessar:</strong> <code>matriz[linha][coluna]</code> (índice começa em 0!)</li>
+            <li><strong>Dimensões:</strong> <code>len(matriz)</code> linhas, <code>len(matriz[0])</code> colunas</li>
+            <li><strong>Percorrer:</strong> dois for aninhados</li>
+            <li><strong>Diagonal:</strong> elementos onde i == j</li>
+            <li><strong>Transposta:</strong> trocar linhas por colunas</li>
+            <li><strong>Cuidado:</strong> não use <code>[[0]*n]*m</code> para criar matriz!</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 17.1: Criar e Mostrar Matriz</h4>
+        <p>Crie uma matriz 3x3 com valores de 1 a 9 e exiba-a formatada.</p>
+        <p><strong>Conceitos aplicados:</strong> criar matriz, for aninhado</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol65')">Mostrar Solução</button>
+        <div class="solution-container" id="sol65">
+            <h5>💡 Solução do Exercício 17.1:</h5>
+            <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+print("Matriz 3x3:")
+for linha in matriz:
+    for elemento in linha:
+        print(f"{elemento:3}", end=" ")
+    print()
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 17.2: Soma dos Elementos</h4>
+        <p>Dada uma matriz 3x3, calcule e mostre a soma de todos os elementos.</p>
+        <p><strong>Conceitos aplicados:</strong> percorrer matriz, acumulador</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol66')">Mostrar Solução</button>
+        <div class="solution-container" id="sol66">
+            <h5>💡 Solução do Exercício 17.2:</h5>
+            <div class="code-block">
+matriz = [
+    [5, 3, 8],
+    [2, 7, 4],
+    [9, 1, 6]
+]
+
+soma = 0
+for linha in matriz:
+    for elemento in linha:
+        soma += elemento
+
+print(f"Matriz: {matriz}")
+print(f"Soma de todos os elementos: {soma}")
+
+# Forma pythonica
+soma = sum(sum(linha) for linha in matriz)
+print(f"Soma (pythonica): {soma}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 17.3: Maior Elemento</h4>
+        <p>Encontre o maior elemento de uma matriz e sua posição (linha, coluna).</p>
+        <p><strong>Conceitos aplicados:</strong> percorrer com índices, comparação</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol67')">Mostrar Solução</button>
+        <div class="solution-container" id="sol67">
+            <h5>💡 Solução do Exercício 17.3:</h5>
+            <div class="code-block">
+matriz = [
+    [15, 23, 8],
+    [42, 17, 31],
+    [9, 56, 12]
+]
+
+maior = matriz[0][0]
+pos_linha = 0
+pos_coluna = 0
+
+for i in range(len(matriz)):
+    for j in range(len(matriz[i])):
+        if matriz[i][j] > maior:
+            maior = matriz[i][j]
+            pos_linha = i
+            pos_coluna = j
+
+print("Matriz:")
+for linha in matriz:
+    print(linha)
+
+print(f"\nMaior elemento: {maior}")
+print(f"Posição: [{pos_linha}][{pos_coluna}]")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 17.4: Soma da Diagonal Principal</h4>
+        <p>Calcule a soma dos elementos da diagonal principal de uma matriz quadrada.</p>
+        <p><strong>Conceitos aplicados:</strong> diagonal, índices</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol68')">Mostrar Solução</button>
+        <div class="solution-container" id="sol68">
+            <h5>💡 Solução do Exercício 17.4:</h5>
+            <div class="code-block">
+matriz = [
+    [5, 2, 8, 1],
+    [3, 9, 4, 7],
+    [6, 1, 7, 2],
+    [4, 8, 3, 6]
+]
+
+soma_diagonal = 0
+diagonal = []
+
+for i in range(len(matriz)):
+    diagonal.append(matriz[i][i])
+    soma_diagonal += matriz[i][i]
+
+print("Matriz:")
+for linha in matriz:
+    print(linha)
+
+print(f"\nDiagonal principal: {diagonal}")
+print(f"Soma da diagonal: {soma_diagonal}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 17.5: Matriz Identidade</h4>
+        <p>Crie uma função que gere uma matriz identidade NxN.</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension, condicional</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol69')">Mostrar Solução</button>
+        <div class="solution-container" id="sol69">
+            <h5>💡 Solução do Exercício 17.5:</h5>
+            <div class="code-block">
+def criar_identidade(n):
+    """Cria uma matriz identidade NxN"""
+    return [[1 if i == j else 0 for j in range(n)] for i in range(n)]
+
+# Testar
+for tamanho in [3, 4, 5]:
+    print(f"\nMatriz Identidade {tamanho}x{tamanho}:")
+    identidade = criar_identidade(tamanho)
+    for linha in identidade:
+        print(linha)
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 17.6: Transposta</h4>
+        <p>Crie a matriz transposta de uma matriz 2x4.</p>
+        <p><strong>Conceitos aplicados:</strong> transposta, troca de dimensões</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol70')">Mostrar Solução</button>
+        <div class="solution-container" id="sol70">
+            <h5>💡 Solução do Exercício 17.6:</h5>
+            <div class="code-block">
+matriz = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8]
+]
+
+linhas = len(matriz)
+colunas = len(matriz[0])
+
+# Criar transposta (4x2)
+transposta = [[matriz[i][j] for i in range(linhas)] for j in range(colunas)]
+
+print("Matriz Original (2x4):")
+for linha in matriz:
+    print(linha)
+
+print("\nMatriz Transposta (4x2):")
+for linha in transposta:
+    print(linha)
+            </div>
+        </div>
+    </div>
+
+</section>
+        </main>
+        
 
     <!-- Botões flutuantes -->
     <div class="floating-buttons">
