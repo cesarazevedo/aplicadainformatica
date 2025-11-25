@@ -12524,879 +12524,1296 @@ except FileNotFoundError:
 
 </section>
 
-<!-- Aula 20: Arquivos em Python -->
-<section id="aula20">
-    <h2>Aula 20: Arquivos em Python</h2>
+<!-- Aula 21: Projeto Final Integrador -->
+<section id="aula21">
+    <h2>Aula 21: Projeto Final Integrador</h2>
     
-    <h3>Por que usar Arquivos?</h3>
-    <p>Até agora, todos os dados que usamos nos programas <strong>desapareciam</strong> quando o programa terminava. Com arquivos, podemos:</p>
+    <h3>Objetivo do Projeto</h3>
+    <p>Nesta aula final, vamos construir um <strong>sistema completo</strong> que integra todos os conceitos aprendidos ao longo do curso. Você verá como tudo se conecta para criar um programa funcional e profissional.</p>
+    
+    <div class="highlight">
+        <p><strong>🎯 Conceitos integrados neste projeto:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Aula</th>
+                <th>Conceito</th>
+                <th>Aplicação no Projeto</th>
+            </tr>
+            <tr>
+                <td>9-10</td>
+                <td>Variáveis e tipos</td>
+                <td>Armazenar dados dos produtos e clientes</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td>Operadores</td>
+                <td>Cálculos de preços, descontos, totais</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td>Condicionais</td>
+                <td>Menu, validações, regras de negócio</td>
+            </tr>
+            <tr>
+                <td>13-14</td>
+                <td>Loops (while/for)</td>
+                <td>Menu principal, listagens, repetições</td>
+            </tr>
+            <tr>
+                <td>15-16</td>
+                <td>Listas</td>
+                <td>Armazenar produtos, carrinho, vendas</td>
+            </tr>
+            <tr>
+                <td>17</td>
+                <td>Matrizes</td>
+                <td>Relatórios organizados em tabelas</td>
+            </tr>
+            <tr>
+                <td>18</td>
+                <td>Strings</td>
+                <td>Formatação, busca, validação</td>
+            </tr>
+            <tr>
+                <td>19</td>
+                <td>Funções</td>
+                <td>Organização modular do código</td>
+            </tr>
+            <tr>
+                <td>20</td>
+                <td>Arquivos</td>
+                <td>Persistência de dados</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>O Projeto: Sistema de Loja</h3>
+    <p>Vamos criar um <strong>Sistema de Gerenciamento de Loja</strong> com as seguintes funcionalidades:</p>
     
     <ul>
-        <li><strong>Salvar dados permanentemente</strong> (persistência)</li>
-        <li><strong>Ler dados externos</strong> (configurações, listas, etc.)</li>
-        <li><strong>Compartilhar informações</strong> entre programas</li>
-        <li><strong>Processar grandes volumes</strong> de dados</li>
+        <li>📦 Cadastrar, listar, buscar e remover produtos</li>
+        <li>🛒 Realizar vendas com carrinho de compras</li>
+        <li>📊 Gerar relatórios de vendas</li>
+        <li>💾 Salvar e carregar dados em arquivos</li>
     </ul>
-    
-    <p><strong>Analogia:</strong> Imagine que as variáveis são como anotações em um quadro branco — quando você apaga, somem. Arquivos são como um caderno — o que você escreve fica guardado.</p>
 
-    <div class="highlight">
-        <p><strong>📝 Tipos de arquivos:</strong></p>
-        <ul>
-            <li><strong>Arquivos de texto (.txt, .csv, .html):</strong> Contêm texto legível por humanos</li>
-            <li><strong>Arquivos binários (.jpg, .exe, .pdf):</strong> Contêm dados em formato binário</li>
-        </ul>
-        <p>Nesta aula, focaremos em <strong>arquivos de texto</strong>.</p>
-    </div>
-
-    <h3>Abrindo Arquivos: a função open()</h3>
-    <p>Para trabalhar com arquivos, usamos a função <code>open()</code>:</p>
+    <h3>Estrutura do Projeto</h3>
+    <p>Vamos dividir o projeto em partes para facilitar o entendimento:</p>
     
     <div class="code-block">
-arquivo = open("nome_do_arquivo.txt", "modo")
+# Estrutura do código:
+#
+# 1. CONFIGURAÇÕES E CONSTANTES
+# 2. FUNÇÕES DE ARQUIVO (salvar/carregar)
+# 3. FUNÇÕES DE PRODUTO (CRUD)
+# 4. FUNÇÕES DE VENDA
+# 5. FUNÇÕES DE RELATÓRIO
+# 6. FUNÇÕES DE INTERFACE (menus)
+# 7. PROGRAMA PRINCIPAL
     </div>
-    
-    <h4>Modos de abertura:</h4>
-    <table border="1" cellpadding="10" cellspacing="0" style="margin: 20px 0; width: 100%;">
-        <tr style="background-color: #3498db; color: white;">
-            <th>Modo</th>
-            <th>Descrição</th>
-            <th>Se o arquivo não existe</th>
-        </tr>
-        <tr>
-            <td><code>"r"</code></td>
-            <td>Leitura (read) — padrão</td>
-            <td>Erro!</td>
-        </tr>
-        <tr>
-            <td><code>"w"</code></td>
-            <td>Escrita (write) — apaga conteúdo anterior</td>
-            <td>Cria novo arquivo</td>
-        </tr>
-        <tr>
-            <td><code>"a"</code></td>
-            <td>Acrescentar (append) — adiciona no final</td>
-            <td>Cria novo arquivo</td>
-        </tr>
-        <tr>
-            <td><code>"r+"</code></td>
-            <td>Leitura e escrita</td>
-            <td>Erro!</td>
-        </tr>
-    </table>
 
-    <h3>Fechando Arquivos: close()</h3>
-    <p>Sempre feche o arquivo após usar para liberar recursos:</p>
-    
+    <h3>Parte 1: Configurações e Constantes</h3>
     <div class="code-block">
-arquivo = open("dados.txt", "r")
-# ... trabalhar com o arquivo ...
-arquivo.close()   # Sempre fechar!
-    </div>
-    
-    <div class="highlight">
-        <p><strong>⚠️ Problema:</strong> Se ocorrer um erro antes do <code>close()</code>, o arquivo fica aberto!</p>
-        <p><strong>✅ Solução:</strong> Usar o <code>with</code> (veremos adiante)</p>
+# ============================================
+# SISTEMA DE GERENCIAMENTO DE LOJA
+# Projeto Final - Curso de Python
+# ============================================
+
+from datetime import datetime
+
+# Arquivos de dados
+ARQ_PRODUTOS = "produtos.csv"
+ARQ_VENDAS = "vendas.csv"
+
+# Configurações
+DESCONTO_MAXIMO = 20  # Porcentagem máxima de desconto
     </div>
 
-    <h3>Escrevendo em Arquivos</h3>
-    
-    <h4>Modo "w" (write) — Sobrescreve tudo:</h4>
+    <h3>Parte 2: Funções de Arquivo</h3>
     <div class="code-block">
-# Criar/sobrescrever arquivo
-arquivo = open("mensagem.txt", "w")
-arquivo.write("Olá, mundo!\n")
-arquivo.write("Este é meu primeiro arquivo.\n")
-arquivo.write("Python é incrível!")
-arquivo.close()
+# ============================================
+# FUNÇÕES DE ARQUIVO
+# ============================================
 
-print("Arquivo criado com sucesso!")
-    </div>
-    
-    <p><strong>👉 Conteúdo do arquivo mensagem.txt:</strong></p>
-    <div class="code-block">
-Olá, mundo!
-Este é meu primeiro arquivo.
-Python é incrível!
-    </div>
-    
-    <div class="highlight">
-        <p><strong>💡 Observações importantes:</strong></p>
-        <ul>
-            <li><code>\n</code> — quebra de linha (Enter)</li>
-            <li>Modo <code>"w"</code> APAGA todo o conteúdo anterior!</li>
-            <li>Se o arquivo não existe, ele é criado</li>
-        </ul>
-    </div>
-
-    <h4>Modo "a" (append) — Adiciona no final:</h4>
-    <div class="code-block">
-# Adicionar ao arquivo existente
-arquivo = open("mensagem.txt", "a")
-arquivo.write("\nNova linha adicionada!")
-arquivo.write("\nMais uma linha.")
-arquivo.close()
-
-print("Conteúdo adicionado!")
-    </div>
-    
-    <p><strong>👉 Agora o arquivo tem:</strong></p>
-    <div class="code-block">
-Olá, mundo!
-Este é meu primeiro arquivo.
-Python é incrível!
-Nova linha adicionada!
-Mais uma linha.
-    </div>
-
-    <h4>Escrevendo várias linhas de uma vez:</h4>
-    <div class="code-block">
-linhas = [
-    "Primeira linha\n",
-    "Segunda linha\n",
-    "Terceira linha\n"
-]
-
-arquivo = open("varias_linhas.txt", "w")
-arquivo.writelines(linhas)   # Escreve lista de strings
-arquivo.close()
-    </div>
-
-    <h3>Lendo Arquivos</h3>
-    
-    <h4>read() — Lê tudo de uma vez:</h4>
-    <div class="code-block">
-arquivo = open("mensagem.txt", "r")
-conteudo = arquivo.read()   # Lê TUDO como uma string
-arquivo.close()
-
-print(conteudo)
-    </div>
-    
-    <h4>readline() — Lê uma linha por vez:</h4>
-    <div class="code-block">
-arquivo = open("mensagem.txt", "r")
-
-linha1 = arquivo.readline()   # Primeira linha
-linha2 = arquivo.readline()   # Segunda linha
-linha3 = arquivo.readline()   # Terceira linha
-
-arquivo.close()
-
-print("Linha 1:", linha1)
-print("Linha 2:", linha2)
-print("Linha 3:", linha3)
-    </div>
-    
-    <h4>readlines() — Lê todas as linhas como lista:</h4>
-    <div class="code-block">
-arquivo = open("mensagem.txt", "r")
-linhas = arquivo.readlines()   # Lista com todas as linhas
-arquivo.close()
-
-print(linhas)
-# ['Olá, mundo!\n', 'Este é meu primeiro arquivo.\n', ...]
-
-for i, linha in enumerate(linhas):
-    print(f"Linha {i + 1}: {linha.strip()}")   # strip() remove \n
-    </div>
-
-    <h4>Lendo com for (mais elegante):</h4>
-    <div class="code-block">
-arquivo = open("mensagem.txt", "r")
-
-for linha in arquivo:
-    print(linha.strip())   # strip() remove espaços e \n
-
-arquivo.close()
-    </div>
-
-    <h3>O Comando with (Recomendado!)</h3>
-    <p>O <code>with</code> abre e fecha o arquivo automaticamente, mesmo se houver erro:</p>
-    
-    <div class="code-block">
-# Escrevendo com with
-with open("dados.txt", "w") as arquivo:
-    arquivo.write("Linha 1\n")
-    arquivo.write("Linha 2\n")
-# Arquivo fechado automaticamente aqui!
-
-# Lendo com with
-with open("dados.txt", "r") as arquivo:
-    conteudo = arquivo.read()
-    print(conteudo)
-# Arquivo fechado automaticamente aqui!
-    </div>
-    
-    <div class="highlight">
-        <p><strong>✅ Sempre use <code>with</code>!</strong></p>
-        <p>Vantagens:</p>
-        <ul>
-            <li>Fecha automaticamente (não precisa de <code>close()</code>)</li>
-            <li>Funciona mesmo se ocorrer erro</li>
-            <li>Código mais limpo e seguro</li>
-        </ul>
-    </div>
-
-    <h3>Tratando Erros de Arquivo</h3>
-    <p>Erros comuns ao trabalhar com arquivos:</p>
-    
-    <div class="code-block">
-# Arquivo não encontrado
-try:
-    with open("arquivo_inexistente.txt", "r") as arquivo:
-        conteudo = arquivo.read()
-except FileNotFoundError:
-    print("❌ Erro: Arquivo não encontrado!")
-
-# Tratamento completo
-try:
-    with open("dados.txt", "r") as arquivo:
-        conteudo = arquivo.read()
-        print(conteudo)
-except FileNotFoundError:
-    print("❌ Arquivo não encontrado!")
-except PermissionError:
-    print("❌ Sem permissão para acessar o arquivo!")
-except Exception as erro:
-    print(f"❌ Erro inesperado: {erro}")
-    </div>
-
-    <h3>Verificando se Arquivo Existe</h3>
-    <div class="code-block">
-import os
-
-nome_arquivo = "dados.txt"
-
-if os.path.exists(nome_arquivo):
-    print(f"✅ O arquivo '{nome_arquivo}' existe!")
-    
-    with open(nome_arquivo, "r") as arquivo:
-        print(arquivo.read())
-else:
-    print(f"❌ O arquivo '{nome_arquivo}' não existe!")
-    </div>
-
-    <h3>Exemplo Prático: Lista de Tarefas</h3>
-    <div class="code-block">
-ARQUIVO = "tarefas.txt"
-
-def carregar_tarefas():
-    """Carrega tarefas do arquivo"""
-    tarefas = []
+def carregar_produtos():
+    """Carrega produtos do arquivo CSV"""
+    produtos = []
     try:
-        with open(ARQUIVO, "r") as arquivo:
-            for linha in arquivo:
-                tarefas.append(linha.strip())
-    except FileNotFoundError:
-        pass  # Arquivo ainda não existe
-    return tarefas
-
-def salvar_tarefas(tarefas):
-    """Salva tarefas no arquivo"""
-    with open(ARQUIVO, "w") as arquivo:
-        for tarefa in tarefas:
-            arquivo.write(tarefa + "\n")
-
-def exibir_tarefas(tarefas):
-    """Exibe todas as tarefas"""
-    if not tarefas:
-        print("\n📋 Nenhuma tarefa cadastrada.")
-    else:
-        print("\n📋 Lista de Tarefas:")
-        print("-" * 30)
-        for i, tarefa in enumerate(tarefas, 1):
-            print(f"  {i}. {tarefa}")
-        print("-" * 30)
-
-def adicionar_tarefa(tarefas):
-    """Adiciona nova tarefa"""
-    tarefa = input("Nova tarefa: ").strip()
-    if tarefa:
-        tarefas.append(tarefa)
-        salvar_tarefas(tarefas)
-        print("✅ Tarefa adicionada!")
-    else:
-        print("❌ Tarefa não pode ser vazia!")
-
-def remover_tarefa(tarefas):
-    """Remove uma tarefa"""
-    exibir_tarefas(tarefas)
-    if tarefas:
-        try:
-            num = int(input("Número da tarefa a remover: "))
-            if 1 <= num <= len(tarefas):
-                removida = tarefas.pop(num - 1)
-                salvar_tarefas(tarefas)
-                print(f"✅ Removida: {removida}")
-            else:
-                print("❌ Número inválido!")
-        except ValueError:
-            print("❌ Digite um número!")
-
-# Programa principal
-print("=== LISTA DE TAREFAS ===")
-tarefas = carregar_tarefas()
-
-while True:
-    print("\n1. Ver tarefas")
-    print("2. Adicionar tarefa")
-    print("3. Remover tarefa")
-    print("0. Sair")
-    
-    opcao = input("\nEscolha: ")
-    
-    if opcao == "1":
-        exibir_tarefas(tarefas)
-    elif opcao == "2":
-        adicionar_tarefa(tarefas)
-    elif opcao == "3":
-        remover_tarefa(tarefas)
-    elif opcao == "0":
-        print("Até logo! 👋")
-        break
-    else:
-        print("❌ Opção inválida!")
-    </div>
-
-    <h3>Trabalhando com Arquivos CSV</h3>
-    <p>CSV (Comma-Separated Values) são arquivos de texto com dados separados por vírgula, muito usados para planilhas.</p>
-    
-    <h4>Exemplo de arquivo alunos.csv:</h4>
-    <div class="code-block">
-nome,idade,nota
-Maria,18,8.5
-João,19,7.0
-Ana,17,9.5
-Pedro,20,6.0
-    </div>
-    
-    <h4>Lendo CSV manualmente:</h4>
-    <div class="code-block">
-with open("alunos.csv", "r") as arquivo:
-    # Pular cabeçalho
-    cabecalho = arquivo.readline()
-    
-    print("=== LISTA DE ALUNOS ===")
-    for linha in arquivo:
-        dados = linha.strip().split(",")
-        nome = dados[0]
-        idade = int(dados[1])
-        nota = float(dados[2])
-        
-        situacao = "Aprovado" if nota >= 7 else "Reprovado"
-        print(f"{nome}, {idade} anos, nota {nota} - {situacao}")
-    </div>
-    
-    <h4>Escrevendo CSV:</h4>
-    <div class="code-block">
-alunos = [
-    ["Maria", 18, 8.5],
-    ["João", 19, 7.0],
-    ["Ana", 17, 9.5],
-    ["Pedro", 20, 6.0]
-]
-
-with open("alunos.csv", "w") as arquivo:
-    # Escrever cabeçalho
-    arquivo.write("nome,idade,nota\n")
-    
-    # Escrever dados
-    for aluno in alunos:
-        linha = f"{aluno[0]},{aluno[1]},{aluno[2]}\n"
-        arquivo.write(linha)
-
-print("✅ Arquivo CSV criado!")
-    </div>
-
-    <h4>Usando o módulo csv (mais robusto):</h4>
-    <div class="code-block">
-import csv
-
-# Lendo CSV com módulo csv
-with open("alunos.csv", "r") as arquivo:
-    leitor = csv.reader(arquivo)
-    cabecalho = next(leitor)  # Pula cabeçalho
-    
-    for linha in leitor:
-        nome, idade, nota = linha
-        print(f"{nome}: {nota}")
-
-# Escrevendo CSV com módulo csv
-alunos = [
-    ["nome", "idade", "nota"],  # cabeçalho
-    ["Maria", 18, 8.5],
-    ["João", 19, 7.0]
-]
-
-with open("novos_alunos.csv", "w", newline="") as arquivo:
-    escritor = csv.writer(arquivo)
-    escritor.writerows(alunos)  # Escreve todas as linhas
-    </div>
-
-    <h3>Exemplo Completo: Agenda de Contatos</h3>
-    <div class="code-block">
-ARQUIVO = "contatos.csv"
-
-def carregar_contatos():
-    """Carrega contatos do arquivo CSV"""
-    contatos = []
-    try:
-        with open(ARQUIVO, "r") as arquivo:
+        with open(ARQ_PRODUTOS, "r") as arquivo:
+            arquivo.readline()  # Pular cabeçalho
             for linha in arquivo:
                 dados = linha.strip().split(",")
-                if len(dados) == 3:
-                    contatos.append({
-                        "nome": dados[0],
-                        "telefone": dados[1],
-                        "email": dados[2]
+                if len(dados) == 4:
+                    produtos.append({
+                        "codigo": int(dados[0]),
+                        "nome": dados[1],
+                        "preco": float(dados[2]),
+                        "estoque": int(dados[3])
+                    })
+    except FileNotFoundError:
+        pass  # Arquivo ainda não existe
+    return produtos
+
+
+def salvar_produtos(produtos):
+    """Salva produtos no arquivo CSV"""
+    with open(ARQ_PRODUTOS, "w") as arquivo:
+        arquivo.write("codigo,nome,preco,estoque\n")
+        for p in produtos:
+            arquivo.write(f"{p['codigo']},{p['nome']},{p['preco']},{p['estoque']}\n")
+
+
+def carregar_vendas():
+    """Carrega histórico de vendas do arquivo CSV"""
+    vendas = []
+    try:
+        with open(ARQ_VENDAS, "r") as arquivo:
+            arquivo.readline()  # Pular cabeçalho
+            for linha in arquivo:
+                dados = linha.strip().split(",")
+                if len(dados) == 5:
+                    vendas.append({
+                        "data": dados[0],
+                        "codigo": int(dados[1]),
+                        "produto": dados[2],
+                        "quantidade": int(dados[3]),
+                        "total": float(dados[4])
                     })
     except FileNotFoundError:
         pass
-    return contatos
+    return vendas
 
-def salvar_contatos(contatos):
-    """Salva contatos no arquivo CSV"""
-    with open(ARQUIVO, "w") as arquivo:
-        for c in contatos:
-            arquivo.write(f"{c['nome']},{c['telefone']},{c['email']}\n")
 
-def listar_contatos(contatos):
-    """Lista todos os contatos"""
-    if not contatos:
-        print("\n📞 Agenda vazia!")
+def salvar_venda(venda):
+    """Adiciona uma venda ao arquivo CSV"""
+    # Verificar se arquivo existe para adicionar cabeçalho
+    try:
+        with open(ARQ_VENDAS, "r") as arquivo:
+            pass
+        modo = "a"
+    except FileNotFoundError:
+        modo = "w"
+    
+    with open(ARQ_VENDAS, modo) as arquivo:
+        if modo == "w":
+            arquivo.write("data,codigo,produto,quantidade,total\n")
+        arquivo.write(f"{venda['data']},{venda['codigo']},{venda['produto']},{venda['quantidade']},{venda['total']}\n")
+    </div>
+
+    <h3>Parte 3: Funções de Produto</h3>
+    <div class="code-block">
+# ============================================
+# FUNÇÕES DE PRODUTO (CRUD)
+# ============================================
+
+def gerar_codigo(produtos):
+    """Gera próximo código disponível"""
+    if not produtos:
+        return 1
+    return max(p["codigo"] for p in produtos) + 1
+
+
+def buscar_produto_por_codigo(produtos, codigo):
+    """Busca produto pelo código"""
+    for produto in produtos:
+        if produto["codigo"] == codigo:
+            return produto
+    return None
+
+
+def buscar_produtos_por_nome(produtos, termo):
+    """Busca produtos pelo nome (parcial)"""
+    termo = termo.lower()
+    encontrados = []
+    for produto in produtos:
+        if termo in produto["nome"].lower():
+            encontrados.append(produto)
+    return encontrados
+
+
+def cadastrar_produto(produtos):
+    """Cadastra um novo produto"""
+    print("\n" + "=" * 40)
+    print("📦 CADASTRAR PRODUTO")
+    print("=" * 40)
+    
+    nome = input("Nome do produto: ").strip()
+    if not nome:
+        print("❌ Nome não pode ser vazio!")
         return
     
-    print("\n" + "=" * 50)
-    print("📞 AGENDA DE CONTATOS")
-    print("=" * 50)
-    
-    for i, c in enumerate(contatos, 1):
-        print(f"\n{i}. {c['nome']}")
-        print(f"   📱 {c['telefone']}")
-        print(f"   📧 {c['email']}")
-    
-    print("\n" + "=" * 50)
-
-def adicionar_contato(contatos):
-    """Adiciona novo contato"""
-    print("\n--- Novo Contato ---")
-    nome = input("Nome: ").strip()
-    telefone = input("Telefone: ").strip()
-    email = input("Email: ").strip()
-    
-    if nome:
-        contatos.append({
-            "nome": nome,
-            "telefone": telefone,
-            "email": email
-        })
-        salvar_contatos(contatos)
-        print("✅ Contato adicionado!")
-    else:
-        print("❌ Nome é obrigatório!")
-
-def buscar_contato(contatos):
-    """Busca contato por nome"""
-    termo = input("Buscar por nome: ").strip().lower()
-    
-    encontrados = []
-    for c in contatos:
-        if termo in c['nome'].lower():
-            encontrados.append(c)
-    
-    if encontrados:
-        print(f"\n🔍 {len(encontrados)} contato(s) encontrado(s):")
-        for c in encontrados:
-            print(f"  - {c['nome']}: {c['telefone']}")
-    else:
-        print("❌ Nenhum contato encontrado.")
-
-def remover_contato(contatos):
-    """Remove um contato"""
-    listar_contatos(contatos)
-    
-    if contatos:
-        try:
-            num = int(input("\nNúmero do contato a remover: "))
-            if 1 <= num <= len(contatos):
-                removido = contatos.pop(num - 1)
-                salvar_contatos(contatos)
-                print(f"✅ {removido['nome']} removido!")
-            else:
-                print("❌ Número inválido!")
-        except ValueError:
-            print("❌ Digite um número!")
-
-# Programa principal
-print("=" * 40)
-print("📞 AGENDA DE CONTATOS")
-print("=" * 40)
-
-contatos = carregar_contatos()
-
-while True:
-    print("\n1. Listar contatos")
-    print("2. Adicionar contato")
-    print("3. Buscar contato")
-    print("4. Remover contato")
-    print("0. Sair")
-    
-    opcao = input("\nEscolha: ")
-    
-    if opcao == "1":
-        listar_contatos(contatos)
-    elif opcao == "2":
-        adicionar_contato(contatos)
-    elif opcao == "3":
-        buscar_contato(contatos)
-    elif opcao == "4":
-        remover_contato(contatos)
-    elif opcao == "0":
-        print("\n👋 Até logo!")
-        break
-    else:
-        print("❌ Opção inválida!")
-    </div>
-
-    <h3>Exemplo Completo: Registro de Vendas</h3>
-    <div class="code-block">
-from datetime import datetime
-
-ARQUIVO = "vendas.txt"
-
-def registrar_venda():
-    """Registra uma nova venda"""
-    print("\n--- Nova Venda ---")
-    produto = input("Produto: ")
-    quantidade = int(input("Quantidade: "))
-    preco = float(input("Preço unitário: R$ "))
-    
-    total = quantidade * preco
-    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
-    
-    # Adicionar ao arquivo
-    with open(ARQUIVO, "a") as arquivo:
-        arquivo.write(f"{data_hora}|{produto}|{quantidade}|{preco:.2f}|{total:.2f}\n")
-    
-    print(f"\n✅ Venda registrada!")
-    print(f"   Total: R$ {total:.2f}")
-
-def ver_vendas():
-    """Mostra todas as vendas"""
     try:
-        with open(ARQUIVO, "r") as arquivo:
-            linhas = arquivo.readlines()
-        
-        if not linhas:
-            print("\n📊 Nenhuma venda registrada.")
+        preco = float(input("Preço (R$): "))
+        if preco <= 0:
+            print("❌ Preço deve ser maior que zero!")
             return
         
-        print("\n" + "=" * 60)
-        print("📊 RELATÓRIO DE VENDAS")
-        print("=" * 60)
-        print(f"{'Data/Hora':<18} {'Produto':<15} {'Qtd':>5} {'Unit':>10} {'Total':>10}")
-        print("-" * 60)
-        
-        total_geral = 0
-        for linha in linhas:
-            dados = linha.strip().split("|")
-            data, produto, qtd, preco, total = dados
-            total_geral += float(total)
-            print(f"{data:<18} {produto:<15} {qtd:>5} R${preco:>8} R${total:>8}")
-        
-        print("-" * 60)
-        print(f"{'TOTAL GERAL:':>50} R${total_geral:>8.2f}")
-        print("=" * 60)
-        
-    except FileNotFoundError:
-        print("\n📊 Nenhuma venda registrada ainda.")
-
-def limpar_vendas():
-    """Limpa o arquivo de vendas"""
-    confirma = input("⚠️ Tem certeza? (s/n): ").lower()
-    if confirma == "s":
-        with open(ARQUIVO, "w") as arquivo:
-            pass  # Arquivo vazio
-        print("✅ Vendas apagadas!")
-
-# Programa principal
-print("=" * 40)
-print("💰 SISTEMA DE VENDAS")
-print("=" * 40)
-
-while True:
-    print("\n1. Registrar venda")
-    print("2. Ver vendas")
-    print("3. Limpar vendas")
-    print("0. Sair")
+        estoque = int(input("Quantidade em estoque: "))
+        if estoque < 0:
+            print("❌ Estoque não pode ser negativo!")
+            return
+    except ValueError:
+        print("❌ Valor inválido!")
+        return
     
-    opcao = input("\nEscolha: ")
+    codigo = gerar_codigo(produtos)
     
-    if opcao == "1":
-        registrar_venda()
-    elif opcao == "2":
-        ver_vendas()
-    elif opcao == "3":
-        limpar_vendas()
-    elif opcao == "0":
-        print("\n👋 Até logo!")
-        break
+    novo_produto = {
+        "codigo": codigo,
+        "nome": nome,
+        "preco": preco,
+        "estoque": estoque
+    }
+    
+    produtos.append(novo_produto)
+    salvar_produtos(produtos)
+    
+    print(f"\n✅ Produto cadastrado com código {codigo}!")
+
+
+def listar_produtos(produtos):
+    """Lista todos os produtos"""
+    print("\n" + "=" * 60)
+    print("📦 LISTA DE PRODUTOS")
+    print("=" * 60)
+    
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+        return
+    
+    print(f"{'Cód':>5} {'Nome':<25} {'Preço':>12} {'Estoque':>10}")
+    print("-" * 60)
+    
+    for p in produtos:
+        estoque_str = str(p['estoque'])
+        if p['estoque'] == 0:
+            estoque_str = "ESGOTADO"
+        elif p['estoque'] <= 5:
+            estoque_str = f"{p['estoque']} ⚠️"
+        
+        print(f"{p['codigo']:>5} {p['nome']:<25} R$ {p['preco']:>9.2f} {estoque_str:>10}")
+    
+    print("-" * 60)
+    print(f"Total: {len(produtos)} produto(s)")
+
+
+def buscar_produto(produtos):
+    """Busca produto por nome ou código"""
+    print("\n" + "=" * 40)
+    print("🔍 BUSCAR PRODUTO")
+    print("=" * 40)
+    
+    termo = input("Digite o nome ou código: ").strip()
+    
+    if not termo:
+        print("❌ Digite algo para buscar!")
+        return
+    
+    # Tentar buscar por código
+    if termo.isdigit():
+        produto = buscar_produto_por_codigo(produtos, int(termo))
+        if produto:
+            print(f"\n✅ Produto encontrado:")
+            print(f"   Código: {produto['codigo']}")
+            print(f"   Nome: {produto['nome']}")
+            print(f"   Preço: R$ {produto['preco']:.2f}")
+            print(f"   Estoque: {produto['estoque']}")
+            return
+    
+    # Buscar por nome
+    encontrados = buscar_produtos_por_nome(produtos, termo)
+    
+    if encontrados:
+        print(f"\n✅ {len(encontrados)} produto(s) encontrado(s):")
+        for p in encontrados:
+            print(f"   [{p['codigo']}] {p['nome']} - R$ {p['preco']:.2f}")
     else:
-        print("❌ Opção inválida!")
+        print("❌ Nenhum produto encontrado.")
+
+
+def atualizar_estoque(produtos):
+    """Atualiza o estoque de um produto"""
+    print("\n" + "=" * 40)
+    print("📊 ATUALIZAR ESTOQUE")
+    print("=" * 40)
+    
+    listar_produtos(produtos)
+    
+    try:
+        codigo = int(input("\nCódigo do produto: "))
+        produto = buscar_produto_por_codigo(produtos, codigo)
+        
+        if not produto:
+            print("❌ Produto não encontrado!")
+            return
+        
+        print(f"\nProduto: {produto['nome']}")
+        print(f"Estoque atual: {produto['estoque']}")
+        
+        novo_estoque = int(input("Novo estoque: "))
+        if novo_estoque < 0:
+            print("❌ Estoque não pode ser negativo!")
+            return
+        
+        produto['estoque'] = novo_estoque
+        salvar_produtos(produtos)
+        
+        print(f"✅ Estoque atualizado para {novo_estoque}!")
+        
+    except ValueError:
+        print("❌ Valor inválido!")
+
+
+def remover_produto(produtos):
+    """Remove um produto do cadastro"""
+    print("\n" + "=" * 40)
+    print("🗑️ REMOVER PRODUTO")
+    print("=" * 40)
+    
+    listar_produtos(produtos)
+    
+    try:
+        codigo = int(input("\nCódigo do produto a remover: "))
+        produto = buscar_produto_por_codigo(produtos, codigo)
+        
+        if not produto:
+            print("❌ Produto não encontrado!")
+            return
+        
+        print(f"\nProduto: {produto['nome']}")
+        confirma = input("⚠️ Confirma remoção? (s/n): ").lower()
+        
+        if confirma == "s":
+            produtos.remove(produto)
+            salvar_produtos(produtos)
+            print("✅ Produto removido!")
+        else:
+            print("Operação cancelada.")
+            
+    except ValueError:
+        print("❌ Código inválido!")
     </div>
 
+    <h3>Parte 4: Funções de Venda</h3>
+    <div class="code-block">
+# ============================================
+# FUNÇÕES DE VENDA
+# ============================================
+
+def realizar_venda(produtos):
+    """Realiza uma venda com carrinho"""
+    print("\n" + "=" * 60)
+    print("🛒 NOVA VENDA")
+    print("=" * 60)
+    
+    carrinho = []
+    
+    while True:
+        print("\n--- Carrinho ---")
+        if carrinho:
+            total_carrinho = 0
+            for item in carrinho:
+                subtotal = item['preco'] * item['quantidade']
+                total_carrinho += subtotal
+                print(f"  {item['nome']} x{item['quantidade']} = R$ {subtotal:.2f}")
+            print(f"  TOTAL: R$ {total_carrinho:.2f}")
+        else:
+            print("  (vazio)")
+        
+        print("\n1. Adicionar produto")
+        print("2. Remover produto")
+        print("3. Finalizar venda")
+        print("0. Cancelar venda")
+        
+        opcao = input("\nEscolha: ")
+        
+        if opcao == "1":
+            adicionar_ao_carrinho(produtos, carrinho)
+        
+        elif opcao == "2":
+            remover_do_carrinho(carrinho)
+        
+        elif opcao == "3":
+            if carrinho:
+                finalizar_venda(produtos, carrinho)
+                return
+            else:
+                print("❌ Carrinho vazio!")
+        
+        elif opcao == "0":
+            print("Venda cancelada.")
+            return
+
+
+def adicionar_ao_carrinho(produtos, carrinho):
+    """Adiciona produto ao carrinho"""
+    listar_produtos(produtos)
+    
+    try:
+        codigo = int(input("\nCódigo do produto: "))
+        produto = buscar_produto_por_codigo(produtos, codigo)
+        
+        if not produto:
+            print("❌ Produto não encontrado!")
+            return
+        
+        if produto['estoque'] == 0:
+            print("❌ Produto sem estoque!")
+            return
+        
+        print(f"\n{produto['nome']} - R$ {produto['preco']:.2f}")
+        print(f"Disponível: {produto['estoque']}")
+        
+        quantidade = int(input("Quantidade: "))
+        
+        if quantidade <= 0:
+            print("❌ Quantidade deve ser maior que zero!")
+            return
+        
+        if quantidade > produto['estoque']:
+            print(f"❌ Estoque insuficiente! Disponível: {produto['estoque']}")
+            return
+        
+        # Verificar se já está no carrinho
+        for item in carrinho:
+            if item['codigo'] == codigo:
+                item['quantidade'] += quantidade
+                print(f"✅ Quantidade atualizada no carrinho!")
+                return
+        
+        # Adicionar novo item
+        carrinho.append({
+            "codigo": produto['codigo'],
+            "nome": produto['nome'],
+            "preco": produto['preco'],
+            "quantidade": quantidade
+        })
+        
+        print("✅ Produto adicionado ao carrinho!")
+        
+    except ValueError:
+        print("❌ Valor inválido!")
+
+
+def remover_do_carrinho(carrinho):
+    """Remove item do carrinho"""
+    if not carrinho:
+        print("❌ Carrinho vazio!")
+        return
+    
+    print("\n--- Itens no carrinho ---")
+    for i, item in enumerate(carrinho, 1):
+        print(f"  {i}. {item['nome']} x{item['quantidade']}")
+    
+    try:
+        num = int(input("Número do item a remover: "))
+        if 1 <= num <= len(carrinho):
+            removido = carrinho.pop(num - 1)
+            print(f"✅ {removido['nome']} removido!")
+        else:
+            print("❌ Número inválido!")
+    except ValueError:
+        print("❌ Digite um número!")
+
+
+def finalizar_venda(produtos, carrinho):
+    """Finaliza a venda"""
+    # Calcular total
+    total = sum(item['preco'] * item['quantidade'] for item in carrinho)
+    
+    print("\n" + "=" * 40)
+    print("💰 FINALIZAR VENDA")
+    print("=" * 40)
+    print(f"\nTotal: R$ {total:.2f}")
+    
+    # Perguntar desconto
+    try:
+        desconto = float(input(f"Desconto (0-{DESCONTO_MAXIMO}%): ") or "0")
+        if desconto < 0 or desconto > DESCONTO_MAXIMO:
+            print(f"⚠️ Desconto ajustado para {DESCONTO_MAXIMO}%")
+            desconto = min(max(desconto, 0), DESCONTO_MAXIMO)
+    except ValueError:
+        desconto = 0
+    
+    valor_desconto = total * (desconto / 100)
+    total_final = total - valor_desconto
+    
+    print(f"\nSubtotal: R$ {total:.2f}")
+    if desconto > 0:
+        print(f"Desconto ({desconto}%): -R$ {valor_desconto:.2f}")
+    print(f"TOTAL FINAL: R$ {total_final:.2f}")
+    
+    # Confirmar
+    confirma = input("\n✅ Confirmar venda? (s/n): ").lower()
+    
+    if confirma != "s":
+        print("Venda cancelada.")
+        return
+    
+    # Atualizar estoque e registrar venda
+    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    
+    for item in carrinho:
+        # Atualizar estoque
+        produto = buscar_produto_por_codigo(produtos, item['codigo'])
+        produto['estoque'] -= item['quantidade']
+        
+        # Registrar venda
+        venda = {
+            "data": data_hora,
+            "codigo": item['codigo'],
+            "produto": item['nome'],
+            "quantidade": item['quantidade'],
+            "total": item['preco'] * item['quantidade']
+        }
+        salvar_venda(venda)
+    
+    salvar_produtos(produtos)
+    
+    # Imprimir cupom
+    imprimir_cupom(carrinho, desconto, total, total_final)
+
+
+def imprimir_cupom(carrinho, desconto, subtotal, total):
+    """Imprime cupom fiscal"""
+    print("\n")
+    print("=" * 40)
+    print("           CUPOM FISCAL")
+    print("        LOJA PYTHON STORE")
+    print("=" * 40)
+    print(f"Data: {datetime.now().strftime('%d/%m/%Y %H:%M')}")
+    print("-" * 40)
+    
+    for item in carrinho:
+        subtotal_item = item['preco'] * item['quantidade']
+        print(f"{item['nome'][:20]:<20}")
+        print(f"  {item['quantidade']} x R$ {item['preco']:.2f} = R$ {subtotal_item:.2f}")
+    
+    print("-" * 40)
+    print(f"{'SUBTOTAL:':<30} R$ {subtotal:>7.2f}")
+    
+    if desconto > 0:
+        valor_desc = subtotal * (desconto / 100)
+        print(f"{'DESCONTO (' + str(desconto) + '%):':<30} -R$ {valor_desc:>6.2f}")
+    
+    print(f"{'TOTAL:':<30} R$ {total:>7.2f}")
+    print("=" * 40)
+    print("      OBRIGADO PELA COMPRA!")
+    print("         VOLTE SEMPRE!")
+    print("=" * 40)
+    </div>
+
+    <h3>Parte 5: Funções de Relatório</h3>
+    <div class="code-block">
+# ============================================
+# FUNÇÕES DE RELATÓRIO
+# ============================================
+
+def menu_relatorios(produtos):
+    """Menu de relatórios"""
+    while True:
+        print("\n" + "=" * 40)
+        print("📊 RELATÓRIOS")
+        print("=" * 40)
+        print("1. Vendas do dia")
+        print("2. Histórico completo de vendas")
+        print("3. Produtos mais vendidos")
+        print("4. Produtos com estoque baixo")
+        print("5. Resumo financeiro")
+        print("0. Voltar")
+        
+        opcao = input("\nEscolha: ")
+        
+        if opcao == "1":
+            relatorio_vendas_dia()
+        elif opcao == "2":
+            relatorio_vendas_completo()
+        elif opcao == "3":
+            relatorio_mais_vendidos()
+        elif opcao == "4":
+            relatorio_estoque_baixo(produtos)
+        elif opcao == "5":
+            relatorio_financeiro()
+        elif opcao == "0":
+            return
+
+
+def relatorio_vendas_dia():
+    """Relatório de vendas do dia atual"""
+    vendas = carregar_vendas()
+    hoje = datetime.now().strftime("%d/%m/%Y")
+    
+    vendas_hoje = [v for v in vendas if v['data'].startswith(hoje)]
+    
+    print("\n" + "=" * 50)
+    print(f"📊 VENDAS DO DIA - {hoje}")
+    print("=" * 50)
+    
+    if not vendas_hoje:
+        print("Nenhuma venda realizada hoje.")
+        return
+    
+    print(f"{'Hora':<8} {'Produto':<20} {'Qtd':>5} {'Total':>12}")
+    print("-" * 50)
+    
+    total_dia = 0
+    for v in vendas_hoje:
+        hora = v['data'].split()[1] if " " in v['data'] else "--:--"
+        print(f"{hora:<8} {v['produto'][:20]:<20} {v['quantidade']:>5} R$ {v['total']:>9.2f}")
+        total_dia += v['total']
+    
+    print("-" * 50)
+    print(f"{'TOTAL DO DIA:':<35} R$ {total_dia:>9.2f}")
+    print(f"{'Quantidade de vendas:':<35} {len(vendas_hoje):>12}")
+
+
+def relatorio_vendas_completo():
+    """Relatório completo de vendas"""
+    vendas = carregar_vendas()
+    
+    print("\n" + "=" * 60)
+    print("📊 HISTÓRICO COMPLETO DE VENDAS")
+    print("=" * 60)
+    
+    if not vendas:
+        print("Nenhuma venda registrada.")
+        return
+    
+    print(f"{'Data/Hora':<18} {'Produto':<20} {'Qtd':>5} {'Total':>12}")
+    print("-" * 60)
+    
+    total_geral = 0
+    for v in vendas:
+        print(f"{v['data']:<18} {v['produto'][:20]:<20} {v['quantidade']:>5} R$ {v['total']:>9.2f}")
+        total_geral += v['total']
+    
+    print("-" * 60)
+    print(f"{'TOTAL GERAL:':<45} R$ {total_geral:>9.2f}")
+    print(f"{'Total de registros:':<45} {len(vendas):>12}")
+
+
+def relatorio_mais_vendidos():
+    """Relatório dos produtos mais vendidos"""
+    vendas = carregar_vendas()
+    
+    print("\n" + "=" * 50)
+    print("📊 PRODUTOS MAIS VENDIDOS")
+    print("=" * 50)
+    
+    if not vendas:
+        print("Nenhuma venda registrada.")
+        return
+    
+    # Agrupar por produto
+    vendas_por_produto = {}
+    for v in vendas:
+        nome = v['produto']
+        if nome in vendas_por_produto:
+            vendas_por_produto[nome]['quantidade'] += v['quantidade']
+            vendas_por_produto[nome]['total'] += v['total']
+        else:
+            vendas_por_produto[nome] = {
+                'quantidade': v['quantidade'],
+                'total': v['total']
+            }
+    
+    # Ordenar por quantidade vendida
+    ranking = sorted(vendas_por_produto.items(), 
+                    key=lambda x: x[1]['quantidade'], 
+                    reverse=True)
+    
+    print(f"{'#':<3} {'Produto':<25} {'Qtd':>8} {'Total':>12}")
+    print("-" * 50)
+    
+    for i, (nome, dados) in enumerate(ranking[:10], 1):
+        print(f"{i:<3} {nome[:25]:<25} {dados['quantidade']:>8} R$ {dados['total']:>9.2f}")
+
+
+def relatorio_estoque_baixo(produtos):
+    """Relatório de produtos com estoque baixo"""
+    print("\n" + "=" * 50)
+    print("⚠️ PRODUTOS COM ESTOQUE BAIXO (≤5 unidades)")
+    print("=" * 50)
+    
+    baixo_estoque = [p for p in produtos if p['estoque'] <= 5]
+    baixo_estoque.sort(key=lambda x: x['estoque'])
+    
+    if not baixo_estoque:
+        print("✅ Todos os produtos com estoque adequado!")
+        return
+    
+    print(f"{'Cód':>5} {'Produto':<25} {'Estoque':>10} {'Status':<12}")
+    print("-" * 50)
+    
+    for p in baixo_estoque:
+        status = "ESGOTADO!" if p['estoque'] == 0 else "Baixo"
+        print(f"{p['codigo']:>5} {p['nome'][:25]:<25} {p['estoque']:>10} {status:<12}")
+
+
+def relatorio_financeiro():
+    """Resumo financeiro geral"""
+    vendas = carregar_vendas()
+    
+    print("\n" + "=" * 50)
+    print("💰 RESUMO FINANCEIRO")
+    print("=" * 50)
+    
+    if not vendas:
+        print("Nenhuma venda registrada.")
+        return
+    
+    # Calcular totais
+    total_vendas = sum(v['total'] for v in vendas)
+    qtd_vendas = len(vendas)
+    itens_vendidos = sum(v['quantidade'] for v in vendas)
+    ticket_medio = total_vendas / qtd_vendas if qtd_vendas > 0 else 0
+    
+    # Vendas por dia
+    vendas_por_dia = {}
+    for v in vendas:
+        dia = v['data'].split()[0]
+        if dia in vendas_por_dia:
+            vendas_por_dia[dia] += v['total']
+        else:
+            vendas_por_dia[dia] = v['total']
+    
+    melhor_dia = max(vendas_por_dia.items(), key=lambda x: x[1])
+    media_diaria = total_vendas / len(vendas_por_dia)
+    
+    print(f"\n{'Total de vendas:':<30} R$ {total_vendas:>12.2f}")
+    print(f"{'Quantidade de vendas:':<30} {qtd_vendas:>15}")
+    print(f"{'Itens vendidos:':<30} {itens_vendidos:>15}")
+    print(f"{'Ticket médio:':<30} R$ {ticket_medio:>12.2f}")
+    print(f"{'Média diária:':<30} R$ {media_diaria:>12.2f}")
+    print(f"{'Melhor dia:':<30} {melhor_dia[0]:>15}")
+    print(f"{'Valor do melhor dia:':<30} R$ {melhor_dia[1]:>12.2f}")
+    </div>
+
+    <h3>Parte 6: Funções de Interface (Menus)</h3>
+    <div class="code-block">
+# ============================================
+# FUNÇÕES DE INTERFACE
+# ============================================
+
+def exibir_cabecalho():
+    """Exibe cabeçalho do sistema"""
+    print("\n")
+    print("╔" + "═" * 48 + "╗")
+    print("║" + "🏪 PYTHON STORE - Sistema de Gerenciamento".center(48) + "║")
+    print("╚" + "═" * 48 + "╝")
+
+
+def menu_principal():
+    """Exibe menu principal"""
+    print("\n" + "=" * 40)
+    print("MENU PRINCIPAL")
+    print("=" * 40)
+    print("1. 📦 Gerenciar Produtos")
+    print("2. 🛒 Realizar Venda")
+    print("3. 📊 Relatórios")
+    print("0. 🚪 Sair")
+    print("=" * 40)
+
+
+def menu_produtos():
+    """Exibe menu de produtos"""
+    print("\n" + "=" * 40)
+    print("📦 GERENCIAR PRODUTOS")
+    print("=" * 40)
+    print("1. Cadastrar produto")
+    print("2. Listar produtos")
+    print("3. Buscar produto")
+    print("4. Atualizar estoque")
+    print("5. Remover produto")
+    print("0. Voltar")
+    print("=" * 40)
+
+
+def gerenciar_produtos(produtos):
+    """Submenu de gerenciamento de produtos"""
+    while True:
+        menu_produtos()
+        opcao = input("Escolha: ")
+        
+        if opcao == "1":
+            cadastrar_produto(produtos)
+        elif opcao == "2":
+            listar_produtos(produtos)
+        elif opcao == "3":
+            buscar_produto(produtos)
+        elif opcao == "4":
+            atualizar_estoque(produtos)
+        elif opcao == "5":
+            remover_produto(produtos)
+        elif opcao == "0":
+            return
+        else:
+            print("❌ Opção inválida!")
+    </div>
+
+    <h3>Parte 7: Programa Principal</h3>
+    <div class="code-block">
+# ============================================
+# PROGRAMA PRINCIPAL
+# ============================================
+
+def main():
+    """Função principal do sistema"""
+    exibir_cabecalho()
+    
+    # Carregar dados
+    produtos = carregar_produtos()
+    print(f"\n✅ Sistema iniciado! {len(produtos)} produto(s) carregado(s).")
+    
+    while True:
+        menu_principal()
+        opcao = input("Escolha: ")
+        
+        if opcao == "1":
+            gerenciar_produtos(produtos)
+        
+        elif opcao == "2":
+            realizar_venda(produtos)
+        
+        elif opcao == "3":
+            menu_relatorios(produtos)
+        
+        elif opcao == "0":
+            print("\n" + "=" * 40)
+            print("👋 Obrigado por usar o Python Store!")
+            print("   Até a próxima!")
+            print("=" * 40 + "\n")
+            break
+        
+        else:
+            print("❌ Opção inválida!")
+
+
+# Iniciar o programa
+if __name__ == "__main__":
+    main()
+    </div>
+
+    <h3>Código Completo</h3>
+    <p>Aqui está o sistema completo em um único arquivo:</p>
+    
     <div class="highlight">
-        <p><strong>📚 Resumindo a Aula 20:</strong></p>
+        <p><strong>💾 Para usar o sistema:</strong></p>
+        <ol>
+            <li>Copie todo o código para um arquivo chamado <code>loja.py</code></li>
+            <li>Execute com <code>python loja.py</code></li>
+            <li>Os dados serão salvos em <code>produtos.csv</code> e <code>vendas.csv</code></li>
+        </ol>
+    </div>
+
+    <button class="show-solution-btn" onclick="toggleSolution('solFinal')">Ver Código Completo</button>
+    <div class="solution-container" id="solFinal">
+        <h5>💻 Código Completo do Sistema:</h5>
+        <div class="code-block">
+# ============================================
+# SISTEMA DE GERENCIAMENTO DE LOJA
+# Projeto Final - Curso de Python
+# ============================================
+
+from datetime import datetime
+
+# Arquivos de dados
+ARQ_PRODUTOS = "produtos.csv"
+ARQ_VENDAS = "vendas.csv"
+
+# Configurações
+DESCONTO_MAXIMO = 20
+
+
+# ============================================
+# FUNÇÕES DE ARQUIVO
+# ============================================
+
+def carregar_produtos():
+    produtos = []
+    try:
+        with open(ARQ_PRODUTOS, "r") as arquivo:
+            arquivo.readline()
+            for linha in arquivo:
+                dados = linha.strip().split(",")
+                if len(dados) == 4:
+                    produtos.append({
+                        "codigo": int(dados[0]),
+                        "nome": dados[1],
+                        "preco": float(dados[2]),
+                        "estoque": int(dados[3])
+                    })
+    except FileNotFoundError:
+        pass
+    return produtos
+
+
+def salvar_produtos(produtos):
+    with open(ARQ_PRODUTOS, "w") as arquivo:
+        arquivo.write("codigo,nome,preco,estoque\n")
+        for p in produtos:
+            arquivo.write(f"{p['codigo']},{p['nome']},{p['preco']},{p['estoque']}\n")
+
+
+def carregar_vendas():
+    vendas = []
+    try:
+        with open(ARQ_VENDAS, "r") as arquivo:
+            arquivo.readline()
+            for linha in arquivo:
+                dados = linha.strip().split(",")
+                if len(dados) == 5:
+                    vendas.append({
+                        "data": dados[0],
+                        "codigo": int(dados[1]),
+                        "produto": dados[2],
+                        "quantidade": int(dados[3]),
+                        "total": float(dados[4])
+                    })
+    except FileNotFoundError:
+        pass
+    return vendas
+
+
+def salvar_venda(venda):
+    try:
+        with open(ARQ_VENDAS, "r") as arquivo:
+            pass
+        modo = "a"
+    except FileNotFoundError:
+        modo = "w"
+    
+    with open(ARQ_VENDAS, modo) as arquivo:
+        if modo == "w":
+            arquivo.write("data,codigo,produto,quantidade,total\n")
+        arquivo.write(f"{venda['data']},{venda['codigo']},{venda['produto']},{venda['quantidade']},{venda['total']}\n")
+
+
+# ============================================
+# FUNÇÕES DE PRODUTO
+# ============================================
+
+def gerar_codigo(produtos):
+    if not produtos:
+        return 1
+    return max(p["codigo"] for p in produtos) + 1
+
+
+def buscar_produto_por_codigo(produtos, codigo):
+    for produto in produtos:
+        if produto["codigo"] == codigo:
+            return produto
+    return None
+
+
+def buscar_produtos_por_nome(produtos, termo):
+    termo = termo.lower()
+    return [p for p in produtos if termo in p["nome"].lower()]
+
+
+def cadastrar_produto(produtos):
+    print("\n" + "=" * 40)
+    print("📦 CADASTRAR PRODUTO")
+    print("=" * 40)
+    
+    nome = input("Nome do produto: ").strip()
+    if not nome:
+        print("❌ Nome não pode ser vazio!")
+        return
+    
+    try:
+        preco = float(input("Preço (R$): "))
+        if preco <= 0:
+            print("❌ Preço deve ser maior que zero!")
+            return
+        
+        estoque = int(input("Quantidade em estoque: "))
+        if estoque < 0:
+            print("❌ Estoque não pode ser negativo!")
+            return
+    except ValueError:
+        print("❌ Valor inválido!")
+        return
+    
+    codigo = gerar_codigo(produtos)
+    produtos.append({"codigo": codigo, "nome": nome, "preco": preco, "estoque": estoque})
+    salvar_produtos(produtos)
+    print(f"\n✅ Produto cadastrado com código {codigo}!")
+
+
+def listar_produtos(produtos):
+    print("\n" + "=" * 60)
+    print("📦 LISTA DE PRODUTOS")
+    print("=" * 60)
+    
+    if not produtos:
+        print("Nenhum produto cadastrado.")
+        return
+    
+    print(f"{'Cód':>5} {'Nome':<25} {'Preço':>12} {'Estoque':>10}")
+    print("-" * 60)
+    
+    for p in produtos:
+        estoque_str = "ESGOTADO" if p['estoque'] == 0 else f"{p['estoque']} ⚠️" if p['estoque'] <= 5 else str(p['estoque'])
+        print(f"{p['codigo']:>5} {p['nome']:<25} R$ {p['preco']:>9.2f} {estoque_str:>10}")
+    
+    print("-" * 60)
+    print(f"Total: {len(produtos)} produto(s)")
+
+
+def buscar_produto(produtos):
+    print("\n🔍 BUSCAR PRODUTO")
+    termo = input("Digite o nome ou código: ").strip()
+    
+    if termo.isdigit():
+        produto = buscar_produto_por_codigo(produtos, int(termo))
+        if produto:
+            print(f"\n✅ Código: {produto['codigo']}, Nome: {produto['nome']}, Preço: R$ {produto['preco']:.2f}, Estoque: {produto['estoque']}")
+            return
+    
+    encontrados = buscar_produtos_por_nome(produtos, termo)
+    if encontrados:
+        for p in encontrados:
+            print(f"  [{p['codigo']}] {p['nome']} - R$ {p['preco']:.2f}")
+    else:
+        print("❌ Nenhum produto encontrado.")
+
+
+def atualizar_estoque(produtos):
+    listar_produtos(produtos)
+    try:
+        codigo = int(input("\nCódigo do produto: "))
+        produto = buscar_produto_por_codigo(produtos, codigo)
+        if not produto:
+            print("❌ Produto não encontrado!")
+            return
+        
+        novo_estoque = int(input(f"Novo estoque (atual: {produto['estoque']}): "))
+        if novo_estoque < 0:
+            print("❌ Estoque não pode ser negativo!")
+            return
+        
+        produto['estoque'] = novo_estoque
+        salvar_produtos(produtos)
+        print(f"✅ Estoque atualizado!")
+    except ValueError:
+        print("❌ Valor inválido!")
+
+
+def remover_produto(produtos):
+    listar_produtos(produtos)
+    try:
+        codigo = int(input("\nCódigo do produto a remover: "))
+        produto = buscar_produto_por_codigo(produtos, codigo)
+        if not produto:
+            print("❌ Produto não encontrado!")
+            return
+        
+        if input(f"⚠️ Remover '{produto['nome']}'? (s/n): ").lower() == "s":
+            produtos.remove(produto)
+            salvar_produtos(produtos)
+            print("✅ Produto removido!")
+    except ValueError:
+        print("❌ Código inválido!")
+
+
+# ============================================
+# FUNÇÕES DE VENDA
+# ============================================
+
+def realizar_venda(produtos):
+    print("\n🛒 NOVA VENDA")
+    carrinho = []
+    
+    while True:
+        total_carrinho = sum(item['preco'] * item['quantidade'] for item in carrinho)
+        print(f"\n--- Carrinho: R$ {total_carrinho:.2f} ({len(carrinho)} itens) ---")
+        print("1. Adicionar  2. Remover  3. Finalizar  0. Cancelar")
+        
+        opcao = input("Escolha: ")
+        
+        if opcao == "1":
+            listar_produtos(produtos)
+            try:
+                codigo = int(input("Código: "))
+                produto = buscar_produto_por_codigo(produtos, codigo)
+                if not produto or produto['estoque'] == 0:
+                    print("❌ Produto indisponível!")
+                    continue
+                
+                qtd = int(input(f"Quantidade (disponível: {produto['estoque']}): "))
+                if qtd <= 0 or qtd > produto['estoque']:
+                    print("❌ Quantidade inválida!")
+                    continue
+                
+                carrinho.append({"codigo": codigo, "nome": produto['nome'], "preco": produto['preco'], "quantidade": qtd})
+                print("✅ Adicionado!")
+            except ValueError:
+                print("❌ Valor inválido!")
+        
+        elif opcao == "2":
+            if carrinho:
+                for i, item in enumerate(carrinho, 1):
+                    print(f"  {i}. {item['nome']} x{item['quantidade']}")
+                try:
+                    carrinho.pop(int(input("Número: ")) - 1)
+                    print("✅ Removido!")
+                except:
+                    print("❌ Inválido!")
+        
+        elif opcao == "3":
+            if not carrinho:
+                print("❌ Carrinho vazio!")
+                continue
+            
+            total = sum(item['preco'] * item['quantidade'] for item in carrinho)
+            desconto = float(input(f"Desconto (0-{DESCONTO_MAXIMO}%): ") or "0")
+            desconto = min(max(desconto, 0), DESCONTO_MAXIMO)
+            total_final = total * (1 - desconto/100)
+            
+            print(f"\nTOTAL: R$ {total_final:.2f}")
+            if input("Confirmar? (s/n): ").lower() != "s":
+                continue
+            
+            data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+            for item in carrinho:
+                produto = buscar_produto_por_codigo(produtos, item['codigo'])
+                produto['estoque'] -= item['quantidade']
+                salvar_venda({"data": data_hora, "codigo": item['codigo'], "produto": item['nome'], "quantidade": item['quantidade'], "total": item['preco'] * item['quantidade']})
+            
+            salvar_produtos(produtos)
+            print("\n✅ VENDA FINALIZADA!")
+            return
+        
+        elif opcao == "0":
+            return
+
+
+# ============================================
+# FUNÇÕES DE RELATÓRIO
+# ============================================
+
+def menu_relatorios(produtos):
+    while True:
+        print("\n📊 RELATÓRIOS")
+        print("1. Vendas do dia  2. Histórico  3. Mais vendidos  4. Estoque baixo  0. Voltar")
+        
+        opcao = input("Escolha: ")
+        vendas = carregar_vendas()
+        
+        if opcao == "1":
+            hoje = datetime.now().strftime("%d/%m/%Y")
+            vendas_hoje = [v for v in vendas if v['data'].startswith(hoje)]
+            print(f"\n📊 VENDAS DE {hoje}: R$ {sum(v['total'] for v in vendas_hoje):.2f} ({len(vendas_hoje)} vendas)")
+        
+        elif opcao == "2":
+            print(f"\n📊 TOTAL HISTÓRICO: R$ {sum(v['total'] for v in vendas):.2f} ({len(vendas)} vendas)")
+        
+        elif opcao == "3":
+            vendas_prod = {}
+            for v in vendas:
+                vendas_prod[v['produto']] = vendas_prod.get(v['produto'], 0) + v['quantidade']
+            for nome, qtd in sorted(vendas_prod.items(), key=lambda x: -x[1])[:5]:
+                print(f"  {nome}: {qtd} unidades")
+        
+        elif opcao == "4":
+            baixo = [p for p in produtos if p['estoque'] <= 5]
+            for p in sorted(baixo, key=lambda x: x['estoque']):
+                print(f"  ⚠️ {p['nome']}: {p['estoque']} unidades")
+        
+        elif opcao == "0":
+            return
+
+
+# ============================================
+# PROGRAMA PRINCIPAL
+# ============================================
+
+def main():
+    print("\n" + "=" * 50)
+    print("🏪 PYTHON STORE - Sistema de Gerenciamento")
+    print("=" * 50)
+    
+    produtos = carregar_produtos()
+    print(f"✅ {len(produtos)} produto(s) carregado(s)")
+    
+    while True:
+        print("\n1. 📦 Produtos  2. 🛒 Venda  3. 📊 Relatórios  0. 🚪 Sair")
+        opcao = input("Escolha: ")
+        
+        if opcao == "1":
+            while True:
+                print("\n1. Cadastrar  2. Listar  3. Buscar  4. Estoque  5. Remover  0. Voltar")
+                op = input("Escolha: ")
+                if op == "1": cadastrar_produto(produtos)
+                elif op == "2": listar_produtos(produtos)
+                elif op == "3": buscar_produto(produtos)
+                elif op == "4": atualizar_estoque(produtos)
+                elif op == "5": remover_produto(produtos)
+                elif op == "0": break
+        
+        elif opcao == "2":
+            realizar_venda(produtos)
+        
+        elif opcao == "3":
+            menu_relatorios(produtos)
+        
+        elif opcao == "0":
+            print("\n👋 Até logo!")
+            break
+
+
+if __name__ == "__main__":
+    main()
+        </div>
+    </div>
+
+    <h3>Sugestões de Melhorias</h3>
+    <p>Para quem quiser ir além, algumas ideias para expandir o projeto:</p>
+    
+    <div class="highlight">
+        <p><strong>🚀 Desafios extras:</strong></p>
         <ul>
-            <li><strong>Abrir:</strong> <code>open("arquivo.txt", "modo")</code></li>
-            <li><strong>Modos:</strong> "r" (ler), "w" (escrever), "a" (adicionar)</li>
-            <li><strong>Escrever:</strong> <code>write()</code>, <code>writelines()</code></li>
-            <li><strong>Ler:</strong> <code>read()</code>, <code>readline()</code>, <code>readlines()</code></li>
-            <li><strong>Fechar:</strong> <code>close()</code> ou usar <code>with</code> (recomendado!)</li>
-            <li><strong>CSV:</strong> dados separados por vírgula, use <code>split(",")</code></li>
-            <li><strong>Erros:</strong> trate com <code>try/except FileNotFoundError</code></li>
+            <li>Adicionar sistema de login (usuário e senha)</li>
+            <li>Implementar categorias de produtos</li>
+            <li>Criar gráficos de vendas (com biblioteca matplotlib)</li>
+            <li>Adicionar formas de pagamento (dinheiro, cartão, PIX)</li>
+            <li>Implementar controle de clientes</li>
+            <li>Criar backup automático dos dados</li>
+            <li>Adicionar data de validade nos produtos</li>
+            <li>Implementar histórico de preços</li>
         </ul>
     </div>
 
-    <h3>Exercícios para Praticar</h3>
-    
-    <div class="exercise">
-        <h4>Exercício 20.1: Escrever e Ler</h4>
-        <p>Crie um programa que escreva seu nome e idade em um arquivo, depois leia e exiba.</p>
-        <p><strong>Conceitos aplicados:</strong> write, read, with</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol87')">Mostrar Solução</button>
-        <div class="solution-container" id="sol87">
-            <h5>💡 Solução do Exercício 20.1:</h5>
-            <div class="code-block">
-# Escrever
-nome = input("Seu nome: ")
-idade = input("Sua idade: ")
-
-with open("meus_dados.txt", "w") as arquivo:
-    arquivo.write(f"Nome: {nome}\n")
-    arquivo.write(f"Idade: {idade}\n")
-
-print("✅ Dados salvos!")
-
-# Ler
-print("\n📄 Conteúdo do arquivo:")
-with open("meus_dados.txt", "r") as arquivo:
-    print(arquivo.read())
-            </div>
-        </div>
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 21:</strong></p>
+        <ul>
+            <li><strong>Projeto integrador:</strong> usa todos os conceitos aprendidos</li>
+            <li><strong>Organização:</strong> dividir código em funções modulares</li>
+            <li><strong>Persistência:</strong> dados salvos em arquivos CSV</li>
+            <li><strong>Interface:</strong> menus intuitivos e feedback ao usuário</li>
+            <li><strong>Validação:</strong> tratar erros e entradas inválidas</li>
+            <li><strong>Boas práticas:</strong> comentários, nomes claros, docstrings</li>
+        </ul>
     </div>
 
-    <div class="exercise">
-        <h4>Exercício 20.2: Contador de Linhas</h4>
-        <p>Crie um programa que conte quantas linhas tem em um arquivo de texto.</p>
-        <p><strong>Conceitos aplicados:</strong> readlines, len</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol88')">Mostrar Solução</button>
-        <div class="solution-container" id="sol88">
-            <h5>💡 Solução do Exercício 20.2:</h5>
-            <div class="code-block">
-nome_arquivo = input("Nome do arquivo: ")
-
-try:
-    with open(nome_arquivo, "r") as arquivo:
-        linhas = arquivo.readlines()
+    <h3>🎉 Parabéns!</h3>
+    <p>Você concluiu o curso de Python! Agora você tem conhecimento para:</p>
     
-    print(f"📄 O arquivo '{nome_arquivo}' tem {len(linhas)} linha(s)")
-
-except FileNotFoundError:
-    print(f"❌ Arquivo '{nome_arquivo}' não encontrado!")
-            </div>
-        </div>
-    </div>
-
-    <div class="exercise">
-        <h4>Exercício 20.3: Diário</h4>
-        <p>Crie um diário que adicione entradas com data e hora, usando modo append.</p>
-        <p><strong>Conceitos aplicados:</strong> append, datetime</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol89')">Mostrar Solução</button>
-        <div class="solution-container" id="sol89">
-            <h5>💡 Solução do Exercício 20.3:</h5>
-            <div class="code-block">
-from datetime import datetime
-
-ARQUIVO = "diario.txt"
-
-print("=== MEU DIÁRIO ===")
-print("1. Escrever entrada")
-print("2. Ler diário")
-
-opcao = input("\nEscolha: ")
-
-if opcao == "1":
-    entrada = input("\nO que aconteceu hoje?\n> ")
+    <ul>
+        <li>✅ Criar programas completos do zero</li>
+        <li>✅ Trabalhar com variáveis, operadores e estruturas de controle</li>
+        <li>✅ Usar listas, matrizes e strings</li>
+        <li>✅ Organizar código com funções</li>
+        <li>✅ Persistir dados em arquivos</li>
+        <li>✅ Desenvolver sistemas reais!</li>
+    </ul>
     
-    data_hora = datetime.now().strftime("%d/%m/%Y %H:%M")
+    <p><strong>Continue praticando e explorando!</strong> Python tem muito mais a oferecer: orientação a objetos, bibliotecas para web, análise de dados, inteligência artificial e muito mais!</p>
     
-    with open(ARQUIVO, "a") as arquivo:
-        arquivo.write(f"\n[{data_hora}]\n{entrada}\n")
-        arquivo.write("-" * 40 + "\n")
-    
-    print("✅ Entrada salva!")
+    <p style="text-align: center; font-size: 1.5em; margin-top: 30px;">🐍 <strong>Happy Coding!</strong> 🐍</p>
 
-elif opcao == "2":
-    try:
-        with open(ARQUIVO, "r") as arquivo:
-            print("\n📖 MEU DIÁRIO:")
-            print(arquivo.read())
-    except FileNotFoundError:
-        print("📖 Diário vazio. Comece a escrever!")
-            </div>
-        </div>
-    </div>
-
-    <div class="exercise">
-        <h4>Exercício 20.4: Lista de Compras</h4>
-        <p>Crie uma lista de compras que salva e carrega itens de um arquivo.</p>
-        <p><strong>Conceitos aplicados:</strong> append, leitura, lista</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol90')">Mostrar Solução</button>
-        <div class="solution-container" id="sol90">
-            <h5>💡 Solução do Exercício 20.4:</h5>
-            <div class="code-block">
-ARQUIVO = "compras.txt"
-
-def carregar():
-    try:
-        with open(ARQUIVO, "r") as arq:
-            return [linha.strip() for linha in arq]
-    except FileNotFoundError:
-        return []
-
-def salvar(itens):
-    with open(ARQUIVO, "w") as arq:
-        for item in itens:
-            arq.write(item + "\n")
-
-itens = carregar()
-
-while True:
-    print("\n🛒 LISTA DE COMPRAS")
-    print("1. Ver lista")
-    print("2. Adicionar item")
-    print("3. Remover item")
-    print("0. Sair")
-    
-    op = input("Opção: ")
-    
-    if op == "1":
-        if itens:
-            for i, item in enumerate(itens, 1):
-                print(f"  {i}. {item}")
-        else:
-            print("  Lista vazia!")
-    
-    elif op == "2":
-        novo = input("Item: ").strip()
-        if novo:
-            itens.append(novo)
-            salvar(itens)
-            print("✅ Adicionado!")
-    
-    elif op == "3":
-        if itens:
-            for i, item in enumerate(itens, 1):
-                print(f"  {i}. {item}")
-            num = int(input("Número: "))
-            if 1 <= num <= len(itens):
-                itens.pop(num - 1)
-                salvar(itens)
-                print("✅ Removido!")
-    
-    elif op == "0":
-        break
-            </div>
-        </div>
-    </div>
-
-    <div class="exercise">
-        <h4>Exercício 20.5: Média de Notas (CSV)</h4>
-        <p>Leia um arquivo CSV com nome e nota de alunos, e calcule a média da turma.</p>
-        <p><strong>Conceitos aplicados:</strong> CSV, split, cálculos</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol91')">Mostrar Solução</button>
-        <div class="solution-container" id="sol91">
-            <h5>💡 Solução do Exercício 20.5:</h5>
-            <div class="code-block">
-# Primeiro, criar o arquivo de exemplo
-with open("notas.csv", "w") as arq:
-    arq.write("nome,nota\n")
-    arq.write("Maria,8.5\n")
-    arq.write("João,7.0\n")
-    arq.write("Ana,9.0\n")
-    arq.write("Pedro,6.5\n")
-
-# Agora ler e calcular
-with open("notas.csv", "r") as arq:
-    arq.readline()  # Pular cabeçalho
-    
-    soma = 0
-    quantidade = 0
-    
-    print("📊 NOTAS DOS ALUNOS:")
-    print("-" * 25)
-    
-    for linha in arq:
-        nome, nota = linha.strip().split(",")
-        nota = float(nota)
-        soma += nota
-        quantidade += 1
-        print(f"  {nome}: {nota}")
-    
-    media = soma / quantidade
-    print("-" * 25)
-    print(f"  Média da turma: {media:.2f}")
-            </div>
-        </div>
-    </div>
-
-    <div class="exercise">
-        <h4>Exercício 20.6: Backup de Arquivo</h4>
-        <p>Crie um programa que leia um arquivo e crie uma cópia de backup.</p>
-        <p><strong>Conceitos aplicados:</strong> leitura, escrita, manipulação de nome</p>
-        
-        <button class="show-solution-btn" onclick="toggleSolution('sol92')">Mostrar Solução</button>
-        <div class="solution-container" id="sol92">
-            <h5>💡 Solução do Exercício 20.6:</h5>
-            <div class="code-block">
-import os
-
-nome_original = input("Arquivo para backup: ")
-
-try:
-    # Ler conteúdo original
-    with open(nome_original, "r") as original:
-        conteudo = original.read()
-    
-    # Criar nome do backup
-    nome_base = nome_original.rsplit(".", 1)
-    if len(nome_base) == 2:
-        nome_backup = f"{nome_base[0]}_backup.{nome_base[1]}"
-    else:
-        nome_backup = f"{nome_original}_backup"
-    
-    # Escrever backup
-    with open(nome_backup, "w") as backup:
-        backup.write(conteudo)
-    
-    print(f"✅ Backup criado: {nome_backup}")
-
-except FileNotFoundError:
-    print("❌ Arquivo não encontrado!")
-            </div>
-        </div>
-    </div>
-
-</section>
-
-                
+</section>                
                     
 </main>
         
