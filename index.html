@@ -1271,6 +1271,13 @@
                         <p>Métodos avançados, cópia, list comprehension</p>
                     </a>
                 </div>
+
+                <div class="index-item">
+                    <a href="#aula17">
+                        <h3>🧮 Aula 17: Matrizes</h3>
+                        <p>Listas de listas - trabalhando com linhas e colunas</p>
+                    </a>
+                </div>
                 
             </div>
         </section>
@@ -8869,6 +8876,707 @@ print(f"Média geral da turma: {sum(medias) / len(medias):.2f}")
     </div>
 
 </section>
+
+                <!-- Aula 17: Matrizes (Listas de Listas) -->
+<section id="aula17">
+    <h2>Aula 17: Matrizes (Listas de Listas)</h2>
+    
+    <h3>O que são Matrizes?</h3>
+    <p>Matrizes são estruturas bidimensionais organizadas em <strong>linhas e colunas</strong>, como uma planilha do Excel. Em Python, criamos matrizes usando <strong>listas de listas</strong>.</p>
+    
+    <p>Imagine uma tabela de notas:</p>
+    <table border="1" cellpadding="10" cellspacing="0" style="margin: 20px 0;">
+        <tr style="background-color: #3498db; color: white;">
+            <th></th>
+            <th>Prova 1</th>
+            <th>Prova 2</th>
+            <th>Prova 3</th>
+        </tr>
+        <tr>
+            <td><strong>Aluno 1</strong></td>
+            <td>8.5</td>
+            <td>7.0</td>
+            <td>9.0</td>
+        </tr>
+        <tr>
+            <td><strong>Aluno 2</strong></td>
+            <td>6.0</td>
+            <td>8.0</td>
+            <td>7.5</td>
+        </tr>
+        <tr>
+            <td><strong>Aluno 3</strong></td>
+            <td>9.0</td>
+            <td>9.5</td>
+            <td>10.0</td>
+        </tr>
+    </table>
+    
+    <div class="highlight">
+        <p><strong>🔑 Comparação Portugol → Python:</strong></p>
+        <table border="1" cellpadding="8" cellspacing="0" style="width: 100%;">
+            <tr style="background-color: #3498db; color: white;">
+                <th>Característica</th>
+                <th>Portugol</th>
+                <th>Python</th>
+            </tr>
+            <tr>
+                <td>Declaração</td>
+                <td><code>matriz: vetor[1..3, 1..3] de inteiro</code></td>
+                <td><code>matriz = [[...], [...], [...]]</code></td>
+            </tr>
+            <tr>
+                <td>Acesso</td>
+                <td><code>matriz[1, 2]</code></td>
+                <td><code>matriz[0][1]</code></td>
+            </tr>
+            <tr>
+                <td>Índice inicial</td>
+                <td>1</td>
+                <td>0</td>
+            </tr>
+            <tr>
+                <td>Tamanho</td>
+                <td>Fixo</td>
+                <td>Dinâmico</td>
+            </tr>
+        </table>
+    </div>
+
+    <h3>Criando Matrizes</h3>
+    
+    <h4>Forma direta (valores já conhecidos):</h4>
+    <div class="code-block">
+# Matriz 3x3
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Matriz de notas (3 alunos x 3 provas)
+notas = [
+    [8.5, 7.0, 9.0],   # Aluno 0
+    [6.0, 8.0, 7.5],   # Aluno 1
+    [9.0, 9.5, 10.0]   # Aluno 2
+]
+    </div>
+    
+    <h4>Criando matriz vazia e preenchendo:</h4>
+    <div class="code-block">
+# Criar matriz 3x4 com zeros
+linhas = 3
+colunas = 4
+
+matriz = []
+for i in range(linhas):
+    linha = []
+    for j in range(colunas):
+        linha.append(0)
+    matriz.append(linha)
+
+print(matriz)
+# [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+    </div>
+    
+    <h4>Forma pythonica (list comprehension):</h4>
+    <div class="code-block">
+# Matriz 3x4 com zeros
+linhas = 3
+colunas = 4
+
+matriz = [[0 for j in range(colunas)] for i in range(linhas)]
+print(matriz)
+# [[0, 0, 0, 0], [0, 0, 0, 0], [0, 0, 0, 0]]
+
+# Matriz 3x3 com números sequenciais
+matriz = [[i * 3 + j + 1 for j in range(3)] for i in range(3)]
+print(matriz)
+# [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ CUIDADO! Forma errada de criar matriz:</strong></p>
+        <div class="code-block">
+# ❌ ERRADO - todas as linhas são a mesma referência!
+matriz = [[0] * 3] * 3
+
+matriz[0][0] = 5
+print(matriz)   # [[5, 0, 0], [5, 0, 0], [5, 0, 0]] 😱
+
+# ✅ CERTO - cada linha é independente
+matriz = [[0] * 3 for _ in range(3)]
+
+matriz[0][0] = 5
+print(matriz)   # [[5, 0, 0], [0, 0, 0], [0, 0, 0]] ✓
+        </div>
+    </div>
+
+    <h3>Acessando Elementos</h3>
+    <p>Use <code>matriz[linha][coluna]</code> para acessar um elemento específico.</p>
+    
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+#         Coluna:  0  1  2
+# Linha 0:        [1, 2, 3]
+# Linha 1:        [4, 5, 6]
+# Linha 2:        [7, 8, 9]
+
+print(matriz[0][0])   # 1 (linha 0, coluna 0)
+print(matriz[0][2])   # 3 (linha 0, coluna 2)
+print(matriz[1][1])   # 5 (linha 1, coluna 1)
+print(matriz[2][0])   # 7 (linha 2, coluna 0)
+print(matriz[2][2])   # 9 (linha 2, coluna 2)
+
+# Acessar linha inteira
+print(matriz[0])      # [1, 2, 3]
+print(matriz[1])      # [4, 5, 6]
+    </div>
+
+    <h3>Modificando Elementos</h3>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Modificar um elemento
+matriz[1][1] = 50
+print(matriz)
+# [[1, 2, 3], [4, 50, 6], [7, 8, 9]]
+
+# Modificar uma linha inteira
+matriz[0] = [10, 20, 30]
+print(matriz)
+# [[10, 20, 30], [4, 50, 6], [7, 8, 9]]
+    </div>
+
+    <h3>Dimensões da Matriz</h3>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3, 4],
+    [5, 6, 7, 8],
+    [9, 10, 11, 12]
+]
+
+# Número de linhas
+linhas = len(matriz)
+print(f"Linhas: {linhas}")   # 3
+
+# Número de colunas (tamanho da primeira linha)
+colunas = len(matriz[0])
+print(f"Colunas: {colunas}")   # 4
+
+print(f"Dimensão: {linhas}x{colunas}")   # 3x4
+    </div>
+
+    <h3>Percorrendo Matrizes</h3>
+    
+    <h4>Forma 1: for aninhado com índices</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for i in range(len(matriz)):          # Para cada linha
+    for j in range(len(matriz[i])):   # Para cada coluna
+        print(f"matriz[{i}][{j}] = {matriz[i][j]}")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+matriz[0][0] = 1
+matriz[0][1] = 2
+matriz[0][2] = 3
+matriz[1][0] = 4
+...
+    </div>
+
+    <h4>Forma 2: for aninhado direto nos elementos</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for linha in matriz:
+    for elemento in linha:
+        print(elemento, end=" ")
+    print()  # Pula linha
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+1 2 3 
+4 5 6 
+7 8 9 
+    </div>
+
+    <h4>Forma 3: usando enumerate</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for i, linha in enumerate(matriz):
+    for j, valor in enumerate(linha):
+        print(f"[{i}][{j}]={valor}", end="  ")
+    print()
+    </div>
+
+    <h3>Operações Comuns com Matrizes</h3>
+    
+    <h4>Soma de todos os elementos:</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+soma_total = 0
+for linha in matriz:
+    for elemento in linha:
+        soma_total += elemento
+
+print(f"Soma total: {soma_total}")   # 45
+
+# Forma pythonica
+soma_total = sum(sum(linha) for linha in matriz)
+print(f"Soma total: {soma_total}")   # 45
+    </div>
+
+    <h4>Soma de cada linha:</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+for i, linha in enumerate(matriz):
+    soma_linha = sum(linha)
+    print(f"Soma da linha {i}: {soma_linha}")
+
+# Saída:
+# Soma da linha 0: 6
+# Soma da linha 1: 15
+# Soma da linha 2: 24
+    </div>
+
+    <h4>Soma de cada coluna:</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+num_colunas = len(matriz[0])
+
+for j in range(num_colunas):
+    soma_coluna = 0
+    for i in range(len(matriz)):
+        soma_coluna += matriz[i][j]
+    print(f"Soma da coluna {j}: {soma_coluna}")
+
+# Saída:
+# Soma da coluna 0: 12
+# Soma da coluna 1: 15
+# Soma da coluna 2: 18
+    </div>
+
+    <h4>Diagonal principal (matriz quadrada):</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+diagonal = []
+soma_diagonal = 0
+
+for i in range(len(matriz)):
+    diagonal.append(matriz[i][i])
+    soma_diagonal += matriz[i][i]
+
+print(f"Diagonal: {diagonal}")         # [1, 5, 9]
+print(f"Soma diagonal: {soma_diagonal}")  # 15
+
+# Forma pythonica
+diagonal = [matriz[i][i] for i in range(len(matriz))]
+print(f"Diagonal: {diagonal}")   # [1, 5, 9]
+    </div>
+
+    <h4>Diagonal secundária:</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+n = len(matriz)
+diagonal_sec = [matriz[i][n - 1 - i] for i in range(n)]
+print(f"Diagonal secundária: {diagonal_sec}")   # [3, 5, 7]
+    </div>
+
+    <h3>Comparando: Portugol vs Python</h3>
+    
+    <h4>Exemplo: Ler e mostrar matriz 3x3</h4>
+    
+    <p><strong>Em Portugol:</strong></p>
+    <div class="code-block">
+algoritmo "matriz_3x3"
+var
+&nbsp;&nbsp;&nbsp;&nbsp;matriz: vetor[1..3, 1..3] de inteiro
+&nbsp;&nbsp;&nbsp;&nbsp;i, j: inteiro
+inicio
+&nbsp;&nbsp;&nbsp;&nbsp;// Lendo a matriz
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 3 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;para j de 1 até 3 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva("Digite matriz[", i, ",", j, "]: ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;leia(matriz[i, j])
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;// Mostrando a matriz
+&nbsp;&nbsp;&nbsp;&nbsp;para i de 1 até 3 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;para j de 1 até 3 faça
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreva(matriz[i, j], " ")
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;escreval("")
+&nbsp;&nbsp;&nbsp;&nbsp;fimpara
+fimalgoritmo
+    </div>
+    
+    <p><strong>Em Python:</strong></p>
+    <div class="code-block">
+# Lendo a matriz
+matriz = []
+for i in range(3):
+    linha = []
+    for j in range(3):
+        valor = int(input(f"Digite matriz[{i}][{j}]: "))
+        linha.append(valor)
+    matriz.append(linha)
+
+# Mostrando a matriz
+print("\nMatriz digitada:")
+for linha in matriz:
+    for elemento in linha:
+        print(elemento, end=" ")
+    print()
+    </div>
+
+    <h3>Lendo Matriz do Usuário</h3>
+    <div class="code-block">
+print("=== LEITURA DE MATRIZ ===")
+
+linhas = int(input("Quantas linhas? "))
+colunas = int(input("Quantas colunas? "))
+
+matriz = []
+
+print(f"\nDigite os valores da matriz {linhas}x{colunas}:")
+for i in range(linhas):
+    linha = []
+    for j in range(colunas):
+        valor = int(input(f"  [{i}][{j}]: "))
+        linha.append(valor)
+    matriz.append(linha)
+
+print("\nMatriz digitada:")
+for linha in matriz:
+    print(linha)
+    </div>
+
+    <h3>Exibindo Matriz Formatada</h3>
+    <div class="code-block">
+def mostrar_matriz(matriz, titulo="Matriz"):
+    """Exibe uma matriz de forma formatada"""
+    print(f"\n{titulo}:")
+    for linha in matriz:
+        for elemento in linha:
+            print(f"{elemento:4}", end=" ")
+        print()
+
+# Exemplo de uso
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+mostrar_matriz(matriz)
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Matriz:
+   1    2    3 
+   4    5    6 
+   7    8    9 
+    </div>
+
+    <h3>Matriz Identidade</h3>
+    <div class="code-block">
+# Criar matriz identidade 4x4
+n = 4
+identidade = [[1 if i == j else 0 for j in range(n)] for i in range(n)]
+
+print("Matriz Identidade 4x4:")
+for linha in identidade:
+    print(linha)
+
+# Saída:
+# [1, 0, 0, 0]
+# [0, 1, 0, 0]
+# [0, 0, 1, 0]
+# [0, 0, 0, 1]
+    </div>
+
+    <h3>Transposta de uma Matriz</h3>
+    <p>A transposta troca linhas por colunas.</p>
+    
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6]
+]
+
+# Original: 2x3
+# Transposta: 3x2
+
+linhas = len(matriz)
+colunas = len(matriz[0])
+
+# Criar transposta
+transposta = []
+for j in range(colunas):
+    nova_linha = []
+    for i in range(linhas):
+        nova_linha.append(matriz[i][j])
+    transposta.append(nova_linha)
+
+print("Original:")
+for linha in matriz:
+    print(linha)
+
+print("\nTransposta:")
+for linha in transposta:
+    print(linha)
+
+# Forma pythonica
+transposta = [[matriz[i][j] for i in range(linhas)] for j in range(colunas)]
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Original:
+[1, 2, 3]
+[4, 5, 6]
+
+Transposta:
+[1, 4]
+[2, 5]
+[3, 6]
+    </div>
+
+    <h3>Exemplo Completo: Sistema de Notas</h3>
+    <div class="code-block">
+print("=== SISTEMA DE NOTAS ===")
+print()
+
+num_alunos = int(input("Quantos alunos? "))
+num_provas = int(input("Quantas provas? "))
+
+# Matriz de notas
+notas = []
+nomes = []
+
+# Leitura dos dados
+for i in range(num_alunos):
+    print()
+    nome = input(f"Nome do aluno {i + 1}: ")
+    nomes.append(nome)
+    
+    notas_aluno = []
+    for j in range(num_provas):
+        nota = float(input(f"  Nota da prova {j + 1}: "))
+        notas_aluno.append(nota)
+    notas.append(notas_aluno)
+
+# Exibir boletim
+print("\n" + "=" * 50)
+print("BOLETIM DA TURMA")
+print("=" * 50)
+
+# Cabeçalho
+print(f"{'Aluno':<15}", end="")
+for j in range(num_provas):
+    print(f"{'P' + str(j + 1):>8}", end="")
+print(f"{'Média':>10}{'Situação':>12}")
+print("-" * 50)
+
+# Dados de cada aluno
+for i in range(num_alunos):
+    print(f"{nomes[i]:<15}", end="")
+    
+    for nota in notas[i]:
+        print(f"{nota:>8.1f}", end="")
+    
+    media = sum(notas[i]) / len(notas[i])
+    situacao = "Aprovado" if media >= 7 else "Reprovado"
+    
+    print(f"{media:>10.2f}{situacao:>12}")
+
+# Estatísticas
+print("-" * 50)
+
+# Média de cada prova
+print(f"\n{'Média por prova:':<15}", end="")
+for j in range(num_provas):
+    soma_prova = sum(notas[i][j] for i in range(num_alunos))
+    media_prova = soma_prova / num_alunos
+    print(f"{media_prova:>8.1f}", end="")
+print()
+
+# Média geral
+todas_notas = [nota for aluno in notas for nota in aluno]
+media_geral = sum(todas_notas) / len(todas_notas)
+print(f"Média geral da turma: {media_geral:.2f}")
+    </div>
+
+    <h3>Exemplo Completo: Jogo da Velha</h3>
+    <div class="code-block">
+def mostrar_tabuleiro(tab):
+    """Exibe o tabuleiro do jogo"""
+    print()
+    for i in range(3):
+        print(" ", end="")
+        for j in range(3):
+            print(f" {tab[i][j]} ", end="")
+            if j < 2:
+                print("|", end="")
+        print()
+        if i < 2:
+            print("  ---+---+---")
+    print()
+
+def verificar_vencedor(tab):
+    """Verifica se há um vencedor"""
+    # Verificar linhas
+    for linha in tab:
+        if linha[0] == linha[1] == linha[2] != " ":
+            return linha[0]
+    
+    # Verificar colunas
+    for j in range(3):
+        if tab[0][j] == tab[1][j] == tab[2][j] != " ":
+            return tab[0][j]
+    
+    # Verificar diagonais
+    if tab[0][0] == tab[1][1] == tab[2][2] != " ":
+        return tab[0][0]
+    if tab[0][2] == tab[1][1] == tab[2][0] != " ":
+        return tab[0][2]
+    
+    return None
+
+def tabuleiro_cheio(tab):
+    """Verifica se o tabuleiro está cheio"""
+    for linha in tab:
+        if " " in linha:
+            return False
+    return True
+
+# Inicializar tabuleiro
+tabuleiro = [[" " for _ in range(3)] for _ in range(3)]
+jogador_atual = "X"
+
+print("=== JOGO DA VELHA ===")
+print("Posições: 1-9 (da esquerda para direita, de cima para baixo)")
+
+mostrar_tabuleiro(tabuleiro)
+
+while True:
+    # Pedir jogada
+    try:
+        posicao = int(input(f"Jogador {jogador_atual}, escolha (1-9): "))
+        
+        if posicao < 1 or posicao > 9:
+            print("❌ Posição inválida! Use 1-9.")
+            continue
+        
+        # Converter posição para linha e coluna
+        linha = (posicao - 1) // 3
+        coluna = (posicao - 1) % 3
+        
+        # Verificar se está livre
+        if tabuleiro[linha][coluna] != " ":
+            print("❌ Posição ocupada! Escolha outra.")
+            continue
+        
+        # Fazer jogada
+        tabuleiro[linha][coluna] = jogador_atual
+        mostrar_tabuleiro(tabuleiro)
+        
+        # Verificar vencedor
+        vencedor = verificar_vencedor(tabuleiro)
+        if vencedor:
+            print(f"🎉 PARABÉNS! Jogador {vencedor} venceu!")
+            break
+        
+        # Verificar empate
+        if tabuleiro_cheio(tabuleiro):
+            print("🤝 EMPATE! Ninguém venceu.")
+            break
+        
+        # Trocar jogador
+        jogador_atual = "O" if jogador_atual == "X" else "X"
+        
+    except ValueError:
+        print("❌ Digite um número de 1 a 9!")
+    </div>
+
+    <h3>Exemplo Completo: Soma de Matrizes</h3>
+    <div class="code-block">
+print("=== SOMA DE MATRIZES ===")
+print()
+
+linhas = int(input("Número de linhas: "))
+colunas = int(input("Número de colunas: "))
+
+# Ler matriz A
+print(f"\nDigite a matriz A ({linhas}x{colunas}):")
+matriz_a = []
+for i in range(linhas):
+    linha = []
+    for j in range(colunas):
+        valor = int(input(f"  A[{i}][{j}]: "))
+        linha.append(valor)
+    matriz_a.append(linha)
+
+# Ler matriz B
+print(f"\nDigite a matriz B ({linhas}x{colunas}):")
+matriz_b = []
+for i in range(linhas):
+    linha = []
+    for j in range(colunas):
+        valor = int(input(f"  B[{i}][{j}]: "))
      </main>
 
     <!-- Botões flutuantes -->
