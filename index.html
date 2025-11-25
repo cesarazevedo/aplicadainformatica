@@ -8178,7 +8178,697 @@ for i, nota in enumerate(notas):
     </div>
 
 </section>
-                
+
+                <!-- Aula 16: Operações Avançadas com Listas -->
+<section id="aula16">
+    <h2>Aula 16: Operações Avançadas com Listas</h2>
+    
+    <h3>Revisão Rápida</h3>
+    <p>Na aula anterior aprendemos o básico de listas. Agora vamos aprofundar com técnicas mais avançadas!</p>
+    
+    <div class="code-block">
+# O que já sabemos:
+lista = [1, 2, 3, 4, 5]     # Criar
+lista.append(6)              # Adicionar no final
+lista.insert(0, 0)           # Adicionar em posição
+lista.remove(3)              # Remover por valor
+lista.pop()                  # Remover último
+print(len(lista))            # Tamanho
+print(sum(lista))            # Soma
+print(max(lista))            # Maior
+print(min(lista))            # Menor
+    </div>
+
+    <h3>Cópia de Listas: Cuidado!</h3>
+    <p>Em Python, atribuir uma lista a outra variável <strong>não cria uma cópia</strong>, apenas uma referência!</p>
+    
+    <h4>❌ O problema:</h4>
+    <div class="code-block">
+original = [1, 2, 3, 4, 5]
+copia = original  # NÃO é uma cópia real!
+
+copia.append(6)
+
+print(original)   # [1, 2, 3, 4, 5, 6] 😱 Mudou!
+print(copia)      # [1, 2, 3, 4, 5, 6]
+    </div>
+    
+    <div class="highlight">
+        <p><strong>⚠️ Por que isso acontece?</strong></p>
+        <p>Quando você faz <code>copia = original</code>, as duas variáveis apontam para a <strong>mesma lista</strong> na memória. Alterar uma afeta a outra!</p>
+    </div>
+    
+    <h4>✅ Como fazer cópia corretamente:</h4>
+    <div class="code-block">
+original = [1, 2, 3, 4, 5]
+
+# Método 1: Fatiamento
+copia1 = original[:]
+
+# Método 2: Usando list()
+copia2 = list(original)
+
+# Método 3: Usando .copy()
+copia3 = original.copy()
+
+# Agora são independentes!
+copia1.append(6)
+print(original)   # [1, 2, 3, 4, 5] ✓ Não mudou!
+print(copia1)     # [1, 2, 3, 4, 5, 6]
+    </div>
+
+    <h3>Concatenação e Repetição</h3>
+    
+    <h4>Concatenar listas (+):</h4>
+    <div class="code-block">
+lista1 = [1, 2, 3]
+lista2 = [4, 5, 6]
+
+junta = lista1 + lista2
+print(junta)   # [1, 2, 3, 4, 5, 6]
+
+# As originais não mudam
+print(lista1)  # [1, 2, 3]
+print(lista2)  # [4, 5, 6]
+    </div>
+    
+    <h4>Repetir lista (*):</h4>
+    <div class="code-block">
+numeros = [1, 2, 3]
+
+repetida = numeros * 3
+print(repetida)   # [1, 2, 3, 1, 2, 3, 1, 2, 3]
+
+# Útil para criar lista com valores iguais
+zeros = [0] * 5
+print(zeros)      # [0, 0, 0, 0, 0]
+
+nomes = ["vazio"] * 3
+print(nomes)      # ["vazio", "vazio", "vazio"]
+    </div>
+
+    <h3>Desempacotamento de Listas</h3>
+    <p>Você pode atribuir elementos de uma lista a várias variáveis de uma vez:</p>
+    
+    <div class="code-block">
+coordenadas = [10, 20, 30]
+
+x, y, z = coordenadas
+
+print(x)   # 10
+print(y)   # 20
+print(z)   # 30
+    </div>
+    
+    <h4>Com o operador * (resto):</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5, 6, 7]
+
+primeiro, segundo, *resto = numeros
+
+print(primeiro)   # 1
+print(segundo)    # 2
+print(resto)      # [3, 4, 5, 6, 7]
+
+# Pegando primeiro e último
+primeiro, *meio, ultimo = numeros
+print(primeiro)   # 1
+print(meio)       # [2, 3, 4, 5, 6]
+print(ultimo)     # 7
+    </div>
+
+    <h3>List Comprehension (Compreensão de Lista)</h3>
+    <p>Uma forma elegante e pythonica de criar listas! É como um <code>for</code> em uma única linha.</p>
+    
+    <h4>Sintaxe básica:</h4>
+    <div class="code-block">
+nova_lista = [expressão for item in sequência]
+    </div>
+    
+    <h4>Exemplo: Quadrados de 1 a 10</h4>
+    <div class="code-block">
+# Forma tradicional
+quadrados = []
+for i in range(1, 11):
+    quadrados.append(i ** 2)
+print(quadrados)   # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+# Com list comprehension (1 linha!)
+quadrados = [i ** 2 for i in range(1, 11)]
+print(quadrados)   # [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+    </div>
+    
+    <h4>Mais exemplos:</h4>
+    <div class="code-block">
+# Dobro dos números de 1 a 5
+dobros = [x * 2 for x in range(1, 6)]
+print(dobros)   # [2, 4, 6, 8, 10]
+
+# Converter lista de strings para maiúsculas
+nomes = ["ana", "bruno", "carla"]
+maiusculos = [nome.upper() for nome in nomes]
+print(maiusculos)   # ["ANA", "BRUNO", "CARLA"]
+
+# Extrair tamanho de cada palavra
+palavras = ["Python", "é", "incrível"]
+tamanhos = [len(p) for p in palavras]
+print(tamanhos)   # [6, 1, 9]
+    </div>
+
+    <h4>List Comprehension com condição (if):</h4>
+    <div class="code-block">
+nova_lista = [expressão for item in sequência if condição]
+    </div>
+    
+    <div class="code-block">
+# Apenas números pares de 1 a 20
+pares = [x for x in range(1, 21) if x % 2 == 0]
+print(pares)   # [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+# Apenas números maiores que 5
+numeros = [1, 8, 3, 10, 2, 7, 4, 9]
+maiores = [n for n in numeros if n > 5]
+print(maiores)   # [8, 10, 7, 9]
+
+# Palavras com mais de 3 letras
+palavras = ["oi", "olá", "python", "ai", "mundo"]
+longas = [p for p in palavras if len(p) > 3]
+print(longas)   # ["olá", "python", "mundo"]
+    </div>
+
+    <h4>List Comprehension com if/else:</h4>
+    <div class="code-block">
+nova_lista = [valor_se_true if condição else valor_se_false for item in sequência]
+    </div>
+    
+    <div class="code-block">
+# Classificar números como "par" ou "ímpar"
+numeros = [1, 2, 3, 4, 5, 6]
+classificacao = ["par" if n % 2 == 0 else "ímpar" for n in numeros]
+print(classificacao)   # ["ímpar", "par", "ímpar", "par", "ímpar", "par"]
+
+# Substituir negativos por zero
+valores = [5, -3, 8, -1, 0, 4, -2]
+positivos = [n if n >= 0 else 0 for n in valores]
+print(positivos)   # [5, 0, 8, 0, 0, 4, 0]
+    </div>
+
+    <h3>Funções Úteis: map(), filter(), zip()</h3>
+    
+    <h4>map() - Aplica função a cada elemento:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5]
+
+# Calcular o quadrado de cada número
+quadrados = list(map(lambda x: x ** 2, numeros))
+print(quadrados)   # [1, 4, 9, 16, 25]
+
+# Converter para string
+strings = list(map(str, numeros))
+print(strings)   # ["1", "2", "3", "4", "5"]
+    </div>
+    
+    <h4>filter() - Filtra elementos:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# Filtrar apenas pares
+pares = list(filter(lambda x: x % 2 == 0, numeros))
+print(pares)   # [2, 4, 6, 8, 10]
+
+# Filtrar maiores que 5
+maiores = list(filter(lambda x: x > 5, numeros))
+print(maiores)   # [6, 7, 8, 9, 10]
+    </div>
+    
+    <h4>zip() - Combina listas em pares:</h4>
+    <div class="code-block">
+nomes = ["Ana", "Bruno", "Carla"]
+idades = [25, 30, 28]
+
+# Combinar as listas
+combinados = list(zip(nomes, idades))
+print(combinados)   # [("Ana", 25), ("Bruno", 30), ("Carla", 28)]
+
+# Usar em um for
+for nome, idade in zip(nomes, idades):
+    print(f"{nome} tem {idade} anos")
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+Ana tem 25 anos
+Bruno tem 30 anos
+Carla tem 28 anos
+    </div>
+
+    <h3>Verificações com any() e all()</h3>
+    
+    <h4>any() - Retorna True se ALGUM elemento for verdadeiro:</h4>
+    <div class="code-block">
+numeros = [0, 0, 0, 1, 0]
+print(any(numeros))   # True (tem pelo menos um diferente de 0)
+
+numeros = [0, 0, 0, 0]
+print(any(numeros))   # False (todos são 0)
+
+# Verificar se algum número é maior que 10
+valores = [5, 8, 3, 12, 7]
+tem_maior = any(n > 10 for n in valores)
+print(tem_maior)   # True
+    </div>
+    
+    <h4>all() - Retorna True se TODOS os elementos forem verdadeiros:</h4>
+    <div class="code-block">
+numeros = [1, 2, 3, 4, 5]
+print(all(numeros))   # True (nenhum é 0)
+
+numeros = [1, 2, 0, 4, 5]
+print(all(numeros))   # False (tem um 0)
+
+# Verificar se todos são positivos
+valores = [5, 8, 3, 12, 7]
+todos_positivos = all(n > 0 for n in valores)
+print(todos_positivos)   # True
+    </div>
+
+    <h3>Strings ↔ Listas</h3>
+    
+    <h4>split() - String para Lista:</h4>
+    <div class="code-block">
+frase = "Python é muito legal"
+
+palavras = frase.split()   # Divide por espaços
+print(palavras)   # ["Python", "é", "muito", "legal"]
+
+# Dividir por outro caractere
+data = "25/12/2024"
+partes = data.split("/")
+print(partes)   # ["25", "12", "2024"]
+
+csv = "João,25,São Paulo"
+dados = csv.split(",")
+print(dados)   # ["João", "25", "São Paulo"]
+    </div>
+    
+    <h4>join() - Lista para String:</h4>
+    <div class="code-block">
+palavras = ["Python", "é", "muito", "legal"]
+
+frase = " ".join(palavras)   # Junta com espaço
+print(frase)   # "Python é muito legal"
+
+frase = "-".join(palavras)   # Junta com hífen
+print(frase)   # "Python-é-muito-legal"
+
+numeros = ["1", "2", "3", "4", "5"]
+texto = ", ".join(numeros)
+print(texto)   # "1, 2, 3, 4, 5"
+    </div>
+
+    <h3>Listas Aninhadas (Lista de Listas)</h3>
+    <p>Uma lista pode conter outras listas como elementos:</p>
+    
+    <div class="code-block">
+# Lista de listas (como uma matriz)
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Acessar elementos
+print(matriz[0])      # [1, 2, 3] (primeira linha)
+print(matriz[1])      # [4, 5, 6] (segunda linha)
+print(matriz[0][0])   # 1 (linha 0, coluna 0)
+print(matriz[1][2])   # 6 (linha 1, coluna 2)
+print(matriz[2][1])   # 8 (linha 2, coluna 1)
+    </div>
+    
+    <h4>Percorrendo listas aninhadas:</h4>
+    <div class="code-block">
+matriz = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+# Percorrer todas as linhas
+for linha in matriz:
+    print(linha)
+
+print()
+
+# Percorrer todos os elementos
+for linha in matriz:
+    for elemento in linha:
+        print(elemento, end=" ")
+    print()
+    </div>
+    
+    <p><strong>👉 Saída:</strong></p>
+    <div class="code-block">
+[1, 2, 3]
+[4, 5, 6]
+[7, 8, 9]
+
+1 2 3 
+4 5 6 
+7 8 9 
+    </div>
+
+    <h3>Exemplo Completo: Análise de Dados</h3>
+    <div class="code-block">
+print("=== ANÁLISE DE VENDAS ===")
+print()
+
+# Vendas de cada dia da semana
+vendas = []
+dias = ["Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado", "Domingo"]
+
+for dia in dias:
+    valor = float(input(f"Vendas de {dia}: R$ "))
+    vendas.append(valor)
+
+print()
+print("=== RELATÓRIO ===")
+
+# Estatísticas básicas
+print(f"Total da semana: R$ {sum(vendas):.2f}")
+print(f"Média diária: R$ {sum(vendas) / len(vendas):.2f}")
+print(f"Maior venda: R$ {max(vendas):.2f}")
+print(f"Menor venda: R$ {min(vendas):.2f}")
+
+# Encontrar o melhor dia
+indice_maior = vendas.index(max(vendas))
+print(f"Melhor dia: {dias[indice_maior]}")
+
+# Dias acima da média
+media = sum(vendas) / len(vendas)
+acima_media = [dias[i] for i in range(len(dias)) if vendas[i] > media]
+print(f"Dias acima da média: {', '.join(acima_media)}")
+
+# Ordenar por valor (usando zip)
+vendas_ordenadas = sorted(zip(vendas, dias), reverse=True)
+print()
+print("Ranking de vendas:")
+for i, (valor, dia) in enumerate(vendas_ordenadas, 1):
+    print(f"  {i}º {dia}: R$ {valor:.2f}")
+    </div>
+
+    <h3>Exemplo Completo: Sistema de Alunos</h3>
+    <div class="code-block">
+print("=== SISTEMA DE NOTAS ===")
+print()
+
+alunos = []
+notas = []
+
+# Cadastro
+while True:
+    nome = input("Nome do aluno (ou 'fim' para encerrar): ")
+    if nome.lower() == 'fim':
+        break
+    
+    nota = float(input(f"Nota de {nome}: "))
+    alunos.append(nome)
+    notas.append(nota)
+    print(f"✓ {nome} cadastrado!")
+    print()
+
+if len(alunos) == 0:
+    print("Nenhum aluno cadastrado!")
+else:
+    media_turma = sum(notas) / len(notas)
+    
+    print()
+    print("=== BOLETIM DA TURMA ===")
+    print(f"Total de alunos: {len(alunos)}")
+    print(f"Média da turma: {media_turma:.2f}")
+    print()
+    
+    # Classificar cada aluno
+    aprovados = []
+    reprovados = []
+    
+    for aluno, nota in zip(alunos, notas):
+        status = "APROVADO" if nota >= 7 else "REPROVADO"
+        print(f"{aluno}: {nota:.1f} - {status}")
+        
+        if nota >= 7:
+            aprovados.append(aluno)
+        else:
+            reprovados.append(aluno)
+    
+    print()
+    print(f"Aprovados ({len(aprovados)}): {', '.join(aprovados) if aprovados else 'Nenhum'}")
+    print(f"Reprovados ({len(reprovados)}): {', '.join(reprovados) if reprovados else 'Nenhum'}")
+    
+    # Alunos acima da média
+    acima = [alunos[i] for i in range(len(alunos)) if notas[i] > media_turma]
+    print(f"Acima da média da turma: {', '.join(acima) if acima else 'Nenhum'}")
+    </div>
+
+    <h3>Exemplo Completo: Jogo da Forca</h3>
+    <div class="code-block">
+import random
+
+print("=== JOGO DA FORCA ===")
+print()
+
+palavras = ["python", "programacao", "computador", "algoritmo", "variavel"]
+palavra = random.choice(palavras)
+
+letras_certas = []
+letras_erradas = []
+tentativas = 6
+
+while tentativas > 0:
+    # Mostrar palavra com lacunas
+    display = ""
+    acertou_tudo = True
+    
+    for letra in palavra:
+        if letra in letras_certas:
+            display += letra + " "
+        else:
+            display += "_ "
+            acertou_tudo = False
+    
+    print(f"\nPalavra: {display}")
+    print(f"Letras erradas: {', '.join(letras_erradas)}")
+    print(f"Tentativas restantes: {tentativas}")
+    
+    # Verificar vitória
+    if acertou_tudo:
+        print(f"\n🎉 PARABÉNS! Você acertou: {palavra.upper()}")
+        break
+    
+    # Pedir letra
+    letra = input("Digite uma letra: ").lower()
+    
+    # Validar entrada
+    if len(letra) != 1 or not letra.isalpha():
+        print("❌ Digite apenas UMA letra!")
+        continue
+    
+    if letra in letras_certas or letra in letras_erradas:
+        print("❌ Você já tentou essa letra!")
+        continue
+    
+    # Verificar se acertou
+    if letra in palavra:
+        letras_certas.append(letra)
+        print(f"✓ Boa! '{letra}' está na palavra!")
+    else:
+        letras_erradas.append(letra)
+        tentativas -= 1
+        print(f"✗ '{letra}' não está na palavra!")
+
+else:
+    print(f"\n💀 GAME OVER! A palavra era: {palavra.upper()}")
+    </div>
+
+    <div class="highlight">
+        <p><strong>📚 Resumindo a Aula 16:</strong></p>
+        <ul>
+            <li><strong>Cópia:</strong> use <code>[:]</code>, <code>list()</code> ou <code>.copy()</code></li>
+            <li><strong>Concatenar:</strong> <code>lista1 + lista2</code></li>
+            <li><strong>Repetir:</strong> <code>lista * n</code></li>
+            <li><strong>Desempacotar:</strong> <code>a, b, c = lista</code></li>
+            <li><strong>List Comprehension:</strong> <code>[x for x in lista]</code></li>
+            <li><strong>Com filtro:</strong> <code>[x for x in lista if condição]</code></li>
+            <li><strong>map():</strong> aplica função a cada elemento</li>
+            <li><strong>filter():</strong> filtra elementos por condição</li>
+            <li><strong>zip():</strong> combina listas em pares</li>
+            <li><strong>any()/all():</strong> verificações lógicas</li>
+            <li><strong>split():</strong> string → lista</li>
+            <li><strong>join():</strong> lista → string</li>
+        </ul>
+    </div>
+
+    <h3>Exercícios para Praticar</h3>
+    
+    <div class="exercise">
+        <h4>Exercício 16.1: Quadrados com List Comprehension</h4>
+        <p>Crie uma lista com os quadrados dos números de 1 a 15 usando list comprehension.</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol57')">Mostrar Solução</button>
+        <div class="solution-container" id="sol57">
+            <h5>💡 Solução do Exercício 16.1:</h5>
+            <div class="code-block">
+quadrados = [x ** 2 for x in range(1, 16)]
+print(quadrados)
+# [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225]
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.2: Filtrar Números Positivos</h4>
+        <p>Dada a lista [-5, 3, -1, 0, 8, -2, 7, -4, 6], crie uma nova lista apenas com os números positivos usando list comprehension.</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension com if</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol58')">Mostrar Solução</button>
+        <div class="solution-container" id="sol58">
+            <h5>💡 Solução do Exercício 16.2:</h5>
+            <div class="code-block">
+numeros = [-5, 3, -1, 0, 8, -2, 7, -4, 6]
+
+positivos = [n for n in numeros if n > 0]
+print(positivos)   # [3, 8, 7, 6]
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.3: Palavras em Maiúsculas</h4>
+        <p>Dada uma lista de nomes, crie uma nova lista com todos em maiúsculas usando list comprehension.</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension, .upper()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol59')">Mostrar Solução</button>
+        <div class="solution-container" id="sol59">
+            <h5>💡 Solução do Exercício 16.3:</h5>
+            <div class="code-block">
+nomes = ["ana", "bruno", "carla", "daniel"]
+
+maiusculos = [nome.upper() for nome in nomes]
+print(maiusculos)   # ["ANA", "BRUNO", "CARLA", "DANIEL"]
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.4: Separar Frase em Palavras</h4>
+        <p>Peça uma frase ao usuário, separe em palavras e mostre quantas palavras ela tem.</p>
+        <p><strong>Conceitos aplicados:</strong> split(), len()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol60')">Mostrar Solução</button>
+        <div class="solution-container" id="sol60">
+            <h5>💡 Solução do Exercício 16.4:</h5>
+            <div class="code-block">
+frase = input("Digite uma frase: ")
+
+palavras = frase.split()
+
+print(f"Palavras: {palavras}")
+print(f"Quantidade de palavras: {len(palavras)}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.5: Combinar Duas Listas</h4>
+        <p>Dadas duas listas de mesmo tamanho (produtos e preços), use zip() para mostrar cada produto com seu preço.</p>
+        <p><strong>Conceitos aplicados:</strong> zip(), for</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol61')">Mostrar Solução</button>
+        <div class="solution-container" id="sol61">
+            <h5>💡 Solução do Exercício 16.5:</h5>
+            <div class="code-block">
+produtos = ["Arroz", "Feijão", "Macarrão", "Açúcar"]
+precos = [25.90, 8.50, 4.75, 3.20]
+
+print("=== LISTA DE PREÇOS ===")
+for produto, preco in zip(produtos, precos):
+    print(f"{produto}: R$ {preco:.2f}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.6: Par ou Ímpar com List Comprehension</h4>
+        <p>Dada uma lista de números, crie uma lista que substitua cada número por "par" ou "ímpar".</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension com if/else</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol62')">Mostrar Solução</button>
+        <div class="solution-container" id="sol62">
+            <h5>💡 Solução do Exercício 16.6:</h5>
+            <div class="code-block">
+numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+classificacao = ["par" if n % 2 == 0 else "ímpar" for n in numeros]
+
+print(f"Números: {numeros}")
+print(f"Classificação: {classificacao}")
+
+# Mostrar lado a lado
+for num, tipo in zip(numeros, classificacao):
+    print(f"{num} é {tipo}")
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.7: Múltiplos de 3</h4>
+        <p>Use list comprehension para criar uma lista com todos os múltiplos de 3 de 1 a 50.</p>
+        <p><strong>Conceitos aplicados:</strong> list comprehension com if, operador %</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol63')">Mostrar Solução</button>
+        <div class="solution-container" id="sol63">
+            <h5>💡 Solução do Exercício 16.7:</h5>
+            <div class="code-block">
+multiplos_3 = [n for n in range(1, 51) if n % 3 == 0]
+print(multiplos_3)
+# [3, 6, 9, 12, 15, 18, 21, 24, 27, 30, 33, 36, 39, 42, 45, 48]
+            </div>
+        </div>
+    </div>
+
+    <div class="exercise">
+        <h4>Exercício 16.8: Média de Notas por Aluno</h4>
+        <p>Crie uma lista de listas onde cada sublista contém 3 notas de um aluno. Calcule a média de cada aluno.</p>
+        <p><strong>Conceitos aplicados:</strong> listas aninhadas, for, sum(), len()</p>
+        
+        <button class="show-solution-btn" onclick="toggleSolution('sol64')">Mostrar Solução</button>
+        <div class="solution-container" id="sol64">
+            <h5>💡 Solução do Exercício 16.8:</h5>
+            <div class="code-block">
+# Notas de 4 alunos (3 notas cada)
+notas_alunos = [
+    [8.0, 7.5, 9.0],   # Aluno 1
+    [6.5, 7.0, 6.0],   # Aluno 2
+    [9.5, 9.0, 10.0],  # Aluno 3
+    [5.0, 6.5, 4.5]    # Aluno 4
+]
+
+print("=== MÉDIAS DOS ALUNOS ===")
+
+for i, notas in enumerate(notas_alunos, 1):
+    media = sum(notas) / len(notas)
+    status = "APROVADO" if media >= 7 else "REPROVADO"
+    print(f"Aluno {i}: Notas {notas} | Média: {media:.2f} | {status}")
+
+# Usando list comprehension para calcular todas as médias
+medias = [sum(notas) / len(notas) for notas in notas_alunos]
+print(f"\nTodas as médias: {medias}")
+print(f"Média geral da turma: {sum(medias) / len(medias):.2f}")
+            </div>
+        </div>
+    </div>
+
+</section>
      </main>
 
     <!-- Botões flutuantes -->
